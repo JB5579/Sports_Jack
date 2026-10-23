@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SportsJack — Blackjack v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#0a3b2a"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#0a3b2a"/><g transform="translate(600 400)"><rect x="-230" y="-160" width="240" height="330" rx="20" fill="#f5f1e6" transform="rotate(-10)"/><rect x="-10" y="-160" width="240" height="330" rx="20" fill="#f5f1e6" transform="rotate(8)"/><text x="0" y="60" font-family="Georgia,serif" font-size="180" font-weight="700" fill="#0a3b2a" text-anchor="middle">21</text></g><circle cx="600" cy="130" r="46" fill="none" stroke="#d8b25c" stroke-width="10"/></svg></template>
+<div id="root"></div>
+
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components/data.jsx"></script>
+<script type="text/babel" src="components/playing-card.jsx"></script>
+<script type="text/babel" src="components/lobby.jsx"></script>
+<script type="text/babel" src="components/buyin.jsx"></script>
+<script type="text/babel" src="components/gameplay-bj.jsx"></script>
+<script type="text/babel" src="components/result.jsx"></script>
+<script type="text/babel" src="components/wallet.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+const TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "demo_mode": "players",
+  "demo_phase": "midgame"
+}/*EDITMODE-END*/;
+
+function PhoneArtboard({ children }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '15px 0' }}>
+      <window.IOSDevice width={390} height={844} dark>
+        {children}
+      </window.IOSDevice>
+    </div>
+  );
+}
+
+function App() {
+  const [tweaks, setTweak] = window.useTweaks(TWEAKS_DEFAULTS);
+
+  return (
+    <>
+      <window.DesignCanvas
+        title="SportsJack"
+        subtitle="Blackjack with NFL fantasy points · iPhone · v2"
+        background="#16241c"
+      >
+        <window.DCSection id="how" title="Setup · how it works">
+          <window.DCArtboard id="lobby" label="1. Lobby — pick a live game" width={420} height={874}>
+            <PhoneArtboard><LobbyScreen /></PhoneArtboard>
+          </window.DCArtboard>
+
+          <window.DCArtboard id="buyin" label="2. Buy in — choose your yards" width={420} height={874}>
+            <PhoneArtboard><BuyInScreen /></PhoneArtboard>
+          </window.DCArtboard>
+        </window.DCSection>
+
+        <window.DCSection id="play" title="Gameplay · vs Players">
+          <window.DCArtboard id="gp-deal" label="3. Cards dealt — fresh hand" width={420} height={874}>
+            <PhoneArtboard><GameplayBJ phase="kickoff" mode="players" key="deal" /></PhoneArtboard>
+          </window.DCArtboard>
+
+          <window.DCArtboard id="gp-mid" label="4. Mid-quarter — values live" width={420} height={874}>
+            <PhoneArtboard><GameplayBJ phase="midgame" mode="players" key="mid" /></PhoneArtboard>
+          </window.DCArtboard>
+
+          <window.DCArtboard id="gp-stand" label="5. Standing — locked, watching" width={420} height={874}>
+            <PhoneArtboard><GameplayBJ phase="standing" mode="players" key="stand" /></PhoneArtboard>
+          </window.DCArtboard>
+        </window.DCSection>
+
+        <window.DCSection id="dealer" title="Gameplay · vs Dealer">
+          <window.DCArtboard id="dealer-mid" label="6. Dealer mode — house has a hand" width={420} height={874}>
+            <PhoneArtboard><GameplayBJ phase="midgame" mode="dealer" key="dlmid" /></PhoneArtboard>
+          </window.DCArtboard>
+        </window.DCSection>
+
+        <window.DCSection id="end" title="End of quarter">
+          <window.DCArtboard id="result" label="7. Showdown — closest to 21 wins" width={420} height={874}>
+            <PhoneArtboard><HandResultScreen /></PhoneArtboard>
+          </window.DCArtboard>
+
+          <window.DCArtboard id="wallet" label="8. Wallet — yards balance" width={420} height={874}>
+            <PhoneArtboard><WalletScreen /></PhoneArtboard>
+          </window.DCArtboard>
+        </window.DCSection>
+
+        <window.DCSection id="live" title="Live demo · play with the controls">
+          <window.DCArtboard id="live-demo" label="Try it — hit/stand/freeze/burn are wired" width={420} height={874}>
+            <PhoneArtboard><GameplayBJ phase={tweaks.demo_phase} mode={tweaks.demo_mode} key={tweaks.demo_mode + tweaks.demo_phase} /></PhoneArtboard>
+          </window.DCArtboard>
+        </window.DCSection>
+      </window.DesignCanvas>
+
+      <window.TweaksPanel title="Tweaks">
+        <window.TweakSection title="Live demo">
+          <window.TweakRadio
+            label="Mode"
+            value={tweaks.demo_mode}
+            options={[
+              { value: 'players', label: 'vs Players' },
+              { value: 'dealer', label: 'vs Dealer' },
+            ]}
+            onChange={v => setTweak('demo_mode', v)}
+          />
+          <window.TweakRadio
+            label="Phase"
+            value={tweaks.demo_phase}
+            options={[
+              { value: 'kickoff', label: 'Deal' },
+              { value: 'midgame', label: 'Live' },
+              { value: 'standing', label: 'Stood' },
+            ]}
+            onChange={v => setTweak('demo_phase', v)}
+          />
+        </window.TweakSection>
+      </window.TweaksPanel>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

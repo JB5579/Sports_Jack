@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SportsJack — Product Requirements Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --felt-900: oklch(22% 0.04 155);
+  --felt-800: oklch(28% 0.05 155);
+  --felt-700: oklch(34% 0.06 155);
+  --felt-600: oklch(42% 0.07 158);
+  --felt-500: oklch(52% 0.08 160);
+  --gold: oklch(70% 0.13 75);
+  --gold-deep: oklch(58% 0.14 68);
+  --gold-shine: oklch(82% 0.13 85);
+  --paper: oklch(97.5% 0.008 85);
+  --paper-2: oklch(95% 0.01 82);
+  --ink-900: oklch(24% 0.015 220);
+  --ink-700: oklch(40% 0.015 220);
+  --ink-500: oklch(54% 0.02 220);
+  --ink-400: oklch(64% 0.02 220);
+  --rule: oklch(88% 0.012 220);
+  --rule-strong: oklch(80% 0.015 220);
+  --red: oklch(54% 0.17 25);
+  --amber: oklch(70% 0.14 65);
+  --green: oklch(55% 0.12 150);
+  --blue: oklch(52% 0.12 245);
+  --purple: oklch(52% 0.13 295);
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Inter', -apple-system, system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  background: var(--paper-2);
+  color: var(--ink-900);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  font-size: 15px;
+}
+.doc { max-width: 880px; margin: 0 auto; background: var(--paper); box-shadow: 0 0 60px rgba(0,0,0,0.08); }
+
+/* ── Cover ── */
+.cover {
+  background: radial-gradient(ellipse 90% 70% at 50% 25%, var(--felt-700), var(--felt-900) 80%);
+  color: oklch(95% 0.01 85);
+  padding: 80px 64px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.025) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+.cover > * { position: relative; }
+.cover .eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-shine); font-weight: 600; }
+.cover h1 { font-family: var(--serif); font-size: 76px; line-height: 0.95; margin: 18px 0 6px; letter-spacing: -0.02em; font-weight: 400; }
+.cover .sub { font-size: 19px; color: oklch(82% 0.015 85); max-width: 460px; line-height: 1.45; }
+.cover .meta { margin-top: 48px; display: flex; gap: 40px; flex-wrap: wrap; }
+.cover .meta div { }
+.cover .meta .k { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: oklch(70% 0.02 85); font-weight: 600; }
+.cover .meta .v { font-size: 15px; margin-top: 3px; font-weight: 500; }
+.cover .chips { margin-top: 36px; display: flex; gap: 8px; flex-wrap: wrap; }
+.cover .chip {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+  padding: 6px 12px; border-radius: 999px; color: oklch(88% 0.02 85);
+}
+.cover .card-deco {
+  position: absolute; right: 48px; top: 50%; transform: translateY(-50%) rotate(8deg);
+  display: flex; gap: -20px; opacity: 0.9;
+}
+
+/* ── Body ── */
+.body { padding: 56px 64px 80px; }
+section { margin-bottom: 52px; scroll-margin-top: 24px; }
+.sec-num { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--gold-deep); letter-spacing: 0.1em; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: 36px; line-height: 1.1; margin: 6px 0 4px; letter-spacing: -0.015em; color: var(--ink-900); }
+h2 + .lede { font-size: 16px; color: var(--ink-500); margin: 0 0 24px; max-width: 620px; }
+h3 { font-size: 17px; font-weight: 700; margin: 30px 0 8px; color: var(--ink-900); letter-spacing: -0.01em; }
+h4 { font-size: 13px; font-weight: 700; margin: 20px 0 6px; color: var(--ink-700); text-transform: uppercase; letter-spacing: 0.06em; }
+p { margin: 0 0 12px; color: var(--ink-700); }
+strong { color: var(--ink-900); font-weight: 600; }
+a { color: var(--gold-deep); }
+ul, ol { margin: 0 0 14px; padding-left: 22px; color: var(--ink-700); }
+li { margin-bottom: 6px; }
+li::marker { color: var(--gold-deep); }
+hr { border: none; border-top: 1px solid var(--rule); margin: 40px 0; }
+
+.section-divider {
+  display: flex; align-items: center; gap: 16px; margin: 0 0 28px;
+  padding-bottom: 0;
+}
+.section-divider .line { flex: 1; height: 1px; background: var(--rule-strong); }
+
+/* TOC */
+.toc { background: var(--paper-2); border: 1px solid var(--rule); border-radius: 12px; padding: 28px 32px; margin-bottom: 8px; }
+.toc h3 { margin: 0 0 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-500); font-weight: 700; }
+.toc ol { columns: 2; column-gap: 40px; padding-left: 0; list-style: none; margin: 0; }
+.toc li { margin-bottom: 9px; break-inside: avoid; }
+.toc a { color: var(--ink-700); text-decoration: none; font-size: 14px; display: flex; gap: 10px; }
+.toc a:hover { color: var(--gold-deep); }
+.toc a .n { font-family: var(--mono); font-size: 11px; color: var(--gold-deep); font-weight: 600; min-width: 22px; }
+
+/* Callout boxes */
+.callout { border-radius: 10px; padding: 16px 18px; margin: 16px 0; font-size: 14.5px; border: 1px solid; }
+.callout .ct { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout.gap { background: oklch(96% 0.03 55); border-color: oklch(80% 0.09 60); }
+.callout.gap .ct { color: oklch(50% 0.14 50); }
+.callout.decision { background: oklch(96% 0.025 250); border-color: oklch(82% 0.07 250); }
+.callout.decision .ct { color: var(--blue); }
+.callout.design { background: oklch(96% 0.03 150); border-color: oklch(80% 0.08 150); }
+.callout.design .ct { color: var(--green); }
+.callout.risk { background: oklch(96% 0.035 25); border-color: oklch(82% 0.1 25); }
+.callout.risk .ct { color: var(--red); }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 16px 0 20px; font-size: 13.5px; }
+th { text-align: left; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-500); font-weight: 700; padding: 8px 12px; border-bottom: 2px solid var(--rule-strong); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--rule); color: var(--ink-700); vertical-align: top; }
+td strong { color: var(--ink-900); }
+tr:last-child td { border-bottom: none; }
+.pri { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 5px; display: inline-block; }
+.p0 { background: oklch(90% 0.07 25); color: oklch(45% 0.16 25); }
+.p1 { background: oklch(92% 0.06 65); color: oklch(48% 0.14 55); }
+.p2 { background: oklch(92% 0.03 240); color: oklch(48% 0.1 245); }
+
+/* Feature grid cards */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+.gcard { background: var(--paper-2); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; }
+.gcard .h { font-size: 14px; font-weight: 700; color: var(--ink-900); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.gcard p { font-size: 13.5px; margin: 0; color: var(--ink-500); }
+.gcard .ic { width: 26px; height: 26px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+
+/* number flow */
+.flow { counter-reset: step; margin: 18px 0; }
+.flow .step { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.flow .step:last-child { border-bottom: none; }
+.flow .step .num { counter-increment: step; font-family: var(--serif); font-size: 28px; color: var(--gold-deep); min-width: 40px; line-height: 1; }
+.flow .step .num::before { content: counter(step, decimal-leading-zero); }
+.flow .step .c h4 { margin: 2px 0 4px; text-transform: none; letter-spacing: -0.01em; font-size: 15px; color: var(--ink-900); }
+.flow .step .c p { font-size: 14px; margin: 0; }
+
+.kvtag { font-family: var(--mono); font-size: 11px; background: var(--felt-800); color: oklch(90% 0.02 85); padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+
+.minilegend { display: flex; gap: 18px; flex-wrap: wrap; margin: 8px 0 24px; font-size: 12px; }
+.minilegend span { display: flex; align-items: center; gap: 6px; color: var(--ink-500); }
+.dot { width: 10px; height: 10px; border-radius: 3px; }
+
+footer { background: var(--felt-900); color: oklch(75% 0.02 85); padding: 32px 64px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+footer .mono { font-family: var(--mono); }
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .doc { box-shadow: none; max-width: none; }
+  .cover { padding: 50px; }
+  .cover h1 { font-size: 58px; }
+  .body { padding: 40px; }
+  section { page-break-inside: auto; }
+  h2, h3 { page-break-after: avoid; }
+  .callout, .gcard, table, .flow .step { page-break-inside: avoid; }
+  .toc a { color: var(--ink-700) !important; }
+}
+@media (max-width: 720px) {
+  .cover { padding: 48px 28px; }
+  .cover h1 { font-size: 52px; }
+  .body { padding: 36px 24px; }
+  .toc ol, .grid2 { columns: 1; grid-template-columns: 1fr; }
+  .card-deco { display: none !important; }
+}
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#0a3b2a"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#0a3b2a"/><rect x="330" y="120" width="540" height="620" rx="14" fill="#f5f1e6"/><rect x="390" y="200" width="300" height="26" rx="13" fill="#0a3b2a"/><g fill="#c9c3b2"><rect x="390" y="270" width="420" height="16" rx="8"/><rect x="390" y="310" width="420" height="16" rx="8"/><rect x="390" y="350" width="330" height="16" rx="8"/><rect x="390" y="430" width="420" height="16" rx="8"/><rect x="390" y="470" width="420" height="16" rx="8"/><rect x="390" y="510" width="270" height="16" rx="8"/></g><rect x="390" y="600" width="180" height="60" rx="10" fill="#d8b25c"/><text x="480" y="644" font-family="Georgia,serif" font-size="42" font-weight="700" fill="#0a3b2a" text-anchor="middle">PRD</text></svg></template>
+<div class="doc">
+
+<!-- ══════════ COVER ══════════ -->
+<header class="cover">
+  <div class="eyebrow">Product Requirements Document</div>
+  <h1>SportsJack</h1>
+  <div class="sub">Live blackjack where the cards are NFL players and the deck moves in real time with the game.</div>
+  <div class="meta">
+    <div><div class="k">Version</div><div class="v">1.0 — Mobile MVP</div></div>
+    <div><div class="k">Status</div><div class="v">Draft for Eng Kickoff</div></div>
+    <div><div class="k">Date</div><div class="v">June 2026</div></div>
+    <div><div class="k">Platform</div><div class="v">iOS &amp; Android (mobile web → native)</div></div>
+    <div><div class="k">Settlement</div><div class="v">Yards · USDC on Solana</div></div>
+  </div>
+  <div class="chips">
+    <span class="chip">Real-time fantasy stats</span>
+    <span class="chip">Blackjack core loop</span>
+    <span class="chip">PvP &amp; vs Dealer</span>
+    <span class="chip">Power-ups: Freeze · Burn</span>
+    <span class="chip">Crypto-native</span>
+  </div>
+</header>
+
+<div class="body">
+
+<!-- ══════════ TOC ══════════ -->
+<section class="toc" id="top">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#vision"><span class="n">01</span><span>Vision &amp; Positioning</span></a></li>
+    <li><a href="#pillars"><span class="n">02</span><span>Design Pillars &amp; Principles</span></a></li>
+    <li><a href="#gamedesign"><span class="n">03</span><span>Game Design — Core Loop</span></a></li>
+    <li><a href="#mechanics"><span class="n">04</span><span>Mechanics Deep Dive</span></a></li>
+    <li><a href="#economy"><span class="n">05</span><span>Economy, Yards &amp; Wagering</span></a></li>
+    <li><a href="#powerups"><span class="n">06</span><span>Power-Up System</span></a></li>
+    <li><a href="#screens"><span class="n">07</span><span>Screen &amp; Flow Inventory</span></a></li>
+    <li><a href="#journeys"><span class="n">08</span><span>Key User Journeys</span></a></li>
+    <li><a href="#gaps"><span class="n">09</span><span>Gap Analysis — What's Missing</span></a></li>
+    <li><a href="#tech"><span class="n">10</span><span>Technical Architecture</span></a></li>
+    <li><a href="#realtime"><span class="n">11</span><span>Real-Time Stat Engine</span></a></li>
+    <li><a href="#fairness"><span class="n">12</span><span>Fairness &amp; Anti-Cheat</span></a></li>
+    <li><a href="#compliance"><span class="n">13</span><span>Compliance &amp; Responsible Play</span></a></li>
+    <li><a href="#monetization"><span class="n">14</span><span>Monetization</span></a></li>
+    <li><a href="#metrics"><span class="n">15</span><span>Analytics &amp; Success Metrics</span></a></li>
+    <li><a href="#requirements"><span class="n">16</span><span>Requirements by Priority</span></a></li>
+    <li><a href="#roadmap"><span class="n">17</span><span>Roadmap &amp; Phasing</span></a></li>
+    <li><a href="#decisions"><span class="n">18</span><span>Open Decisions &amp; Risks</span></a></li>
+  </ol>
+</section>
+
+<div class="minilegend">
+  <span><span class="dot" style="background:oklch(80% 0.09 60)"></span>Gap / undefined</span>
+  <span><span class="dot" style="background:oklch(82% 0.07 250)"></span>Decision needed</span>
+  <span><span class="dot" style="background:oklch(80% 0.08 150)"></span>Design proposal</span>
+  <span><span class="dot" style="background:oklch(82% 0.1 25)"></span>Risk</span>
+</div>
+
+<!-- ══════════ 01 VISION ══════════ -->
+<section id="vision">
+  <div class="section-divider"><span class="sec-num">01</span><span class="line"></span></div>
+  <h2>Vision &amp; Positioning</h2>
+  <p class="lede">SportsJack turns every quarter of an NFL game into a two-minute hand of blackjack — except the cards are real players, and their values swing live with the broadcast.</p>
+
+  <p><strong>The one-liner:</strong> Hit or stand on a hand of NFL players, racing to 21 fantasy points while the game is still being played. The closer the kickoff-to-whistle drama maps onto "do I take another card?", the more this wins.</p>
+
+  <h3>Why blackjack, not poker</h3>
+  <p>Blackjack's single decision — <em>take another card or hold</em> — is the cleanest possible mapping to live sports tension. "This receiver is heating up, I'll take him" or "I'm sitting on 19, don't blow it" needs zero poker literacy. It is glanceable, fast, and universally understood, which matters enormously for a mobile, crypto-onboarding audience.</p>
+
+  <h3>Who it's for</h3>
+  <ul>
+    <li><strong>Primary:</strong> 21–40, sports-watching, mobile-first, already bets or plays DFS, crypto-curious to crypto-native.</li>
+    <li><strong>Secondary:</strong> Casual blackjack / casino-app players who want a reason to care about a game they have no team in.</li>
+  </ul>
+
+  <h3>Positioning vs the field</h3>
+  <table>
+    <thead><tr><th>Product</th><th>Engagement</th><th>Skill</th><th>Session</th><th>Our edge</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DraftKings / FanDuel</strong></td><td>Pre-game draft, then wait</td><td>Roster construction</td><td>Hours / all day</td><td>We engage <em>during</em> live play, per quarter</td></tr>
+      <tr><td><strong>Sportsbooks</strong></td><td>Place bet, watch</td><td>Handicapping</td><td>Set &amp; forget</td><td>Active decisions every drive</td></tr>
+      <tr><td><strong>Casino blackjack apps</strong></td><td>Pure RNG</td><td>Basic strategy</td><td>Endless</td><td>Real stakes tied to real sports = meaning</td></tr>
+      <tr><td><strong>SportsJack</strong></td><td><strong>Live, per-quarter</strong></td><td><strong>Sports read + nerve</strong></td><td><strong>~2–15 min hands</strong></td><td>The only one merging all three</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════ 02 PILLARS ══════════ -->
+<section id="pillars">
+  <div class="section-divider"><span class="sec-num">02</span><span class="line"></span></div>
+  <h2>Design Pillars &amp; Principles</h2>
+  <p class="lede">Every feature decision should ladder up to one of these four pillars. If it doesn't, cut it from MVP.</p>
+
+  <div class="grid2">
+    <div class="gcard"><div class="h"><span class="ic" style="background:oklch(90% 0.07 25)">⚡</span>Live or it's dead</div><p>The product's whole reason to exist is that values move <em>while you watch</em>. Latency, smooth number animation, and "feed is live" trust are P0, not polish.</p></div>
+    <div class="gcard"><div class="h"><span class="ic" style="background:oklch(92% 0.06 150)">👁</span>Glanceable under pressure</div><p>A decision must be makeable in 3 seconds with one thumb while watching a TV. One hero number (distance to 21), one risk read, two buttons.</p></div>
+    <div class="gcard"><div class="h"><span class="ic" style="background:oklch(92% 0.06 65)">🎰</span>Vegas feel, fair core</div><p>Tactile chips, dealing animations, win shimmer, haptics — the dopamine of a casino — riding on a provably-fair, auditable engine.</p></div>
+    <div class="gcard"><div class="h"><span class="ic" style="background:oklch(92% 0.05 250)">🪙</span>Crypto without the friction</div><p>"Yards" abstracts USDC so the unit feels native to football, not finance. The wallet should disappear behind the game.</p></div>
+  </div>
+
+  <div class="callout design">
+    <div class="ct">◆ Design proposal — naming</div>
+    <p>Currency = <strong>Yards</strong> (1 YD = 1 USDC). It's sport-native, reads as "ground gained," and sidesteps casino/finance baggage. Reinforce with copy: "gained 1,080 yards," "yards on the table," "cash out your yards." Power-ups and cosmetics priced in yards too.</p>
+  </div>
+</section>
+
+<!-- ══════════ 03 CORE LOOP ══════════ -->
+<section id="gamedesign">
+  <div class="section-divider"><span class="sec-num">03</span><span class="line"></span></div>
+  <h2>Game Design — The Core Loop</h2>
+  <p class="lede">One NFL quarter = one hand. A game gives you four hands; a Sunday slate gives you dozens.</p>
+
+  <div class="flow">
+    <div class="step"><div class="num"></div><div class="c"><h4>Ante &amp; deal (kickoff)</h4><p>Player posts an ante in yards to join the quarter's hand and is dealt an opening hand of NFL players (proposed: 2 cards). Each card's value = that player's live fantasy points, scored continuously.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Watch the values move</h4><p>As the real game plays, card values rise (yards, catches, TDs) and can fall (fumbles lost, sacks, INTs → negative plays). Your hand total drifts toward — or past — 21 on its own.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Hit or stand, on demand</h4><p>At any moment you may <strong>Hit</strong> (draw another player into your hand, raising your ceiling and your bust risk) or <strong>Stand</strong> (stop drawing). Power-ups — Freeze, Burn — can be spent to bend variance.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>The bust window is alive</h4><p>Unlike casino blackjack, going over 21 is <em>not</em> instant death: a player on your hand can post negative plays and pull your total back under 21. Busting is a live, recoverable state until the quarter ends.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Whistle &amp; settle (end of quarter)</h4><p>At 0:00 the quarter's stats freeze. Hands are scored: closest to 21 without finishing over wins. Yards settle from escrow; rake is taken; standings update.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Re-buy or ride</h4><p>Player chooses to play the next quarter (same or new table), cash out, or hop to another live game. Loop repeats Q1→Q4 and across the slate.</p></div></div>
+  </div>
+
+  <div class="callout decision">
+    <div class="ct">▲ Decision needed — "stand" semantics</div>
+    <p>Does <strong>Stand</strong> freeze your <em>total</em>, or just stop you drawing more cards while your existing cards keep moving live? These are very different games. <strong>Recommendation:</strong> Stand = stop drawing, but cards stay live (true to the "live deck" fantasy). Locking your number is exactly what the <strong>Freeze</strong> power-up is for — that separation keeps each action meaningful.</p>
+  </div>
+</section>
+
+<!-- ══════════ 04 MECHANICS ══════════ -->
+<section id="mechanics">
+  <div class="section-divider"><span class="sec-num">04</span><span class="line"></span></div>
+  <h2>Mechanics Deep Dive</h2>
+  <p class="lede">The fun is in the details — and several of these are still genuinely undefined. Flagged inline.</p>
+
+  <h3>4.1 Scoring — what a card is worth</h3>
+  <p>A card's face value is its live fantasy score, computed from a published scoring table (PPR-style). This must be a single, frozen-per-season ruleset shown to users.</p>
+  <table>
+    <thead><tr><th>Event</th><th>Proposed points</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Passing yards</td><td>0.04 / yd (1 per 25)</td><td>QB-heavy; tune to keep totals near the 21 band</td></tr>
+      <tr><td>Rushing / receiving yards</td><td>0.1 / yd</td><td></td></tr>
+      <tr><td>Reception (PPR)</td><td>+1.0</td><td>Half-PPR is an option to flatten variance</td></tr>
+      <tr><td>Touchdown</td><td>+6.0</td><td>A single TD is a huge swing near 21 — intentional drama</td></tr>
+      <tr><td>Turnover (INT / fumble lost)</td><td>−2.0 to −4.0</td><td><strong>Critical:</strong> negatives are what make bust recoverable</td></tr>
+      <tr><td>Sack taken (QB)</td><td>−1.0</td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="callout gap">
+    <div class="ct">● Gap — score scaling to the 21 target</div>
+    <p>A real NFL quarter rarely produces ~21 fantasy points for two players. We must define a <strong>scaling / normalization</strong> so a typical strong hand lands in the 17–21 zone — otherwise nobody ever approaches 21 and the blackjack metaphor breaks. Options: (a) scale all stats by a season-tuned multiplier, (b) use per-quarter projections, (c) redefine the target (e.g. "race to a moving par"). <strong>This is the single most important unresolved mechanic.</strong></p>
+  </div>
+
+  <h3>4.2 The deck — where cards come from</h3>
+  <p>Undefined today. Core questions the engine depends on:</p>
+  <ul>
+    <li><strong>Deck composition:</strong> Is the "deck" the full set of active players in <em>this</em> game (≈90 players), the two starting offenses, or a curated pool of skill-position starters?</li>
+    <li><strong>Shared vs personal:</strong> Can two players hold the same NFL player as a card simultaneously? (Proposed: <strong>yes</strong> — players aren't consumed; everyone draws from the same conceptual pool. Simpler, and avoids supply starvation at full tables.)</li>
+    <li><strong>Draw randomness:</strong> Weighted by projection, or flat-random? Weighted draws make Hit less of a coin-flip and reward sports knowledge.</li>
+    <li><strong>Position rules:</strong> Any constraints (max one QB? must be from the live game?) or fully open?</li>
+  </ul>
+  <div class="callout decision">
+    <div class="ct">▲ Decision needed — deck model</div>
+    <p><strong>Recommendation:</strong> Per-game shared pool of skill-position starters + key backups (~20–24 players), non-consuming, weighted-random draws. Small enough to learn, deep enough for variety, and "from the game you're watching" keeps every card meaningful on the broadcast.</p>
+  </div>
+
+  <h3>4.3 Hit mechanics</h3>
+  <ul>
+    <li>Does Hitting cost yards (an additional ante per card), or is it free as in casino blackjack? <span class="kvtag">decision</span></li>
+    <li>Is there a maximum hand size? (Proposed cap: <strong>5 cards</strong> — keeps the UI legible and the math bounded.)</li>
+    <li>Can you Hit after you Stand? (Proposed: <strong>no</strong> — Stand is a commitment.)</li>
+    <li>Is a drawn card's entry value its value <em>at draw time</em> or does it join live? (Proposed: joins live, like all cards.)</li>
+  </ul>
+
+  <h3>4.4 Bust, recovery &amp; ties</h3>
+  <ul>
+    <li><strong>Live bust:</strong> Over 21 is a warning state, not elimination — you can drift back under. The UI must make "you're busted right now, but it's recoverable" legible (we show a red gauge + "X over").</li>
+    <li><strong>Final bust:</strong> If you finish the quarter over 21, how are you ranked? (Proposed: all non-busts beat all busts; among busts, <em>closest to 21 from above</em> ranks higher.)</li>
+    <li><strong>Push / tie:</strong> Two players land identical totals — split the pot, or tie-break by fewer cards / earlier stand? <span class="kvtag">decision</span></li>
+    <li><strong>Everyone busts:</strong> Pot carries to next quarter, returns antes minus rake, or closest-from-above takes it? <span class="kvtag">decision</span></li>
+  </ul>
+
+  <h3>4.5 Game modes</h3>
+  <div class="grid2">
+    <div class="gcard"><div class="h">vs Players (PvP ring)</div><p>6-max table, shared pot of antes, closest to 21 wins, house takes rake. The flagship social mode. Needs liquidity to fill tables.</p></div>
+    <div class="gcard"><div class="h">vs Dealer (house)</div><p>You vs an automated dealer hand. Always available, no liquidity dependency — critical for off-peak and onboarding. Needs a defined <strong>dealer strategy</strong>.</p></div>
+  </div>
+  <div class="callout gap">
+    <div class="ct">● Gap — dealer AI rules</div>
+    <p>Casino blackjack dealers follow a fixed rule ("hit until 17"). Our dealer faces a <em>live, moving</em> hand. We must define: when does the dealer Hit/Stand? Does it react to the live game or follow a deterministic schedule? Does it get power-ups? The house edge math and provable fairness both depend on this being a published, deterministic policy.</p>
+  </div>
+</section>
+<!-- ══════════ 05 ECONOMY ══════════ -->
+<section id="economy">
+  <div class="section-divider"><span class="sec-num">05</span><span class="line"></span></div>
+  <h2>Economy, Yards &amp; Wagering</h2>
+  <p class="lede">Yards are the unit of everything: stakes, payouts, power-ups, cosmetics. 1 Yard = 1 USDC, held in escrow per hand.</p>
+
+  <h3>5.1 The wager model</h3>
+  <p>Today the prototype shows an "ante to sit." We need to define the full wagering surface:</p>
+  <table>
+    <thead><tr><th>Element</th><th>Proposed MVP</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ante</strong></td><td>Fixed buy-in per quarter to be dealt in</td><td>Defined</td></tr>
+      <tr><td><strong>Raising mid-hand</strong></td><td>Should you be able to add yards as your hand strengthens? Adds poker-like betting tension.</td><td><span class="kvtag">decision</span></td></tr>
+      <tr><td><strong>Double down</strong></td><td>Blackjack staple — double your wager, commit to your hand. Natural fit.</td><td><span class="kvtag">decision</span></td></tr>
+      <tr><td><strong>Side bets</strong></td><td>"Will any card hit a TD this drive?" — future revenue, post-MVP</td><td>Phase 2</td></tr>
+      <tr><td><strong>Min / max table stakes</strong></td><td>Tiered tables (e.g. 25 / 100 / 1K yard rooms)</td><td>Defined</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 Rake &amp; house edge</h3>
+  <ul>
+    <li>PvP: <strong>8–12%</strong> rake on the winning pot (tiered by stake; lower rake at high stakes).</li>
+    <li>vs Dealer: house edge baked into dealer policy + payout ratio rather than rake.</li>
+    <li>Rake must be shown transparently pre-hand (already surfaced on the buy-in screen).</li>
+  </ul>
+
+  <h3>5.3 Deposit, withdraw, custody</h3>
+  <div class="flow">
+    <div class="step"><div class="num"></div><div class="c"><h4>On-ramp</h4><p>Connect wallet (Phantom, MetaMask, or in-app embedded wallet) → deposit USDC → credited as yards. <strong>Phase 2:</strong> fiat on-ramp (Apple Pay / card → USDC) to remove the crypto barrier.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Escrow</h4><p>Antes lock into a per-hand escrow smart contract at deal. Nobody — including the house — can touch mid-hand.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Settlement</h4><p>At whistle, the contract pays the winner, deducts rake, releases the rest. Instant Solana finality; yards balance updates in-app.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Off-ramp</h4><p>Withdraw yards → USDC to wallet, any time, subject to no open hands. KYC gate above thresholds.</p></div></div>
+  </div>
+  <div class="callout gap">
+    <div class="ct">● Gap — wallet onboarding &amp; custody UX</div>
+    <p>None of the connect-wallet, deposit, KYC, or withdraw screens are designed yet. This is the highest-friction part of the funnel and likely where most users churn. Needs: embedded-wallet option for non-crypto users, gas abstraction (users shouldn't think about SOL for fees), clear pending/confirmed states, and a recovery story for lost keys.</p>
+  </div>
+</section>
+
+<!-- ══════════ 06 POWER-UPS ══════════ -->
+<section id="powerups">
+  <div class="section-divider"><span class="sec-num">06</span><span class="line"></span></div>
+  <h2>Power-Up System</h2>
+  <p class="lede">Power-ups are the signature twist that separates SportsJack from "blackjack with a sports skin." They add a layer of resource management and read-the-game skill.</p>
+
+  <div class="grid2">
+    <div class="gcard"><div class="h"><span class="ic" style="background:oklch(90% 0.06 230)">❄</span>Freeze</div><p>Lock your hand's current total. Immune to further live movement — you bank the number you have right now, even if your players later fumble. The defensive play.</p></div>
+    <div class="gcard"><div class="h"><span class="ic" style="background:oklch(92% 0.08 45)">🔥</span>Burn</div><p>Discard one card from your hand and draw a replacement. Bail out of a player having a disaster game, or gamble for a better ceiling. The aggressive play.</p></div>
+  </div>
+
+  <h3>6.1 Proposed additional power-ups (future)</h3>
+  <table>
+    <thead><tr><th>Power-up</th><th>Effect</th><th>Archetype</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Peek</strong></td><td>See the live value of the next card before you Hit</td><td>Information</td></tr>
+      <tr><td><strong>Steal</strong></td><td>Copy an opponent's card into your hand (PvP only)</td><td>Aggression</td></tr>
+      <tr><td><strong>Insurance</strong></td><td>Recover half your ante if you finish busted</td><td>Hedge</td></tr>
+      <tr><td><strong>Swap</strong></td><td>Trade one of your cards for a random unheld one</td><td>Variance</td></tr>
+    </tbody>
+  </table>
+
+  <h3>6.2 The power-up economy — undefined</h3>
+  <div class="callout gap">
+    <div class="ct">● Gap — how do players get power-ups?</div>
+    <p>The single biggest open game-design question after scoring. Options, each with very different monetization &amp; fairness implications:</p>
+    <ul>
+      <li><strong>Free per hand</strong> — everyone gets 1 Freeze + 1 Burn per quarter. Pure skill, no pay-to-win. (Current prototype assumption.)</li>
+      <li><strong>Purchasable with yards</strong> — buy power-ups from the store. Revenue, but risks pay-to-win perception in real-money PvP.</li>
+      <li><strong>Earned / loadout</strong> — unlock via play, equip a limited loadout pre-hand (battle-pass style progression).</li>
+      <li><strong>Hybrid</strong> — 1 free per hand, extras purchasable only in vs-Dealer / play-money modes.</li>
+    </ul>
+    <p><strong>Recommendation:</strong> Free baseline in real-money PvP (protects fairness + regulatory posture); sell cosmetic power-up <em>skins</em> and extra charges only in casual modes.</p>
+  </div>
+  <div class="callout risk">
+    <div class="ct">⚠ Risk — pay-to-win in a real-money game</div>
+    <p>Selling power-ups that affect outcomes in real-money PvP invites both player backlash and regulatory scrutiny (it blurs "game of skill" defenses). Keep the competitive core power-up-symmetric.</p>
+  </div>
+</section>
+
+<!-- ══════════ 07 SCREENS ══════════ -->
+<section id="screens">
+  <div class="section-divider"><span class="sec-num">07</span><span class="line"></span></div>
+  <h2>Screen &amp; Flow Inventory</h2>
+  <p class="lede">What exists in the v2 prototype vs. what a shippable app needs. ✅ designed · ◐ partial · ○ not started.</p>
+
+  <table>
+    <thead><tr><th>Screen</th><th>Purpose</th><th>State</th></tr></thead>
+    <tbody>
+      <tr><td>✅ <strong>Lobby</strong></td><td>Browse live &amp; upcoming games, see tables / stakes</td><td>Designed</td></tr>
+      <tr><td>✅ <strong>Buy-in</strong></td><td>Pick stake, preview table, confirm ante</td><td>Designed</td></tr>
+      <tr><td>✅ <strong>Gameplay</strong></td><td>21-dial, hand, hit/stand, power-ups, vs Players &amp; Dealer</td><td>Designed</td></tr>
+      <tr><td>✅ <strong>Showdown / result</strong></td><td>Closest-to-21 ranking, payout in yards</td><td>Designed</td></tr>
+      <tr><td>✅ <strong>Wallet</strong></td><td>Balance, history, deposit/withdraw entry</td><td>Designed</td></tr>
+      <tr><td>○ <strong>Onboarding / tutorial</strong></td><td>Teach the mechanic; play-money first hand</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Wallet connect / deposit / KYC</strong></td><td>Crypto on-ramp, identity, funding</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Sign-up / auth</strong></td><td>Account creation, login, recovery</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Card / player detail</strong></td><td>Tap a card → live stat line, game context</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Table seating / waiting room</strong></td><td>Pre-deal lobby while table fills</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Profile &amp; stats</strong></td><td>Record, streaks, best stands, achievements</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Leaderboards</strong></td><td>Daily / weekly / season ranking</td><td>Missing (Phase 2)</td></tr>
+      <tr><td>○ <strong>Settings</strong></td><td>Notifications, limits, responsible-play, security</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Notifications / inbox</strong></td><td>Kickoff alerts, your-turn nudges, results</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Store</strong></td><td>Cosmetics, power-up skins, passes</td><td>Missing (Phase 2)</td></tr>
+      <tr><td>○ <strong>Disconnection / reconnect</strong></td><td>Mid-hand network loss handling</td><td>Missing</td></tr>
+      <tr><td>○ <strong>Empty / error / feed-down states</strong></td><td>No live games, stat feed lost, maintenance</td><td>Missing</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════ 08 JOURNEYS ══════════ -->
+<section id="journeys">
+  <div class="section-divider"><span class="sec-num">08</span><span class="line"></span></div>
+  <h2>Key User Journeys</h2>
+  <p class="lede">Three journeys the app must nail. Each exposes missing screens above.</p>
+
+  <h3>8.1 First-time user (cold install, Sunday morning)</h3>
+  <div class="flow">
+    <div class="step"><div class="num"></div><div class="c"><h4>Install → instant hook</h4><p>No wall. Drop straight into a <strong>play-money</strong> vs-Dealer hand on a live game so they feel the mechanic in under 30 seconds. Teach Hit/Stand/Freeze/Burn via guided overlay.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>"Want to play for real?"</h4><p>After the demo hand, soft-prompt account creation. Explain yards = USDC in one sentence with a football metaphor.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Fund</h4><p>Embedded wallet by default (no extension needed); deposit via fiat on-ramp or existing wallet. Gas abstracted. Minimal KYC until withdrawal threshold.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>First real hand</h4><p>Steer to a low-stakes table or vs-Dealer. Celebrate the first cash-out moment hard.</p></div></div>
+  </div>
+  <div class="callout decision">
+    <div class="ct">▲ Decision needed — gating</div>
+    <p>How much can a user do before account / wallet creation? <strong>Recommendation:</strong> unlimited play-money, zero-friction; gate only real-money. Maximizes top-of-funnel and softens the crypto barrier.</p>
+  </div>
+
+  <h3>8.2 Returning user (game is live now)</h3>
+  <div class="flow">
+    <div class="step"><div class="num"></div><div class="c"><h4>Push notification</h4><p>"RED–BLU kicks off in 5 min — 3 tables open." Deep-link straight to the lobby for that game.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Sit + ante in two taps</h4><p>Remember last stake. One-tap "sit at my usual."</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Play the quarter, settle, decide</h4><p>Stay for next quarter, jump games, or cash out. Cross-game "what else is live" rail.</p></div></div>
+  </div>
+
+  <h3>8.3 In-hand micro-loop (the 2 minutes that matter)</h3>
+  <div class="flow">
+    <div class="step"><div class="num"></div><div class="c"><h4>Glance</h4><p>One look tells you: my total, distance to 21, bust risk, who's hot on my hand.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>React to a play</h4><p>A TD just swung your card +6 — do you Freeze to bank it, or ride? Live, emotional, fast.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Commit</h4><p>Hit, Stand, or spend a power-up. Haptic + animation confirms. Back to watching the game.</p></div></div>
+  </div>
+</section>
+<!-- ══════════ 09 GAPS ══════════ -->
+<section id="gaps">
+  <div class="section-divider"><span class="sec-num">09</span><span class="line"></span></div>
+  <h2>Gap Analysis — What We Haven't Designed</h2>
+  <p class="lede">Thinking like a Vegas game designer: here is the full inventory of workflows, mechanics, and edge cases not yet addressed. Grouped by severity.</p>
+
+  <h3>9.1 Blocking — the game can't ship without these</h3>
+  <div class="grid2">
+    <div class="gcard"><div class="h">🎯 Score normalization to 21</div><p>Without tuning real fantasy points into the 17–21 band, the blackjack metaphor collapses. Needs simulation against historical box scores.</p></div>
+    <div class="gcard"><div class="h">🃏 Deck &amp; draw rules</div><p>Composition, shared vs personal, weighting, position limits. The engine can't be built without this.</p></div>
+    <div class="gcard"><div class="h">🤖 Dealer policy</div><p>Deterministic hit/stand logic for the house hand in vs-Dealer. Drives the whole non-PvP mode + house math.</p></div>
+    <div class="gcard"><div class="h">🔌 Disconnection handling</div><p>Phone locks, signal drops mid-quarter. Auto-stand on your current hand? Auto-freeze? Money is live — this must be bulletproof and fair.</p></div>
+    <div class="gcard"><div class="h">📡 Feed-loss fallback</div><p>If the stat feed dies mid-hand, do we pause, void &amp; refund, or switch to a backup feed? Affects trust and settlement.</p></div>
+    <div class="gcard"><div class="h">💳 Wallet / deposit / KYC flow</div><p>The entire money on-ramp is undesigned and is the #1 churn risk.</p></div>
+  </div>
+
+  <h3>9.2 Important — needed for a good experience</h3>
+  <ul>
+    <li><strong>Matchmaking &amp; liquidity:</strong> How do tables fill? Do we seed with house bots early to avoid empty rooms? How are 6-max seats allocated across many concurrent games?</li>
+    <li><strong>Late-join / sit-out:</strong> Can you join a quarter already in progress? Skip a quarter without leaving the table?</li>
+    <li><strong>Tutorial &amp; education:</strong> "Cards are players, values are live" is non-obvious. Needs an interactive first-run, plus a persistent "how to play."</li>
+    <li><strong>Card detail view:</strong> Tap a card → live stat line, what's driving its value, game situation. Rewards the engaged user.</li>
+    <li><strong>Notifications system:</strong> Kickoff alerts, "your hand is busting," quarter-result, re-engagement. Mobile lives on push.</li>
+    <li><strong>Profile, stats &amp; progression:</strong> Record, streaks, best stand, achievements — the retention spine of any casino app.</li>
+    <li><strong>Responsible-play surface:</strong> Deposit/loss/time limits, cool-off, self-exclusion. Both ethical and regulatory.</li>
+    <li><strong>Multi-table / multi-game:</strong> Power users will want to play several live games at once — how does the UI support watching many hands?</li>
+  </ul>
+
+  <h3>9.3 Sports edge cases — the messy real world</h3>
+  <div class="callout gap">
+    <div class="ct">● Gap — live-sports reality</div>
+    <p>Real games break clean rules. We need defined behavior for each:</p>
+    <ul>
+      <li><strong>Player injured / benched mid-quarter</strong> — their card stops accruing. Auto-offer a free Burn? Freeze its value?</li>
+      <li><strong>Stat corrections</strong> — the NFL revises stats post-game (a catch reclassified). Do settled hands ever re-settle? (Recommend: <strong>no</strong> — settle on the live feed at the whistle, final.)</li>
+      <li><strong>Overtime / shortened quarters</strong> — does the quarter clock map cleanly? Weather/lightning delays?</li>
+      <li><strong>Blowouts &amp; garbage time</strong> — starters pulled; values flatline. Affects engagement late in lopsided games.</li>
+      <li><strong>Game postponed / cancelled</strong> — void open hands, return antes.</li>
+      <li><strong>Defensive / special-teams scoring</strong> — are DEF and K valid cards? They behave very differently from skill positions.</li>
+    </ul>
+  </div>
+
+  <h3>9.4 Social &amp; retention (Phase 2, but design now)</h3>
+  <ul>
+    <li>Table chat / emotes / reactions — the casino floor feeling.</li>
+    <li>Friends, private tables, invites — viral loop.</li>
+    <li>Leaderboards &amp; seasons — competitive ladder tied to the NFL calendar.</li>
+    <li>Daily streaks, missions, login rewards — habit formation.</li>
+    <li>Spectate mode — watch a friend's hand, watch high-stakes tables.</li>
+  </ul>
+</section>
+
+<!-- ══════════ 10 TECH ══════════ -->
+<section id="tech">
+  <div class="section-divider"><span class="sec-num">10</span><span class="line"></span></div>
+  <h2>Technical Architecture</h2>
+  <p class="lede">A real-money, real-time, multiplayer game on a blockchain. The hard parts are latency, fairness, and settlement.</p>
+
+  <table>
+    <thead><tr><th>Layer</th><th>Proposed</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Client</strong></td><td>React Native (iOS + Android from one codebase); mobile-web PWA for MVP</td><td>Native needed for push, haptics, store presence</td></tr>
+      <tr><td><strong>Real-time transport</strong></td><td>WebSocket gateway; authoritative server pushes hand/card state</td><td>Client never computes outcomes — anti-cheat</td></tr>
+      <tr><td><strong>Game server</strong></td><td>Authoritative match engine; one process per table; state machine per hand</td><td>Deterministic, replayable, audited</td></tr>
+      <tr><td><strong>Stat ingestion</strong></td><td>Primary + backup sports-data feed; normalize → fantasy points → broadcast</td><td>Dual feed is a P0 reliability requirement</td></tr>
+      <tr><td><strong>Backend</strong></td><td>Node/Go services; PostgreSQL (accounts, history); Redis (live table state)</td><td></td></tr>
+      <tr><td><strong>Blockchain</strong></td><td>Solana; escrow program; USDC settlement; gas abstraction / relayer</td><td>Users must not handle SOL for fees</td></tr>
+      <tr><td><strong>Wallet</strong></td><td>Embedded (MPC) wallet default; external (Phantom/MetaMask) optional</td><td>Embedded removes the #1 onboarding barrier</td></tr>
+      <tr><td><strong>Identity / KYC</strong></td><td>Third-party KYC/AML provider, geofencing</td><td>Triggered above thresholds &amp; by jurisdiction</td></tr>
+    </tbody>
+  </table>
+  <div class="callout decision">
+    <div class="ct">▲ Decision needed — on-chain vs off-chain settlement cadence</div>
+    <p>Settling every quarter on-chain is clean but costly/latent at scale. Alternative: off-chain balance ledger with periodic on-chain settlement &amp; withdrawal. <strong>Recommendation:</strong> off-chain yards ledger for gameplay speed; on-chain only at deposit/withdraw and as a periodic provable checkpoint.</p>
+  </div>
+</section>
+
+<!-- ══════════ 11 REALTIME ══════════ -->
+<section id="realtime">
+  <div class="section-divider"><span class="sec-num">11</span><span class="line"></span></div>
+  <h2>Real-Time Stat Engine</h2>
+  <p class="lede">This is the heartbeat. If values lag, jump, or disagree with the broadcast, trust evaporates.</p>
+  <ul>
+    <li><strong>Latency target:</strong> a stat event (catch, TD) reflected in card values within <strong>&lt;5s</strong> of the official feed, ideally tracking the broadcast.</li>
+    <li><strong>Smoothing:</strong> values animate smoothly between updates; never teleport. Show direction (▲▼) and a subtle live pulse.</li>
+    <li><strong>Single source of truth:</strong> the server's scored value is authoritative; clients only render.</li>
+    <li><strong>Dual feed + reconciliation:</strong> primary and backup providers; flag &amp; reconcile disagreements; auto-failover.</li>
+    <li><strong>Feed-loss protocol:</strong> defined, visible "live data paused" state; rules for pause vs void; never silently settle on stale data.</li>
+    <li><strong>Replay &amp; audit:</strong> every value change logged with timestamp + source event, so any hand can be reconstructed for disputes.</li>
+  </ul>
+  <div class="callout risk">
+    <div class="ct">⚠ Risk — feed reliability is existential</div>
+    <p>The entire product depends on a trustworthy live feed. A wrong or laggy value during a real-money hand is a settlement dispute and a trust break. Dual feeds, transparent pause states, and an audit log are non-negotiable P0.</p>
+  </div>
+</section>
+
+<!-- ══════════ 12 FAIRNESS ══════════ -->
+<section id="fairness">
+  <div class="section-divider"><span class="sec-num">12</span><span class="line"></span></div>
+  <h2>Fairness &amp; Anti-Cheat</h2>
+  <p class="lede">Real money + randomness + multiplayer = a target. Fairness must be provable, not promised.</p>
+  <ul>
+    <li><strong>Provably-fair draws:</strong> card draws use a committed seed (commit-reveal / VRF) so players can verify no rigging.</li>
+    <li><strong>Server-authoritative state:</strong> clients send <em>intents</em> (Hit/Stand/power-up), never outcomes. No client-trusted values.</li>
+    <li><strong>Collusion detection:</strong> at shared tables, detect chip-dumping and coordinated play; flag anomalous patterns.</li>
+    <li><strong>Bot / automation defense:</strong> rate limits, device attestation, behavioral signals.</li>
+    <li><strong>Latency fairness:</strong> all players at a table see value updates on the same server tick — no edge from a faster connection.</li>
+    <li><strong>Data-edge fairness:</strong> consider how a user watching a faster broadcast feed could gain an information edge over the app's feed, and whether a small action delay is needed.</li>
+  </ul>
+</section>
+<!-- ══════════ 13 COMPLIANCE ══════════ -->
+<section id="compliance">
+  <div class="section-divider"><span class="sec-num">13</span><span class="line"></span></div>
+  <h2>Compliance &amp; Responsible Play</h2>
+  <p class="lede">Real-money skill gaming with crypto sits in a contested legal space. Design for compliance from day one, not as a bolt-on.</p>
+  <ul>
+    <li><strong>Jurisdiction &amp; geofencing:</strong> launch only in permitted regions; geofence by IP + device; block restricted US states.</li>
+    <li><strong>Age &amp; identity:</strong> 18+ (or 21+ where required); KYC/AML via provider before real-money withdrawal.</li>
+    <li><strong>Game-of-skill posture:</strong> the legal defensibility rests on skill dominating chance — power-ups, reads, and timing must demonstrably matter. Avoid mechanics that look like pure chance or pay-to-win.</li>
+    <li><strong>Responsible gaming:</strong> deposit / loss / time limits, session reminders, cool-off, self-exclusion, and clear "this is real money" framing. Surface in Settings + onboarding.</li>
+    <li><strong>Transparency:</strong> published scoring rules, rake, odds, and provably-fair verification.</li>
+    <li><strong>AML / transaction monitoring:</strong> crypto in/out flows monitored; thresholds reported per regulation.</li>
+  </ul>
+  <div class="callout risk">
+    <div class="ct">⚠ Risk — regulatory is the company-killer</div>
+    <p>Engage gaming-compliance counsel <em>before</em> build, not at launch. The MVP scope (which states, KYC thresholds, skill framing) should be drawn directly from that legal review. This gates everything.</p>
+  </div>
+</section>
+
+<!-- ══════════ 14 MONETIZATION ══════════ -->
+<section id="monetization">
+  <div class="section-divider"><span class="sec-num">14</span><span class="line"></span></div>
+  <h2>Monetization</h2>
+  <p class="lede">Rake is the engine. Everything else compounds it without compromising fairness.</p>
+  <table>
+    <thead><tr><th>Stream</th><th>Mechanism</th><th>Phase</th><th>Share</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Rake</strong></td><td>8–12% of winning PvP pots; house edge in vs-Dealer</td><td>MVP</td><td>~70%</td></tr>
+      <tr><td><strong>Cosmetics</strong></td><td>Card backs, table felts, chip skins, avatars, power-up VFX</td><td>Phase 2</td><td>~15%</td></tr>
+      <tr><td><strong>Season pass</strong></td><td>Battle-pass progression tied to the NFL season + leaderboards</td><td>Phase 2</td><td>~10%</td></tr>
+      <tr><td><strong>Sponsorships</strong></td><td>Branded tables / tournaments / events</td><td>Phase 3</td><td>~5%</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Guardrail:</strong> no outcome-affecting purchases in real-money PvP. Monetize identity, status, and casual modes — never the competitive edge.</p>
+</section>
+
+<!-- ══════════ 15 METRICS ══════════ -->
+<section id="metrics">
+  <div class="section-divider"><span class="sec-num">15</span><span class="line"></span></div>
+  <h2>Analytics &amp; Success Metrics</h2>
+  <div class="grid2">
+    <div class="gcard"><div class="h">Activation</div><p>% of installs that play a demo hand · % that fund · time-to-first-real-hand.</p></div>
+    <div class="gcard"><div class="h">Core engagement</div><p>Quarter-to-quarter continuation (target <strong>&gt;80%</strong> Q1→Q2) · hands per session · power-up usage rate.</p></div>
+    <div class="gcard"><div class="h">Retention</div><p>D1 / D7 / D30 · DAU/MAU (target <strong>&gt;40%</strong>) · games per active week.</p></div>
+    <div class="gcard"><div class="h">Monetization</div><p>Rake per active user · deposit conversion · ARPDAU · withdrawal friction.</p></div>
+    <div class="gcard"><div class="h">Trust &amp; reliability</div><p>Feed uptime · value-update latency · settlement success rate · dispute rate.</p></div>
+    <div class="gcard"><div class="h">Liquidity</div><p>Avg table fill time · % tables that reach minimum players · bot-seeded share.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ 16 REQUIREMENTS ══════════ -->
+<section id="requirements">
+  <div class="section-divider"><span class="sec-num">16</span><span class="line"></span></div>
+  <h2>Requirements by Priority</h2>
+  <p class="lede"><span class="pri p0">P0</span> ship-blocking MVP · <span class="pri p1">P1</span> fast-follow · <span class="pri p2">P2</span> growth/Phase 2.</p>
+  <table>
+    <thead><tr><th>#</th><th>Requirement</th><th>Area</th><th>Pri</th></tr></thead>
+    <tbody>
+      <tr><td>R1</td><td>Define &amp; simulate score-to-21 normalization</td><td>Game design</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R2</td><td>Define deck composition &amp; draw rules</td><td>Game design</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R3</td><td>Deterministic dealer policy (vs-Dealer)</td><td>Game design</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R4</td><td>Authoritative real-time match engine + WebSocket</td><td>Backend</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R5</td><td>Dual stat feed + normalization + feed-loss protocol</td><td>Data</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R6</td><td>Provably-fair draw (commit-reveal / VRF)</td><td>Fairness</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R7</td><td>Wallet connect / embedded wallet / deposit / withdraw</td><td>Crypto</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R8</td><td>Escrow + settlement (yards ledger + on-chain checkpoints)</td><td>Crypto</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R9</td><td>Gameplay UI: 21-dial, hit/stand, Freeze/Burn (built)</td><td>Client</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R10</td><td>Lobby, buy-in, showdown, wallet screens (built)</td><td>Client</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R11</td><td>Onboarding + interactive tutorial (play-money)</td><td>Client</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R12</td><td>Disconnection / reconnect handling mid-hand</td><td>Backend</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R13</td><td>KYC/AML + geofencing + age gate</td><td>Compliance</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R14</td><td>Responsible-play limits &amp; self-exclusion</td><td>Compliance</td><td><span class="pri p0">P0</span></td></tr>
+      <tr><td>R15</td><td>Push notifications (kickoff, results, nudges)</td><td>Client</td><td><span class="pri p1">P1</span></td></tr>
+      <tr><td>R16</td><td>Matchmaking + bot-seeded liquidity</td><td>Backend</td><td><span class="pri p1">P1</span></td></tr>
+      <tr><td>R17</td><td>Card / player detail view</td><td>Client</td><td><span class="pri p1">P1</span></td></tr>
+      <tr><td>R18</td><td>Profile, stats &amp; achievements</td><td>Client</td><td><span class="pri p1">P1</span></td></tr>
+      <tr><td>R19</td><td>Double-down &amp; mid-hand raise (if adopted)</td><td>Game design</td><td><span class="pri p1">P1</span></td></tr>
+      <tr><td>R20</td><td>Fiat on-ramp</td><td>Crypto</td><td><span class="pri p1">P1</span></td></tr>
+      <tr><td>R21</td><td>Leaderboards &amp; seasons</td><td>Growth</td><td><span class="pri p2">P2</span></td></tr>
+      <tr><td>R22</td><td>Cosmetics store &amp; season pass</td><td>Growth</td><td><span class="pri p2">P2</span></td></tr>
+      <tr><td>R23</td><td>Social: chat, friends, private tables, spectate</td><td>Growth</td><td><span class="pri p2">P2</span></td></tr>
+      <tr><td>R24</td><td>Additional power-ups (Peek, Steal, Insurance…)</td><td>Game design</td><td><span class="pri p2">P2</span></td></tr>
+      <tr><td>R25</td><td>Multi-game / multi-table play</td><td>Client</td><td><span class="pri p2">P2</span></td></tr>
+      <tr><td>R26</td><td>Additional sports (NBA, NCAAF)</td><td>Growth</td><td><span class="pri p2">P2</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════ 17 ROADMAP ══════════ -->
+<section id="roadmap">
+  <div class="section-divider"><span class="sec-num">17</span><span class="line"></span></div>
+  <h2>Roadmap &amp; Phasing</h2>
+  <div class="flow">
+    <div class="step"><div class="num"></div><div class="c"><h4>Phase 0 — Design lock (now)</h4><p>Resolve the blocking game-design decisions (R1–R3), legal review, finalize mechanics. <strong>No engine work until scoring &amp; deck are locked.</strong></p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Phase 1 — Closed alpha (play-money)</h4><p>Full loop on real live games with <em>play-money</em> yards. Validate the mechanic, tune normalization against real box scores, prove the feed. No crypto risk yet.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Phase 2 — Real-money MVP</h4><p>Wallet, escrow, KYC, compliance, vs-Dealer + low-stakes PvP. Soft launch in 1–2 permitted jurisdictions. Native iOS/Android.</p></div></div>
+    <div class="step"><div class="num"></div><div class="c"><h4>Phase 3 — Growth</h4><p>Leaderboards, seasons, cosmetics, social, fiat on-ramp, more stakes &amp; tables, additional sports.</p></div></div>
+  </div>
+  <div class="callout design">
+    <div class="ct">◆ Recommendation — de-risk with a play-money alpha</div>
+    <p>The novel, unproven thing is the <em>mechanic</em> (does score-to-21 feel good on real games?), not the crypto. Prove that with play-money first; layer real-money settlement on a validated loop. It also generates the historical data needed to tune R1.</p>
+  </div>
+</section>
+
+<!-- ══════════ 18 DECISIONS ══════════ -->
+<section id="decisions">
+  <div class="section-divider"><span class="sec-num">18</span><span class="line"></span></div>
+  <h2>Open Decisions &amp; Risks</h2>
+  <p class="lede">The consolidated list of what must be decided to start the build, and what could sink it.</p>
+
+  <h3>Decisions required to begin engineering</h3>
+  <table>
+    <thead><tr><th>#</th><th>Decision</th><th>Recommendation</th></tr></thead>
+    <tbody>
+      <tr><td>D1</td><td>Score-to-21 normalization method</td><td>Season-tuned multiplier, simulated vs historical quarters</td></tr>
+      <tr><td>D2</td><td>Deck model (composition, shared, weighting)</td><td>Per-game shared pool, non-consuming, weighted draws</td></tr>
+      <tr><td>D3</td><td>"Stand" semantics</td><td>Stops drawing; cards stay live (Freeze locks the number)</td></tr>
+      <tr><td>D4</td><td>Does Hitting cost yards?</td><td>Free in MVP; revisit with double-down later</td></tr>
+      <tr><td>D5</td><td>Power-up economy</td><td>Free baseline in PvP; sell skins/charges in casual only</td></tr>
+      <tr><td>D6</td><td>Dealer policy</td><td>Deterministic, published, no power-ups</td></tr>
+      <tr><td>D7</td><td>Tie / all-bust resolution</td><td>Split on tie; closest-from-above wins all-bust</td></tr>
+      <tr><td>D8</td><td>Settlement cadence (on/off-chain)</td><td>Off-chain ledger + on-chain deposit/withdraw &amp; checkpoints</td></tr>
+      <tr><td>D9</td><td>Real-money gating</td><td>Unlimited play-money; gate only real-money behind KYC</td></tr>
+      <tr><td>D10</td><td>Launch jurisdictions</td><td>Per legal review — gates scope</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Top risks</h3>
+  <table>
+    <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Regulatory / legal</strong></td><td>Existential</td><td>Counsel before build; skill-forward design; geofence; KYC</td></tr>
+      <tr><td><strong>Mechanic doesn't feel good</strong></td><td>High</td><td>Play-money alpha; simulate against real games before real money</td></tr>
+      <tr><td><strong>Stat feed failure</strong></td><td>High</td><td>Dual feeds; pause states; audit log; defined void rules</td></tr>
+      <tr><td><strong>Crypto onboarding churn</strong></td><td>High</td><td>Embedded wallet; gas abstraction; fiat on-ramp; play-money first</td></tr>
+      <tr><td><strong>Liquidity / empty tables</strong></td><td>Medium</td><td>vs-Dealer always available; bot-seeding; concentrate on marquee games</td></tr>
+      <tr><td><strong>Pay-to-win backlash</strong></td><td>Medium</td><td>Keep PvP power-up-symmetric; monetize cosmetics only</td></tr>
+      <tr><td><strong>Collusion / fraud</strong></td><td>Medium</td><td>Server-authoritative; provably fair; anomaly detection</td></tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <p style="font-size:14px;color:var(--ink-500)"><strong>Immediate next step:</strong> a design-lock workshop to close D1–D7, run in parallel with a legal review to close D10. Those two unblock everything else. The interactive prototype (<span class="kvtag">SportsJack Blackjack v2.html</span>) is the reference for the gameplay, lobby, buy-in, showdown, and wallet screens cited throughout this document.</p>
+</section>
+
+</div><!-- /body -->
+
+<footer>
+  <div>SportsJack — Product Requirements Document · v1.0</div>
+  <div class="mono">CONFIDENTIAL · DRAFT</div>
+</footer>
+
+</div><!-- /doc -->
+</body>
+</html>

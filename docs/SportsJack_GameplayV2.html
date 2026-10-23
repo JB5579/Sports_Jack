@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SportsJack V2 - Enhanced Gameplay</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+    body { font-family: 'Courier Prime', monospace; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInFromBottom {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animation-in { animation: fadeInUp 0.5s ease-out; }
+    .slide-in-from-bottom { animation: slideInFromBottom 0.4s ease-out; }
+  </style>
+</head>
+<body class="bg-slate-950">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function SportsJackGameplayV2() {
+      const [gameTime, setGameTime] = useState(840);
+      const [isBettingWindow, setIsBettingWindow] = useState(false);
+      const [selectedAction, setSelectedAction] = useState(null);
+      const [betAmount, setBetAmount] = useState('');
+      const [cardValues, setCardValues] = useState({
+        mahomes: 18.2, kelce: 12.5, henry: 8.4, jefferson: 15.1, hurts: 20.3, saquon: 19.8
+      });
+      const [prevValues, setPrevValues] = useState(cardValues);
+      const [myHole, setMyHole] = useState(['mahomes', 'kelce']);
+      const [quarter, setQuarter] = useState(1);
+      const [homeScore, setHomeScore] = useState(14);
+      const [awayScore, setAwayScore] = useState(10);
+      const [communityCards, setCommunityCards] = useState([]);
+      const [betPhase, setBetPhase] = useState('preflop');
+
+      const potValue = 1200;
+      const callAmount = 250;
+      const playerStack = 2450;
+
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setGameTime(prev => {
+            const newTime = prev - 1;
+            if (newTime === 120) {
+              setIsBettingWindow(true);
+              if (communityCards.length === 0) {
+                setCommunityCards(['mahomes', 'jefferson', 'saquon']);
+                setBetPhase('flop');
+              }
+            }
+            if (newTime === 80 && communityCards.length === 3) {
+              setCommunityCards(prev => [...prev, 'kelce']);
+              setBetPhase('turn');
+            }
+            if (newTime === 40 && communityCards.length === 4) {
+              setCommunityCards(prev => [...prev, 'hurts']);
+              setBetPhase('river');
+            }
+            if (newTime <= 0) return 840;
+            return newTime;
+          });
+        }, 1000);
+        return () => clearInterval(timer);
+      }, [communityCards.length]);
+
+      useEffect(() => {
+        const statUpdater = setInterval(() => {
+          if (!isBettingWindow) {
+            setPrevValues(cardValues);
+            setCardValues(prev => ({
+              mahomes: Math.max(0, prev.mahomes + (Math.random() - 0.45) * 2),
+              kelce: Math.max(0, prev.kelce + (Math.random() - 0.45) * 1.5),
+              henry: Math.max(0, prev.henry + (Math.random() - 0.45) * 1.8),
+              jefferson: Math.max(0, prev.jefferson + (Math.random() - 0.45) * 1.5),
+              hurts: Math.max(0, prev.hurts + (Math.random() - 0.45) * 2),
+              saquon: Math.max(0, prev.saquon + (Math.random() - 0.45) * 1.6)
+            }));
+          }
+        }, 3000);
+        return () => clearInterval(statUpdater);
+      }, [isBettingWindow, cardValues]);
+
+      const formatTime = (seconds) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      };
+
+      const getValueChange = (player) => {
+        const change = cardValues[player] - (prevValues[player] || 0);
+        return change > 0.1 ? 'up' : change < -0.1 ? 'down' : 'neutral';
+      };
+
+      const playerData = {
+        mahomes: { name: 'Mahomes', pos: 'QB', team: 'KC', avatar: '🏈' },
+        kelce: { name: 'Kelce', pos: 'TE', team: 'KC', avatar: '🏃' },
+        henry: { name: 'Henry', pos: 'RB', team: 'TEN', avatar: '💨' },
+        jefferson: { name: 'Jefferson', pos: 'WR', team: 'MIN', avatar: '🎯' },
+        hurts: { name: 'Hurts', pos: 'QB', team: 'PHI', avatar: '⚡' },
+        saquon: { name: 'Saquon', pos: 'RB', team: 'PHI', avatar: '🏃' }
+      };
+
+      const presetBets = [
+        { label: '25%', value: Math.round((potValue * 25) / 100) },
+        { label: '50%', value: Math.round((potValue * 50) / 100) },
+        { label: '75%', value: Math.round((potValue * 75) / 100) },
+        { label: 'POT', value: potValue }
+      ];
+
+      return (
+        <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-black text-white font-['Courier_Prime'] overflow-hidden relative">
+          <div className="fixed inset-0 opacity-5 pointer-events-none">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(0,255,200,0.1) 25%, rgba(0,255,200,0.1) 26%, transparent 27%, transparent 74%, rgba(0,255,200,0.1) 75%, rgba(0,255,200,0.1) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0,255,200,0.1) 25%, rgba(0,255,200,0.1) 26%, transparent 27%, transparent 74%, rgba(0,255,200,0.1) 75%, rgba(0,255,200,0.1) 76%, transparent 77%, transparent)',
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+
+          {/* HEADER */}
+          <div className="relative z-10 border-b border-cyan-500/30 bg-slate-950/80 backdrop-blur px-4 py-3 flex justify-between items-center">
+            <div className="flex items-center gap-8">
+              <div>
+                <div className="text-xs uppercase tracking-widest text-cyan-400 font-bold">QUARTER {quarter}</div>
+                <div className={`text-xl font-black text-white mt-1 ${gameTime <= 120 ? 'animate-pulse text-orange-400' : ''}`}>
+                  {formatTime(gameTime)}
+                </div>
+              </div>
+              <div className="border-l border-cyan-500/30 pl-8">
+                <div className="flex items-baseline gap-4 text-2xl font-black">
+                  <span className="text-orange-400">{homeScore}</span>
+                  <span className="text-cyan-300 text-xs">KC</span>
+                  <span className="text-white">—</span>
+                  <span className="text-cyan-300 text-xs">PHI</span>
+                  <span className="text-purple-400">{awayScore}</span>
+                </div>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-xs uppercase tracking-widest text-cyan-400 font-bold">Your Stack</div>
+              <div className="text-2xl font-black text-lime-400">${playerStack} USDC</div>
+            </div>
+          </div>
+
+          {/* MAIN GAME AREA */}
+          <div className="relative z-10 px-4 py-8 max-w-6xl mx-auto">
+            {/* HOLE CARDS */}
+            <div className="mb-8">
+              <div className="text-xs uppercase tracking-widest text-cyan-400 mb-3 text-center font-bold opacity-70">Your Hole Cards</div>
+              <div className="flex justify-center gap-6 mb-6">
+                {myHole.map((player, idx) => (
+                  <div key={idx} className="relative group animation-in">
+                    <div className="w-28 h-40 bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-cyan-500 rounded-lg p-3 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="relative z-10 text-center">
+                        <div className="text-4xl mb-1">{playerData[player].avatar}</div>
+                        <div className="text-xs font-bold text-cyan-300 uppercase tracking-wider">{playerData[player].pos}</div>
+                      </div>
+                      <div className="relative z-10 text-center">
+                        <div className={`text-2xl font-black ${
+                          getValueChange(player) === 'up' ? 'text-lime-400 drop-shadow-lg' :
+                          getValueChange(player) === 'down' ? 'text-red-400' : 'text-cyan-300'
+                        }`}>
+                          {cardValues[player].toFixed(1)}
+                        </div>
+                        <div className="text-xs text-cyan-300 uppercase tracking-wider mt-1">PTS</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* COMMUNITY CARDS */}
+            {isBettingWindow && (
+              <div className="mb-8">
+                <div className="text-xs uppercase tracking-widest text-cyan-400 mb-3 text-center font-bold opacity-70">Community Cards ({betPhase.toUpperCase()})</div>
+                <div className="flex justify-center gap-3 mb-6 flex-wrap">
+                  {[0, 1, 2, 3, 4].map((idx) => (
+                    <div key={idx}>
+                      {communityCards[idx] ? (
+                        <div className="w-24 h-32 bg-gradient-to-br from-purple-800 to-purple-900 border-2 border-purple-500 rounded-lg p-2 flex flex-col justify-center items-center shadow-lg animation-in">
+                          <div className="text-3xl">{playerData[communityCards[idx]].avatar}</div>
+                          <div className="text-xs text-purple-200 mt-1 font-bold">{playerData[communityCards[idx]].pos}</div>
+                        </div>
+                      ) : (
+                        <div className="w-24 h-32 bg-slate-800/50 border-2 border-slate-700 rounded-lg flex items-center justify-center">
+                          <div className="text-2xl text-slate-600">?</div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* HAND STRENGTH */}
+            <div className="bg-slate-900/80 border border-cyan-500/30 rounded-lg p-4 text-center backdrop-blur mb-8">
+              <div className="text-xs uppercase tracking-widest text-cyan-400 font-bold mb-2">Current Hand Value</div>
+              <div className="text-3xl font-black text-purple-400">
+                {(cardValues[myHole[0]] + cardValues[myHole[1]] + communityCards.reduce((sum, c) => sum + (cardValues[c] || 0), 0)).toFixed(1)} PTS
+              </div>
+              <div className="text-xs text-cyan-300 mt-2">{isBettingWindow ? `${betPhase.toUpperCase()} - Updates in real-time` : 'Waiting for 2-min warning'}</div>
+            </div>
+
+            {/* STAT BOARD */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-xs uppercase tracking-widest text-cyan-400 font-bold">All Eligible Players</div>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                {Object.entries(playerData).map(([key, player]) => (
+                  <div key={key} className={`p-3 rounded border transition-all ${
+                    myHole.includes(key) ? 'border-lime-500 bg-slate-800/80 ring-2 ring-lime-500/50' :
+                    communityCards.includes(key) ? 'border-purple-500 bg-slate-800/80 ring-2 ring-purple-500/50' :
+                    'border-cyan-500/30 bg-slate-900/50'
+                  }`}>
+                    <div className="text-xs font-bold text-cyan-300 uppercase mb-1">{player.pos}</div>
+                    <div className="text-2xl mb-1">{player.avatar}</div>
+                    <div className="text-lg font-black text-cyan-300">{cardValues[key].toFixed(1)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* BETTING MODAL */}
+          {isBettingWindow && (
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animation-in">
+              <div className="bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-orange-500 rounded-lg p-8 w-full max-w-md shadow-2xl slide-in-from-bottom">
+                <div className="text-center mb-6">
+                  <div className="inline-block bg-orange-500 text-black px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-4 animate-pulse">
+                    🚨 2-MINUTE WARNING 🚨
+                  </div>
+                  <div className="text-2xl font-black text-white">Betting Window Open</div>
+                  <div className="text-sm text-orange-400 mt-2">{betPhase.toUpperCase()} - Make your decision</div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="bg-slate-800 border border-cyan-500/30 rounded p-3 text-center">
+                    <div className="text-xs text-cyan-300 uppercase tracking-wider mb-1">Pot</div>
+                    <div className="text-2xl font-black text-lime-400">${potValue}</div>
+                  </div>
+                  <div className="bg-slate-800 border border-cyan-500/30 rounded p-3 text-center">
+                    <div className="text-xs text-cyan-300 uppercase tracking-wider mb-1">To Call</div>
+                    <div className="text-2xl font-black text-orange-400">${callAmount}</div>
+                  </div>
+                </div>
+
+                {/* PRESET BUTTONS */}
+                <div className="mb-6">
+                  <div className="text-xs uppercase tracking-widest text-cyan-400 font-bold mb-3 text-center">Quick Bet</div>
+                  <div className="grid grid-cols-4 gap-2 mb-4">
+                    {presetBets.map((preset, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          setBetAmount(preset.value.toString());
+                          setSelectedAction('bet');
+                        }}
+                        className={`py-2 px-1 rounded font-black text-xs uppercase transition-all ${
+                          selectedAction === 'bet' && betAmount === preset.value.toString()
+                            ? 'bg-lime-600 text-black border-2 border-lime-400'
+                            : 'bg-lime-900/50 text-lime-200 border border-lime-700 hover:bg-lime-800'
+                        }`}
+                      >
+                        {preset.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CUSTOM INPUT */}
+                <div className="mb-6">
+                  <label className="text-xs uppercase tracking-widest text-cyan-400 font-bold block mb-2">Custom Bet</label>
+                  <input
+                    type="number"
+                    value={betAmount}
+                    onChange={(e) => {
+                      setBetAmount(e.target.value);
+                      setSelectedAction('bet');
+                    }}
+                    placeholder="Enter amount"
+                    className="w-full bg-slate-800 border border-cyan-500 rounded px-3 py-2 text-white font-bold text-center focus:outline-none"
+                  />
+                </div>
+
+                {/* ACTION BUTTONS */}
+                <div className="space-y-3 mb-6">
+                  <button 
+                    onClick={() => setSelectedAction('fold')}
+                    className={`w-full py-3 rounded font-black uppercase transition-all ${
+                      selectedAction === 'fold'
+                        ? 'bg-red-600 text-white border-2 border-red-500'
+                        : 'bg-red-900/50 text-red-200 border border-red-700 hover:bg-red-800'
+                    }`}
+                  >
+                    FOLD
+                  </button>
+                  <button 
+                    onClick={() => setSelectedAction('call')}
+                    className={`w-full py-3 rounded font-black uppercase transition-all ${
+                      selectedAction === 'call'
+                        ? 'bg-cyan-600 text-white border-2 border-cyan-400'
+                        : 'bg-cyan-900/50 text-cyan-200 border border-cyan-700 hover:bg-cyan-800'
+                    }`}
+                  >
+                    CALL ${callAmount}
+                  </button>
+                  {betAmount && (
+                    <button 
+                      onClick={() => setSelectedAction('bet')}
+                      className={`w-full py-3 rounded font-black uppercase transition-all ${
+                        selectedAction === 'bet'
+                          ? 'bg-lime-600 text-black border-2 border-lime-400'
+                          : 'bg-lime-900/50 text-lime-200 border border-lime-700 hover:bg-lime-800'
+                      }`}
+                    >
+                      RAISE TO ${betAmount}
+                    </button>
+                  )}
+                </div>
+
+                {selectedAction && (
+                  <button className="w-full py-3 bg-orange-500 text-black font-black uppercase rounded text-lg hover:bg-orange-400 animate-pulse">
+                    ✓ CONFIRM {selectedAction.toUpperCase()}
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.render(<SportsJackGameplayV2 />, document.getElementById('root'));
+  </script>
+</body>
+</html>

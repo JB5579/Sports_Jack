@@ -56,6 +56,16 @@ environment (see `FACTORY.md`).
 4. Overtime runs its full clock with no winning score. The overtime hand ends when
    the overtime clock runs out and settles normally.
 
+## Two tables, two lockouts, one quarter
+
+1. Replay `2026_07_NE_CHI` quarter 2. Player A opens a vs-Dealer table with no
+   lockout. Player B opens one with a 2:00 lockout. The lobby shows each table's
+   lockout before anyone sits.
+2. With 1:30 left in the quarter, player A can still Hit. Player B is offered no
+   Hit, Burn or Freeze, and B's cards keep changing.
+3. Both hands settle at the end of the quarter, and each table's lockout is the
+   same in the following quarter.
+
 ## Everybody busts
 
 1. Three players sit at one PvP table on `2025_21_LA_SEA` and ante. Each Hits

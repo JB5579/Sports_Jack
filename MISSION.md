@@ -160,22 +160,7 @@ These are undecided, not forbidden. **The factory may propose an answer to any o
 them**, build against it, and record what it assumed. The merge is then held for a
 human, so nothing ships on a guess and nothing stops for one.
 
-- **Q11 Do actions lock before the quarter ends, and when?** The owner's
-  concern: with the clock running down, a trailing player can keep hitting until
-  they score or bust, a rush at the end that feels like gaming the system.
-  Candidates: no lockout, or lock Hit, Burn and Freeze at 2:00 (a two-minute
-  warning), 1:00 or 0:30 left in the quarter, while cards stay live to the end.
-  A related lever: hide opponents' totals until the showdown, so nobody knows how
-  far they trail. Proposed for the alpha: the lockout is a table setting, default
-  2:00, chosen by simulating real recorded quarters (`tools/analysis/`) and by
-  play-testing. The owner decides after seeing both.
-- **Q13 Should Jev also read the game feed?** The owner suggested Jev could read
-  the feed's game state and pass it to the card calculator. Proposed: no, not as
-  the source of any value. The feed's JSON is already exact integers. The
-  deterministic parser matches nflverse's box scores exactly, and settled hands
-  must be reproducible. Jev may serve as a second opinion: if it disagrees with
-  the parser about what a play was, the table pauses (invariant 2) rather than
-  settling. That's useful where ESPN's JSON is incomplete or changes shape.
+None are open right now. New ones go here.
 
 **Except these, which do stop the factory.** They are irreversible (see
 `FACTORY_RULES.md`) rather than open in the ordinary sense:
@@ -191,6 +176,17 @@ stops being asked. **A decision is asked once.**
 
 ## Decisions
 
+- 2026-10-25 **Q11 Do actions lock before the quarter ends?** The lockout is a
+  setting of each table, chosen by the player who opens it: none, 0:30, 1:00 or
+  2:00 left in the quarter. It is shown before anyone sits and fixed for the life
+  of the table. After the lockout, Hit, Burn and Freeze close, and cards keep
+  moving to the end of the quarter. Simulation on real recorded quarters (the
+  end-of-quarter rush the owner raised) informs the default (2:00 until then).
+  Play-testing shows which settings players pick.
+- 2026-10-25 **Q13 Should Jev read the game feed?** Not as the source of any
+  value. Card values come only from the deterministic parser. Jev may act as a
+  second opinion on what a play was: if it disagrees with the parser, the table
+  pauses (invariant 2) rather than settling.
 - 2026-10-25 **The out-of-scope list.** All seven entries are kept.
 - 2026-10-25 **Q10 Do defenders score?** Yes. Ruleset `sportsjack-v1` adds IDP
   points (solo tackle 1, assist 0.5, sack 2, INT 3, forced fumble 3, pass

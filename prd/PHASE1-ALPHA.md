@@ -62,9 +62,14 @@ This makes the product runnable end to end and is the base for every later ticke
 Each one ends with a user-visible result in the client, verified on a replayed
 real game.
 
-1. **Lobby from the replay schedule.** The lobby lists the configured replay
-   game(s) with teams, score and quarter. Each game offers vs-Dealer and PvP
-   tables at the stakes 25, 100 and 1,000 yards.
+1. **Lobby from the replay schedule, and opening a table.** The lobby lists the
+   configured replay game(s) with teams, score and quarter. Each game offers
+   vs-Dealer and PvP tables at the stakes 25, 100 and 1,000 yards. A player can also open a table, choosing its mode, stake and action lockout
+   (none, 0:30, 1:00 or 2:00 left in the quarter; default 2:00). The lobby shows
+   each table's lockout before anyone sits, and it never changes for that table.
+   Add a simulation to `tools/analysis/` comparing the lockout settings on real
+   recorded quarters: how often a trailing player wins by hitting late. Its
+   results set the default.
 2. **Joining between quarters.** A player can sit at a table before any quarter
    (or before overtime), never during one. A player already seated is dealt in
    automatically each quarter unless they leave.
@@ -84,8 +89,8 @@ real game.
    Burn (once per hand, before Freeze) swaps one card for a new draw from the same
    game. Freeze (once per hand) locks the total and ends the hand's actions. There
    is no Stand. An unfrozen hand stays live until the quarter ends. Actions lock at
-   the table's lockout time (Q11: a table setting, default 2:00 left in the
-   quarter), and the cards keep moving until the quarter ends.
+   the table's lockout time (Q11), and the cards keep moving until the quarter
+   ends.
 7. **Overtime bonus hand (Q8).** An overtime period is a fifth hand. It ends when
    overtime ends, on a score or when its clock runs out. Test with
    `2025_16_LA_SEA` (ends on a score) and `2025_04_GB_DAL` (a 40–40 tie).

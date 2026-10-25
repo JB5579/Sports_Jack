@@ -14,12 +14,14 @@ check directions, sums and real plays rather than fixed totals.
    high speed.
 2. Open the lobby. The game is listed as SEA @ NE, with at least one vs-Dealer
    table.
-3. Sit at the table with the smallest stake and ante. The play-money balance drops
-   by exactly the ante.
-4. Two cards are dealt. Each one names a real SEA or NE player and shows a value.
+3. Sit at the table with the smallest stake. The dealer's difficulty level is
+   shown. Ante. The play-money balance drops by exactly the ante.
+4. Two cards are dealt. Each one names a real SEA or NE player from that day's
+   active roster and shows a value.
 5. While the quarter replays, at least one card's value changes. The 21-dial
    total always equals the sum the cards show.
-6. Stand. The cards keep moving (Stand stops drawing; it does not freeze).
+6. Hit once. A third card joins the hand, and the hand keeps moving live. There is
+   no Stand button.
 7. At the end of the quarter the result screen shows the player's final total,
    the dealer's final total and the outcome. The balance changes by exactly the
    payout the screen shows.
@@ -53,6 +55,18 @@ the touchdown not changing the value, or the hand total not following the card.
 
 **What would make this fail:** a frozen total that moves, a Burn replacement from
 another game or already in the hand, or a power-up usable twice.
+
+## Overtime is a bonus hand
+
+1. Replay `2025_16_LA_SEA` (LA 37, SEA 38 in overtime) from quarter 4 and sit at
+   a vs-Dealer table.
+2. After quarter 4 settles, a fifth hand is offered for overtime. Ante into it.
+3. The overtime hand ends when the game ends on SEA's winning score, with time
+   still on the overtime clock, and it settles like any other hand.
+4. The history shows the overtime hand separately from the four quarters.
+
+**What would make this fail:** no overtime hand, an overtime hand that waits for
+a full period after the game has ended, or overtime points counted in quarter 4.
 
 ## Two players share a PvP table and the yards add up
 

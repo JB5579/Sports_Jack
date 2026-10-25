@@ -11,6 +11,8 @@ export interface StatDelta {
   recTd?: number;
   fumLost?: number;
   twoPt?: number;
+  /** Kickoff or punt returned for a touchdown. */
+  retTd?: number;
 }
 
 export type StatKey = keyof StatDelta;

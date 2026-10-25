@@ -8,18 +8,20 @@ over both.
 
 Prove the mechanic on real football before any real money is involved (PRD §17,
 "de-risk with a play-money alpha"): does a quarter of live-moving NFL cards make
-Hit or Stand feel tense? Every hand in this release is played on a **real recorded
+Hit or Freeze feel tense? Every hand in this release is played on a **real recorded
 NFL game** replayed through the feed, with **play-money yards**.
 
 ## What already exists
 
 - `packages/feed`: the `FeedSource` interface, an nflverse play-by-play parser and
   `ReplaySource`, which plays a recorded game back paced by its game clock.
-  Tested against nflverse's own box scores for three real games.
+  Tested against nflverse's own box scores for five real games, including overtime.
 - `packages/engine`: `QuarterScorer` with rulesets `standard-ppr` and
   `sportsjack-v0` (PRD §4.1). It matches nflverse's PPR totals exactly.
-- `fixtures/nflverse/`: Super Bowl LX, the 2025 NFC Championship, and 2026 Week 7
-  NE @ CHI (plays, rosters, box scores). Add more with
+- `fixtures/nflverse/`: Super Bowl LX, the 2025 NFC Championship, two overtime
+  games (`2025_16_LA_SEA` ends on a score, `2025_04_GB_DAL` is a 40–40 tie) and
+  2026 Week 7 NE @ CHI. Each has its plays, its game-day active roster (the deck,
+  in `rosters/`) and nflverse's box score. Add more with
   `npm run fixtures -- --games <game_id>`.
 - `tools/replay.ts`: `npm run replay -- 2025_22_SEA_NE --speed 120 --qtr 4`
   prints a real game's plays and card values.
@@ -63,47 +65,65 @@ real game.
 1. **Lobby from the replay schedule.** The lobby lists the configured replay
    game(s) with teams, score and quarter. Each game offers vs-Dealer and PvP
    tables at the stakes 25, 100 and 1,000 yards.
-2. **Play-money account.** A visitor gets a play-money account with a starting
+2. **Joining between quarters.** A player can sit at a table before any quarter
+   (or before overtime), never during one. A player already seated is dealt in
+   automatically each quarter unless they leave.
+3. **Play-money account.** A visitor gets a play-money account with a starting
    yards balance, with no sign-up wall (D9). The sign-up and login design is a
    human decision (MISSION.md). Until it is made, use an anonymous
    device-scoped account and flag the assumption.
-3. **The deck and the deal (D2, Q1).** At the start of a quarter, each seated
-   player antes and is dealt 2 cards from the game's deck. Card values follow
-   MISSION.md Q1's proposed rule, under a versioned ruleset. Draws come from a seed
-   committed before the deal.
-4. **Live hand.** Card values update from the feed on one server tick for the
+4. **The deck and the deal (Q1, Q2).** The deck is both teams' game-day active
+   roster (nflverse weekly rosters, `ACT`). At the start of a quarter each seated
+   player antes and is dealt 2 cards. A card's value is its face value (2–10, from
+   the player's pre-game projection) plus live quarter points × 0.5, under a
+   versioned ruleset. Draws come from a seed committed before the deal.
+5. **Live hand.** Card values update from the feed on one server tick for the
    whole table. The 21-dial shows the total, the distance to 21 and a live-bust
    state ("X over", recoverable).
-5. **Hit and Stand (D3, D4).** Hit draws a card (free, at most 5 cards). Stand
-   stops drawing, and the cards stay live. There is no Hit after Stand.
-6. **Freeze and Burn (D5).** One of each free per hand. Freeze locks the total.
-   Burn swaps one card for a new draw from the same game.
-7. **vs-Dealer (D6).** A deterministic, published dealer policy, chosen by
-   simulating real recorded quarters (add the simulation to `tools/analysis/`)
-   and shown on the rules screen.
-8. **PvP 6-max (D7).** A shared pot of antes, with the rake shown before the hand
+6. **Hit, Burn and Freeze (Q3–Q5).** Hit draws a card: free, with no card limit.
+   Burn (once per hand, before Freeze) swaps one card for a new draw from the same
+   game. Freeze (once per hand) locks the total and ends the hand's actions. There
+   is no Stand. An unfrozen hand stays live until the quarter ends. The hand view
+   must stay readable with many cards.
+7. **Overtime bonus hand (Q8).** An overtime period is a fifth hand. It ends when
+   overtime ends, on a score or when its clock runs out. Test with
+   `2025_16_LA_SEA` (ends on a score) and `2025_04_GB_DAL` (a 40–40 tie).
+8. **AI dealer (Q6, Q12).** The vs-Dealer opponent plays like a person: it Hits,
+   Burns and Freezes, using the same live values and projections a player sees
+   (MISSION.md invariant 6). Its difficulty level is selectable per table and shown
+   before the ante. Put it behind a dealer interface so a learned model can
+   replace it. Measure each level's win rate by simulating real recorded quarters
+   (`tools/analysis/`), and show the levels on the rules screen.
+9. **PvP 6-max (D7).** A shared pot of antes, with the rake shown before the hand
    (8–12%, PRD §5.2), closest to 21 without going over wins, and the tie and
    all-bust rules from Q7.
-9. **Settlement and history.** At the end of the quarter the hand freezes, is
+10. **Settlement and history.** At the end of the quarter the hand freezes, is
    scored and settles. The balance and the hand history persist across restarts.
    Each hand records its ruleset id, seed and the feed events that moved its cards.
-10. **Feed paused state.** When the feed stalls, the table shows "live data
+11. **Feed paused state.** When the feed stalls, the table shows "live data
     paused", values hold and nothing settles until the feed resumes (PRD §11).
-11. **Disconnect and reconnect.** A client that drops mid-hand gets the same hand
+12. **Disconnect and reconnect.** A client that drops mid-hand gets the same hand
     back when it reconnects. The hand keeps playing server-side while it is away.
-12. **Card detail.** Tapping a card shows the player's live stat line for the
+13. **Card detail.** Tapping a card shows the player's live stat line for the
     quarter and the plays that moved the value.
-13. **Onboarding hand.** A first-time visitor is dropped into a guided vs-Dealer
-    hand on a replayed game, with an overlay teaching Hit, Stand, Freeze and Burn
+14. **Onboarding hand.** A first-time visitor is dropped into a guided vs-Dealer
+    hand on a replayed game, with an overlay teaching Hit, Burn and Freeze
     (PRD §8.1).
-14. **Rules screen.** It shows the scoring ruleset, deck, dealer policy, tie and
+15. **Rules screen.** It shows the scoring ruleset, deck, dealer levels, tie and
     bust rules and the rake: everything a hand's outcome depends on.
+16. **ESPN live feed (Q9).** A second `FeedSource` that follows a live game
+    through ESPN's public scoreboard and play-by-play JSON, polling about every
+    10 seconds. It emits the same events as the replay source, so the engine
+    cannot tell them apart. Record each delay (play time vs. arrival) so its
+    performance can be judged. Its tests use recorded ESPN responses saved as
+    fixtures, never the network. ESPN does not publish this API, so treat any
+    field as able to change, and pause the table (feature 11) rather than guess.
 
 ## Not in this release
 
 Wallet, USDC, Solana, escrow, KYC, geofencing, a fiat on-ramp, push
-notifications, leaderboards, cosmetics, chat and social, native apps and a live
-provider feed. Most come later. Some (see MISSION.md "Out of scope") never do.
+notifications, leaderboards, cosmetics, chat and social (including private
+tables and joining a friend's game), native apps and licensed data providers. Most come later. Some (see MISSION.md "Out of scope") never do.
 
 ## Success for this release
 

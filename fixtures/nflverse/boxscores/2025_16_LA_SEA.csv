@@ -1,0 +1,21 @@
+game_id,player_id,player_display_name,position,team,season,week,completions,attempts,passing_yards,passing_tds,passing_interceptions,sacks_suffered,carries,rushing_yards,rushing_tds,receptions,receiving_yards,receiving_tds,rushing_fumbles_lost,receiving_fumbles_lost,sack_fumbles_lost,fantasy_points_ppr
+2025_16_LA_SEA,00-0026498,Matthew Stafford,QB,LA,2025,16,29,49,457,3,0,0,2,6,0,0,0,0,0,0,0,30.88
+2025_16_LA_SEA,00-0033576,Eric Saubert,TE,SEA,2025,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
+2025_16_LA_SEA,00-0033908,Cooper Kupp,WR,SEA,2025,16,0,0,0,0,0,0,0,0,0,3,39,0,0,1,0,6.9
+2025_16_LA_SEA,00-0034350,Uchenna Nwosu,LB,SEA,2025,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_16_LA_SEA,00-0034869,Sam Darnold,QB,SEA,2025,16,22,34,270,2,2,4,3,7,0,0,0,0,0,0,0,19.5
+2025_16_LA_SEA,00-0036244,Colby Parkinson,TE,LA,2025,16,0,0,0,0,0,0,0,0,0,2,21,0,0,0,0,4.1
+2025_16_LA_SEA,00-0037545,Rashid Shaheed,WR,SEA,2025,16,0,0,0,0,0,0,1,31,0,0,0,0,0,0,0,9.1
+2025_16_LA_SEA,00-0037557,Ronnie Rivers,RB,LA,2025,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_16_LA_SEA,00-0037840,Kyren Williams,RB,LA,2025,16,0,0,0,0,0,0,23,70,0,3,15,0,0,0,0,11.5
+2025_16_LA_SEA,00-0038134,Kenneth Walker III,RB,SEA,2025,16,0,0,0,0,0,0,11,100,1,3,64,0,0,0,0,25.4
+2025_16_LA_SEA,00-0038359,Xavier Smith,WR,LA,2025,16,0,0,0,0,0,0,0,0,0,2,57,0,0,0,0,7.7
+2025_16_LA_SEA,00-0038543,Jaxon Smith-Njigba,WR,SEA,2025,16,0,0,0,0,0,0,0,0,0,8,96,1,0,0,0,23.6
+2025_16_LA_SEA,00-0039074,Davis Allen,TE,LA,2025,16,0,0,0,0,0,0,0,0,0,2,34,0,0,0,0,5.4
+2025_16_LA_SEA,00-0039075,Puka Nacua,WR,LA,2025,16,0,0,0,0,0,0,0,0,0,12,225,2,0,0,0,46.5
+2025_16_LA_SEA,00-0039165,Zach Charbonnet,RB,SEA,2025,16,0,0,0,0,0,0,9,32,1,4,22,0,0,0,0,17.4
+2025_16_LA_SEA,00-0039738,Blake Corum,RB,LA,2025,16,0,0,0,0,0,0,14,48,1,1,13,0,0,0,0,13.1
+2025_16_LA_SEA,00-0039751,Jordan Whittington,WR,LA,2025,16,0,0,0,0,0,0,0,0,0,1,19,0,0,0,0,2.9
+2025_16_LA_SEA,00-0039793,AJ Barner,TE,SEA,2025,16,0,0,0,0,0,0,1,1,0,4,49,1,0,0,0,15
+2025_16_LA_SEA,00-0040590,Konata Mumpfield,WR,LA,2025,16,0,0,0,0,0,0,0,0,0,3,40,0,0,0,0,7
+2025_16_LA_SEA,00-0040737,Terrance Ferguson,TE,LA,2025,16,0,0,0,0,0,0,0,0,0,3,33,1,0,0,0,12.3

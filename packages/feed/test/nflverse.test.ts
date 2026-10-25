@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { loadNflverseGame, type StatDelta } from "../src/index.ts";
-import { boxscore, GAMES, gamePath } from "./fixtures.ts";
+import { loadNflverseGame, loadNflversePlayers, type StatDelta } from "../src/index.ts";
+import { boxscore, FIXTURES, GAMES, gamePath, OVERTIME_GAMES } from "./fixtures.ts";
 
 const zero = (): Required<StatDelta> => ({
   passYds: 0, passTd: 0, int: 0, sacked: 0, rushYds: 0, rushTd: 0,
-  rec: 0, recYds: 0, recTd: 0, fumLost: 0, twoPt: 0,
+  rec: 0, recYds: 0, recTd: 0, fumLost: 0, twoPt: 0, retTd: 0,
 });
 
 function totals(gameId: string): Map<string, Required<StatDelta>> {
@@ -41,6 +41,17 @@ describe("nflverse replay source on real games", () => {
     ]);
   });
 
+  it("ends overtime as its own fifth quarter, whether it ends on a score or runs out", () => {
+    const [walkOff, tie] = OVERTIME_GAMES.map((g) => loadNflverseGame(gamePath(g)).events);
+    for (const events of [walkOff!, tie!]) {
+      expect(events.filter((e) => e.kind === "quarter_end").map((e) => e.clock.qtr)).toEqual([1, 2, 3, 4, 5]);
+      expect(events.at(-1)!.kind).toBe("game_end");
+    }
+    expect(walkOff!.at(-1)!.score).toEqual({ home: 38, away: 37 });
+    expect(walkOff!.findLast((e) => e.kind === "quarter_end")!.clock.display).toBe("03:13");
+    expect(tie!.at(-1)!.score).toEqual({ home: 40, away: 40 });
+  });
+
   for (const gameId of GAMES) {
     it(`matches nflverse's independent box score for every player in ${gameId}`, () => {
       const ours = totals(gameId);
@@ -58,6 +69,17 @@ describe("nflverse replay source on real games", () => {
           recYds: Number(row.receiving_yards), recTd: Number(row.receiving_tds),
         });
       }
+    });
+  }
+
+  for (const gameId of GAMES) {
+    it(`deals every player who scores in ${gameId} from its game-day roster deck`, () => {
+      const deck = loadNflversePlayers(`${FIXTURES}rosters/${gameId}.csv`);
+      expect(deck.length).toBeGreaterThan(80);
+      const inDeck = new Set(deck.map((p) => p.playerId));
+      const scorers = new Set(loadNflverseGame(gamePath(gameId)).events
+        .flatMap((e) => (e.kind === "play" ? e.deltas.map((d) => d.playerId) : [])));
+      expect([...scorers].filter((id) => !inDeck.has(id))).toEqual([]);
     });
   }
 });

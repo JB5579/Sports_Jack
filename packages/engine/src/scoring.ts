@@ -12,7 +12,7 @@ export const STANDARD_PPR: ScoringRules = {
   points: {
     passYds: 0.04, passTd: 4, int: -2, sacked: 0,
     rushYds: 0.1, rushTd: 6, rec: 1, recYds: 0.1, recTd: 6,
-    fumLost: -2, twoPt: 2,
+    fumLost: -2, twoPt: 2, retTd: 6,
   },
 };
 

@@ -57,9 +57,35 @@ hand, and a TD still swings it, but it moves a hand that is already in play.
 which looks ahead. A real build ranks by a pre-game projection (for example,
 average over previous weeks). Re-run the simulation once that exists.
 
-## Proposed default for the factory
+## Decision
 
-Build against **face value (2–10 by pre-game projection rank in the deck) + live
-points × 0.5**, recorded as an assumption. MISSION.md Q1 keeps the final choice
-open for the owner. This changes PRD §4.1's "card value = live fantasy points" and
-needs the owner's sign-off before real money.
+The owner accepted **face value + live points × 0.5** on 2026-10-25 (MISSION.md
+Q1). This replaces PRD §4.1's "card value = live fantasy points". How the face
+value is computed changed with the deck; see the update below.
+
+## Update: full game-day roster deck, no card limit
+
+The owner set the deck to both teams' whole game-day active roster (96 cards a
+game), with no card limit and no Stand (MISSION.md Q2–Q4). In 2025, **71% of
+those cards have zero projected points**: linemen, defenders and specialists
+never score under offensive fantasy rules. Script:
+`tools/analysis/d2_full_roster.py`. The player strategy simulated is "Hit at the
+deal until the face total reaches T, then hold".
+
+| Face rule | Hit until face ≥ | Cards | Median | In 17–21 | Over 21 |
+|---|---|---|---|---|---|
+| Rank in deck, 2–10 | 15 | 2.8 | 18.0 | 42% | 14% |
+| Rank in deck, 2–10 | 17 | 3.3 | 20.0 | 68% | 31% |
+| **2 + 2 × projected quarter pts, 2–10** | 15 | 5.9 | 16.7 | 32% | 14% |
+| **2 + 2 × projected quarter pts, 2–10** | 17 | 6.6 | 18.9 | 72% | 27% |
+
+Both rules reach 21 well. Ranking gives tied zero-projection players a mid-scale
+face (a lineman worth about 5), which reads wrong. Tying the face to projected
+points makes 78% of the cards 2s, and hands run 5–7 cards. That fits
+the owner's intent: hit more, and leave room for surprises from players off the
+bench. **Recorded default:** face = 2 + 2 × projected quarter points, capped
+2–10, plus live points × 0.5.
+
+Consequences for the build: the hand view must stay readable with many cards,
+and 2-value cards are most of the deck. Whether defenders should also score is
+MISSION.md Q10.

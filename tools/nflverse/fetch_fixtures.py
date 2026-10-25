@@ -30,6 +30,8 @@ BASE = "https://github.com/nflverse/nflverse-data/releases/download"
 DEFAULT_GAMES = [
     "2025_22_SEA_NE",   # Super Bowl LX, 2026-02-08
     "2025_21_LA_SEA",   # NFC Championship, 31-27 shootout
+    "2025_16_LA_SEA",   # overtime that ends on a score, 38-37
+    "2025_04_GB_DAL",   # overtime that runs out, 40-40 tie
     "2026_07_NE_CHI",   # 2026 season, Thursday Week 7
 ]
 
@@ -45,6 +47,8 @@ PLAY_COLUMNS = [
     "fumbled_1_player_id", "fumbled_1_player_name", "total_home_score", "total_away_score",
 ]
 PLAYER_COLUMNS = ["gsis_id", "full_name", "position", "team", "season"]
+# The deck: every player on both teams' game-day active roster (status ACT).
+ROSTER_COLUMNS = ["gsis_id", "espn_id", "full_name", "position", "depth_chart_position", "team", "week", "status"]
 STAT_COLUMNS = [
     "player_id", "player_display_name", "position", "team", "season", "week",
     "completions", "attempts", "passing_yards", "passing_tds", "passing_interceptions",
@@ -124,6 +128,11 @@ def main() -> int:
         write(OUT / "players" / f"{season}.csv", PLAYER_COLUMNS, roster)
         stats = [r for r in rows(download(f"stats_player/stats_player_week_{season}.csv.gz"))
                  if (r["week"], r["team"]) in weeks and r["player_id"] in ids]
+        active = [r for r in rows(download(f"weekly_rosters/roster_weekly_{season}.csv"))
+                  if (r["week"], r["team"]) in weeks and r["status"] == "ACT"]
+        for game_id in wanted:
+            write(OUT / "rosters" / f"{game_id}.csv", ROSTER_COLUMNS,
+                  [r for r in active if weeks[(r["week"], r["team"])] == game_id])
         for record in stats:
             record["game_id"] = weeks[(record["week"], record["team"])]
         for game_id in wanted:

@@ -27,6 +27,11 @@ function clockDisplay(seconds: number): string {
 
 /** Credit the stat changes of one nflverse play to the players involved. */
 export function playDeltas(row: Row): PlayerDelta[] {
+  if ((row.play_type === "kickoff" || row.play_type === "punt") && row.return_touchdown === "1") {
+    const returner = id(row.td_player_id);
+    // The receiving team is the defense on a kick.
+    return returner ? [{ playerId: returner, name: row.td_player_name ?? returner, team: row.defteam ?? "", stats: { retTd: 1 } }] : [];
+  }
   const isScrimmage = SCRIMMAGE.has(row.play_type ?? "") || row.sack === "1";
   if (!isScrimmage) return [];
   const team = row.posteam ?? "";

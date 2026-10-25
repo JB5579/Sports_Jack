@@ -2,6 +2,7 @@ game_id,player_id,player_display_name,position,team,season,week,completions,atte
 2025_21_LA_SEA,00-0026498,Matthew Stafford,QB,LA,2025,21,22,35,374,3,0,1,2,16,0,0,0,0,0,0,0,28.56
 2025_21_LA_SEA,00-0031381,Davante Adams,WR,LA,2025,21,0,0,0,0,0,0,0,0,0,4,89,1,0,0,0,18.9
 2025_21_LA_SEA,00-0033110,Tyler Higbee,TE,LA,2025,21,0,0,0,0,0,0,0,0,0,1,12,0,0,0,0,2.2
+2025_21_LA_SEA,00-0033576,Eric Saubert,TE,SEA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 2025_21_LA_SEA,00-0033908,Cooper Kupp,WR,SEA,2025,21,0,0,0,0,0,0,0,0,0,4,36,1,0,0,0,13.6
 2025_21_LA_SEA,00-0034350,Uchenna Nwosu,LB,SEA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 2025_21_LA_SEA,00-0034869,Sam Darnold,QB,SEA,2025,21,25,36,346,3,0,3,3,9,0,0,0,0,0,0,0,26.74
@@ -16,6 +17,7 @@ game_id,player_id,player_display_name,position,team,season,week,completions,atte
 2025_21_LA_SEA,00-0039075,Puka Nacua,WR,LA,2025,21,0,0,0,0,0,0,1,4,0,9,165,1,0,0,0,31.9
 2025_21_LA_SEA,00-0039299,George Holani,RB,SEA,2025,21,0,0,0,0,0,0,3,4,0,3,27,0,0,0,0,6.1
 2025_21_LA_SEA,00-0039738,Blake Corum,RB,LA,2025,21,0,0,0,0,0,0,9,55,0,3,24,0,0,0,0,10.9
+2025_21_LA_SEA,00-0039751,Jordan Whittington,WR,LA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 2025_21_LA_SEA,00-0039793,AJ Barner,TE,SEA,2025,21,0,0,0,0,0,0,0,0,0,2,13,0,0,0,0,3.3
 2025_21_LA_SEA,00-0040590,Konata Mumpfield,WR,LA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 2025_21_LA_SEA,00-0040737,Terrance Ferguson,TE,LA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

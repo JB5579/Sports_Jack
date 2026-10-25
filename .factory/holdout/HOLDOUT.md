@@ -23,7 +23,7 @@ environment (see `FACTORY.md`).
 1. Ante at a vs-Dealer table on any fixture game, then Freeze.
 2. Close the client mid-quarter, for at least 20 replayed plays.
 3. Reopen it before the quarter ends. The same hand is shown with the same frozen
-   total, Freeze is spent, and Burn is still available if it was unused.
+   total, and no action (Hit, Burn, Freeze) is offered.
 4. The hand settles on the frozen total. The balance is the same as if the client
    had never left.
 
@@ -37,13 +37,22 @@ environment (see `FACTORY.md`).
    balance, minus both antes, plus both payouts shown.
 4. Restart the app. The two settled hands and the balance are unchanged.
 
+## Joining at halftime, never mid-quarter
+
+1. Replay `2025_04_GB_DAL` (40–40 after overtime). Player A sits at a PvP table
+   before quarter 1.
+2. Player B tries to sit at the same table during quarter 2. They are told they
+   can join at the next break, and are not dealt into quarter 2.
+3. At halftime player B sits. Both are dealt into quarter 3.
+4. Overtime runs its full clock with no winning score. The overtime hand ends when
+   the overtime clock runs out and settles normally.
+
 ## Everybody busts
 
 1. Three players sit at one PvP table on `2025_21_LA_SEA` and ante. Each Hits
    until busted and stays busted to the whistle.
-2. The pot goes to whichever hand is closest to 21 from above, as the rules
-   screen states (open question Q7 may change this rule; the screen and the
-   payout must agree either way).
+2. The pot goes to whichever hand is closest to 21 from above (MISSION.md Q7),
+   and the rules screen says so.
 3. The sum of all balances plus the displayed rake is unchanged.
 
 ## The same seed deals the same hand

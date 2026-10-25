@@ -1,0 +1,20 @@
+game_id,player_id,player_display_name,position,team,season,week,completions,attempts,passing_yards,passing_tds,passing_interceptions,sacks_suffered,carries,rushing_yards,rushing_tds,receptions,receiving_yards,receiving_tds,rushing_fumbles_lost,receiving_fumbles_lost,sack_fumbles_lost,fantasy_points_ppr
+2025_22_SEA_NE,00-0031588,Stefon Diggs,WR,NE,2025,22,0,0,0,0,0,0,0,0,0,3,37,0,0,0,0,6.7
+2025_22_SEA_NE,00-0032392,Austin Hooper,TE,NE,2025,22,0,0,0,0,0,0,0,0,0,2,10,0,0,0,0,3
+2025_22_SEA_NE,00-0033090,Hunter Henry,TE,NE,2025,22,0,0,0,0,0,0,0,0,0,3,31,0,0,0,0,6.1
+2025_22_SEA_NE,00-0033555,Mack Hollins,WR,NE,2025,22,0,0,0,0,0,0,0,0,0,4,78,1,0,0,0,17.8
+2025_22_SEA_NE,00-0033908,Cooper Kupp,WR,SEA,2025,22,0,0,0,0,0,0,0,0,0,6,61,0,0,0,0,12.1
+2025_22_SEA_NE,00-0034350,Uchenna Nwosu,LB,SEA,2025,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_22_SEA_NE,00-0034869,Sam Darnold,QB,SEA,2025,22,19,38,202,1,0,1,2,5,0,0,0,0,0,0,0,12.58
+2025_22_SEA_NE,00-0036875,Rhamondre Stevenson,RB,NE,2025,22,0,0,0,0,0,0,7,23,0,5,40,1,0,0,0,17.3
+2025_22_SEA_NE,00-0037545,Rashid Shaheed,WR,SEA,2025,22,0,0,0,0,0,0,1,-5,0,2,27,0,0,0,0,4.2
+2025_22_SEA_NE,00-0038134,Kenneth Walker III,RB,SEA,2025,22,0,0,0,0,0,0,27,135,0,2,26,0,0,0,0,18.1
+2025_22_SEA_NE,00-0038543,Jaxon Smith-Njigba,WR,SEA,2025,22,0,0,0,0,0,0,0,0,0,4,27,0,0,0,0,6.7
+2025_22_SEA_NE,00-0038608,Kayshon Boutte,WR,NE,2025,22,0,0,0,0,0,0,0,0,0,1,21,0,0,0,0,3.1
+2025_22_SEA_NE,00-0038621,DeMario Douglas,WR,NE,2025,22,0,0,0,0,0,0,0,0,0,5,45,0,0,0,0,9.5
+2025_22_SEA_NE,00-0038752,Jake Bobo,WR,SEA,2025,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_22_SEA_NE,00-0039299,George Holani,RB,SEA,2025,22,0,0,0,0,0,0,2,6,0,1,7,0,0,0,0,2.3
+2025_22_SEA_NE,00-0039793,AJ Barner,TE,SEA,2025,22,0,0,0,0,0,0,0,0,0,4,54,1,0,0,0,15.4
+2025_22_SEA_NE,00-0039851,Drake Maye,QB,NE,2025,22,27,43,295,2,2,6,5,37,0,0,0,0,0,0,1,17.5
+2025_22_SEA_NE,00-0040131,Kyle Williams,WR,NE,2025,22,0,0,0,0,0,0,0,0,0,1,7,0,0,0,0,1.7
+2025_22_SEA_NE,00-0040734,TreVeyon Henderson,RB,NE,2025,22,0,0,0,0,0,0,6,19,0,3,26,0,0,0,0,7.5

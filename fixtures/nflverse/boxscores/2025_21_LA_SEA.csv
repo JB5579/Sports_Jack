@@ -1,0 +1,21 @@
+game_id,player_id,player_display_name,position,team,season,week,completions,attempts,passing_yards,passing_tds,passing_interceptions,sacks_suffered,carries,rushing_yards,rushing_tds,receptions,receiving_yards,receiving_tds,rushing_fumbles_lost,receiving_fumbles_lost,sack_fumbles_lost,fantasy_points_ppr
+2025_21_LA_SEA,00-0026498,Matthew Stafford,QB,LA,2025,21,22,35,374,3,0,1,2,16,0,0,0,0,0,0,0,28.56
+2025_21_LA_SEA,00-0031381,Davante Adams,WR,LA,2025,21,0,0,0,0,0,0,0,0,0,4,89,1,0,0,0,18.9
+2025_21_LA_SEA,00-0033110,Tyler Higbee,TE,LA,2025,21,0,0,0,0,0,0,0,0,0,1,12,0,0,0,0,2.2
+2025_21_LA_SEA,00-0033908,Cooper Kupp,WR,SEA,2025,21,0,0,0,0,0,0,0,0,0,4,36,1,0,0,0,13.6
+2025_21_LA_SEA,00-0034350,Uchenna Nwosu,LB,SEA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_21_LA_SEA,00-0034869,Sam Darnold,QB,SEA,2025,21,25,36,346,3,0,3,3,9,0,0,0,0,0,0,0,26.74
+2025_21_LA_SEA,00-0036244,Colby Parkinson,TE,LA,2025,21,0,0,0,0,0,0,0,0,0,3,62,0,0,0,0,9.2
+2025_21_LA_SEA,00-0037545,Rashid Shaheed,WR,SEA,2025,21,0,0,0,0,0,0,1,0,0,1,51,0,0,0,0,6.1
+2025_21_LA_SEA,00-0037557,Ronnie Rivers,RB,LA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_21_LA_SEA,00-0037840,Kyren Williams,RB,LA,2025,21,0,0,0,0,0,0,10,39,0,2,22,1,0,0,0,14.1
+2025_21_LA_SEA,00-0038134,Kenneth Walker III,RB,SEA,2025,21,0,0,0,0,0,0,19,62,1,4,49,0,0,0,0,21.1
+2025_21_LA_SEA,00-0038359,Xavier Smith,WR,LA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_21_LA_SEA,00-0038543,Jaxon Smith-Njigba,WR,SEA,2025,21,0,0,0,0,0,0,0,0,0,10,153,1,0,0,0,31.3
+2025_21_LA_SEA,00-0038752,Jake Bobo,WR,SEA,2025,21,0,0,0,0,0,0,0,0,0,1,17,1,0,0,0,8.7
+2025_21_LA_SEA,00-0039075,Puka Nacua,WR,LA,2025,21,0,0,0,0,0,0,1,4,0,9,165,1,0,0,0,31.9
+2025_21_LA_SEA,00-0039299,George Holani,RB,SEA,2025,21,0,0,0,0,0,0,3,4,0,3,27,0,0,0,0,6.1
+2025_21_LA_SEA,00-0039738,Blake Corum,RB,LA,2025,21,0,0,0,0,0,0,9,55,0,3,24,0,0,0,0,10.9
+2025_21_LA_SEA,00-0039793,AJ Barner,TE,SEA,2025,21,0,0,0,0,0,0,0,0,0,2,13,0,0,0,0,3.3
+2025_21_LA_SEA,00-0040590,Konata Mumpfield,WR,LA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025_21_LA_SEA,00-0040737,Terrance Ferguson,TE,LA,2025,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

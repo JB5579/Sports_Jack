@@ -1,0 +1,23 @@
+{
+  "name": "sportsjack",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "fixtures": "python3 tools/nflverse/fetch_fixtures.py",
+    "replay": "node --experimental-strip-types --no-warnings tools/replay.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "5.9",
+    "vitest": "^3.2.7"
+  }
+}

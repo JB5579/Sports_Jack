@@ -39,7 +39,8 @@ The factory may accept issues in these areas.
 **Game feed and scoring**
 - A feed interface (`packages/feed`) that delivers a game's plays in order, with
   the nflverse replay source as its first implementation
-- Per-quarter fantasy scoring under a versioned ruleset (`packages/engine`)
+- Per-quarter fantasy scoring under a versioned ruleset (`packages/engine`),
+  offense and defense (`sportsjack-v1`)
 - A replay clock that runs a real recorded game at a chosen speed
 - A visible "live data paused" state when the feed stalls or fails
 
@@ -48,7 +49,8 @@ The factory may accept issues in these areas.
   game-day roster, live card values, Hit, Freeze, Burn, live
   bust and recovery, end-of-quarter settlement in play-money yards
 - The vs-Dealer mode with an AI dealer that Hits, Freezes and Burns, at
-  selectable difficulty levels
+  selectable difficulty levels: a Jev decision model, with a rule-based dealer
+  behind the same interface
 - The PvP mode at 6-max tables with a shared pot and a displayed rake
 - Draws that can be reproduced from a committed seed
 - An audit log: every card-value change records its feed event
@@ -58,7 +60,9 @@ The factory may accept issues in these areas.
 - The prototype's lobby, buy-in, gameplay (the 21-dial), showdown and wallet
   screens (`prototype/`), driven by the real server
 - A play-money onboarding hand with a guided overlay
-- A card detail view: the live stat line behind a card's value
+- The hand as a card grid: tapping the hand expands it into a scrollable grid of
+  cards, each showing the player, position, live stat line and current value,
+  updating live like a dashboard
 - Empty, error and feed-paused states
 
 **Simulation and tuning**
@@ -106,9 +110,9 @@ human commit.
    the deal, so a hand can be replayed and audited.
 6. **The dealer knows only what a player at the table could know.** It never
    sees future plays (the replay source knows them), undealt cards or another
-   hand's private state. Its decisions are reproducible from the hand's seed and
-   the dealer's version and difficulty level, which the player sees before the
-   ante.
+   hand's private state. Every dealer decision is logged with the state it was
+   given, its dealer version and difficulty level (shown to the player before the
+   ante), and the probabilities it returned, so any hand can be audited.
 7. **The factory cannot modify governance files.** `MISSION.md`,
    `FACTORY_RULES.md`, `FACTORY.md` and `engineering.md` are the constitution. A
    PR touching any of them is an automatic reject.
@@ -156,19 +160,22 @@ These are undecided, not forbidden. **The factory may propose an answer to any o
 them**, build against it, and record what it assumed. The merge is then held for a
 human, so nothing ships on a guess and nothing stops for one.
 
-- **Q10 Do defensive and special-teams players score?** The deck is the whole
-  game-day roster, but under offensive fantasy scoring, linemen and defenders
-  never move (71% of the deck in 2025). Proposed for the alpha: no. They are
-  steady low cards, and return touchdowns already count. Revisit with IDP
-  scoring (tackles, sacks, takeaways) if the cards feel dead.
-- **Q11 Do actions close before the quarter's clock hits 0:00?** Proposed: Hit,
-  Burn and Freeze are accepted until the quarter ends. Add a lockout window only
-  if testing shows late-play information edges (PRD §12).
-- **Q12 How does the AI dealer decide, and how are difficulty levels set?**
-  Proposed for the alpha: a scouting-report policy that reads the same live
-  values and projections a player sees, with a difficulty knob (how well it
-  weighs projections, when it Hits, Freezes and Burns), behind a dealer
-  interface. A learned model and its calibration loop replace it later.
+- **Q11 Do actions lock before the quarter ends, and when?** The owner's
+  concern: with the clock running down, a trailing player can keep hitting until
+  they score or bust, a rush at the end that feels like gaming the system.
+  Candidates: no lockout, or lock Hit, Burn and Freeze at 2:00 (a two-minute
+  warning), 1:00 or 0:30 left in the quarter, while cards stay live to the end.
+  A related lever: hide opponents' totals until the showdown, so nobody knows how
+  far they trail. Proposed for the alpha: the lockout is a table setting, default
+  2:00, chosen by simulating real recorded quarters (`tools/analysis/`) and by
+  play-testing. The owner decides after seeing both.
+- **Q13 Should Jev also read the game feed?** The owner suggested Jev could read
+  the feed's game state and pass it to the card calculator. Proposed: no, not as
+  the source of any value. The feed's JSON is already exact integers. The
+  deterministic parser matches nflverse's box scores exactly, and settled hands
+  must be reproducible. Jev may serve as a second opinion: if it disagrees with
+  the parser about what a play was, the table pauses (invariant 2) rather than
+  settling. That's useful where ESPN's JSON is incomplete or changes shape.
 
 **Except these, which do stop the factory.** They are irreversible (see
 `FACTORY_RULES.md`) rather than open in the ordinary sense:
@@ -183,6 +190,25 @@ Once answered, an entry moves to **Decisions** below with its answer and date, a
 stops being asked. **A decision is asked once.**
 
 ## Decisions
+
+- 2026-10-25 **The out-of-scope list.** All seven entries are kept.
+- 2026-10-25 **Q10 Do defenders score?** Yes. Ruleset `sportsjack-v1` adds IDP
+  points (solo tackle 1, assist 0.5, sack 2, INT 3, forced fumble 3, pass
+  defended 1, defensive TD 6) to `sportsjack-v0`. The values are tunable through
+  new ruleset ids. Cards with no projection fall from 71% of the deck to 16%, so
+  more cards can surprise. Evidence: `docs/analysis/D1-score-normalization.md`.
+- 2026-10-25 **Q12 How is the AI dealer built?** On Jev (TypeSafe AI), a decision
+  model: given the hand's state and scouting-style player information, it
+  chooses Hit, Burn, Freeze or wait, with probabilities. Difficulty comes from
+  how much scouting it is given and how it uses the probabilities. A rule-based
+  dealer implements the same interface. It runs the tests, works offline, and
+  stands in while Jev is in early access. A learning loop calibrates the levels
+  over time.
+- 2026-10-25 **How does a player see a hand with many cards?** Tapping the hand
+  expands it into a scrollable grid of floating cards: player, position, live
+  stats and current value, updating like a dashboard. Hits cannot exhaust the
+  deck: a hand never holds the same player twice, and with a face value of at
+  least 2 per card, a hand busts by about 11 cards.
 
 - 2026-10-25 **Q1 (D1) How is a card's value scaled to 21?** Face value plus live
   points. At the deal each card gets a face value of 2–10 from the player's

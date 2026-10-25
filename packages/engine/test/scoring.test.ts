@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadNflverseGame } from "@sportsjack/feed";
-import { QuarterScorer, SPORTSJACK_V0, STANDARD_PPR } from "../src/index.ts";
+import { QuarterScorer, SPORTSJACK_V0, SPORTSJACK_V1, STANDARD_PPR } from "../src/index.ts";
 import { boxscore, GAMES, gamePath } from "../../feed/test/fixtures.ts";
 
 describe("fantasy scoring on real games", () => {
@@ -38,5 +38,18 @@ describe("fantasy scoring on real games", () => {
     ppr.apply(sack);
     expect(v0.points(3, "00-0039851")).toBe(-3); // −1 sack, −2 fumble lost
     expect(ppr.points(3, "00-0039851")).toBe(-2);
+  });
+
+  it("scores defenders only in v1: a sack and forced fumble make a defender's card move", () => {
+    const { events } = loadNflverseGame(gamePath("2025_22_SEA_NE"));
+    const sack = events.find((e) => e.kind === "play" && e.description.includes("D.Maye sacked at NE 37"))!;
+    const v0 = new QuarterScorer(SPORTSJACK_V0);
+    const v1 = new QuarterScorer(SPORTSJACK_V1);
+    v0.apply(sack);
+    v1.apply(sack);
+    const hall = sack.kind === "play" ? sack.deltas.find((d) => d.name === "D.Hall") : undefined;
+    expect(hall?.team).toBe("SEA");
+    expect(v0.points(3, hall!.playerId)).toBe(0);
+    expect(v1.points(3, hall!.playerId)).toBeGreaterThanOrEqual(2 + 3);
   });
 });

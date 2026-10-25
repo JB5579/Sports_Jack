@@ -18,6 +18,15 @@ environment (see `FACTORY.md`).
 4. If that drop brings the total to 21 or under, the dial leaves the bust state.
    At the end of the quarter the hand is ranked as a non-bust.
 
+## A defender's card swings on a takeaway
+
+1. Replay Super Bowl LX quarter 3. Find D. Hall (SEA) in the table's player list.
+2. When the 0:16 play arrives (Hall sacks Maye and forces a fumble that SEA
+   recovers), Hall's value rises by the sack and forced-fumble points on the rules
+   screen, and Maye's falls, on the same play.
+3. Any hand holding Hall shows the higher total right after that play, even
+   though the play came inside the action lockout.
+
 ## Disconnect after Freeze, reconnect before the whistle
 
 1. Ante at a vs-Dealer table on any fixture game, then Freeze.

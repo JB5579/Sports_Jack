@@ -17,7 +17,7 @@ Ordinary checks: `python harness/ci.py`.
 
 - 2026-10-25: installed from ai-software-factory (Archon pin
   `120f3e040f45c0ad88249601d846e414f4bf438b`). `consumer.py doctor` passed in
-  the setup container. Ordinary gate green (`UNIT_PASSED tests=13`; 23 after the 2026-10-25 rulings). There has been
+  the setup container. Ordinary gate green (`UNIT_PASSED tests=13`; 24 after the 2026-10-25 rulings). There has been
   no live Archon run yet: no provider sign-in, no `gh` sign-in, and the runtime host
   is not wired (it waits for the first backlog ticket's start command).
 

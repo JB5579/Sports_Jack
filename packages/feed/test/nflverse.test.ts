@@ -5,6 +5,7 @@ import { boxscore, FIXTURES, GAMES, gamePath, OVERTIME_GAMES } from "./fixtures.
 const zero = (): Required<StatDelta> => ({
   passYds: 0, passTd: 0, int: 0, sacked: 0, rushYds: 0, rushTd: 0,
   rec: 0, recYds: 0, recTd: 0, fumLost: 0, twoPt: 0, retTd: 0,
+  soloTkl: 0, astTkl: 0, sack: 0, defInt: 0, ff: 0, pd: 0, defTd: 0,
 });
 
 function totals(gameId: string): Map<string, Required<StatDelta>> {
@@ -67,6 +68,13 @@ describe("nflverse replay source on real games", () => {
           passYds: Number(row.passing_yards), passTd: Number(row.passing_tds), int: Number(row.passing_interceptions),
           rushYds: Number(row.rushing_yards), rushTd: Number(row.rushing_tds), rec: Number(row.receptions),
           recYds: Number(row.receiving_yards), recTd: Number(row.receiving_tds),
+        });
+        expect({ label, soloTkl: t.soloTkl, astTkl: t.astTkl, sack: t.sack, defInt: t.defInt, ff: t.ff,
+          pd: t.pd, defTd: t.defTd }).toEqual({
+          label,
+          soloTkl: Number(row.def_tackles_solo), astTkl: Number(row.def_tackle_assists), sack: Number(row.def_sacks),
+          defInt: Number(row.def_interceptions), ff: Number(row.def_fumbles_forced), pd: Number(row.def_pass_defended),
+          defTd: Number(row.def_tds),
         });
       }
     });

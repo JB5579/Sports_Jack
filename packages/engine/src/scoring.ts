@@ -13,13 +13,20 @@ export const STANDARD_PPR: ScoringRules = {
     passYds: 0.04, passTd: 4, int: -2, sacked: 0,
     rushYds: 0.1, rushTd: 6, rec: 1, recYds: 0.1, recTd: 6,
     fumLost: -2, twoPt: 2, retTd: 6,
+    soloTkl: 0, astTkl: 0, sack: 0, defInt: 0, ff: 0, pd: 0, defTd: 0,
   },
 };
 
-/** PRD §4.1 table: standard PPR plus −1 per sack taken. Not final; see MISSION.md Q1. */
+/** PRD §4.1 table: standard PPR plus −1 per sack taken. Offense only. */
 export const SPORTSJACK_V0: ScoringRules = {
   id: "sportsjack-v0",
   points: { ...STANDARD_PPR.points, sacked: -1 },
+};
+
+/** v0 plus common IDP points, so defenders on the roster deck can surprise (MISSION.md Q10). */
+export const SPORTSJACK_V1: ScoringRules = {
+  id: "sportsjack-v1",
+  points: { ...SPORTSJACK_V0.points, soloTkl: 1, astTkl: 0.5, sack: 2, defInt: 3, ff: 3, pd: 1, defTd: 6 },
 };
 
 export function scoreStats(stats: StatDelta, rules: ScoringRules): number {
@@ -42,7 +49,7 @@ export class QuarterScorer {
   readonly rules: ScoringRules;
   readonly #byQuarter = new Map<number, Map<string, number>>();
 
-  constructor(rules: ScoringRules = SPORTSJACK_V0) {
+  constructor(rules: ScoringRules = SPORTSJACK_V1) {
     this.rules = rules;
   }
 

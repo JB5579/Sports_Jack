@@ -22,10 +22,14 @@ check directions, sums and real plays rather than fixed totals.
    total always equals the sum the cards show.
 6. Hit once. A third card joins the hand, and the hand keeps moving live. There is
    no Stand button.
-7. At the end of the quarter the result screen shows the player's final total,
+7. Tap the hand. It expands into a grid of cards, each showing the player, live
+   stats and current value.
+8. Once the quarter reaches the table's lockout time (shown on the rules screen),
+   Hit, Burn and Freeze are no longer offered, but card values keep changing.
+9. At the end of the quarter the result screen shows the player's final total,
    the dealer's final total and the outcome. The balance changes by exactly the
    payout the screen shows.
-8. Reload the page. The balance and the settled hand in the history are the same.
+10. Reload the page. The balance and the settled hand in the history are the same.
 
 **What would make this fail:** values that never move, a total that disagrees
 with the cards, a balance change that differs from the payout shown, or a
@@ -34,10 +38,10 @@ settled hand that changes or disappears after a reload.
 ## A real touchdown moves the card that holds the scorer
 
 1. Replay Super Bowl LX from the start of quarter 4.
-2. Open the card detail for D. Maye (NE QB) or M. Hollins (NE WR): from a hand
-   that holds them, or from the table's player list.
+2. Find D. Maye (NE QB) or M. Hollins (NE WR) in the card grid: in a hand that
+   holds them, or in the table's player list.
 3. When the 12:33 play arrives (Maye's 35-yard touchdown pass to Hollins), both
-   players' values go up, and the detail view lists that play as the reason.
+   players' values go up, and each card lists that play as the reason.
 4. Any hand holding either player shows a higher total right after that play.
 
 **What would make this fail:** a value change with no play listed against it,

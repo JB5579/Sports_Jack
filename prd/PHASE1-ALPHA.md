@@ -75,25 +75,33 @@ real game.
 4. **The deck and the deal (Q1, Q2).** The deck is both teams' game-day active
    roster (nflverse weekly rosters, `ACT`). At the start of a quarter each seated
    player antes and is dealt 2 cards. A card's value is its face value (2–10, from
-   the player's pre-game projection) plus live quarter points × 0.5, under a
-   versioned ruleset. Draws come from a seed committed before the deal.
+   the player's pre-game projection) plus live quarter points × 0.5, under ruleset
+   `sportsjack-v1` (offense and defense, Q10). Draws come from a seed committed before the deal.
 5. **Live hand.** Card values update from the feed on one server tick for the
    whole table. The 21-dial shows the total, the distance to 21 and a live-bust
    state ("X over", recoverable).
 6. **Hit, Burn and Freeze (Q3–Q5).** Hit draws a card: free, with no card limit.
    Burn (once per hand, before Freeze) swaps one card for a new draw from the same
    game. Freeze (once per hand) locks the total and ends the hand's actions. There
-   is no Stand. An unfrozen hand stays live until the quarter ends. The hand view
-   must stay readable with many cards.
+   is no Stand. An unfrozen hand stays live until the quarter ends. Actions lock at
+   the table's lockout time (Q11: a table setting, default 2:00 left in the
+   quarter), and the cards keep moving until the quarter ends.
 7. **Overtime bonus hand (Q8).** An overtime period is a fifth hand. It ends when
    overtime ends, on a score or when its clock runs out. Test with
    `2025_16_LA_SEA` (ends on a score) and `2025_04_GB_DAL` (a 40–40 tie).
 8. **AI dealer (Q6, Q12).** The vs-Dealer opponent plays like a person: it Hits,
    Burns and Freezes, using the same live values and projections a player sees
    (MISSION.md invariant 6). Its difficulty level is selectable per table and shown
-   before the ante. Put it behind a dealer interface so a learned model can
-   replace it. Measure each level's win rate by simulating real recorded quarters
-   (`tools/analysis/`), and show the levels on the rules screen.
+   before the ante. Two implementations share one dealer interface:
+   - a rule-based dealer, used by tests and whenever Jev is unavailable;
+   - a Jev dealer (TypeSafe AI), which asks Jev to choose Hit, Burn, Freeze or
+     wait, with probabilities, from the hand's state and scouting-style player
+     information. Its credentials come from the environment and are never
+     committed. Its tests use recorded responses, never the network.
+
+   Log every dealer decision with its input and probabilities. Measure each
+   level's win rate by simulating real recorded quarters (`tools/analysis/`), and
+   show the levels on the rules screen.
 9. **PvP 6-max (D7).** A shared pot of antes, with the rake shown before the hand
    (8–12%, PRD §5.2), closest to 21 without going over wins, and the tie and
    all-bust rules from Q7.
@@ -104,13 +112,15 @@ real game.
     paused", values hold and nothing settles until the feed resumes (PRD §11).
 12. **Disconnect and reconnect.** A client that drops mid-hand gets the same hand
     back when it reconnects. The hand keeps playing server-side while it is away.
-13. **Card detail.** Tapping a card shows the player's live stat line for the
-    quarter and the plays that moved the value.
+13. **The hand as a card grid.** Tapping the hand expands it into a scrollable
+    grid of floating cards, a live dashboard of the hand. Each card shows the
+    player, position, team, live stat line for the quarter, current value and the
+    plays that moved it. It must stay readable on an iPhone with 10 or more cards.
 14. **Onboarding hand.** A first-time visitor is dropped into a guided vs-Dealer
     hand on a replayed game, with an overlay teaching Hit, Burn and Freeze
     (PRD §8.1).
-15. **Rules screen.** It shows the scoring ruleset, deck, dealer levels, tie and
-    bust rules and the rake: everything a hand's outcome depends on.
+15. **Rules screen.** It shows the scoring ruleset, deck, dealer levels, lockout
+    time, tie and bust rules and the rake: everything a hand's outcome depends on.
 16. **ESPN live feed (Q9).** A second `FeedSource` that follows a live game
     through ESPN's public scoreboard and play-by-play JSON, polling about every
     10 seconds. It emits the same events as the replay source, so the engine

@@ -86,6 +86,20 @@ the owner's intent: hit more, and leave room for surprises from players off the
 bench. **Recorded default:** face = 2 + 2 × projected quarter points, capped
 2–10, plus live points × 0.5.
 
-Consequences for the build: the hand view must stay readable with many cards,
-and 2-value cards are most of the deck. Whether defenders should also score is
-MISSION.md Q10.
+## Update: defenders score too (Q10, ruleset `sportsjack-v1`)
+
+The owner decided defenders score (IDP: solo tackle 1, assist 0.5, sack 2, INT 3,
+forced fumble 3, pass defended 1, defensive TD 6). Run with `--idp`.
+
+| Face rule | Hit until face ≥ | Cards | Median | In 17–21 | Over 21 |
+|---|---|---|---|---|---|
+| 2 + 2 × projected quarter pts, 2–10 | 15 | 4.8 | 17.8 | 51% | 16% |
+| 2 + 2 × projected quarter pts, 2–10 | 17 | 5.4 | 20.0 | 65% | 35% |
+
+Cards with zero projection fall from 71% to 16%, mostly offensive linemen and
+specialists. 2s fall from 78% to 39% of the deck. Hands run 4–5 cards, and a
+defender's sack or pick now swings a hand the way a touchdown does.
+
+Consequences for the build: the hand view must stay readable with many cards
+(MISSION.md: the expandable card grid). The IDP point values are a first guess,
+tunable through new ruleset ids.

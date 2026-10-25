@@ -45,7 +45,21 @@ PLAY_COLUMNS = [
     "receiver_player_id", "receiver_player_name", "receiving_yards",
     "rusher_player_id", "rusher_player_name", "rushing_yards",
     "fumbled_1_player_id", "fumbled_1_player_name", "total_home_score", "total_away_score",
+    "touchdown", "td_team",
+    # Defense and coverage, credited on every play, kicks included, as nflverse does.
+    "solo_tackle_1_player_id", "solo_tackle_1_player_name", "solo_tackle_1_team",
+    "solo_tackle_2_player_id", "solo_tackle_2_player_name", "solo_tackle_2_team",
+    "assist_tackle_1_player_id", "assist_tackle_1_player_name", "assist_tackle_1_team",
+    "assist_tackle_2_player_id", "assist_tackle_2_player_name", "assist_tackle_2_team",
+    "sack_player_id", "sack_player_name", "half_sack_1_player_id", "half_sack_1_player_name",
+    "half_sack_2_player_id", "half_sack_2_player_name",
+    "interception_player_id", "interception_player_name",
+    "forced_fumble_player_1_player_id", "forced_fumble_player_1_player_name", "forced_fumble_player_1_team",
+    "forced_fumble_player_2_player_id", "forced_fumble_player_2_player_name", "forced_fumble_player_2_team",
+    "pass_defense_1_player_id", "pass_defense_1_player_name",
+    "pass_defense_2_player_id", "pass_defense_2_player_name",
 ]
+PLAYER_ID_COLUMNS = [c for c in PLAY_COLUMNS if c.endswith("player_id")]
 PLAYER_COLUMNS = ["gsis_id", "full_name", "position", "team", "season"]
 # The deck: every player on both teams' game-day active roster (status ACT).
 ROSTER_COLUMNS = ["gsis_id", "espn_id", "full_name", "position", "depth_chart_position", "team", "week", "status"]
@@ -55,6 +69,8 @@ STAT_COLUMNS = [
     "sacks_suffered", "carries", "rushing_yards", "rushing_tds", "receptions",
     "receiving_yards", "receiving_tds", "rushing_fumbles_lost", "receiving_fumbles_lost",
     "sack_fumbles_lost", "fantasy_points_ppr",
+    "def_tackles_solo", "def_tackle_assists", "def_sacks", "def_interceptions",
+    "def_fumbles_forced", "def_pass_defended", "def_tds",
 ]
 
 
@@ -120,8 +136,7 @@ def main() -> int:
             weeks[(records[0]["week"], records[0]["home_team"])] = game_id
             weeks[(records[0]["week"], records[0]["away_team"])] = game_id
             for record in records:
-                for key in ("passer_player_id", "receiver_player_id", "rusher_player_id",
-                            "fumbled_1_player_id", "td_player_id"):
+                for key in PLAYER_ID_COLUMNS:
                     if record[key] and record[key] != "NA":
                         ids.add(record[key])
         roster = [r for r in rows(download(f"rosters/roster_{season}.csv")) if r["gsis_id"] in ids]

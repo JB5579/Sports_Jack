@@ -2,8 +2,9 @@
 """Q1/Q2 evidence: face values with a full game-day roster deck and no card limit.
 
     uv run --with pandas --with numpy tools/analysis/d2_full_roster.py \
-        .cache/nflverse/pbp__play_by_play_2025.csv.gz .cache/nflverse/weekly_rosters__roster_weekly_2025.csv
+        .cache/nflverse/pbp__play_by_play_2025.csv.gz .cache/nflverse/weekly_rosters__roster_weekly_2025.csv [--idp]
 
+--idp also scores defenders (ruleset sportsjack-v1, MISSION.md Q10).
 The player strategy is a simple stand-in: Hit at the deal until the face total
 reaches T, then hold. Results are in docs/analysis/D1-score-normalization.md.
 """
@@ -14,6 +15,16 @@ import pandas as pd
 
 # Reuse the play scoring from the D1 script (everything before its deck proxy).
 exec(open("tools/analysis/d1_normalization.py").read().split("# deck:")[0])
+
+if "--idp" in sys.argv:
+    # sportsjack-v1 defense: solo 1, assist 0.5, sack 2 (half 1), INT 3, forced fumble 3, pass defended 1.
+    idp = [("solo_tackle_1_player_id", 1), ("solo_tackle_2_player_id", 1), ("assist_tackle_1_player_id", 0.5),
+           ("assist_tackle_2_player_id", 0.5), ("sack_player_id", 2), ("half_sack_1_player_id", 1),
+           ("half_sack_2_player_id", 1), ("interception_player_id", 3), ("forced_fumble_player_1_player_id", 3),
+           ("forced_fumble_player_2_player_id", 3), ("pass_defense_1_player_id", 1), ("pass_defense_2_player_id", 1)]
+    extra = [df[["game_id", "qtr", col]].dropna().assign(pts=value).rename(columns={"game_id": "game", col: "pid"})
+             for col, value in idp]
+    pts = pd.concat([pts] + extra, ignore_index=True)
 r = pd.read_csv(sys.argv[2], low_memory=False)
 r = r[r.status == 'ACT'][['week','team','gsis_id','position']]
 games = df.groupby('game_id').agg(week=('week','first'), home=('home_team','first'), away=('away_team','first')).reset_index()

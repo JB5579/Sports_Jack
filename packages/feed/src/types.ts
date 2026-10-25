@@ -13,6 +13,16 @@ export interface StatDelta {
   twoPt?: number;
   /** Kickoff or punt returned for a touchdown. */
   retTd?: number;
+  // Defense and coverage (Q10).
+  soloTkl?: number;
+  astTkl?: number;
+  /** 1 per sack, 0.5 per shared sack. */
+  sack?: number;
+  defInt?: number;
+  ff?: number;
+  pd?: number;
+  /** Interception or fumble returned for a touchdown. */
+  defTd?: number;
 }
 
 export type StatKey = keyof StatDelta;

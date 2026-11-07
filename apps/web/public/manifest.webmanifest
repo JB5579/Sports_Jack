@@ -1,0 +1,11 @@
+{
+  "name": "SportsJack",
+  "short_name": "SportsJack",
+  "description": "Blackjack where every card is a real NFL player.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d2219",
+  "theme_color": "#0d2219",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

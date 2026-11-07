@@ -70,3 +70,5 @@ export class Lobby {
     };
   }
 }
+
+export type LobbySummary = ReturnType<Lobby["summary"]>;

@@ -188,4 +188,25 @@ describe("SportsJack server", () => {
     const botNet = bots.reduce((sum, s) => sum + s.payout, 0) - 100 * bots.length;
     expect(humansAfter - 2000 + result.house + botNet).toBe(0);
   });
+
+  it("deals a free practice hand at once on Super Bowl LX's fourth quarter, then cleans it up", async () => {
+    const { port, lobby } = await start();
+    const p = await phone(port, tokenA);
+    const id = (p.welcome.account as { id: string }).id;
+    p.send({ type: "practice" });
+    const sat = await p.next((m) => m.type === "sat") as { tableId: string };
+    const table = lobby.tables.get(sat.tableId)!;
+    expect(table.spec.practice).toBe(true);
+    lobby.advance(1.5);
+    expect(table.hand!.options.qtr).toBe(4);
+    expect(table.hand!.cards(id)).toHaveLength(2);
+    expect(lobby.store.balance(id)).toBe(1000);
+    expect(lobby.summary().tables.some((t) => t.id === sat.tableId)).toBe(false);
+    untilSettled(lobby, table);
+    expect(lobby.store.balance(id)).toBe(1000);
+    expect(lobby.store.history(id)).toHaveLength(0);
+    p.send({ type: "leave" });
+    await p.next((m) => m.type === "lobby");
+    expect(lobby.tables.has(sat.tableId)).toBe(false);
+  });
 });

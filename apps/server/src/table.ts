@@ -1,5 +1,5 @@
 import { createHash, randomInt } from "node:crypto";
-import type { FeedEvent } from "@sportsjack/feed";
+import type { FeedEvent, StatDelta, StatKey } from "@sportsjack/feed";
 import {
   ActionRefused, decide, Hand, seededRandom,
   type Card, type DealerLevel, type Settlement, type TableMode,
@@ -59,6 +59,8 @@ export class Table {
   #humans: string[] = [];
   #plays: PlayNote[] = [];
   #descriptions = new Map<string, string>();
+  /** Each player's stats this quarter, for the card grid's stat lines. */
+  #stats = new Map<string, StatDelta>();
   result: { handId: string; qtr: number; seed: number; settlement: Settlement; names: Record<string, string> } | null = null;
 
   constructor(spec: TableSpec, runner: GameRunner, store: Store, deck: Card[], onChange: () => void) {
@@ -110,6 +112,7 @@ export class Table {
     this.result = null;
     this.hand = null;
     this.#plays = [];
+    this.#stats = new Map();
     const handId = `${this.spec.id}-q${qtr}-${Date.now().toString(36)}`;
     const humans = [...this.seated].filter((id) => this.#store.debit(id, this.spec.ante, "ante", handId));
     if (humans.length === 0) { this.#onChange(); return; }
@@ -134,7 +137,14 @@ export class Table {
   }
 
   #apply(e: FeedEvent): void {
-    if (e.kind === "play") this.#descriptions.set(e.playId, e.description);
+    if (e.kind === "play") {
+      this.#descriptions.set(e.playId, e.description);
+      for (const d of e.deltas) {
+        const line = this.#stats.get(d.playerId) ?? {};
+        for (const [key, value] of Object.entries(d.stats) as [StatKey, number][]) line[key] = (line[key] ?? 0) + value;
+        this.#stats.set(d.playerId, line);
+      }
+    }
     const hand = this.hand;
     if (!hand || hand.over) return;
     const before = hand.log.length;
@@ -153,7 +163,8 @@ export class Table {
     const hand = this.hand;
     if (!hand || hand.over) return;
     hand.advanceClock(clock);
-    if (this.#think()) this.#onChange();
+    this.#think();
+    this.#onChange(); // the clock moved; phones redraw it (pushes are batched every 200 ms)
   }
 
   /** AI seats decide from their SeatView only (MISSION.md invariant 6). */
@@ -199,7 +210,7 @@ export class Table {
       const last = hand!.log.findLast((l) => l.playerId === playerId);
       return {
         playerId, name: c.name, position: c.position, team: c.team, face: c.face, projection: c.projection,
-        points: hand!.points(playerId), value: hand!.value(playerId),
+        points: hand!.points(playerId), value: hand!.value(playerId), stats: this.#stats.get(playerId) ?? {},
         why: last ? { clock: last.clock, points: last.points, description: this.#descriptions.get(last.playId) ?? "" } : null,
       };
     };
@@ -234,3 +245,6 @@ export class Table {
     };
   }
 }
+
+export type TableView = ReturnType<Table["view"]>;
+export type CardView = NonNullable<NonNullable<TableView["hand"]>["mine"]>["cards"][number];

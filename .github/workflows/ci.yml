@@ -20,3 +20,4 @@ jobs:
           python-version: "3.12"
       - run: npm ci
       - run: python harness/ci.py
+      - run: npm run build:web

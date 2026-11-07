@@ -4,11 +4,18 @@
   "holdout": ".factory/holdout/HOLDOUT.md",
   "driver": "http",
   "http": {
-    "start": "",
+    "start": "node --experimental-strip-types --no-warnings apps/server/src/main.ts",
     "health_path": "/health",
-    "health_contains": "",
+    "health_contains": "\"status\":\"ok\"",
     "boot_timeout_s": 45,
-    "env": {}
+    "env": {
+      "PORT": "{port}",
+      "SPORTSJACK_DB": "{state}/sportsjack.sqlite",
+      "SPORTSJACK_REPLAY": "2025_22_SEA_NE",
+      "SPORTSJACK_REPLAY_SPEED": "60",
+      "SPORTSJACK_BREAK_SECONDS": "5",
+      "SPORTSJACK_TEST_CONTROLS": "1"
+    }
   },
   "cli": {
     "invoke": "",

@@ -1,0 +1,24 @@
+{
+  "name": "sportsjack",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "fixtures": "python3 tools/nflverse/fetch_fixtures.py",
+    "replay": "node --experimental-strip-types --no-warnings tools/replay.ts",
+    "demo": "node --experimental-strip-types --no-warnings --max-old-space-size=4096 tools/demo/build-data.ts > demo/data.json && node tools/demo/build.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "5.9",
+    "vitest": "^3.2.7"
+  }
+}

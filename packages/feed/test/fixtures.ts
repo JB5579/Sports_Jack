@@ -12,3 +12,6 @@ export const gamePath = (gameId: string) => `${FIXTURES}games/${gameId}.csv`;
 export function boxscore(gameId: string): Record<string, string>[] {
   return parse(readFileSync(`${FIXTURES}boxscores/${gameId}.csv`, "utf8"), { columns: true }) as Record<string, string>[];
 }
+
+export const rosterPath = (gameId: string) => `${FIXTURES}rosters/${gameId}.csv`;
+export const projectionsPath = (gameId: string) => `${FIXTURES}projections/${gameId}.csv`;

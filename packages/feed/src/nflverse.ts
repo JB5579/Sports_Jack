@@ -174,3 +174,8 @@ export function loadNflversePlayers(path: string): Player[] {
     team: row.team ?? "",
   }));
 }
+
+/** Pre-game projected points per quarter, by player id (written by tools/nflverse/projections.ts). */
+export function loadProjections(path: string): Map<string, number> {
+  return new Map(readCsv(path).map((row) => [row.player_id ?? "", num(row.projected_quarter_points)]));
+}

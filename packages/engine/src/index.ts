@@ -1,2 +1,13 @@
 export { QuarterScorer, SPORTSJACK_V0, SPORTSJACK_V1, STANDARD_PPR, round, scoreStats } from "./scoring.ts";
 export type { ScoringRules } from "./scoring.ts";
+export { ALPHA_RULES, faceValue, roundValue } from "./rules.ts";
+export type { GameRules } from "./rules.ts";
+export { buildDeck } from "./deck.ts";
+export type { Card } from "./deck.ts";
+export { seededRandom } from "./random.ts";
+export { compareFinish, settleDealer, settlePlayers } from "./settlement.ts";
+export type { Finish, Settlement, Standing } from "./settlement.ts";
+export { ActionRefused, Hand } from "./hand.ts";
+export type { HandOptions, RefusalReason, SeatView, TableMode, ValueChange } from "./hand.ts";
+export { decide } from "./dealer.ts";
+export type { DealerLevel, Decision } from "./dealer.ts";

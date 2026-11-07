@@ -1,0 +1,690 @@
+<title>SportsJack Live Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one phone screen, felt table top to bottom — status bar, dial, hand, play ticker, action rail. */
+:root {
+  color-scheme: dark;
+  --felt-900: #0d2219;
+  --felt-800: #143026;
+  --felt-700: #1c3d31;
+  --felt-600: #285343;
+  --felt-500: #3d7461;
+  --rail: #0a1912;
+  --paper: #f5f0e4;
+  --paper-edge: #e4dccb;
+  --ink: #2a2118;
+  --ink-soft: #6f6253;
+  --on-felt: #f3efe4;
+  --on-felt-dim: #b9b3a5;
+  --on-felt-faint: #7f8a80;
+  --gold: #e2b65a;
+  --gold-deep: #b98a2c;
+  --gold-shine: #f6d98c;
+  --up: #6fcf86;
+  --down: #e0644f;
+  --ice: #8fd3ee;
+  --pos-qb: #c8573c;
+  --pos-rb: #6aa572;
+  --pos-wr: #4f8fc9;
+  --pos-te: #8a6cc0;
+  --pos-def: #8c8577;
+  --pos-st: #c3a659;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(120% 70% at 50% 0%, var(--felt-700), var(--felt-900) 70%) fixed, var(--felt-900);
+  color: var(--on-felt);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.app {
+  height: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.screen { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding-block: 14px; }
+.scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-felt-faint); }
+.num { font-variant-numeric: tabular-nums; }
+.display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; }
+.chip { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--on-felt-dim); white-space: nowrap; }
+.chip.live { color: var(--down); }
+.chip.live::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--down); margin-right: 6px; vertical-align: 1px; animation: pulse 1.4s infinite; }
+.chip.gold { background: rgba(226,182,90,0.16); color: var(--gold-shine); }
+.chip.ice { background: rgba(143,211,238,0.15); color: var(--ice); }
+.chip.red { background: rgba(224,100,79,0.16); color: var(--down); }
+@keyframes pulse { 50% { opacity: 0.3; } }
+
+/* Lobby */
+.brand { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.brand h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 38px; line-height: 1; }
+.brand h1 em { color: var(--gold); font-style: italic; }
+.wallet-pill { text-align: right; background: none; border: 0; padding: 0; }
+.wallet-pill strong { display: block; font-family: var(--serif); font-size: 24px; color: var(--gold-shine); font-weight: 400; }
+.intro { margin: 0; color: var(--on-felt-dim); font-size: 13px; line-height: 1.5; text-wrap: pretty; }
+.game-card { width: 100%; text-align: left; border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.game-card[aria-pressed="true"] { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+.matchup { display: flex; align-items: center; gap: 10px; }
+.team { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; font-family: var(--mono); font-weight: 600; font-size: 13px; background: var(--felt-600); }
+.matchup .at { color: var(--on-felt-faint); font-family: var(--serif); font-style: italic; font-size: 18px; }
+.matchup .meta { margin-left: auto; text-align: right; display: flex; flex-direction: column; gap: 4px; }
+.game-title { font-family: var(--serif); font-size: 21px; line-height: 1.1; }
+.setup { display: flex; flex-direction: column; gap: 12px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.seg { display: flex; gap: 6px; flex-wrap: wrap; }
+.seg button { flex: 1 1 0; min-width: 0; min-height: 40px; padding: 8px 6px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.18); font-size: 13px; font-weight: 600; color: var(--on-felt-dim); }
+.seg button[aria-pressed="true"] { background: rgba(226,182,90,0.16); border-color: var(--gold); color: var(--gold-shine); }
+.seg button:disabled { opacity: 0.35; }
+.help { font-size: 12px; color: var(--on-felt-faint); line-height: 1.45; margin: 0; }
+.primary { min-height: 52px; border: 0; border-radius: 14px; font-weight: 700; font-size: 16px; color: #2b1d05; background: linear-gradient(180deg, var(--gold-shine), var(--gold) 55%, var(--gold-deep)); box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.5); }
+.primary:disabled { filter: grayscale(0.8) brightness(0.6); }
+.secondary { min-height: 48px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); font-weight: 600; }
+.text-btn { background: none; border: 0; color: var(--gold); font-weight: 600; padding: 6px 0; }
+.foot { font-size: 11px; color: var(--on-felt-faint); line-height: 1.5; margin: 0; }
+
+/* Table */
+.statusbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.score { display: flex; align-items: baseline; gap: 8px; font-family: var(--mono); font-size: 13px; }
+.score b { font-size: 16px; color: var(--on-felt); }
+.clock { font-family: var(--mono); font-size: 22px; font-weight: 600; letter-spacing: 0.02em; }
+.clock.locked { color: var(--ice); }
+.icon-btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.2); display: grid; place-items: center; font-size: 15px; }
+.opponents { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+.opp { flex: 1 1 0; min-width: 0; padding: 8px 10px; border-radius: 12px; background: rgba(0,0,0,0.22); display: flex; flex-direction: column; gap: 2px; }
+.opp .who { font-size: 11px; color: var(--on-felt-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.opp .who .bot { font-family: var(--mono); font-size: 9px; background: rgba(255,255,255,0.1); padding: 1px 4px; border-radius: 4px; margin-right: 4px; color: var(--on-felt); }
+.opp .tot { font-family: var(--serif); font-size: 24px; line-height: 1; }
+.opp .tot.bust { color: var(--down); }
+.opp .tot.frozen { color: var(--ice); }
+.opp .act { font-family: var(--mono); font-size: 9px; color: var(--on-felt-faint); text-transform: uppercase; letter-spacing: 0.08em; }
+.dial-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.dial { position: relative; width: 260px; max-width: 100%; aspect-ratio: 260 / 136; }
+.dial svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.dial .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.dial .total { font-family: var(--serif); font-size: 62px; line-height: 0.9; letter-spacing: -0.03em; transition: color 0.3s; }
+.dial .sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--on-felt-dim); margin-top: 4px; }
+.hand-head { display: flex; justify-content: space-between; align-items: center; }
+.hand { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 8px; scroll-snap-type: x proximity; }
+.pcard { flex: 0 0 auto; width: 82px; height: 116px; border-radius: 10px; background: linear-gradient(180deg, var(--paper), var(--paper-edge)); color: var(--ink); position: relative; display: flex; flex-direction: column; padding: 7px 7px 6px; box-shadow: 0 6px 14px rgba(0,0,0,0.35); border: 0; text-align: left; scroll-snap-align: start; transition: transform 0.25s; }
+.pcard.fresh { animation: deal 0.45s ease-out; }
+.pcard .band { position: absolute; left: 0; right: 0; top: 0; height: 5px; border-radius: 10px 10px 0 0; }
+.pcard .pos { font-family: var(--mono); font-size: 9px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.06em; margin-top: 2px; }
+.pcard .nm { font-size: 11px; font-weight: 700; line-height: 1.15; margin-top: 2px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.pcard .val { margin-top: auto; font-family: var(--serif); font-size: 30px; line-height: 0.9; }
+.pcard .split { font-family: var(--mono); font-size: 8.5px; color: var(--ink-soft); }
+.pcard.flash-up { box-shadow: 0 0 0 2px var(--up), 0 6px 14px rgba(0,0,0,0.35); }
+.pcard.flash-down { box-shadow: 0 0 0 2px var(--down), 0 6px 14px rgba(0,0,0,0.35); }
+.pcard.burnable { animation: wobble 0.6s infinite alternate; outline: 2px dashed var(--down); outline-offset: 2px; }
+.pcard .delta { position: absolute; right: 6px; top: 8px; font-family: var(--mono); font-size: 10px; font-weight: 700; }
+.pcard .delta.up { color: #2f8a45; }
+.pcard .delta.down { color: #b23b27; }
+@keyframes deal { from { transform: translateY(-14px) rotate(-4deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes wobble { from { transform: rotate(-1.5deg); } to { transform: rotate(1.5deg); } }
+.ticker { flex: 1; min-height: 64px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+.play { font-size: 12px; line-height: 1.4; color: var(--on-felt-dim); padding: 8px 10px; border-radius: 10px; background: rgba(0,0,0,0.2); }
+.play .when { font-family: var(--mono); font-size: 10px; color: var(--on-felt-faint); margin-right: 6px; }
+.play .mine { display: block; margin-top: 3px; font-family: var(--mono); font-size: 10.5px; }
+.play.big { color: var(--on-felt); background: rgba(226,182,90,0.1); }
+.rail { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 8px; padding-top: 4px; }
+.rail button { min-height: 58px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.25); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-weight: 700; font-size: 15px; }
+.rail button small { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: 0.08em; color: var(--on-felt-faint); text-transform: uppercase; }
+.rail .hit { background: linear-gradient(180deg, var(--gold-shine), var(--gold) 55%, var(--gold-deep)); color: #2b1d05; border: 0; }
+.rail .hit small { color: rgba(43,29,5,0.7); }
+.rail .freeze { color: var(--ice); }
+.rail .burn { color: var(--down); }
+.rail button:disabled { opacity: 0.32; }
+.notice { text-align: center; font-size: 12px; color: var(--ice); min-height: 16px; }
+
+/* Sheets */
+.sheet-back { position: fixed; inset: 0; background: rgba(4,12,8,0.72); display: flex; align-items: flex-end; justify-content: center; z-index: 20; }
+.sheet { width: 100%; max-width: 480px; max-height: 88%; display: flex; flex-direction: column; background: var(--felt-800); border-radius: 20px 20px 0 0; border-top: 1px solid rgba(255,255,255,0.1); padding: 16px max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); gap: 12px; animation: up 0.28s ease-out; }
+@keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+.sheet h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.05; text-wrap: balance; }
+.sheet-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; overflow-y: auto; padding-bottom: 4px; }
+.gcard { background: linear-gradient(180deg, var(--paper), var(--paper-edge)); color: var(--ink); border-radius: 12px; padding: 10px; position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.gcard .band { position: absolute; left: 0; right: 0; top: 0; height: 5px; border-radius: 12px 12px 0 0; }
+.gcard .top { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-top: 2px; }
+.gcard .nm { font-weight: 700; font-size: 13px; line-height: 1.2; min-width: 0; }
+.gcard .val { font-family: var(--serif); font-size: 32px; line-height: 0.9; }
+.gcard .math { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); }
+.gcard .line { font-size: 11.5px; line-height: 1.35; }
+.gcard .why { font-size: 10.5px; line-height: 1.35; color: var(--ink-soft); border-top: 1px solid rgba(42,33,24,0.12); padding-top: 6px; }
+.results { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+.res { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: rgba(0,0,0,0.22); }
+.res.me { background: rgba(226,182,90,0.12); border: 1px solid rgba(226,182,90,0.4); }
+.res .rk { font-family: var(--serif); font-size: 22px; color: var(--on-felt-faint); }
+.res .who { font-weight: 600; font-size: 14px; }
+.res .note { font-size: 11px; color: var(--on-felt-faint); }
+.res .t { font-family: var(--serif); font-size: 28px; }
+.res .t.bust { color: var(--down); }
+.payout { text-align: center; display: flex; flex-direction: column; gap: 2px; }
+.payout .big { font-family: var(--serif); font-size: 46px; line-height: 1; }
+.payout .big.win { color: var(--gold-shine); }
+.payout .big.loss { color: var(--down); }
+.rules { overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 13px; line-height: 1.5; color: var(--on-felt-dim); }
+.rules h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 20px; color: var(--on-felt); }
+.rules table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.rules td { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.rules td:last-child { text-align: right; font-family: var(--mono); color: var(--on-felt); }
+.hist { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; }
+.hrow { display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; padding: 8px 10px; border-radius: 10px; background: rgba(0,0,0,0.2); }
+.hrow .net { font-family: var(--mono); }
+.hrow .net.pos { color: var(--up); }
+.hrow .net.neg { color: var(--down); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+<div class="app" id="app"></div>
+<div id="sheet-root"></div>
+<script id="game-data" type="application/json">__GAME_DATA__</script>
+<script>
+"use strict";
+const DATA = JSON.parse(document.getElementById("game-data").textContent);
+const START_BALANCE = 1000;
+const RAKE = 0.10;
+const LIVE_WEIGHT = 0.5;
+const STAKES = [25, 100, 1000];
+const LOCKOUTS = [[0, "None"], [30, "0:30"], [60, "1:00"], [120, "2:00"]];
+const SPEEDS = [[6, "Demo · 2½ min"], [15, "Quick · 1 min"]];
+const BOTS = ["Gridiron Gus", "Two-Minute Tia", "Red Zone Ray"];
+const POS_GROUP = { QB: "qb", RB: "rb", FB: "rb", WR: "wr", TE: "te", K: "st", P: "st", LS: "st" };
+
+/* ---------- small helpers ---------- */
+const $ = (sel, root = document) => root.querySelector(sel);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
+const clockText = (s) => { s = Math.max(0, Math.ceil(s)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; };
+const qName = (q) => (q === 5 ? "OT" : `Q${q}`);
+const shortName = (n) => { const parts = n.split(" "); return parts.length > 1 ? `${parts[0][0]}. ${parts.slice(1).join(" ")}` : n; };
+const posColor = (p) => `var(--pos-${POS_GROUP[p] || "def"})`;
+
+function store(key, value) {
+  try {
+    if (value === undefined) return JSON.parse(localStorage.getItem(key) || "null");
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch { return null; }
+}
+
+// Seeded draws: a hand's cards follow from the seed shown at the table.
+function rng(seed) {
+  let a = seed >>> 0;
+  return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+
+function statLine(st) {
+  if (!st) return "No stats yet this quarter";
+  const out = [];
+  if (st.passYds || st.passTd || st.int) out.push(`${st.passYds || 0} pass yds${st.passTd ? `, ${st.passTd} TD` : ""}${st.int ? `, ${st.int} INT` : ""}`);
+  if (st.rushYds || st.rushTd) out.push(`${st.rushYds || 0} rush yds${st.rushTd ? `, ${st.rushTd} TD` : ""}`);
+  if (st.rec || st.recYds || st.recTd) out.push(`${st.rec || 0} rec, ${st.recYds || 0} yds${st.recTd ? `, ${st.recTd} TD` : ""}`);
+  const tk = (st.soloTkl || 0) + (st.astTkl || 0);
+  if (tk) out.push(`${tk} tackle${tk === 1 ? "" : "s"}`);
+  if (st.sack) out.push(`${st.sack} sack${st.sack === 1 ? "" : "s"}`);
+  if (st.defInt) out.push(`${st.defInt} INT`);
+  if (st.ff) out.push(`${st.ff} forced fumble`);
+  if (st.pd) out.push(`${st.pd} pass defended`);
+  if (st.defTd) out.push("defensive TD");
+  if (st.retTd) out.push("return TD");
+  if (st.twoPt) out.push("2-pt conversion");
+  if (st.sacked) out.push(`sacked ${st.sacked}×`);
+  if (st.fumLost) out.push(`${st.fumLost} fumble lost`);
+  return out.join(" · ") || "No stats yet this quarter";
+}
+
+/* ---------- persistent wallet ---------- */
+const wallet = store("sj-wallet") || { balance: START_BALANCE, history: [] };
+const saveWallet = () => store("sj-wallet", wallet);
+
+/* ---------- app state ---------- */
+const ui = { screen: "lobby", gameIdx: 0, mode: "dealer", level: "easy", stake: 25, lockout: 120, joinQ: 1, speed: 6 };
+let table = null;
+let timer = null;
+
+/* ---------- lobby ---------- */
+function renderLobby() {
+  const g = DATA.games[ui.gameIdx];
+  const quarters = g.periods.map((p) => p.q);
+  if (!quarters.includes(ui.joinQ)) ui.joinQ = 1;
+  const seg = (name, options, current) => options.map(([v, label, disabled]) =>
+    `<button type="button" data-set="${name}" data-v="${v}" aria-pressed="${String(v) === String(current)}"${disabled ? " disabled" : ""}>${esc(label)}</button>`).join("");
+  $("#app").innerHTML = `
+  <section class="screen scroll">
+    <header class="brand">
+      <h1>Sports<em>Jack</em></h1>
+      <button class="wallet-pill" id="open-wallet" type="button">
+        <span class="label">Play-money yards</span>
+        <strong class="num">${wallet.balance.toLocaleString()}</strong>
+      </button>
+    </header>
+    <p class="intro">Blackjack where every card is a real NFL player. Each card's value is its face value plus half its live fantasy points this quarter. Get closest to 21 by the whistle. These are real 2025 games, replayed play by play.</p>
+    <div class="label">Pick a game</div>
+    ${DATA.games.map((game, i) => `
+      <button type="button" class="game-card" data-game="${i}" aria-pressed="${i === ui.gameIdx}">
+        <div class="matchup">
+          <span class="team">${game.away}</span><span class="at">at</span><span class="team">${game.home}</span>
+          <span class="meta"><span class="chip live">Replay</span><span class="label">${game.periods.length > 4 ? "4 hands + OT" : "4 hands"}</span></span>
+        </div>
+        <div class="game-title">${esc(game.label)}</div>
+        <div class="label">${new Date(game.date + "T12:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })} · week ${game.week}</div>
+      </button>`).join("")}
+    <div class="setup" aria-label="Table setup">
+      <div class="field"><span class="label">Play against</span><div class="seg">${seg("mode", [["dealer", "House dealer"], ["players", "3 players"]], ui.mode)}</div></div>
+      ${ui.mode === "dealer" ? `<div class="field"><span class="label">Dealer level</span><div class="seg">${seg("level", [["easy", "Easy"], ["sharp", "Sharp"]], ui.level)}</div>
+        <p class="help">${ui.level === "sharp" ? "Sharp reads each player's projection and the clock, burns a busting card, and freezes before it drifts over." : "Easy hits low hands and freezes when it likes its number."}</p></div>`
+        : `<p class="help">The other seats are bots, labeled as bots. The pot is every ante, less a ${RAKE * 100}% rake shown up front.</p>`}
+      <div class="field"><span class="label">Ante (yards)</span><div class="seg">${seg("stake", STAKES.map((s) => [s, String(s)]), ui.stake)}</div></div>
+      <div class="field"><span class="label">Action lockout</span><div class="seg">${seg("lockout", LOCKOUTS, ui.lockout)}</div>
+        <p class="help">Hit, Burn and Freeze close with this much left in the quarter. Cards keep moving to the whistle.</p></div>
+      <div class="field"><span class="label">Join at</span><div class="seg">${seg("joinQ", quarters.map((q) => [q, q === 3 ? "Half" : qName(q)]), ui.joinQ)}</div></div>
+      <div class="field"><span class="label">Replay speed</span><div class="seg">${seg("speed", SPEEDS, ui.speed)}</div></div>
+      <button class="primary" id="sit" type="button"${wallet.balance < ui.stake ? " disabled" : ""}>Sit down · ante ${ui.stake} yards</button>
+      ${wallet.balance < ui.stake ? `<p class="help">Not enough yards for this ante. <button class="text-btn" id="refill" type="button">Reset to ${START_BALANCE} play-money yards</button></p>` : ""}
+      <button class="text-btn" id="open-rules" type="button">How it works</button>
+    </div>
+    <p class="foot">Demo with play money only. Plays from nflverse (CC-BY 4.0), scored with SportsJack ruleset ${esc(g.rules)}. Projections use only games before each matchup.</p>
+  </section>`;
+  document.querySelectorAll("[data-game]").forEach((b) => b.onclick = () => { ui.gameIdx = Number(b.dataset.game); renderLobby(); });
+  document.querySelectorAll("[data-set]").forEach((b) => b.onclick = () => {
+    const v = b.dataset.v; ui[b.dataset.set] = isNaN(Number(v)) ? v : Number(v); renderLobby();
+  });
+  $("#sit").onclick = sitDown;
+  $("#open-wallet").onclick = openWallet;
+  $("#open-rules").onclick = openRules;
+  const refill = $("#refill");
+  if (refill) refill.onclick = () => { wallet.balance = START_BALANCE; saveWallet(); renderLobby(); };
+}
+
+/* ---------- table setup ---------- */
+function sitDown() {
+  const g = DATA.games[ui.gameIdx];
+  const deckFaceAvg = g.deck.reduce((s, c) => s + c.f, 0) / g.deck.length;
+  const deckProjAvg = g.deck.reduce((s, c) => s + c.proj, 0) / g.deck.length;
+  const seats = ui.mode === "dealer"
+    ? [{ name: `House dealer · ${ui.level === "sharp" ? "Sharp" : "Easy"}`, bot: false, dealer: true, ai: ui.level }]
+    : BOTS.map((n, i) => ({ name: n, bot: true, ai: i === 1 ? "sharp" : "easy" }));
+  table = {
+    g, deckFaceAvg, deckProjAvg, seats,
+    mode: ui.mode, stake: ui.stake, lockout: ui.lockout, speed: ui.speed,
+    periodIdx: g.periods.findIndex((p) => p.q === ui.joinQ),
+    hand: null,
+  };
+  ui.screen = "table";
+  startHand();
+}
+
+function newHandState(draw, seat) {
+  const cards = [];
+  while (cards.length < 2) { const c = draw(); if (!cards.includes(c)) cards.push(c); }
+  return { ...seat, cards, frozenAt: null, burned: false, lastAct: "Dealt", nextThink: Infinity };
+}
+
+function startHand() {
+  const t = table;
+  const period = t.g.periods[t.periodIdx];
+  if (wallet.balance < t.stake) { ui.screen = "lobby"; renderLobby(); return; }
+  wallet.balance -= t.stake; saveWallet();
+  const seed = Math.floor(Math.random() * 0xffffff);
+  const rand = rng(seed);
+  const draw = () => Math.floor(rand() * t.g.deck.length);
+  t.hand = {
+    period, seed, rand, draw,
+    clock: period.start, playIdx: t.g.plays.findIndex((p) => p.q === period.q),
+    pts: new Map(), stats: new Map(), why: new Map(),
+    me: newHandState(draw, { name: "You" }),
+    others: t.seats.map((s) => newHandState(draw, s)),
+    ticker: [], score: [0, 0], paused: false, over: false, burnPick: false,
+    flashes: new Map(), seen: new Set(),
+  };
+  t.hand.others.forEach((s) => { s.nextThink = period.start - 8 - t.hand.rand() * 12; });
+  const prior = t.g.plays.filter((p) => p.q < period.q).at(-1);
+  if (prior) t.hand.score = prior.s;
+  renderTable();
+  clearInterval(timer);
+  let last = performance.now();
+  timer = setInterval(() => {
+    const now = performance.now(); const dt = (now - last) / 1000; last = now;
+    tick(Math.min(dt, 0.5));
+  }, 100);
+}
+
+/* ---------- values ---------- */
+const livePts = (h, idx) => h.pts.get(idx) || 0;
+const cardValue = (h, idx) => table.g.deck[idx].f + LIVE_WEIGHT * livePts(h, idx);
+const handTotal = (h, s) => (s.frozenAt !== null ? s.frozenAt : s.cards.reduce((sum, c) => sum + cardValue(h, c), 0));
+const locked = (h) => table.lockout > 0 && h.clock <= table.lockout;
+
+/* ---------- the clock and the feed ---------- */
+function tick(dt) {
+  const h = table.hand;
+  if (!h || h.over || h.paused) return;
+  h.clock = Math.max(h.period.end, h.clock - dt * table.speed);
+  const plays = table.g.plays;
+  let changed = false;
+  while (h.playIdx >= 0 && h.playIdx < plays.length && plays[h.playIdx].q === h.period.q && plays[h.playIdx].c >= h.clock) {
+    applyPlay(plays[h.playIdx]); h.playIdx++; changed = true;
+  }
+  for (const s of h.others) think(h, s);
+  if (h.clock <= h.period.end) { settle(); return; }
+  if (changed) { renderTable(); if (gridOpen) gridOpen(); } else updateClock();
+}
+
+function applyPlay(play) {
+  const h = table.hand;
+  h.score = play.s;
+  const mine = [];
+  for (const [idx, pts, st] of play.x) {
+    if (!pts && !Object.keys(st).length) continue;
+    h.pts.set(idx, (h.pts.get(idx) || 0) + pts);
+    const acc = h.stats.get(idx) || {};
+    for (const [k, v] of Object.entries(st)) acc[k] = (acc[k] || 0) + v;
+    h.stats.set(idx, acc);
+    if (pts) {
+      h.why.set(idx, `${clockText(play.c)} ${qName(play.q)}: ${play.d}`);
+      if (h.me.cards.includes(idx) && h.me.frozenAt === null) { mine.push([idx, pts]); h.flashes.set(idx, { d: pts * LIVE_WEIGHT, until: performance.now() + 2600 }); }
+    }
+  }
+  const big = play.x.some(([, pts]) => Math.abs(pts) >= 4);
+  h.ticker.unshift({ c: play.c, q: play.q, d: play.d, mine, big });
+  h.ticker.length = Math.min(h.ticker.length, 30);
+}
+
+/* ---------- AI seats: see only current values, projections and the clock ---------- */
+function think(h, s) {
+  if (s.frozenAt !== null || locked(h)) return;
+  if (h.clock > s.nextThink) return;
+  s.nextThink = h.clock - (12 + h.rand() * 18);
+  const t = table;
+  const total = handTotal(h, s);
+  const frac = Math.max(0, (h.clock - h.period.end) / (h.period.start - h.period.end));
+  const nearEnd = h.clock - Math.max(t.lockout, h.period.end) < 45;
+  if (s.ai === "sharp") {
+    const drift = s.cards.reduce((sum, c) => sum + LIVE_WEIGHT * t.g.deck[c].proj * frac, 0);
+    const nextCard = t.deckFaceAvg + LIVE_WEIGHT * t.deckProjAvg * frac;
+    if (total > 21 && !s.burned) {
+      const worst = s.cards.reduce((a, b) => (cardValue(h, a) >= cardValue(h, b) ? a : b));
+      burn(h, s, worst); return;
+    }
+    if (total + drift + nextCard <= 20.5) { hit(h, s); return; }
+    if (total >= 17 && total <= 21 && (total + drift > 20.5 || nearEnd)) { freeze(h, s); return; }
+  } else {
+    if (total < 15 && h.rand() < 0.65) { hit(h, s); return; }
+    if (total >= 18 && total <= 21 && (nearEnd || h.rand() < 0.25)) { freeze(h, s); return; }
+  }
+}
+
+/* ---------- actions ---------- */
+function drawFresh(h, s) {
+  for (let i = 0; i < 500; i++) { const c = h.draw(); if (!s.cards.includes(c)) return c; }
+  return null;
+}
+function hit(h, s) {
+  const c = drawFresh(h, s); if (c === null) return;
+  s.cards.push(c); s.lastAct = "Hit";
+}
+function burn(h, s, idx) {
+  const c = drawFresh(h, s); if (c === null) return;
+  s.cards[s.cards.indexOf(idx)] = c; s.burned = true; s.lastAct = "Burned";
+}
+function freeze(h, s) { s.frozenAt = handTotal(h, s); s.lastAct = "Frozen"; }
+
+function canAct(h) { return !h.over && h.me.frozenAt === null && !locked(h); }
+
+function onHit() { const h = table.hand; if (!canAct(h)) return; h.burnPick = false; hit(h, h.me); haptic(); renderTable(); }
+function onFreeze() { const h = table.hand; if (!canAct(h)) return; h.burnPick = false; freeze(h, h.me); haptic(); renderTable(); }
+function onBurn() { const h = table.hand; if (!canAct(h) || h.me.burned) return; h.burnPick = !h.burnPick; renderTable(); }
+function haptic() { try { navigator.vibrate && navigator.vibrate(12); } catch { /* not supported */ } }
+
+/* ---------- table rendering ---------- */
+function dialSvg(total, frozen) {
+  const bust = total > 21, sweet = total >= 17 && total <= 21;
+  const r = 98, cx = 130, cy = 118, circ = Math.PI * r;
+  const pct = Math.max(0, Math.min(1, total / 21));
+  const ring = frozen ? "var(--ice)" : bust ? "var(--down)" : sweet ? "var(--gold)" : "var(--felt-500)";
+  const ticks = [17, 19, 21].map((v) => {
+    const a = Math.PI - Math.PI * v / 21;
+    const p = (rad) => [cx + Math.cos(a) * rad, cy - Math.sin(a) * rad];
+    const [x1, y1] = p(r - 11), [x2, y2] = p(r + 9), [tx, ty] = p(r + 20);
+    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/><text x="${tx}" y="${ty + 3}" text-anchor="middle" font-size="9" font-family="JetBrains Mono, monospace" fill="rgba(255,255,255,0.45)">${v}</text>`;
+  }).join("");
+  return `<svg viewBox="0 0 260 136" aria-hidden="true">
+    <path d="M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="11" stroke-linecap="round"/>
+    <path d="M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}" fill="none" stroke="${ring}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${circ * (1 - pct)}" style="transition: stroke-dashoffset .7s ease, stroke .3s"/>
+    ${ticks}</svg>`;
+}
+
+function cardHtml(h, idx, burnable) {
+  const c = table.g.deck[idx];
+  const fl = h.flashes.get(idx);
+  const flash = fl && fl.until > performance.now() ? fl : null;
+  const fresh = !h.seen.has(idx);
+  return `<button type="button" class="pcard${fresh ? " fresh" : ""}${flash ? (flash.d >= 0 ? " flash-up" : " flash-down") : ""}${burnable ? " burnable" : ""}" data-card="${idx}" aria-label="${esc(c.n)}, ${fmt1(cardValue(h, idx))}">
+    <span class="band" style="background:${posColor(c.p)}"></span>
+    ${flash ? `<span class="delta ${flash.d >= 0 ? "up" : "down"}">${flash.d >= 0 ? "▲" : "▼"}${fmt1(Math.abs(flash.d))}</span>` : ""}
+    <span class="pos">${esc(c.p)} · ${esc(c.t)}</span>
+    <span class="nm">${esc(shortName(c.n))}</span>
+    <span class="val num">${fmt1(cardValue(h, idx))}</span>
+    <span class="split num">${c.f} face ${livePts(h, idx) >= 0 ? "+" : "−"} ${fmt1(Math.abs(LIVE_WEIGHT * livePts(h, idx)))} live</span>
+  </button>`;
+}
+
+function renderTable() {
+  const t = table, h = t.hand, me = h.me;
+  const total = handTotal(h, me);
+  const frozen = me.frozenAt !== null;
+  const bust = total > 21;
+  const lk = locked(h);
+  const status = frozen ? `<span class="chip ice">❄ Frozen at ${fmt1(total)}</span>`
+    : lk ? `<span class="chip ice">Locked · cards still live</span>`
+    : bust ? `<span class="chip red">Busted · ${fmt1(total - 21)} over, still live</span>`
+    : total >= 17 ? `<span class="chip gold">★ Sweet spot</span>` : `<span class="chip">Live · values moving</span>`;
+  const g = t.g;
+  $("#app").innerHTML = `
+  <section class="screen">
+    <div class="statusbar">
+      <button class="icon-btn" id="leave" type="button" aria-label="Leave table">←</button>
+      <div class="score num"><span>${g.away}</span><b>${h.score[0]}</b><span>–</span><b>${h.score[1]}</b><span>${g.home}</span></div>
+      <div style="text-align:right">
+        <div class="label">${qName(h.period.q)} · ${t.mode === "dealer" ? "vs dealer" : "6-max"}</div>
+        <div class="clock num${lk ? " locked" : ""}" id="clock">${clockText(h.clock)}</div>
+      </div>
+    </div>
+    <div class="opponents" id="opps">${oppsHtml()}</div>
+    <div class="dial-wrap">
+      <div class="dial">${dialSvg(total, frozen)}
+        <div class="center"><div class="total num" style="color:${frozen ? "var(--ice)" : bust ? "var(--down)" : total >= 17 ? "var(--gold-shine)" : "var(--on-felt)"}">${fmt1(total)}</div>
+        <div class="sub">${bust ? `${fmt1(total - 21)} OVER` : `${fmt1(21 - total)} TO 21`}</div></div>
+      </div>
+      ${status}
+    </div>
+    <div>
+      <div class="hand-head"><span class="label">Your hand · ${me.cards.length} cards</span><button class="text-btn" id="grid" type="button">Expand ▴</button></div>
+      <div class="hand" id="hand">${me.cards.map((c) => cardHtml(h, c, h.burnPick)).join("")}</div>
+    </div>
+    <div class="ticker" id="ticker" aria-live="polite">${tickerHtml()}</div>
+    <div class="notice" id="notice">${h.burnPick ? "Tap the card you want to burn" : lk && !frozen ? `Actions locked with ${clockText(t.lockout)} left` : ""}</div>
+    <div class="rail">
+      <button class="burn" id="burn" type="button"${!canAct(h) || me.burned ? " disabled" : ""}>${h.burnPick ? "Cancel" : "Burn"}<small>${me.burned ? "used" : "1 left"}</small></button>
+      <button class="freeze" id="freeze" type="button"${!canAct(h) ? " disabled" : ""}>Freeze<small>${frozen ? "used" : "lock total"}</small></button>
+      <button class="hit" id="hit" type="button"${!canAct(h) ? " disabled" : ""}>Hit<small>draw a player</small></button>
+    </div>
+  </section>`;
+  me.cards.forEach((c) => h.seen.add(c));
+  $("#leave").onclick = leaveTable;
+  $("#hit").onclick = onHit;
+  $("#freeze").onclick = onFreeze;
+  $("#burn").onclick = onBurn;
+  $("#grid").onclick = openGrid;
+  document.querySelectorAll("#hand [data-card]").forEach((b) => b.onclick = () => {
+    const idx = Number(b.dataset.card);
+    if (h.burnPick && canAct(h)) { h.burnPick = false; burn(h, me, idx); haptic(); renderTable(); }
+    else openGrid(idx);
+  });
+}
+
+function oppsHtml() {
+  const h = table.hand;
+  return h.others.map((s) => {
+    const tt = handTotal(h, s);
+    return `<div class="opp"><div class="who">${s.bot ? '<span class="bot">BOT</span>' : ""}${esc(s.name)}</div>
+      <div class="tot num${s.frozenAt !== null ? " frozen" : tt > 21 ? " bust" : ""}">${fmt1(tt)}</div>
+      <div class="act">${s.cards.length} cards · ${esc(s.lastAct)}</div></div>`;
+  }).join("");
+}
+
+function tickerHtml() {
+  const h = table.hand;
+  if (!h.ticker.length) return `<div class="play">Waiting for the first snap of ${qName(h.period.q)}. Card values are their face values until a player records a stat.</div>`;
+  return h.ticker.slice(0, 12).map((p) => `<div class="play${p.big ? " big" : ""}"><span class="when">${qName(p.q)} ${clockText(p.c)}</span>${esc(p.d)}
+    ${p.mine.length ? `<span class="mine">${p.mine.map(([i, pts]) => `<span style="color:${pts >= 0 ? "var(--up)" : "var(--down)"}">${esc(shortName(table.g.deck[i].n))} ${pts >= 0 ? "+" : "−"}${fmt1(Math.abs(pts * LIVE_WEIGHT))}</span>`).join(" · ")}</span>` : ""}</div>`).join("");
+}
+
+function updateClock() {
+  const h = table.hand;
+  const el = $("#clock"); if (!el) return;
+  el.textContent = clockText(h.clock);
+  const now = performance.now();
+  const expired = [...h.flashes].filter(([, f]) => f.until < now);
+  if (locked(h) !== el.classList.contains("locked") || expired.length) {
+    expired.forEach(([idx]) => h.flashes.delete(idx));
+    renderTable(); return;
+  }
+  const opps = $("#opps"); if (opps) opps.innerHTML = oppsHtml();
+}
+
+/* ---------- card grid (the hand as a live dashboard) ---------- */
+function openGrid(focus) {
+  const draw = (first) => {
+    const h = table.hand;
+    const cards = [...h.me.cards];
+    if (typeof focus === "number") cards.sort((a, b) => (a === focus ? -1 : b === focus ? 1 : 0));
+    const scroller = $("#sheet-root .grid");
+    const keep = scroller ? scroller.scrollTop : 0;
+    showSheet(`
+      <div class="sheet-head"><div><div class="label">Your hand · ${qName(h.period.q)} ${clockText(h.clock)}</div><h2>${cards.length} cards · ${fmt1(handTotal(h, h.me))}</h2></div>
+      <button class="icon-btn" data-close type="button" aria-label="Close">✕</button></div>
+      <div class="grid">${cards.map((idx) => {
+        const c = table.g.deck[idx];
+        return `<div class="gcard"><span class="band" style="background:${posColor(c.p)}"></span>
+          <div class="top"><span class="nm">${esc(c.n)}</span><span class="val num">${fmt1(cardValue(h, idx))}</span></div>
+          <div class="math num">${esc(c.p)} · ${esc(c.t)} · face ${c.f} + ½ × ${fmt1(livePts(h, idx))} pts</div>
+          <div class="line">${esc(statLine(h.stats.get(idx)))}</div>
+          <div class="why">${esc(h.why.get(idx) || `Projected ${c.proj.toFixed(1)} pts a quarter before this game.`)}</div></div>`;
+      }).join("")}</div>`, () => { gridOpen = false; }, !first);
+    const grid = $("#sheet-root .grid"); if (grid) grid.scrollTop = keep;
+  };
+  gridOpen = () => draw();
+  draw(true);
+}
+let gridOpen = false;
+
+/* ---------- settlement ---------- */
+function rankKey(t) { return t <= 21 ? [0, 21 - t] : [1, t - 21]; }
+function settle() {
+  const t = table, h = t.hand;
+  h.over = true; clearInterval(timer);
+  const seats = [{ name: "You", me: true, s: h.me }, ...h.others.map((s) => ({ name: s.name, bot: s.bot, s }))];
+  seats.forEach((x) => { x.total = handTotal(h, x.s); x.key = rankKey(x.total); });
+  seats.sort((a, b) => a.key[0] - b.key[0] || a.key[1] - b.key[1]);
+  const best = seats[0].key;
+  const winners = seats.filter((x) => x.key[0] === best[0] && Math.abs(x.key[1] - best[1]) < 1e-9);
+  const iWin = winners.some((x) => x.me);
+  let payout = 0, rake = 0, pot = 0;
+  if (t.mode === "dealer") {
+    payout = iWin ? (winners.length > 1 ? t.stake : t.stake * 2) : 0;
+  } else {
+    pot = t.stake * seats.length; rake = Math.round(pot * RAKE);
+    payout = iWin ? Math.floor((pot - rake) / winners.length) : 0;
+  }
+  wallet.balance += payout;
+  const net = payout - t.stake;
+  wallet.history.unshift({ when: Date.now(), game: t.g.label, q: qName(h.period.q), total: Math.round(seats.find((x) => x.me).total * 10) / 10, net });
+  wallet.history.length = Math.min(wallet.history.length, 40);
+  saveWallet();
+  renderTable();
+  const next = t.g.periods[t.periodIdx + 1];
+  const outcome = iWin ? (winners.length > 1 ? "Push · split" : "You win") : "You lose";
+  if (gridOpen) closeSheet();
+  setTimeout(() => {
+    if (!table || table.hand !== h) return;
+    showSheet(`
+    <div class="sheet-head"><div><div class="label">${qName(h.period.q)} whistle · ${esc(t.g.away)} ${h.score[0]}–${h.score[1]} ${esc(t.g.home)}</div><h2>${outcome}</h2></div></div>
+    <div class="payout"><div class="big num ${net > 0 ? "win" : net < 0 ? "loss" : ""}">${net > 0 ? "+" : net < 0 ? "−" : ""}${Math.abs(net)} yds</div>
+      <div class="label">${t.mode === "dealer" ? (iWin ? (winners.length > 1 ? "Tie with the dealer · ante back" : "Even money vs the dealer") : "The dealer takes the ante") : `Pot ${pot} · rake ${rake} · ${winners.length > 1 ? `split ${winners.length} ways` : "winner takes the rest"}`} · balance ${wallet.balance.toLocaleString()}</div></div>
+    <div class="results">${seats.map((x, i) => `<div class="res${x.me ? " me" : ""}"><span class="rk">${i + 1}</span>
+      <div><div class="who">${x.bot ? '<span class="chip" style="padding:1px 5px;margin-right:4px">BOT</span>' : ""}${esc(x.name)}</div>
+      <div class="note">${x.s.cards.length} cards${x.s.frozenAt !== null ? " · frozen" : ""}${x.total > 21 ? " · busted" : ""}</div></div>
+      <span class="t num${x.total > 21 ? " bust" : ""}">${fmt1(x.total)}</span></div>`).join("")}</div>
+    <p class="help">Closest to 21 without going over wins. If everyone busts, the hand closest from above wins. Ties split. Hand seed #${h.seed.toString(16)}.</p>
+    ${next ? `<button class="primary" id="next" type="button"${wallet.balance < t.stake ? " disabled" : ""}>${next.q === 5 ? "Overtime bonus hand" : `Play ${qName(next.q)}`} · ante ${t.stake}</button>` : `<p class="help">That was the last hand of this game. Final: ${esc(t.g.away)} ${t.g.final.away}, ${esc(t.g.home)} ${t.g.final.home}.</p>`}
+    <button class="secondary" id="to-lobby" type="button">Back to lobby</button>`);
+    const n = $("#next"); if (n) n.onclick = () => { closeSheet(); t.periodIdx++; startHand(); };
+    $("#to-lobby").onclick = () => { closeSheet(); leaveTable(); };
+  }, 900);
+}
+
+function leaveTable() { clearInterval(timer); table = null; ui.screen = "lobby"; closeSheet(); renderLobby(); }
+
+/* ---------- sheets ---------- */
+let onSheetClose = null;
+function showSheet(html, onClose, refresh) {
+  onSheetClose = onClose || null;
+  $("#sheet-root").innerHTML = `<div class="sheet-back" id="sheet-back"><div class="sheet" role="dialog" aria-modal="true"${refresh ? ' style="animation:none"' : ""}>${html}</div></div>`;
+  $("#sheet-back").onclick = (e) => { if (e.target.id === "sheet-back" || e.target.closest("[data-close]")) closeSheet(); };
+}
+function closeSheet() { $("#sheet-root").innerHTML = ""; if (onSheetClose) onSheetClose(); onSheetClose = null; }
+
+function openWallet() {
+  showSheet(`<div class="sheet-head"><div><div class="label">Play-money wallet</div><h2>${wallet.balance.toLocaleString()} yards</h2></div>
+    <button class="icon-btn" data-close type="button" aria-label="Close">✕</button></div>
+    <div class="hist">${wallet.history.length ? wallet.history.map((r) => `<div class="hrow"><span>${esc(r.game)} · ${r.q} · finished ${fmt1(r.total)}</span><span class="net num ${r.net > 0 ? "pos" : r.net < 0 ? "neg" : ""}">${r.net > 0 ? "+" : ""}${r.net}</span></div>`).join("") : `<p class="help">No hands yet. Your settled hands show up here.</p>`}</div>
+    <button class="secondary" id="reset" type="button">Reset to ${START_BALANCE} yards and clear history</button>`);
+  $("#reset").onclick = () => { wallet.balance = START_BALANCE; wallet.history = []; saveWallet(); closeSheet(); renderLobby(); };
+}
+
+function openRules() {
+  showSheet(`<div class="sheet-head"><div><div class="label">Rules · ruleset ${esc(DATA.games[0].rules)}</div><h2>How a hand works</h2></div>
+    <button class="icon-btn" data-close type="button" aria-label="Close">✕</button></div>
+    <div class="rules">
+      <p>One quarter is one hand. Overtime is a bonus hand. You join between quarters, never during one.</p>
+      <p>The deck is every player on both game-day rosters, about 96 cards. Each card is worth its <b>face value</b> (2 to 10, from the player's projection before the game) plus <b>half its live fantasy points</b> this quarter.</p>
+      <h3>Your moves</h3>
+      <p><b>Hit</b> as often as you like to draw a player. <b>Burn</b> once to swap a card for a new draw. <b>Freeze</b> once to lock your total; after that the hand is set. There is no Stand: an unfrozen hand keeps moving until the whistle. Moves close at the table's lockout time.</p>
+      <h3>Points per play</h3>
+      <table><tbody>
+        <tr><td>Passing yard</td><td>0.04</td></tr><tr><td>Rushing or receiving yard</td><td>0.1</td></tr>
+        <tr><td>Reception</td><td>1</td></tr><tr><td>Rushing, receiving or return TD</td><td>6</td></tr>
+        <tr><td>Passing TD</td><td>4</td></tr><tr><td>Interception thrown, fumble lost</td><td>−2</td></tr><tr><td>Sacked</td><td>−1</td></tr>
+        <tr><td>Solo / assisted tackle</td><td>1 / 0.5</td></tr><tr><td>Sack</td><td>2</td></tr><tr><td>Interception, forced fumble</td><td>3</td></tr>
+        <tr><td>Pass defended</td><td>1</td></tr><tr><td>Defensive TD</td><td>6</td></tr>
+      </tbody></table>
+      <h3>Winning</h3>
+      <p>Closest to 21 without going over wins. Busting is live: a negative play can pull you back under. If everyone busts, the hand closest from above wins. Ties split the pot. Against the dealer, a win pays even money and a tie returns your ante. Player tables take a ${RAKE * 100}% rake from the pot.</p>
+    </div>`);
+}
+
+/* ---------- boot ---------- */
+window.claude?.hot?.snapshot?.(() => ({ wallet }));
+function start(saved) {
+  if (saved && saved.wallet) Object.assign(wallet, saved.wallet);
+  renderLobby();
+}
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+</script>

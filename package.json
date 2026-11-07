@@ -13,7 +13,8 @@
     "typecheck": "tsc",
     "test": "vitest run",
     "fixtures": "python3 tools/nflverse/fetch_fixtures.py",
-    "replay": "node --experimental-strip-types --no-warnings tools/replay.ts"
+    "replay": "node --experimental-strip-types --no-warnings tools/replay.ts",
+    "demo": "node --experimental-strip-types --no-warnings --max-old-space-size=4096 tools/demo/build-data.ts > demo/data.json && node tools/demo/build.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",

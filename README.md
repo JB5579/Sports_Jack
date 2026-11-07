@@ -10,6 +10,8 @@ python harness/ci.py                                      # typecheck + tests on
 npm run replay -- 2025_22_SEA_NE --speed 120 --qtr 4      # watch Super Bowl LX's 4th quarter as cards
 ```
 
+**Playable demo:** `exports/SportsJack-Demo.html` is one self-contained page for a phone. It runs the whole game loop on three real 2025 games replayed play by play: lobby, table setup, live hand with Hit/Burn/Freeze, card grid, AI dealer or bot players, showdown, overtime bonus hand and a play-money wallet. Source is `demo/app.html`; `npm run demo` rebuilds it from the season data in `.cache/nflverse/`. It is a demo, not the app the factory builds.
+
 ## Repository Structure
 
 | Path | Contents |

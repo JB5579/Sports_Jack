@@ -1,0 +1,13 @@
+{
+  "name": "@sportsjack/server",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@sportsjack/engine": "*",
+    "@sportsjack/feed": "*",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.12"
+  }
+}

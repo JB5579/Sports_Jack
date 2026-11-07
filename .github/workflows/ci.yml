@@ -6,6 +6,9 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    env:
+      # The harness counts passed tests from Vitest's summary line; colors would hide it.
+      NO_COLOR: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -17,6 +17,8 @@ export interface TableSpec {
   /** Dealer strength at a dealer table; the bots' mix at a player table. */
   level: DealerLevel;
   openedBy: string | null;
+  /** A free, private onboarding hand: no ante, not saved, not listed in the lobby. */
+  practice?: boolean;
 }
 
 export const LOCKOUTS = [0, 30, 60, 120];
@@ -114,7 +116,7 @@ export class Table {
     this.#plays = [];
     this.#stats = new Map();
     const handId = `${this.spec.id}-q${qtr}-${Date.now().toString(36)}`;
-    const humans = [...this.seated].filter((id) => this.#store.debit(id, this.spec.ante, "ante", handId));
+    const humans = [...this.seated].filter((id) => this.spec.practice || this.#store.debit(id, this.spec.ante, "ante", handId));
     if (humans.length === 0) { this.#onChange(); return; }
     this.#seed = randomInt(0, 2 ** 31);
     this.commitment = createHash("sha256").update(String(this.#seed)).digest("hex");
@@ -189,7 +191,7 @@ export class Table {
     const hand = this.hand!;
     const settlement = hand.settle();
     const payout = new Map(settlement.standings.map((s) => [s.seatId, s.payout]));
-    this.#store.recordHand({
+    if (!this.spec.practice) this.#store.recordHand({
       id: this.handId!, tableId: this.spec.id, gameId: this.spec.gameId, qtr: hand.options.qtr,
       seed: this.#seed, commitment: this.commitment!, ruleset: hand.rules.id, settlement, log: hand.log,
       seats: this.#humans.map((id) => ({ accountId: id, cards: [...hand.cards(id)], total: hand.total(id), ante: this.spec.ante, payout: payout.get(id) ?? 0 })),
@@ -239,7 +241,7 @@ export class Table {
         handId: this.result.handId, qtr: this.result.qtr, seed: this.result.seed, pot: this.result.settlement.pot, house: this.result.settlement.house,
         standings: this.result.settlement.standings.map((s) => ({
           name: s.seatId === accountId ? "You" : this.result!.names[s.seatId] ?? "Player",
-          you: s.seatId === accountId, bot: s.seatId.startsWith("bot-"), total: s.total, bust: s.bust, rank: s.rank, payout: s.payout,
+          you: s.seatId === accountId, bot: s.seatId.startsWith("bot-"), dealer: s.seatId === "dealer", total: s.total, bust: s.bust, rank: s.rank, payout: s.payout,
         })),
       } : null,
     };

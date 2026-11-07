@@ -204,5 +204,11 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
 .banner { text-align: center; font-size: 12px; padding: 6px 10px; border-radius: 10px; background: rgba(224,100,79,0.16); color: var(--down); }
 .banner.ice { background: rgba(143,211,238,0.14); color: var(--ice); }
 .select { width: 100%; min-height: 42px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.25); color: var(--on-felt); padding: 0 10px; font: inherit; }
+.coach { padding: 12px 14px; border-radius: 14px; background: rgba(226,182,90,0.12); border: 1px solid rgba(226,182,90,0.45); display: flex; flex-direction: column; gap: 4px; }
+.coach .coach-title { font-family: var(--serif); font-size: 20px; color: var(--gold-shine); line-height: 1.1; }
+.coach p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--on-felt-dim); }
+.coach .text-btn { align-self: flex-end; padding: 2px 0; }
+.rail button.coached { box-shadow: 0 0 0 2px var(--gold-shine), 0 0 18px rgba(246,217,140,0.55); animation: coach 1.2s ease-in-out infinite alternate; }
+@keyframes coach { to { box-shadow: 0 0 0 2px var(--gold-shine), 0 0 4px rgba(246,217,140,0.2); } }
 details.open-table summary { cursor: pointer; list-style: none; color: var(--gold); font-weight: 600; padding: 4px 0; }
 details.open-table summary::-webkit-details-marker { display: none; }

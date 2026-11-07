@@ -30,16 +30,39 @@ export function GridSheet({ view, onClose }: { view: TableView; onClose: () => v
   );
 }
 
-export function ResultSheet({ view, balance, onNext, onLobby }: { view: TableView; balance: number | null; onNext: () => void; onLobby: () => void }) {
+export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }: {
+  view: TableView; balance: number | null; onNext: () => void; onLobby: () => void; onPracticeAgain: () => void;
+}) {
   const result = view.result!;
   const me = result.standings.find((s) => s.you);
   const net = me ? me.payout - view.table.ante : 0;
   const winners = result.standings.filter((s) => s.rank === 1);
   const iWin = winners.some((s) => s.you);
-  const outcome = !me ? "Hand settled" : view.table.mode === "dealer"
-    ? (me.payout > view.table.ante ? "You win" : me.payout === view.table.ante ? "Push" : "You lose")
+  // From the standings, not the payout: a practice hand has no ante, so payouts can't tell.
+  const dealer = result.standings.find((s) => s.dealer);
+  const outcome = !me ? "Hand settled" : view.table.mode === "dealer" && dealer
+    ? (me.rank < dealer.rank ? "You win" : me.rank === dealer.rank ? "Push" : "You lose")
     : (iWin ? (winners.length > 1 ? "Split pot" : "You win") : "You lose");
   const { game } = view;
+  if (view.table.practice) {
+    return (
+      <Sheet label="Practice hand result" onClose={onLobby}>
+        <div className="sheet-head"><div><div className="label">Practice hand · no yards at stake</div><h2>{outcome}</h2></div></div>
+        <div className="results">
+          {result.standings.map((s, i) => (
+            <div key={i} className={`res${s.you ? " me" : ""}`}>
+              <span className="rk">{s.rank}</span>
+              <div><div className="who">{s.name}</div><div className="note">{s.bust ? "busted" : "stayed under"}</div></div>
+              <span className={`t num${s.bust ? " bust" : ""}`}>{fmt1(s.total)}</span>
+            </div>
+          ))}
+        </div>
+        <p className="help">That's the whole game: one quarter, one hand. Real tables use play-money yards; you start with 1,000.</p>
+        <button className="primary" type="button" onClick={onLobby}>Go to the tables</button>
+        <button className="secondary" type="button" onClick={onPracticeAgain}>Practice again</button>
+      </Sheet>
+    );
+  }
   return (
     <Sheet label="Hand result" onClose={onNext}>
       <div className="sheet-head"><div><div className="label">{qName(result.qtr)} whistle · score {game.score.away}–{game.score.home}</div><h2>{outcome}</h2></div></div>

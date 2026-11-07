@@ -1,4 +1,5 @@
 import { buildDeck, type DealerLevel, type TableMode } from "@sportsjack/engine";
+import type { RecordedGame } from "@sportsjack/feed";
 import { loadNflverseGame, loadNflversePlayers, loadProjections, type GameInfo } from "@sportsjack/feed";
 import type { ServerConfig } from "./config.ts";
 import { GameRunner } from "./runner.ts";
@@ -23,11 +24,15 @@ export class Lobby {
   readonly tables = new Map<string, Table>();
   readonly #decks = new Map<string, ReturnType<typeof buildDeck>>();
   readonly #onChange: (table: Table | null) => void;
+  readonly #recorded = new Map<string, RecordedGame>();
+  readonly #practices = new Map<string, GameRunner>();
+  readonly #config: ServerConfig;
   #nextId = 1;
 
   constructor(config: ServerConfig, onChange: (table: Table | null) => void) {
     this.store = new Store(config.db);
     this.#onChange = onChange;
+    this.#config = config;
     for (const gameId of config.games) {
       const recorded = loadNflverseGame(`${config.fixtures}games/${gameId}.csv`);
       const deck = buildDeck(loadNflversePlayers(`${config.fixtures}rosters/${gameId}.csv`),
@@ -38,6 +43,7 @@ export class Lobby {
       this.runners.set(gameId, runner);
       this.games.set(gameId, { ...recorded.game, label: LABELS[gameId] ?? `${recorded.game.away} at ${recorded.game.home}` });
       this.#decks.set(gameId, deck);
+      this.#recorded.set(gameId, recorded);
       this.open({ gameId, mode: "dealer", ante: 25, lockout: 120, level: "easy" }, null);
       this.open({ gameId, mode: "dealer", ante: 100, lockout: 60, level: "sharp" }, null);
       this.open({ gameId, mode: "players", ante: 25, lockout: 120, level: "easy" }, null);
@@ -58,15 +64,40 @@ export class Lobby {
     return table;
   }
 
+  /**
+   * A free practice hand for a first-time player (PRD §8.1): a private replay of a
+   * dramatic quarter that deals at once, so nobody joins a quarter already under way.
+   */
+  practice(accountId: string): Table {
+    const gameId = this.#recorded.has("2025_22_SEA_NE") ? "2025_22_SEA_NE" : [...this.#recorded.keys()][0]!;
+    const runner = new GameRunner(this.#recorded.get(gameId)!, { speed: this.#config.speed, fromQuarter: 4, breakSeconds: 1, loop: false });
+    const spec: TableSpec = { id: `p${this.#nextId++}`, gameId, mode: "dealer", ante: 0, lockout: 30, level: "easy", openedBy: accountId, practice: true };
+    const table = new Table(spec, runner, this.store, this.#decks.get(gameId)!, () => this.#onChange(table));
+    this.tables.set(spec.id, table);
+    this.#practices.set(spec.id, runner);
+    table.sit(accountId);
+    return table;
+  }
+
+  /** Remove a practice table and its private replay. */
+  dispose(tableId: string): void {
+    const runner = this.#practices.get(tableId);
+    if (!runner) return;
+    runner.removeAllListeners();
+    this.#practices.delete(tableId);
+    this.tables.delete(tableId);
+  }
+
   /** Step every game by `dt` real seconds. */
   advance(dt: number): void {
     for (const runner of this.runners.values()) runner.step(dt);
+    for (const runner of this.#practices.values()) runner.step(dt);
   }
 
   summary() {
     return {
       games: [...this.games.values()].map((g) => ({ ...g, status: this.runners.get(g.gameId)!.status(), periods: this.runners.get(g.gameId)!.periods })),
-      tables: [...this.tables.values()].map((t) => ({ ...t.spec, seated: t.seated.size, inHand: t.humans.length })),
+      tables: [...this.tables.values()].filter((t) => !t.spec.practice).map((t) => ({ ...t.spec, seated: t.seated.size, inHand: t.humans.length })),
     };
   }
 }

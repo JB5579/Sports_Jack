@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { TableView } from "./api.ts";
 import { Dial, PlayingCard, type Flash } from "./Cards.tsx";
+import { advance, COACH_TEXT, following, type CoachStep } from "./coach.ts";
 import { clockText, fmt1, playText, qName, shortName } from "./format.ts";
 
 export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: {
@@ -13,6 +14,20 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: 
   const previous = useRef(new Map<string, number>());
   const seen = useRef(new Set<string>());
   const handId = useRef<string | null>(null);
+  const [coach, setCoach] = useState<CoachStep>("cards");
+  const dealt = useRef(2);
+  useEffect(() => {
+    if (!table.practice || !mine) return;
+    if (coach === "cards") dealt.current = mine.cards.length;
+    const next = advance(coach, mine, dealt.current);
+    if (next !== coach) setCoach(next);
+  }, [mine, coach, table.practice]);
+  // Most cards are bench players or defenders who may not score for a while; don't wait on them.
+  useEffect(() => {
+    if (coach !== "live") return;
+    const t = setTimeout(() => setCoach((c) => (c === "live" ? "hit" : c)), 12000);
+    return () => clearTimeout(t);
+  }, [coach]);
 
   // Flash a card when its value moves; mark newly drawn cards so only they animate in.
   useEffect(() => {
@@ -41,7 +56,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: 
       <button className="icon-btn" type="button" aria-label="Leave table" onClick={onLeave}>←</button>
       <div className="score num"><span>{away}</span><b>{game.score.away}</b><span>–</span><b>{game.score.home}</b><span>{home}</span></div>
       <div style={{ textAlign: "right" }}>
-        <div className="label">{game.phase === "quarter" ? qName(game.qtr) : "Break"} · {table.mode === "dealer" ? "vs dealer" : "players"}</div>
+        <div className="label">{game.phase === "quarter" ? qName(game.qtr) : "Break"} · {table.practice ? "practice" : table.mode === "dealer" ? "vs dealer" : "players"}</div>
         <div className={`clock num${hand?.locked && !hand.over ? " locked" : ""}`}>{game.phase === "quarter" ? clockText(game.clock) : clockText(game.breakLeft)}</div>
       </div>
     </div>
@@ -109,11 +124,20 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: 
           );
         })}
       </div>
+      {table.practice && coach !== "done" && !hand.over && (
+        <div className="coach" role="note">
+          <div className="coach-title">{COACH_TEXT[coach].title}</div>
+          <p>{COACH_TEXT[coach].body}</p>
+          <button type="button" className="text-btn" onClick={() => setCoach(following(coach))}>
+            {COACH_TEXT[coach].action === "next" ? "Next" : COACH_TEXT[coach].action === "skip" ? "Skip this step" : "Got it"}
+          </button>
+        </div>
+      )}
       <div className="notice">{burnPick ? "Tap the card you want to burn" : hand.locked && !mine.frozen && !hand.over ? `Moves locked with ${clockText(hand.lockout)} left` : ""}</div>
       <div className="rail">
-        <button className="burn" type="button" disabled={!canAct || mine.burned} onClick={() => setBurnPick(!burnPick)}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : "1 left"}</small></button>
-        <button className="freeze" type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onFreeze(); }}>Freeze<small>{mine.frozen ? "used" : "lock total"}</small></button>
-        <button className="hit" type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onHit(); }}>Hit<small>draw a player</small></button>
+        <button className={`burn${table.practice && coach === "burn" ? " coached" : ""}`} type="button" disabled={!canAct || mine.burned} onClick={() => setBurnPick(!burnPick)}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : "1 left"}</small></button>
+        <button className={`freeze${table.practice && coach === "freeze" ? " coached" : ""}`} type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onFreeze(); }}>Freeze<small>{mine.frozen ? "used" : "lock total"}</small></button>
+        <button className={`hit${table.practice && coach === "hit" ? " coached" : ""}`} type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onHit(); }}>Hit<small>draw a player</small></button>
       </div>
     </section>
   );

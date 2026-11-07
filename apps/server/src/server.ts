@@ -93,7 +93,10 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
   wss.on("connection", (socket) => {
     const client: Client = { socket, accountId: null, tableId: null };
     clients.add(client);
-    socket.on("close", () => clients.delete(client));
+    socket.on("close", () => {
+      clients.delete(client);
+      if (client.tableId && lobby.tables.get(client.tableId)?.spec.practice) lobby.dispose(client.tableId);
+    });
     socket.on("message", (raw) => {
       let msg: Record<string, unknown>;
       try { msg = JSON.parse(String(raw)); } catch { return send(socket, { type: "error", reason: "bad_json" }); }
@@ -110,7 +113,7 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       const account = lobby.store.account(token);
       c.accountId = account.id;
       // Reconnect: return to the table where this account is seated or in a hand.
-      const table = [...lobby.tables.values()].find((t) => t.seated.has(account.id) || t.pending.has(account.id) || t.humans.includes(account.id));
+      const table = [...lobby.tables.values()].find((t) => !t.spec.practice && (t.seated.has(account.id) || t.pending.has(account.id) || t.humans.includes(account.id)));
       c.tableId = table?.spec.id ?? null;
       send(c.socket, { type: "welcome", account: { id: account.id, balance: lobby.store.balance(account.id) }, rules: ALPHA_RULES, ...lobby.summary() });
       if (table) sendTable(c);
@@ -139,8 +142,18 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
         lobbyDirty = true;
         return;
       }
-      case "leave": {
+      case "practice": {
         if (c.tableId) lobby.tables.get(c.tableId)?.leave(c.accountId);
+        const t = lobby.practice(c.accountId);
+        c.tableId = t.spec.id;
+        send(c.socket, { type: "sat", tableId: t.spec.id, status: "seated" });
+        sendTable(c);
+        return;
+      }
+      case "leave": {
+        const leaving = c.tableId ? lobby.tables.get(c.tableId) : undefined;
+        leaving?.leave(c.accountId);
+        if (leaving?.spec.practice) lobby.dispose(leaving.spec.id);
         c.tableId = null;
         send(c.socket, { type: "lobby", ...lobby.summary(), balance: lobby.store.balance(c.accountId) });
         return;

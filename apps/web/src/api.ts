@@ -81,6 +81,7 @@ export function useSportsJack() {
     state,
     token: token.current,
     sit: (tableId: string) => send({ type: "sit", tableId }),
+    practice: () => send({ type: "practice" }),
     open: (request: OpenTableRequest) => send({ type: "open", ...request }),
     leave: () => send({ type: "leave" }),
     hit: () => send({ type: "hit" }),
@@ -89,6 +90,12 @@ export function useSportsJack() {
     clearError: () => setState((s) => ({ ...s, error: null })),
   };
 }
+
+/** Whether this phone has been offered the practice hand. */
+export const onboarding = {
+  done(): boolean { try { return localStorage.getItem("sj-onboarded") === "1"; } catch { return true; } },
+  finish(): void { try { localStorage.setItem("sj-onboarded", "1"); } catch { /* storage blocked */ } },
+};
 
 export async function fetchHistory(token: string): Promise<{ account: { id: string; balance: number }; hands: HistoryRow[] }> {
   const res = await fetch(`/api/history?token=${encodeURIComponent(token)}`);

@@ -81,7 +81,7 @@ export function useSportsJack() {
     state,
     token: token.current,
     sit: (tableId: string) => send({ type: "sit", tableId }),
-    practice: () => send({ type: "practice" }),
+    practice: (sport: "nfl" | "nba") => send({ type: "practice", sport }),
     open: (request: OpenTableRequest) => send({ type: "open", ...request }),
     leave: () => send({ type: "leave" }),
     hit: () => send({ type: "hit" }),

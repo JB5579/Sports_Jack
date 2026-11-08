@@ -52,12 +52,20 @@ export function nbaPlayDeltas(row: Row, teams: Map<string, string>): PlayerDelta
 }
 
 /**
- * One NBA game's play-by-play (fixtures/nba/games) as ordered feed events. ESPN
- * sometimes logs late corrections after "End Game"; they are kept so stat totals match
- * the box score, but a replay stops at each period's end, so they never move a settled
- * hand (MISSION.md invariant 2).
+ * One NBA game's play-by-play (fixtures/nba/games) as ordered feed events.
+ *
+ * ESPN sometimes logs a correction late: a play from an earlier period recorded during a
+ * later one, or plays recorded after "End Game". Each play goes back to its own period
+ * at its own clock, so the replay plays it when it happened and the totals still match
+ * the box score. Each period's end marker stays last in that period.
  */
-export function nbaGameFromRows(rows: Row[]): RecordedGame {
+export function nbaGameFromRows(input: Row[]): RecordedGame {
+  const rank = (r: Row) => (r.type_text === "End Game" ? 2 : r.type_text === "End Period" ? 1 : 0);
+  const rows = input.map((row, order) => ({ row, order })).sort((a, b) =>
+    num(a.row.period_number) - num(b.row.period_number)
+    || rank(a.row) - rank(b.row)
+    || (num(b.row.clock_minutes) * 60 + num(b.row.clock_seconds)) - (num(a.row.clock_minutes) * 60 + num(a.row.clock_seconds))
+    || a.order - b.order).map((x) => x.row);
   const first = rows[0];
   if (!first) throw new Error("no plays");
   const game: GameInfo = {

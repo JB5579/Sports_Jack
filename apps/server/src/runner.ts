@@ -85,6 +85,8 @@ export class GameRunner extends EventEmitter {
     this.emit("tick", this.clock);
     while (this.phase === "quarter" && this.#idx < this.#events.length) {
       const e = this.#events[this.#idx]!;
+      // A stray event from an earlier period can't stall the quarter (MISSION.md invariant 2: hands settle).
+      if (e.clock.qtr < this.qtr) { this.#idx++; continue; }
       if (e.clock.qtr !== this.qtr || e.clock.quarterSecondsRemaining < this.clock) break;
       this.#idx++;
       this.#score = e.score;

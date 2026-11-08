@@ -31,7 +31,8 @@ async function phone(port: number, token: string) {
   socket.on("message", (raw) => {
     const m = JSON.parse(String(raw));
     seen.push(m);
-    for (const w of [...waiters]) if (w[0](m)) { waiters.splice(waiters.indexOf(w), 1); w[1](m); }
+    // A message handed to a waiting test is used up; don't let a later wait match it again.
+    for (const w of [...waiters]) if (w[0](m)) { waiters.splice(waiters.indexOf(w), 1); seen.splice(seen.indexOf(m), 1); w[1](m); break; }
   });
   await new Promise((r) => socket.once("open", r));
   const next = (match: (m: Record<string, unknown>) => boolean) =>
@@ -261,5 +262,31 @@ describe("SportsJack server", () => {
     untilSettled(lobby, table);
     expect(table.result!.qtr).toBe(1);
     expect(lobby.store.ledgerTotal(id)).toBe(lobby.store.balance(id));
+  });
+
+  it("deals an NBA practice hand on the 2026 Finals' fourth quarter when asked for NBA", async () => {
+    const { port, lobby } = await start({ games: ["2025_22_SEA_NE", "401859967"] });
+    const p = await phone(port, tokenA);
+    const id = (p.welcome.account as { id: string }).id;
+    p.send({ type: "practice", sport: "nba" });
+    const sat = await p.next((m) => m.type === "sat") as { tableId: string };
+    const table = lobby.tables.get(sat.tableId)!;
+    expect(table.spec).toMatchObject({ gameId: "401859967", practice: true });
+    lobby.advance(1.5);
+    const view = table.view(id);
+    expect(view.hand).toMatchObject({ qtr: 4, rules: "alpha-nba-1", clock: 720 });
+    for (const c of view.hand!.mine!.cards) expect(["NY", "SA"]).toContain(c.team);
+    p.send({ type: "practice" });
+    const nfl = await p.next((m) => m.type === "sat") as { tableId: string };
+    expect(lobby.tables.get(nfl.tableId)!.spec.gameId).toBe("2025_22_SEA_NE");
+  });
+
+  it("finishes every period of every NBA fixture game, despite ESPN's late corrections", async () => {
+    const games = ["401859967", "401873197", "401909294"];
+    const { lobby } = await start({ games, speed: 120, breakSeconds: 1 });
+    const ended = new Map<string, number[]>(games.map((g) => [g, []]));
+    for (const g of games) lobby.runners.get(g)!.on("quarter_end", (q: number) => ended.get(g)!.push(q));
+    for (let i = 0; i < 120; i++) lobby.advance(1);
+    for (const g of games) expect(ended.get(g), g).toEqual(lobby.runners.get(g)!.periods.map((p) => p.q));
   });
 });

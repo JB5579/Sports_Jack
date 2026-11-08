@@ -19,7 +19,7 @@ export function App() {
   const chooseSport = (s: Sport) => { setSport(s); track("sport_toggle", { sport: s }); try { localStorage.setItem("sj-sport", s); } catch { /* storage blocked */ } };
   const rulesSport: Sport = state.table?.game.sport ?? sport;
   const rules = state.lobby?.games.find((g) => g.sport === rulesSport)?.rules ?? state.rules;
-  const startPractice = () => { onboarding.finish(); setWelcome(false); setSheet(null); sj.practice(); };
+  const startPractice = (which: Sport) => { onboarding.finish(); setWelcome(false); setSheet(null); chooseSport(which); sj.practice(which); };
   useEffect(() => { track("app_open", { standalone: standalone(), width: innerWidth, firstVisit: welcome }); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const practiceDone = state.table?.table.practice && state.table.result ? state.table.result.handId : null;
   useEffect(() => { if (practiceDone) track("practice_finish", { handId: practiceDone }); }, [practiceDone]);
@@ -42,18 +42,19 @@ export function App() {
         <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn}
           onGrid={() => setSheet("grid")} onFeedback={() => setSheet("feedback")} />
       ) : state.lobby && (
-        <Lobby lobby={state.lobby} balance={state.balance} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={startPractice} onFeedback={() => setSheet("feedback")} />
+        <Lobby lobby={state.lobby} balance={state.balance} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={() => startPractice(sport)} onFeedback={() => setSheet("feedback")} />
       )}
       {gridOpen && <GridSheet view={view!} onClose={() => setSheet(null)} />}
       {result && view && !gridOpen && (
         <ResultSheet view={view} balance={state.balance} onNext={() => setDismissed(result.handId)}
-          onLobby={() => { setDismissed(result.handId); sj.leave(); }} onPracticeAgain={() => { setDismissed(result.handId); sj.practice(); }} />
+          onLobby={() => { setDismissed(result.handId); sj.leave(); }} onPracticeAgain={() => { setDismissed(result.handId); sj.practice(view.game.sport); }} />
       )}
       {welcome && state.lobby && !view && (
         <Sheet label="Welcome" onClose={() => { onboarding.finish(); setWelcome(false); }}>
           <div className="sheet-head"><div><div className="label">Welcome to SportsJack</div><h2>Learn it in one hand</h2></div></div>
-          <p className="help">Play a free hand against the dealer on the fourth quarter of Super Bowl LX. A short guide shows you Hit, Burn and Freeze as real plays come in. Nothing is at stake.</p>
-          <button className="primary" type="button" onClick={startPractice}>Play a free practice hand</button>
+          <p className="help">Play a free hand against the dealer on a real fourth quarter: Super Bowl LX, or a 2026 NBA Finals game (Knicks at Spurs). A short guide shows you Hit, Burn and Freeze as real plays come in. Nothing is at stake.</p>
+          <button className="primary" type="button" onClick={() => startPractice("nfl")}>Free NFL practice hand</button>
+          <button className="primary" type="button" onClick={() => startPractice("nba")}>Free NBA practice hand</button>
           <button className="secondary" type="button" onClick={() => { onboarding.finish(); setWelcome(false); }}>Skip to the tables</button>
         </Sheet>
       )}

@@ -194,9 +194,9 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       }
       case "practice": {
         if (c.tableId) lobby.tables.get(c.tableId)?.leave(c.accountId);
-        const t = lobby.practice(c.accountId);
+        const t = lobby.practice(c.accountId, msg.sport === "nba" ? "nba" : "nfl");
         c.tableId = t.spec.id;
-        log(c, "practice_start", { tableId: t.spec.id });
+        log(c, "practice_start", { tableId: t.spec.id, gameId: t.spec.gameId, sport: msg.sport === "nba" ? "nba" : "nfl" });
         send(c.socket, { type: "sat", tableId: t.spec.id, status: "seated" });
         sendTable(c);
         return;

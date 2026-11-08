@@ -210,5 +210,24 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
 .coach .text-btn { align-self: flex-end; padding: 2px 0; }
 .rail button.coached { box-shadow: 0 0 0 2px var(--gold-shine), 0 0 18px rgba(246,217,140,0.55); animation: coach 1.2s ease-in-out infinite alternate; }
 @keyframes coach { to { box-shadow: 0 0 0 2px var(--gold-shine), 0 0 4px rgba(246,217,140,0.2); } }
+.dealer { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 14px; background: rgba(0,0,0,0.22); }
+.dealer-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.dealer-head .who { font-size: 12px; font-weight: 600; color: var(--on-felt-dim); }
+.dealer-total { font-family: var(--serif); font-size: 30px; line-height: 1; }
+.dealer-total.bust { color: var(--down); }
+.dealer-total.frozen { color: var(--ice); }
+.dealer-cards { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+.pcard.mini { width: 62px; height: 84px; padding: 6px 6px 5px; border-radius: 8px; cursor: default; }
+.pcard.mini .nm { font-size: 10px; }
+.pcard.mini .val { font-size: 22px; }
+.pcard.mini .split { display: none; }
+.dealer-rule { font-size: 11px; line-height: 1.4; color: var(--on-felt-faint); }
+.dealer-rule b { color: var(--on-felt-dim); font-weight: 600; }
+.table-body { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; gap: 12px; }
+.table-body .ticker { flex: 1 0 auto; min-height: 64px; overflow: visible; }
+.dial-wrap.compact { gap: 2px; }
+.dial-wrap.compact .dial { width: 200px; }
+.dial-wrap.compact .dial .total { font-size: 50px; }
+.versus { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--on-felt-dim); }
 details.open-table summary { cursor: pointer; list-style: none; color: var(--gold); font-weight: 600; padding: 4px 0; }
 details.open-table summary::-webkit-details-marker { display: none; }

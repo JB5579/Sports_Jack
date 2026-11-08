@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { clockText, playText, qName, shortName, statLine } from "../src/format.ts";
+import { clockText, playText, qName, shortName, statLine, versus } from "../src/format.ts";
 
 describe("phone formatting", () => {
   it("shows the game clock and quarter the way the broadcast does", () => {
@@ -22,5 +22,16 @@ describe("phone formatting", () => {
     expect(statLine({})).toBe("No stats yet this quarter");
     expect(statLine({ pts: 8, fg3m: 2, reb: 3, ast: 1, tov: 1 })).toBe("8 pts (2 threes) · 3 reb · 1 ast · 1 turnover");
     expect(shortName("Jaxon Smith-Njigba")).toBe("J. Smith-Njigba");
+  });
+});
+
+describe("you versus the dealer", () => {
+  it("says who is ahead in the terms that decide the hand", () => {
+    expect(versus(18.5, 16)).toBe("You lead the dealer by 2.5");
+    expect(versus(15, 19.3)).toBe("Dealer leads by 4.3");
+    expect(versus(19, 23)).toBe("Dealer is over 21 · stay at 21 or under to win");
+    expect(versus(22.5, 18)).toBe("You're over 21 · dealer has 18.0");
+    expect(versus(22, 24)).toBe("Both over 21 · you're closer, by 2.0");
+    expect(versus(20, 20)).toBe("Even with the dealer");
   });
 });

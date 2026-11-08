@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import type { GameRules } from "@sportsjack/engine";
+import { DEALER_CHECK_SECONDS, DEALER_RULES, type GameRules } from "@sportsjack/engine";
 import { fetchHistory, sendFeedback, track, type HistoryRow, type TableView } from "./api.ts";
 import { GridCard } from "./Cards.tsx";
 import { clockText, fmt1, qName, weightText } from "./format.ts";
@@ -192,6 +192,13 @@ export function RulesSheet({ rules, sport, onClose }: { rules: GameRules | null;
         <p><b>Hit</b> as often as you like. <b>Burn</b> once to swap a card for a new draw. <b>Freeze</b> once to lock your total. There is no Stand: an unfrozen hand keeps moving until the whistle. Moves close at the table's lockout time.</p>
         <h3>Points per play</h3>
         <table><tbody>{(sport === "nba" ? nbaRows : nflRows).map(([k, v]) => <tr key={k}><td>{k}</td><td>{v}</td></tr>)}</tbody></table>
+        <h3>The house dealer</h3>
+        <p>The dealer plays face up, by a fixed rule, and looks at its hand every {DEALER_CHECK_SECONDS} seconds of game clock.</p>
+        <table><tbody>
+          <tr><td>Easy dealer</td><td>hits under {DEALER_RULES.easy.hitBelow} · freezes {DEALER_RULES.easy.freezeFrom}–21 with {clockText(DEALER_RULES.easy.freezeWithin)} left</td></tr>
+          <tr><td>Sharp dealer</td><td>hits under {DEALER_RULES.sharp.hitBelow} · freezes {DEALER_RULES.sharp.freezeFrom}–21 with {clockText(DEALER_RULES.sharp.freezeWithin)} left</td></tr>
+        </tbody></table>
+        <p>Otherwise it rides, including over 21, since a negative play can bring it back. If the table's lockout comes first, it freezes at its last look before the lockout.</p>
         <h3>Winning</h3>
         <p>Closest to 21 without going over wins. Busting is live: a negative play can pull you back under. If everyone busts, the hand closest from above wins. Ties split. A win against the dealer pays even money; a tie returns your ante. Player tables take a {Math.round((rules?.rake ?? 0.1) * 100)}% rake.</p>
       </div>

@@ -69,3 +69,12 @@ const REFUSALS: Record<string, string> = {
   bad_lockout: "Pick a lockout of none, 0:30, 1:00 or 2:00.",
 };
 export const refusalText = (reason: string) => REFUSALS[reason] ?? "That didn't work. Try again.";
+
+/** Where you stand against the dealer, in the terms that decide the hand. */
+export function versus(you: number, dealer: number): string {
+  if (you > 21 && dealer > 21) return you < dealer ? `Both over 21 · you're closer, by ${fmt1(dealer - you)}` : you > dealer ? `Both over 21 · dealer's closer, by ${fmt1(you - dealer)}` : "Both over 21 · even";
+  if (dealer > 21) return "Dealer is over 21 · stay at 21 or under to win";
+  if (you > 21) return `You're over 21 · dealer has ${fmt1(dealer)}`;
+  if (Math.abs(you - dealer) < 0.05) return "Even with the dealer";
+  return you > dealer ? `You lead the dealer by ${fmt1(you - dealer)}` : `Dealer leads by ${fmt1(dealer - you)}`;
+}

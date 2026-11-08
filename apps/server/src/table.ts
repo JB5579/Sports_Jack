@@ -1,7 +1,7 @@
 import { createHash, randomInt } from "node:crypto";
 import type { FeedEvent, StatDelta, StatKey } from "@sportsjack/feed";
 import {
-  ActionRefused, decide, Hand, seededRandom,
+  ActionRefused, DEALER_CHECK_SECONDS, dealerRuleText, decide, Hand, seededRandom,
   type Card, type DealerLevel, type GameRules, type Settlement, type TableMode,
 } from "@sportsjack/engine";
 import type { GameRunner } from "./runner.ts";
@@ -129,7 +129,8 @@ export class Table {
       : BOT_NAMES.slice(0, Math.max(1, PLAYER_TABLE_SEATS - humans.length)).map((name, i) => ({
         id: `bot-${i + 1}`, name, level: (i % 2 === 1 ? "sharp" : this.spec.level) as DealerLevel, dealer: false, nextThink: 0, lastAct: "Dealt",
       }));
-    for (const s of this.#ai) s.nextThink = period.start - 8 - this.#aiRandom() * 12;
+    // The dealer looks on a fixed cadence players can see coming; bots keep a little jitter.
+    for (const s of this.#ai) s.nextThink = period.start - (s.dealer ? DEALER_CHECK_SECONDS : 8 + this.#aiRandom() * 12);
     this.#humans = humans;
     this.handId = handId;
     this.hand = new Hand({
@@ -177,8 +178,8 @@ export class Table {
     let acted = false;
     for (const s of this.#ai) {
       if (hand.clock > s.nextThink) continue;
-      s.nextThink = hand.clock - AI_THINK_SECONDS;
-      const d = decide(hand.view(s.id), s.level, this.#aiRandom);
+      if (s.dealer) { while (s.nextThink >= hand.clock) s.nextThink -= DEALER_CHECK_SECONDS; } else s.nextThink = hand.clock - AI_THINK_SECONDS;
+      const d = decide(hand.view(s.id), s.level);
       if (!d) continue;
       if (d.action === "hit") hand.hit(s.id);
       else if (d.action === "freeze") hand.freeze(s.id);
@@ -242,6 +243,16 @@ export class Table {
           ...this.#humans.filter((id) => id !== mine).map((id) => ({ name: "Player", bot: false, dealer: false, cards: hand.cards(id).length, total: hand.total(id), frozen: hand.frozen(id), lastAct: "" })),
           ...this.#ai.map((s) => ({ name: s.name, bot: !s.dealer, dealer: s.dealer, cards: hand.cards(s.id).length, total: hand.total(s.id), frozen: hand.frozen(s.id), lastAct: s.lastAct })),
         ],
+        // The house dealer plays face up (MISSION.md Q6): its whole hand, its rule, and when it looks next.
+        dealer: (() => {
+          const d = this.#ai.find((s) => s.dealer);
+          if (!d) return null;
+          return {
+            name: d.name, level: d.level, cards: hand.cards(d.id).map(card), total: hand.total(d.id), frozen: hand.frozen(d.id),
+            lastAct: d.lastAct, rule: dealerRuleText(d.level, hand.options.lockout),
+            nextLook: hand.over || hand.frozen(d.id) || hand.locked ? null : Math.max(0, d.nextThink),
+          };
+        })(),
         plays: this.#plays.slice(0, 12).map((p) => ({ ...p, changes: p.changes.map(([id, pts]) => ({ playerId: id, name: hand.card(id).name, points: pts, mine: !!mine && hand.cards(mine).includes(id) })) })),
       } : null,
       result: this.result ? {

@@ -289,4 +289,23 @@ describe("SportsJack server", () => {
     for (let i = 0; i < 120; i++) lobby.advance(1);
     for (const g of games) expect(ended.get(g), g).toEqual(lobby.runners.get(g)!.periods.map((p) => p.q));
   });
+
+  it("shows the house dealer's whole hand, its published rule and its next look", async () => {
+    const { port, lobby } = await start();
+    const p = await phone(port, tokenA);
+    const id = (p.welcome.account as { id: string }).id;
+    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.level === "easy")!;
+    p.send({ type: "sit", tableId: table.spec.id });
+    await p.next((m) => m.type === "sat");
+    quarter(lobby, 7);
+    const dealer = table.view(id).hand!.dealer!;
+    expect(dealer.cards.length).toBeGreaterThanOrEqual(2);
+    if (!dealer.frozen) expect(dealer.cards.reduce((s, c) => s + c.value, 0)).toBeCloseTo(dealer.total, 6);
+    for (const c of dealer.cards) expect(c).toMatchObject({ name: expect.any(String), face: expect.any(Number), value: expect.any(Number) });
+    expect(dealer.rule).toBe("Hits under 15. Freezes at 17–21 with 3:00 or less left. Otherwise rides. Looks every 15 seconds of game clock.");
+    expect(dealer.nextLook! % 15).toBe(0);
+    expect(dealer.nextLook!).toBeLessThan(table.hand!.clock);
+    const players = [...lobby.tables.values()].find((t) => t.spec.mode === "players")!;
+    expect(players.view(id).hand).toBeNull();
+  });
 });

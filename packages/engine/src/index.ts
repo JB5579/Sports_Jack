@@ -9,5 +9,5 @@ export { compareFinish, settleDealer, settlePlayers } from "./settlement.ts";
 export type { Finish, Settlement, Standing } from "./settlement.ts";
 export { ActionRefused, Hand } from "./hand.ts";
 export type { HandOptions, RefusalReason, SeatView, TableMode, ValueChange } from "./hand.ts";
-export { decide } from "./dealer.ts";
+export { DEALER_CHECK_SECONDS, DEALER_RULES, dealerRuleText, decide, freezeWindow } from "./dealer.ts";
 export type { DealerLevel, Decision } from "./dealer.ts";

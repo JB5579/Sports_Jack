@@ -1,50 +1,67 @@
 import { describe, expect, it } from "vitest";
-import { decide, Hand, seededRandom, type DealerLevel } from "../src/index.ts";
+import { dealerRuleText, decide, freezeWindow, Hand, type SeatView } from "../src/index.ts";
 import { realGame } from "./game.ts";
 
-/** Play every quarter of a real game with the dealer deciding every ~20 seconds of game clock. */
-function season(level: DealerLevel, gameId: string, seeds: number) {
-  const { events, deck } = realGame(gameId);
-  const finishes: number[] = [];
-  for (let seed = 1; seed <= seeds; seed++) {
-    for (const qtr of [1, 2, 3, 4]) {
-      const hand = new Hand({ gameId, qtr, periodStart: 900, lockout: 60, ante: 25, mode: "dealer",
-        deck, seats: ["you", "dealer"], dealerSeat: "dealer", seed: seed * 10 + qtr });
-      const random = seededRandom(seed);
-      let next = 900;
-      for (const e of events) {
-        while (e.clock.qtr === qtr && e.clock.quarterSecondsRemaining <= next && next > 0) {
-          hand.advanceClock(next);
-          const d = decide(hand.view("dealer"), level, random);
-          if (d?.action === "hit") hand.hit("dealer");
-          if (d?.action === "freeze") hand.freeze("dealer");
-          if (d?.action === "burn") hand.burn("dealer", d.playerId);
-          next -= 20;
-        }
-        hand.apply(e);
-      }
-      finishes.push(hand.total("dealer"));
-    }
-  }
-  return finishes;
-}
+const view = (total: number, clock: number, over: Partial<SeatView> = {}): SeatView => ({
+  cards: [], total, frozen: false, burned: false, canAct: true, timeLeft: clock / 900, clock, lockout: 0,
+  deckAverage: { face: 4, projection: 1 }, liveWeight: 0.5, ...over,
+});
 
-describe("the rule-based AI dealer on real games", () => {
-  it("never acts once actions are locked or after it freezes", () => {
-    const { deck } = realGame("2025_22_SEA_NE");
-    const hand = new Hand({ gameId: "2025_22_SEA_NE", qtr: 1, periodStart: 900, lockout: 120, ante: 25,
-      mode: "dealer", deck, seats: ["you", "dealer"], dealerSeat: "dealer", seed: 1 });
-    hand.advanceClock(100);
-    expect(decide(hand.view("dealer"), "sharp", seededRandom(1))).toBeNull();
-    expect(decide(hand.view("dealer"), "easy", seededRandom(1))).toBeNull();
+describe("the published dealer rule", () => {
+  it("hits under its number, whatever the clock", () => {
+    expect(decide(view(14.9, 800), "easy")).toEqual({ action: "hit" });
+    expect(decide(view(15, 800), "easy")).toBeNull();
+    expect(decide(view(15.5, 30), "sharp")).toEqual({ action: "hit" });
+    expect(decide(view(16, 30), "sharp")).toBeNull();
   });
 
-  it("plays to 17–21 more often at Sharp than at Easy", () => {
-    const inBand = (xs: number[]) => xs.filter((x) => x >= 17 && x <= 21).length / xs.length;
-    const sharp = season("sharp", "2025_21_LA_SEA", 15);
-    const easy = season("easy", "2025_21_LA_SEA", 15);
-    expect(sharp).toHaveLength(60);
-    expect(inBand(sharp)).toBeGreaterThan(inBand(easy));
-    expect(inBand(sharp)).toBeGreaterThan(0.4);
+  it("rides 17–21 until its freeze window, then freezes", () => {
+    expect(decide(view(18, 181), "easy")).toBeNull();
+    expect(decide(view(18, 180), "easy")).toEqual({ action: "freeze" });
+    expect(decide(view(20, 121), "sharp")).toBeNull();
+    expect(decide(view(20, 120), "sharp")).toEqual({ action: "freeze" });
+  });
+
+  it("rides a bust, since a negative play can pull it back under", () => {
+    expect(decide(view(23, 60), "sharp")).toBeNull();
+  });
+
+  it("freezes before a lockout that comes earlier than its window", () => {
+    expect(freezeWindow("sharp", 120)).toBe(135);
+    expect(freezeWindow("easy", 120)).toBe(180);
+    expect(decide(view(19, 135, { lockout: 120 }), "sharp")).toEqual({ action: "freeze" });
+    expect(dealerRuleText("sharp", 120)).toBe("Hits under 16. Freezes at 17–21 with 2:15 or less left. Otherwise rides. Looks every 15 seconds of game clock.");
+  });
+
+  it("is deterministic and never acts once it can't", () => {
+    expect(decide(view(12, 300), "easy")).toEqual(decide(view(12, 300), "easy"));
+    expect(decide(view(12, 100, { canAct: false }), "easy")).toBeNull();
+  });
+
+  it("finishes most real quarters in 17–21 or close behind, never acting after the lockout", () => {
+    const { events, deck } = realGame("2025_21_LA_SEA");
+    const finals: number[] = [];
+    for (let seed = 1; seed <= 15; seed++) {
+      for (const qtr of [1, 2, 3, 4]) {
+        const hand = new Hand({ gameId: "2025_21_LA_SEA", qtr, periodStart: 900, lockout: 60, ante: 25, mode: "dealer",
+          deck, seats: ["you", "dealer"], dealerSeat: "dealer", seed: seed * 10 + qtr });
+        let next = 885;
+        for (const e of events) {
+          while (e.clock.qtr === qtr && e.clock.quarterSecondsRemaining <= next && next > 0) {
+            hand.advanceClock(next);
+            const before = hand.cards("dealer").length;
+            const d = decide(hand.view("dealer"), "easy");
+            if (d?.action === "hit") hand.hit("dealer");
+            if (d?.action === "freeze") hand.freeze("dealer");
+            if (next <= 60) expect(hand.cards("dealer").length).toBe(before);
+            next -= 15;
+          }
+          hand.apply(e);
+        }
+        finals.push(hand.total("dealer"));
+      }
+    }
+    const inBand = finals.filter((t) => t >= 17 && t <= 21).length / finals.length;
+    expect(inBand).toBeGreaterThan(0.3);
   });
 });

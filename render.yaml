@@ -1,0 +1,25 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick this repo. See docs/DEPLOY_RENDER.md.
+services:
+  - type: web
+    name: sportsjack
+    runtime: node
+    # A persistent disk needs a paid instance; on the free plan balances and history
+    # reset whenever the service restarts or redeploys.
+    plan: starter
+    buildCommand: npm ci && npm run build:web
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: SPORTSJACK_DB
+        value: /var/data/sportsjack.sqlite
+      - key: SPORTSJACK_REPLAY_SPEED
+        value: "6"
+      - key: SPORTSJACK_ADMIN_TOKEN
+        generateValue: true
+    disk:
+      name: sportsjack-data
+      mountPath: /var/data
+      sizeGB: 1

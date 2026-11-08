@@ -7,12 +7,12 @@
 
 **Derived from:** `prd/SportsJack-PRD.html` (v1.0, June 2026), scoped by
 `prd/PHASE1-ALPHA.md` (the release the factory is building now)
-**Last reconciled with it:** 2026-10-25
+**Last reconciled with it:** 2026-11-08
 
 ## What SportsJack is
 
-SportsJack is live blackjack where the cards are NFL players. Each quarter of a
-real NFL game is one hand. A player antes, is dealt NFL players as cards, and each
+SportsJack is live blackjack where the cards are real players: NFL and NBA, with a
+toggle between them. Each quarter of a real game is one hand. A player antes, is dealt NFL players as cards, and each
 card's value moves with that player's fantasy points as the game is played. They
 Hit as often as they like, Burn a card, or Freeze their total, trying to finish the quarter
 closest to 21 without going over. They play against a house dealer or up to five
@@ -20,8 +20,9 @@ other people at a table. The PRD names the payoff: a reason to make a decision o
 every drive of a game you are already watching.
 
 This release is the **Phase 1 play-money alpha** (PRD §17). It runs the full game
-loop on **real NFL games replayed from recorded play-by-play** (nflverse), with
-play-money yards. There is no wallet, no USDC, no blockchain and no KYC in this
+loop on **real NFL and NBA games replayed from recorded play-by-play** (nflverse;
+sportsdataverse's ESPN NBA data), with play-money yards. Its purpose is to be put in
+front of a small group of test users on their phones, to settle requirements. There is no wallet, no USDC, no blockchain and no KYC in this
 release. There is one deployment, and one authoritative game server per table.
 
 ## Who it is for
@@ -175,6 +176,16 @@ Once answered, an entry moves to **Decisions** below with its answer and date, a
 stops being asked. **A decision is asked once.**
 
 ## Decisions
+
+- 2026-11-08 **What is this release for?** User testing. A small group plays the
+  alpha as a home-screen web app on their iPhones, hosted on Render, and the app
+  collects their feedback and how they play. Requirements are settled from that.
+- 2026-11-08 **Is NBA in this release?** Yes, with an NFL/NBA toggle. NBA hands
+  replay real recorded games with an NBA scoring ruleset tuned against real data,
+  the same way NFL's was. Each NBA quarter is one hand, and each overtime period
+  is a bonus hand. This brings PRD R26 forward from Phase 2.
+- 2026-11-08 **When does the AI dealer move to Jev?** After user testing; the
+  rule-based dealer plays until then.
 
 - 2026-10-25 **Q11 Do actions lock before the quarter ends?** The lockout is a
   setting of each table, chosen by the player who opens it: none, 0:30, 1:00 or

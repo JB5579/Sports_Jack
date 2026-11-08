@@ -18,6 +18,8 @@ export interface ServerConfig {
   /** "manual" lets tests drive the clock with advance(); "real" runs on a timer. */
   clock: "real" | "manual";
   candidate: string | undefined;
+  /** Unlocks /api/admin/* (feedback, events, summary). Unset means the admin routes do not exist. */
+  adminToken: string | undefined;
   fixtures: string;
   webRoot: string;
 }
@@ -35,7 +37,8 @@ export function configFromEnv(env: NodeJS.ProcessEnv = process.env): ServerConfi
     loop: env.SPORTSJACK_REPLAY_LOOP !== "0",
     testControls: env.SPORTSJACK_TEST_CONTROLS === "1",
     clock: "real",
-    candidate: env.FACTORY_RUNTIME_CANDIDATE || undefined,
+    candidate: env.FACTORY_RUNTIME_CANDIDATE || env.RENDER_GIT_COMMIT || undefined,
+    adminToken: env.SPORTSJACK_ADMIN_TOKEN || undefined,
     fixtures: `${ROOT}fixtures/nflverse/`,
     webRoot: `${ROOT}apps/web/dist/`,
   };

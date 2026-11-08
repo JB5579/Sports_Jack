@@ -209,4 +209,37 @@ describe("SportsJack server", () => {
     await p.next((m) => m.type === "lobby");
     expect(lobby.tables.has(sat.tableId)).toBe(false);
   });
+
+  it("collects testers' feedback and play events, and exports them only with the admin key", async () => {
+    const { port, lobby } = await start({ adminToken: "admin-key-123" });
+    const post = (path: string, payload: unknown) => fetch(`http://localhost:${port}${path}`, { method: "POST", body: JSON.stringify(payload) });
+    expect((await post("/api/feedback", { token: tokenA })).status).toBe(400);
+    expect((await post("/api/feedback", { token: tokenA, rating: 9 })).status).toBe(400);
+    expect((await post("/api/feedback", { token: tokenA, rating: 4, note: "Loved the TD swing", screen: "result", name: "Jo" })).status).toBe(200);
+    expect((await post("/api/events", { token: tokenA, events: [{ name: "app_open", props: { standalone: true } }, { nope: 1 }] })).status).toBe(200);
+
+    const p = await phone(port, tokenA);
+    const table = [...lobby.tables.values()][0]!;
+    p.send({ type: "sit", tableId: table.spec.id });
+    await p.next((m) => m.type === "sat");
+    quarter(lobby, 7);
+    p.send({ type: "hit" });
+    await p.next((m) => m.type === "table" && (m.hand as { mine?: { cards: unknown[] } } | null)?.mine?.cards.length === 3);
+    untilSettled(lobby, table);
+
+    expect((await fetch(`http://localhost:${port}/api/admin/summary`)).status).toBe(404);
+    expect((await fetch(`http://localhost:${port}/api/admin/summary?key=wrong-key-123`)).status).toBe(404);
+    const summary = await (await fetch(`http://localhost:${port}/api/admin/summary`, { headers: { authorization: "Bearer admin-key-123" } })).json();
+    expect(summary).toMatchObject({ players: 1, playersWithARealHand: 1, realHands: 1, feedback: 1, averageRating: 4, actions: { hit: 1 } });
+    const events = await (await fetch(`http://localhost:${port}/api/admin/events.csv?key=admin-key-123`)).text();
+    for (const name of ["app_open", "sit", "hit", "hand_settled"]) expect(events).toContain(`,${name},`);
+    expect(events).not.toContain("nope");
+    const feedback = await (await fetch(`http://localhost:${port}/api/admin/feedback.csv?key=admin-key-123`)).text();
+    expect(feedback).toContain("Loved the TD swing");
+  });
+
+  it("has no admin routes at all when no admin key is configured", async () => {
+    const { port } = await start({ adminToken: undefined });
+    expect((await fetch(`http://localhost:${port}/api/admin/summary?key=anything-at-all`)).status).toBe(404);
+  });
 });

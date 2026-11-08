@@ -196,6 +196,10 @@ export class Table {
       seed: this.#seed, commitment: this.commitment!, ruleset: hand.rules.id, settlement, log: hand.log,
       seats: this.#humans.map((id) => ({ accountId: id, cards: [...hand.cards(id)], total: hand.total(id), ante: this.spec.ante, payout: payout.get(id) ?? 0 })),
     });
+    for (const id of this.#humans) {
+      this.#store.addEvents(id, [{ name: "hand_settled", props: { handId: this.handId, gameId: this.spec.gameId, qtr: hand.options.qtr,
+        practice: !!this.spec.practice, mode: this.spec.mode, total: hand.total(id), cards: hand.cards(id).length, ante: this.spec.ante, payout: payout.get(id) ?? 0 } }]);
+    }
     const names: Record<string, string> = {};
     for (const s of this.#ai) names[s.id] = s.name;
     this.result = { handId: this.handId!, qtr: hand.options.qtr, seed: this.#seed, settlement, names };

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { onboarding, useSportsJack } from "./api.ts";
+import { onboarding, track, useSportsJack } from "./api.ts";
 import { Lobby } from "./Lobby.tsx";
-import { GridSheet, ResultSheet, RulesSheet, Sheet, WalletSheet } from "./Sheets.tsx";
+import { FeedbackSheet, GridSheet, ResultSheet, RulesSheet, Sheet, WalletSheet } from "./Sheets.tsx";
 import { TableScreen } from "./TableScreen.tsx";
 import { refusalText } from "./format.ts";
 
-type SheetName = "grid" | "wallet" | "rules" | null;
+type SheetName = "grid" | "wallet" | "rules" | "feedback" | null;
+
+const standalone = () => matchMedia("(display-mode: standalone)").matches || (navigator as { standalone?: boolean }).standalone === true;
 
 export function App() {
   const sj = useSportsJack();
@@ -14,6 +16,9 @@ export function App() {
   const [dismissed, setDismissed] = useState<string | null>(null);
   const [welcome, setWelcome] = useState(() => !onboarding.done());
   const startPractice = () => { onboarding.finish(); setWelcome(false); setSheet(null); sj.practice(); };
+  useEffect(() => { track("app_open", { standalone: standalone(), width: innerWidth, firstVisit: welcome }); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const practiceDone = state.table?.table.practice && state.table.result ? state.table.result.handId : null;
+  useEffect(() => { if (practiceDone) track("practice_finish", { handId: practiceDone }); }, [practiceDone]);
 
   useEffect(() => {
     if (!state.error) return;
@@ -30,9 +35,10 @@ export function App() {
       {state.status === "offline" && <div className="banner" style={{ marginTop: 8 }}>Reconnecting to the table…</div>}
       {!state.lobby && !view && <section className="screen"><div className="waiting"><div className="big">Connecting…</div></div></section>}
       {view ? (
-        <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn} onGrid={() => setSheet("grid")} />
+        <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn}
+          onGrid={() => setSheet("grid")} onFeedback={() => setSheet("feedback")} />
       ) : state.lobby && (
-        <Lobby lobby={state.lobby} balance={state.balance} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={startPractice} />
+        <Lobby lobby={state.lobby} balance={state.balance} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={startPractice} onFeedback={() => setSheet("feedback")} />
       )}
       {gridOpen && <GridSheet view={view!} onClose={() => setSheet(null)} />}
       {result && view && !gridOpen && (
@@ -48,6 +54,7 @@ export function App() {
         </Sheet>
       )}
       {sheet === "wallet" && <WalletSheet token={sj.token} balance={state.balance} onClose={() => setSheet(null)} />}
+      {sheet === "feedback" && <FeedbackSheet screen={view ? (view.table.practice ? "practice" : "table") : "lobby"} gameId={view?.table.gameId ?? null} onClose={() => setSheet(null)} />}
       {sheet === "rules" && <RulesSheet rules={state.rules} onClose={() => setSheet(null)} />}
       {state.error && <div className="toast" role="status">{refusalText(state.error.reason)}</div>}
     </div>

@@ -134,6 +134,20 @@ real game.
     fixtures, never the network. ESPN does not publish this API, so treat any
     field as able to change, and pause the table (feature 11) rather than guess.
 
+## Added 2026-11-08: user testing and NBA
+
+17. **Ready for test users.** A Render deploy with a persistent disk, an in-app
+    feedback form (a rating, a note and the screen it came from), a quick rating
+    on each settled hand, and usage events (opening the app, practice steps,
+    sitting, Hit/Burn/Freeze, settling, leaving). A private, key-protected
+    export gives the owner the feedback, the events, and the PRD's success
+    numbers, such as quarter-to-quarter continuation.
+18. **NFL/NBA toggle.** The lobby switches between sports. NBA tables replay real
+    recorded NBA games (sportsdataverse's ESPN play-by-play, MIT) with a deck
+    from each game's roster, an NBA scoring ruleset, and face values and live
+    weight tuned on a real season so hands land near 21. 12-minute quarters;
+    every overtime period is a bonus hand.
+
 ## Not in this release
 
 Wallet, USDC, Solana, escrow, KYC, geofencing, a fiat on-ramp, push

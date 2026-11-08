@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import type { TableView } from "./api.ts";
 import { Dial, PlayingCard, type Flash } from "./Cards.tsx";
 import { advance, COACH_TEXT, following, type CoachStep } from "./coach.ts";
+import { track } from "./api.ts";
 import { clockText, fmt1, playText, qName, shortName } from "./format.ts";
 
-export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: {
-  view: TableView; onLeave: () => void; onHit: () => void; onFreeze: () => void; onBurn: (playerId: string) => void; onGrid: () => void;
+export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, onFeedback }: {
+  view: TableView; onLeave: () => void; onHit: () => void; onFreeze: () => void; onBurn: (playerId: string) => void; onGrid: () => void; onFeedback: () => void;
 }) {
   const { hand, game, table } = view;
   const mine = hand?.mine ?? null;
@@ -20,7 +21,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: 
     if (!table.practice || !mine) return;
     if (coach === "cards") dealt.current = mine.cards.length;
     const next = advance(coach, mine, dealt.current);
-    if (next !== coach) setCoach(next);
+    if (next !== coach) { track("coach_step", { from: coach, to: next, how: "did_it" }); setCoach(next); }
   }, [mine, coach, table.practice]);
   // Most cards are bench players or defenders who may not score for a while; don't wait on them.
   useEffect(() => {
@@ -100,7 +101,8 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: 
       </div>
       <div className="dial-wrap"><Dial total={mine.total} frozen={mine.frozen} />{status}</div>
       <div>
-        <div className="hand-head"><span className="label">Your hand · {mine.cards.length} cards</span><button className="text-btn" type="button" onClick={onGrid}>Expand ▴</button></div>
+        <div className="hand-head"><span className="label">Your hand · {mine.cards.length} cards</span>
+        <span className="status-line"><button className="text-btn" type="button" onClick={onFeedback}>Feedback</button><button className="text-btn" type="button" onClick={onGrid}>Expand ▴</button></span></div>
         <div className="hand">
           {mine.cards.map((c) => (
             <PlayingCard key={c.playerId} card={c} flash={flashes.get(c.playerId)} fresh={fresh(c.playerId)} burnable={burnPick}
@@ -128,7 +130,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid }: 
         <div className="coach" role="note">
           <div className="coach-title">{COACH_TEXT[coach].title}</div>
           <p>{COACH_TEXT[coach].body}</p>
-          <button type="button" className="text-btn" onClick={() => setCoach(following(coach))}>
+          <button type="button" className="text-btn" onClick={() => { track("coach_step", { from: coach, to: following(coach), how: COACH_TEXT[coach].action }); setCoach(following(coach)); }}>
             {COACH_TEXT[coach].action === "next" ? "Next" : COACH_TEXT[coach].action === "skip" ? "Skip this step" : "Got it"}
           </button>
         </div>

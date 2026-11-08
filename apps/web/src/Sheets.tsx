@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import type { GameRules } from "@sportsjack/engine";
-import { fetchHistory, type HistoryRow, type TableView } from "./api.ts";
+import { fetchHistory, sendFeedback, track, type HistoryRow, type TableView } from "./api.ts";
 import { GridCard } from "./Cards.tsx";
 import { clockText, fmt1, qName } from "./format.ts";
 
@@ -17,6 +17,7 @@ const Close = ({ onClose }: { onClose: () => void }) => (
 );
 
 export function GridSheet({ view, onClose }: { view: TableView; onClose: () => void }) {
+  useEffect(() => { track("grid_open", { cards: view.hand?.mine?.cards.length }); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const hand = view.hand!;
   const mine = hand.mine!;
   return (
@@ -26,6 +27,58 @@ export function GridSheet({ view, onClose }: { view: TableView; onClose: () => v
         <Close onClose={onClose} />
       </div>
       <div className="grid">{mine.cards.map((c) => <GridCard key={c.playerId} card={c} />)}</div>
+    </Sheet>
+  );
+}
+
+const RATINGS: [number, string][] = [[1, "Not for me"], [2, "Meh"], [3, "OK"], [4, "Fun"], [5, "Loved it"]];
+
+/** One tap to rate the hand just played; the rating goes straight to the test-round feedback. */
+function QuickRating({ handId, gameId, screen }: { handId: string; gameId: string; screen: string }) {
+  const [sent, setSent] = useState<number | null>(null);
+  if (sent !== null) return <p className="help" role="status">Thanks. You rated this hand {sent} of 5.</p>;
+  return (
+    <div className="field">
+      <span className="label">How fun was that hand?</span>
+      <div className="seg">{RATINGS.map(([n, label]) => (
+        <button key={n} type="button" aria-label={`${n}, ${label}`} onClick={() => { setSent(n); void sendFeedback({ rating: n, note: "", name: "", screen, handId, gameId }).catch(() => setSent(null)); }}>{n}</button>
+      ))}</div>
+    </div>
+  );
+}
+
+export function FeedbackSheet({ screen, gameId, onClose }: { screen: string; gameId: string | null; onClose: () => void }) {
+  const [rating, setRating] = useState<number | null>(null);
+  const [note, setNote] = useState("");
+  const [name, setName] = useState(() => { try { return localStorage.getItem("sj-name") ?? ""; } catch { return ""; } });
+  const [state, setState] = useState<"editing" | "sending" | "sent" | "failed">("editing");
+  const submit = async () => {
+    setState("sending");
+    try {
+      try { localStorage.setItem("sj-name", name); } catch { /* storage blocked */ }
+      await sendFeedback({ rating, note, name, screen, gameId });
+      setState("sent");
+    } catch { setState("failed"); }
+  };
+  return (
+    <Sheet label="Send feedback" onClose={onClose}>
+      <div className="sheet-head"><div><div className="label">Test round feedback</div><h2>{state === "sent" ? "Thank you" : "What do you think?"}</h2></div><Close onClose={onClose} /></div>
+      {state === "sent" ? <>
+        <p className="help">Got it. Every note gets read, and it shapes what SportsJack becomes.</p>
+        <button className="primary" type="button" onClick={onClose}>Back to the game</button>
+      </> : <>
+        <div className="field"><span className="label">Overall, how fun is it?</span>
+          <div className="seg">{RATINGS.map(([n, label]) => (
+            <button key={n} type="button" aria-pressed={rating === n} aria-label={`${n}, ${label}`} onClick={() => setRating(n)}>{n}</button>
+          ))}</div></div>
+        <div className="field"><label className="label" htmlFor="fb-note">What worked? What was confusing or slow?</label>
+          <textarea id="fb-note" className="select" rows={5} maxLength={2000} value={note} onChange={(e) => setNote(e.target.value)} style={{ padding: 10, resize: "vertical" }} /></div>
+        <div className="field"><label className="label" htmlFor="fb-name">Your name (optional)</label>
+          <input id="fb-name" className="select" maxLength={80} value={name} onChange={(e) => setName(e.target.value)} /></div>
+        {state === "failed" && <p className="help" role="alert">Couldn't send that. Check your connection and tap Send again.</p>}
+        <button className="primary" type="button" disabled={state === "sending" || (rating === null && !note.trim())} onClick={() => void submit()}>
+          {state === "sending" ? "Sending…" : "Send feedback"}</button>
+      </>}
     </Sheet>
   );
 }
@@ -57,6 +110,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
             </div>
           ))}
         </div>
+        <QuickRating handId={result.handId} gameId={view.table.gameId} screen="practice_result" />
         <p className="help">That's the whole game: one quarter, one hand. Real tables use play-money yards; you start with 1,000.</p>
         <button className="primary" type="button" onClick={onLobby}>Go to the tables</button>
         <button className="secondary" type="button" onClick={onPracticeAgain}>Practice again</button>
@@ -83,6 +137,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
           </div>
         ))}
       </div>
+      <QuickRating handId={result.handId} gameId={view.table.gameId} screen="result" />
       <p className="help">Closest to 21 without going over wins. If everyone busts, the hand closest from above wins. Ties split. Seed {result.seed}, committed before the deal.</p>
       {game.nextQtr ? <button className="primary" type="button" onClick={onNext}>Stay for {qName(game.nextQtr)} · ante {view.table.ante}</button>
         : <p className="help">That was the last hand of this game.</p>}
@@ -94,6 +149,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
 export function WalletSheet({ token, balance, onClose }: { token: string; balance: number | null; onClose: () => void }) {
   const [hands, setHands] = useState<HistoryRow[] | null>(null);
   const [failed, setFailed] = useState(false);
+  useEffect(() => { track("wallet_open"); }, []);
   useEffect(() => { fetchHistory(token).then((h) => setHands(h.hands), () => setFailed(true)); }, [token]);
   return (
     <Sheet label="Wallet" onClose={onClose}>
@@ -113,6 +169,7 @@ export function WalletSheet({ token, balance, onClose }: { token: string; balanc
 }
 
 export function RulesSheet({ rules, onClose }: { rules: GameRules | null; onClose: () => void }) {
+  useEffect(() => { track("rules_open"); }, []);
   const p = rules?.scoring.points;
   const rows: [string, string][] = p ? [
     ["Passing yard", String(p.passYds)], ["Rushing or receiving yard", String(p.rushYds)], ["Reception", String(p.rec)],

@@ -14,9 +14,9 @@ function gameStatus(g: Game): { text: string; live: boolean } {
 
 const lockoutText = (s: number) => (s === 0 ? "no lockout" : `locks at ${clockText(s)}`);
 
-export function Lobby({ lobby, balance, onSit, onOpen, onWallet, onRules, onPractice }: {
+export function Lobby({ lobby, balance, onSit, onOpen, onWallet, onRules, onPractice, onFeedback }: {
   lobby: LobbySummary; balance: number | null; onSit: (tableId: string) => void; onOpen: (r: OpenTableRequest) => void;
-  onWallet: () => void; onRules: () => void; onPractice: () => void;
+  onWallet: () => void; onRules: () => void; onPractice: () => void; onFeedback: () => void;
 }) {
   const [draft, setDraft] = useState<OpenTableRequest>({ gameId: lobby.games[0]?.gameId ?? "", mode: "dealer", ante: 25, lockout: 120, level: "easy" });
   const seg = <K extends keyof OpenTableRequest>(key: K, options: [OpenTableRequest[K], string][]) => (
@@ -80,6 +80,8 @@ export function Lobby({ lobby, balance, onSit, onOpen, onWallet, onRules, onPrac
         <button className="text-btn" type="button" onClick={onPractice}>Play a free practice hand</button>
         <span className="label">·</span>
         <button className="text-btn" type="button" onClick={onRules}>How it works</button>
+        <span className="label">·</span>
+        <button className="text-btn" type="button" onClick={onFeedback}>Send feedback</button>
       </div>
       <p className="foot">Play money only. Plays from nflverse (CC-BY 4.0). Projections use only games before each matchup. Other seats at player tables are bots, and are labeled.</p>
     </section>

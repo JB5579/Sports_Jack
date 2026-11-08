@@ -55,6 +55,10 @@ export class Store {
         seed INTEGER NOT NULL, commitment TEXT NOT NULL, ruleset TEXT NOT NULL, settlement TEXT NOT NULL, log TEXT NOT NULL, at TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS hand_seats (hand_id TEXT NOT NULL, account_id TEXT NOT NULL, cards TEXT NOT NULL,
         total REAL NOT NULL, ante INTEGER NOT NULL, payout INTEGER NOT NULL, PRIMARY KEY (hand_id, account_id));
+      CREATE TABLE IF NOT EXISTS feedback (id INTEGER PRIMARY KEY, account_id TEXT NOT NULL, rating INTEGER,
+        note TEXT NOT NULL, name TEXT NOT NULL, screen TEXT NOT NULL, hand_id TEXT, game_id TEXT, at TEXT NOT NULL);
+      CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, account_id TEXT NOT NULL, name TEXT NOT NULL,
+        props TEXT NOT NULL, at TEXT NOT NULL);
     `);
   }
 
@@ -114,6 +118,56 @@ export class Store {
   ledgerTotal(accountId: string): number {
     const row = this.#db.prepare("SELECT COALESCE(SUM(amount), 0) AS total FROM ledger WHERE account_id = ?").get(accountId) as { total: number };
     return Number(row.total);
+  }
+
+  /** A tester's feedback: a 1–5 rating and/or a note, with where they were in the app. */
+  addFeedback(accountId: string, f: { rating: number | null; note: string; name: string; screen: string; handId: string | null; gameId: string | null }): void {
+    this.#db.prepare("INSERT INTO feedback (account_id, rating, note, name, screen, hand_id, game_id, at) VALUES (?,?,?,?,?,?,?,?)")
+      .run(accountId, f.rating, f.note, f.name, f.screen, f.handId, f.gameId, now());
+  }
+
+  /** Usage events, from the phone or logged by the server itself. */
+  addEvents(accountId: string, events: { name: string; props?: Record<string, unknown> }[]): void {
+    this.#tx(() => {
+      for (const e of events) {
+        this.#db.prepare("INSERT INTO events (account_id, name, props, at) VALUES (?,?,?,?)").run(accountId, e.name, JSON.stringify(e.props ?? {}), now());
+      }
+    });
+  }
+
+  feedbackRows(): Record<string, unknown>[] {
+    return this.#db.prepare("SELECT id, account_id AS accountId, rating, note, name, screen, hand_id AS handId, game_id AS gameId, at FROM feedback ORDER BY id").all() as Record<string, unknown>[];
+  }
+
+  eventRows(): Record<string, unknown>[] {
+    return this.#db.prepare("SELECT id, account_id AS accountId, name, props, at FROM events ORDER BY id").all() as Record<string, unknown>[];
+  }
+
+  /** The PRD's success numbers for a test round (PRD §15). */
+  testSummary() {
+    const one = (sql: string) => Number((this.#db.prepare(sql).get() as Record<string, number>).n);
+    const hands = this.#db.prepare(`SELECT s.account_id AS account, h.table_id AS tableId, h.game_id AS gameId, h.qtr, h.at
+      FROM hand_seats s JOIN hands h ON h.id = s.hand_id ORDER BY h.at`).all() as { account: string; tableId: string; gameId: string; qtr: number; at: string }[];
+    // A hand "continues" when the same player plays the next quarter at the same table within 30 minutes.
+    let eligible = 0, continued = 0;
+    for (const h of hands) {
+      if (h.qtr >= 4) continue;
+      eligible++;
+      const t = Date.parse(h.at);
+      if (hands.some((n) => n.account === h.account && n.tableId === h.tableId && n.qtr === h.qtr + 1 && Date.parse(n.at) > t && Date.parse(n.at) - t < 30 * 60_000)) continued++;
+    }
+    const players = one("SELECT COUNT(DISTINCT account_id) AS n FROM events");
+    return {
+      players,
+      practiceStarted: one("SELECT COUNT(DISTINCT account_id) AS n FROM events WHERE name = 'practice_start'"),
+      practiceFinished: one("SELECT COUNT(DISTINCT account_id) AS n FROM events WHERE name = 'practice_finish'"),
+      playersWithARealHand: one("SELECT COUNT(DISTINCT account_id) AS n FROM hand_seats"),
+      realHands: hands.length,
+      quarterToQuarterContinuation: eligible ? Math.round((continued / eligible) * 1000) / 10 : null,
+      actions: Object.fromEntries((this.#db.prepare("SELECT name, COUNT(*) AS n FROM events WHERE name IN ('hit','burn','freeze') GROUP BY name").all() as { name: string; n: number }[]).map((r) => [r.name, Number(r.n)])),
+      feedback: one("SELECT COUNT(*) AS n FROM feedback"),
+      averageRating: (() => { const r = this.#db.prepare("SELECT AVG(rating) AS n FROM feedback WHERE rating IS NOT NULL").get() as { n: number | null }; return r.n === null ? null : Math.round(r.n * 100) / 100; })(),
+    };
   }
 
   close(): void { this.#db.close(); }

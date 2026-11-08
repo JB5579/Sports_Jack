@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { timingSafeEqual } from "node:crypto";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
 import { extname, join, normalize } from "node:path";
@@ -54,8 +55,53 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
   const json = (res: ServerResponse, status: number, body: unknown): void =>
     void res.writeHead(status, { "content-type": "application/json", "cache-control": "no-store" }).end(JSON.stringify(body));
 
+  /** A JSON request body, at most 16 KB. */
+  const body = (req: IncomingMessage) => new Promise<Record<string, unknown>>((resolve, reject) => {
+    let raw = "";
+    req.on("data", (chunk: Buffer) => { raw += chunk; if (raw.length > 16_384) { reject(new Error("body too large")); req.destroy(); } });
+    req.on("end", () => { try { resolve(raw ? JSON.parse(raw) : {}); } catch { reject(new Error("bad json")); } });
+  });
+  const text = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  const isAdmin = (req: IncomingMessage, url: URL) => {
+    if (!config.adminToken) return false;
+    const given = Buffer.from((req.headers.authorization ?? "").replace(/^Bearer /, "") || url.searchParams.get("key") || "");
+    const want = Buffer.from(config.adminToken);
+    return given.length === want.length && timingSafeEqual(given, want);
+  };
+  const csv = (rows: Record<string, unknown>[]) => {
+    const cols = rows.length ? Object.keys(rows[0]!) : [];
+    const cell = (v: unknown) => { const s = v === null || v === undefined ? "" : String(v); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+    return [cols.join(","), ...rows.map((r) => cols.map((c) => cell(r[c])).join(","))].join("\n") + "\n";
+  };
+
   async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
     const url = new URL(req.url ?? "/", "http://localhost");
+    if (req.method === "POST" && (url.pathname === "/api/feedback" || url.pathname === "/api/events")) {
+      const b = await body(req).catch(() => null);
+      const token = b && typeof b.token === "string" && b.token.length >= 16 ? b.token : null;
+      if (!b || !token) return json(res, 400, { error: "send JSON with your device token" });
+      const account = lobby.store.account(token);
+      if (url.pathname === "/api/feedback") {
+        const rating = Number.isInteger(b.rating) && (b.rating as number) >= 1 && (b.rating as number) <= 5 ? b.rating as number : null;
+        const note = text(b.note, 2000);
+        if (rating === null && !note) return json(res, 400, { error: "send a rating from 1 to 5 or a note" });
+        lobby.store.addFeedback(account.id, { rating, note, name: text(b.name, 80), screen: text(b.screen, 40) || "unknown",
+          handId: text(b.handId, 80) || null, gameId: text(b.gameId, 40) || null });
+        return json(res, 200, { ok: true });
+      }
+      const events = Array.isArray(b.events) ? b.events.slice(0, 50) : [];
+      lobby.store.addEvents(account.id, events.filter((e): e is { name: string; props?: Record<string, unknown> } =>
+        !!e && typeof e === "object" && typeof (e as { name?: unknown }).name === "string")
+        .map((e) => ({ name: text(e.name, 40), props: e.props && typeof e.props === "object" ? e.props : {} })));
+      return json(res, 200, { ok: true });
+    }
+    if (url.pathname.startsWith("/api/admin/")) {
+      if (!isAdmin(req, url)) return json(res, 404, { error: "not found" });
+      if (url.pathname === "/api/admin/summary") return json(res, 200, lobby.store.testSummary());
+      const rows = url.pathname === "/api/admin/feedback.csv" ? lobby.store.feedbackRows() : url.pathname === "/api/admin/events.csv" ? lobby.store.eventRows() : null;
+      if (!rows) return json(res, 404, { error: "not found" });
+      return void res.writeHead(200, { "content-type": "text/csv; charset=utf-8", "cache-control": "no-store" }).end(csv(rows));
+    }
     if (url.pathname === "/health") return json(res, 200, { status: "ok" });
     if (url.pathname === "/build-id") return void res.writeHead(200, { "content-type": "text/plain" }).end(identity);
     if (url.pathname === "/api/rules") return json(res, 200, { ...ALPHA_RULES, lockouts: [0, 30, 60, 120], antes: [25, 100, 1000] });
@@ -106,6 +152,9 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
     });
   });
 
+  /** Log a gameplay event for this tester, server side, so it can't be lost on the phone. */
+  const log = (c: Client, name: string, props: Record<string, unknown> = {}) => { if (c.accountId) lobby.store.addEvents(c.accountId, [{ name, props }]); };
+
   function handle(c: Client, msg: Record<string, unknown>): void {
     if (msg.type === "hello") {
       const token = String(msg.token ?? "");
@@ -137,6 +186,7 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
         if (c.tableId && c.tableId !== t.spec.id) lobby.tables.get(c.tableId)?.leave(c.accountId);
         const status = t.sit(c.accountId);
         c.tableId = t.spec.id;
+        log(c, "sit", { tableId: t.spec.id, gameId: t.spec.gameId, mode: t.spec.mode, ante: t.spec.ante, lockout: t.spec.lockout, status, opened: msg.type === "open" });
         send(c.socket, { type: "sat", tableId: t.spec.id, status });
         sendTable(c);
         lobbyDirty = true;
@@ -146,12 +196,14 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
         if (c.tableId) lobby.tables.get(c.tableId)?.leave(c.accountId);
         const t = lobby.practice(c.accountId);
         c.tableId = t.spec.id;
+        log(c, "practice_start", { tableId: t.spec.id });
         send(c.socket, { type: "sat", tableId: t.spec.id, status: "seated" });
         sendTable(c);
         return;
       }
       case "leave": {
         const leaving = c.tableId ? lobby.tables.get(c.tableId) : undefined;
+        if (leaving) log(c, "leave", { tableId: leaving.spec.id, practice: !!leaving.spec.practice, midHand: !!leaving.hand && !leaving.hand.over && leaving.humans.includes(c.accountId) });
         leaving?.leave(c.accountId);
         if (leaving?.spec.practice) lobby.dispose(leaving.spec.id);
         c.tableId = null;
@@ -159,7 +211,9 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
         return;
       }
       case "hit": case "freeze": case "burn": {
-        table(c.tableId).act(c.accountId, msg.type === "burn" ? { type: "burn", playerId: String(msg.playerId) } : { type: msg.type });
+        const t = table(c.tableId);
+        t.act(c.accountId, msg.type === "burn" ? { type: "burn", playerId: String(msg.playerId) } : { type: msg.type });
+        log(c, msg.type, { tableId: t.spec.id, practice: !!t.spec.practice, clock: t.hand?.clock, total: t.hand?.total(c.accountId) });
         sendTable(c);
         return;
       }

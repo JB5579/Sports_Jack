@@ -203,7 +203,7 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
 .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(96px + env(safe-area-inset-bottom, 0px)); max-width: min(92vw, 420px); background: var(--rail); border: 1px solid rgba(224,100,79,0.5); color: var(--on-felt); padding: 10px 14px; border-radius: 12px; font-size: 13px; z-index: 30; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
 .banner { text-align: center; font-size: 12px; padding: 6px 10px; border-radius: 10px; background: rgba(224,100,79,0.16); color: var(--down); }
 .banner.ice { background: rgba(143,211,238,0.14); color: var(--ice); }
-.select { width: 100%; min-height: 42px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.25); color: var(--on-felt); padding: 0 10px; font: inherit; }
+.select { width: 100%; min-height: 42px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.25); color: var(--on-felt); padding: 0 10px; font: inherit; font-size: 16px; } /* under 16px, iOS Safari zooms the page on focus */
 .coach { padding: 12px 14px; border-radius: 14px; background: rgba(226,182,90,0.12); border: 1px solid rgba(226,182,90,0.45); display: flex; flex-direction: column; gap: 4px; }
 .coach .coach-title { font-family: var(--serif); font-size: 20px; color: var(--gold-shine); line-height: 1.1; }
 .coach p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--on-felt-dim); }

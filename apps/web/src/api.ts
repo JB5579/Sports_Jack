@@ -97,6 +97,32 @@ export const onboarding = {
   finish(): void { try { localStorage.setItem("sj-onboarded", "1"); } catch { /* storage blocked */ } },
 };
 
+/** Usage events for the test round, sent in batches and when the app goes to the background. */
+const queue: { name: string; props: Record<string, unknown> }[] = [];
+function flushEvents(): void {
+  if (!queue.length) return;
+  const payload = JSON.stringify({ token: deviceToken(), events: queue.splice(0, 50) });
+  try {
+    if (!navigator.sendBeacon?.("/api/events", new Blob([payload], { type: "application/json" }))) throw new Error("no beacon");
+  } catch {
+    void fetch("/api/events", { method: "POST", body: payload, keepalive: true }).catch(() => undefined);
+  }
+}
+setInterval(flushEvents, 5000);
+addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushEvents(); });
+
+export function track(name: string, props: Record<string, unknown> = {}): void {
+  queue.push({ name, props });
+  if (queue.length >= 20) flushEvents();
+}
+
+export interface FeedbackInput { rating: number | null; note: string; name: string; screen: string; handId?: string | null; gameId?: string | null }
+
+export async function sendFeedback(input: FeedbackInput): Promise<void> {
+  const res = await fetch("/api/feedback", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ token: deviceToken(), ...input }) });
+  if (!res.ok) throw new Error(`feedback ${res.status}`);
+}
+
 export async function fetchHistory(token: string): Promise<{ account: { id: string; balance: number }; hands: HistoryRow[] }> {
   const res = await fetch(`/api/history?token=${encodeURIComponent(token)}`);
   if (!res.ok) throw new Error(`history ${res.status}`);

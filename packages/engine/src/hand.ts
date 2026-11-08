@@ -59,6 +59,10 @@ export interface SeatView {
   canAct: boolean;
   /** Share of the period left before actions close, 0–1. */
   timeLeft: number;
+  /** Seconds on the period's clock. */
+  clock: number;
+  /** The table's action lockout in seconds; 0 for none. */
+  lockout: number;
   deckAverage: { face: number; projection: number };
   liveWeight: number;
 }
@@ -189,6 +193,8 @@ export class Hand {
       burned: seat.burned,
       canAct: this.#refusal(seat) === null,
       timeLeft: Math.max(0, (this.#clock - closes) / (periodStart - closes)),
+      clock: this.#clock,
+      lockout,
       deckAverage: {
         face: deck.reduce((s, c) => s + c.face, 0) / deck.length,
         projection: deck.reduce((s, c) => s + c.projection, 0) / deck.length,

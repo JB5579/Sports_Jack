@@ -3,7 +3,8 @@ import type { TableView } from "./api.ts";
 import { Dial, PlayingCard, type Flash } from "./Cards.tsx";
 import { advance, coachText, following, type CoachStep } from "./coach.ts";
 import { track } from "./api.ts";
-import { clockText, fmt1, playText, qName, shortName, weightWords } from "./format.ts";
+import { DEALER_RULES, freezeWindow } from "@sportsjack/engine";
+import { clockText, fmt1, playText, qName, shortName, versus, weightWords } from "./format.ts";
 
 export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, onFeedback }: {
   view: TableView; onLeave: () => void; onHit: () => void; onFreeze: () => void; onBurn: (playerId: string) => void; onGrid: () => void; onFeedback: () => void;
@@ -31,15 +32,20 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
   }, [coach]);
 
   // Flash a card when its value moves; mark newly drawn cards so only they animate in.
+  // Keys are "me:<id>" and "dealer:<id>": the same player can sit in both hands.
   useEffect(() => {
     if (!mine || !hand) return;
     if (handId.current !== hand.id) { handId.current = hand.id; previous.current.clear(); seen.current.clear(); }
     const now = Date.now();
     const next = new Map([...flashes].filter(([, f]) => f.until > now));
-    for (const c of mine.cards) {
-      const before = previous.current.get(c.playerId);
-      if (before !== undefined && Math.abs(c.value - before) > 1e-6 && !mine.frozen) next.set(c.playerId, { delta: c.value - before, until: now + 2600 });
-      previous.current.set(c.playerId, c.value);
+    const watch: [string, number, boolean][] = [
+      ...mine.cards.map((c) => [`me:${c.playerId}`, c.value, mine.frozen] as [string, number, boolean]),
+      ...(hand.dealer?.cards ?? []).map((c) => [`dealer:${c.playerId}`, c.value, hand.dealer!.frozen] as [string, number, boolean]),
+    ];
+    for (const [key, value, frozen] of watch) {
+      const before = previous.current.get(key);
+      if (before !== undefined && Math.abs(value - before) > 1e-6 && !frozen) next.set(key, { delta: value - before, until: now + 2600 });
+      previous.current.set(key, value);
     }
     if (next.size !== flashes.size || [...next.keys()].some((k) => !flashes.has(k))) setFlashes(next);
     const t = setTimeout(() => setFlashes((f) => new Map([...f].filter(([, x]) => x.until > Date.now()))), 2700);
@@ -48,7 +54,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
 
   useEffect(() => { if (!mine?.canAct) setBurnPick(false); }, [mine?.canAct]);
 
-  const fresh = (id: string) => { const isNew = !seen.current.has(id); seen.current.add(id); return isNew; };
+  const fresh = (key: string) => { const isNew = !seen.current.has(key); seen.current.add(key); return isNew; };
   const vibrate = () => { try { navigator.vibrate?.(12); } catch { /* not supported */ } };
 
   const { away, home } = game;
@@ -90,7 +96,25 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
     <section className="screen">
       {header}
       {hand.paused && <div className="banner">Live data paused. Nothing settles until the feed is back.</div>}
-      <div className="opponents">
+      {/* The score bar and the action rail stay put; everything between scrolls on short screens. */}
+      <div className="table-body">
+      {hand.dealer ? (
+        <div className="dealer" aria-label="Dealer's hand">
+          <div className="dealer-head">
+            <span className="who">{hand.dealer.name}</span>
+            <span className={`dealer-total num${hand.dealer.frozen ? " frozen" : hand.dealer.total > 21 ? " bust" : ""}`}>{fmt1(hand.dealer.total)}</span>
+          </div>
+          <div className="dealer-cards">
+            {hand.dealer.cards.map((c) => (
+              <PlayingCard key={c.playerId} card={c} mini flash={flashes.get(`dealer:${c.playerId}`)} fresh={fresh(`dealer:${c.playerId}`)} burnable={false} onClick={() => undefined} />
+            ))}
+          </div>
+          <div className="dealer-rule">
+            <b>{hand.dealer.frozen ? `Frozen at ${fmt1(hand.dealer.total)}` : hand.dealer.nextLook !== null ? `Next look ${clockText(hand.dealer.nextLook)}` : "Done for this quarter"}</b>
+            {" · "}hits under {DEALER_RULES[hand.dealer.level].hitBelow} · freezes 17–21 from {clockText(freezeWindow(hand.dealer.level, hand.lockout))}
+          </div>
+        </div>
+      ) : <div className="opponents">
         {hand.others.map((o, i) => (
           <div key={i} className="opp">
             <div className="who">{o.bot && <span className="bot">BOT</span>}{o.name}</div>
@@ -98,14 +122,15 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
             <div className="act">{o.cards} cards{o.lastAct ? ` · ${o.lastAct}` : ""}</div>
           </div>
         ))}
-      </div>
-      <div className="dial-wrap"><Dial total={mine.total} frozen={mine.frozen} />{status}</div>
+      </div>}
+      <div className={`dial-wrap${hand.dealer ? " compact" : ""}`}><Dial total={mine.total} frozen={mine.frozen} />{status}
+        {hand.dealer && <div className="versus num">{versus(mine.total, hand.dealer.total)}</div>}</div>
       <div>
         <div className="hand-head"><span className="label">Your hand · {mine.cards.length} cards</span>
         <span className="status-line"><button className="text-btn" type="button" onClick={onFeedback}>Feedback</button><button className="text-btn" type="button" onClick={onGrid}>Expand ▴</button></span></div>
         <div className="hand">
           {mine.cards.map((c) => (
-            <PlayingCard key={c.playerId} card={c} flash={flashes.get(c.playerId)} fresh={fresh(c.playerId)} burnable={burnPick}
+            <PlayingCard key={c.playerId} card={c} flash={flashes.get(`me:${c.playerId}`)} fresh={fresh(`me:${c.playerId}`)} burnable={burnPick}
               onClick={() => { if (burnPick && canAct) { setBurnPick(false); vibrate(); onBurn(c.playerId); } else onGrid(); }} />
           ))}
         </div>
@@ -138,6 +163,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
           </div>
         );
       })()}
+      </div>
       <div className="notice">{burnPick ? "Tap the card you want to burn" : hand.locked && !mine.frozen && !hand.over ? `Moves locked with ${clockText(hand.lockout)} left` : ""}</div>
       <div className="rail">
         <button className={`burn${table.practice && coach === "burn" ? " coached" : ""}`} type="button" disabled={!canAct || mine.burned} onClick={() => setBurnPick(!burnPick)}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : "1 left"}</small></button>

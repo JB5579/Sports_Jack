@@ -37,11 +37,11 @@ export function Dial({ total, frozen }: { total: number; frozen: boolean }) {
 
 export interface Flash { delta: number; until: number }
 
-export function PlayingCard({ card, flash, fresh, burnable, onClick }: {
-  card: CardView; flash?: Flash | undefined; fresh: boolean; burnable: boolean; onClick: () => void;
+export function PlayingCard({ card, flash, fresh, burnable, onClick, mini = false }: {
+  card: CardView; flash?: Flash | undefined; fresh: boolean; burnable: boolean; onClick: () => void; mini?: boolean;
 }) {
   const live = card.value - card.face;
-  const cls = ["pcard", fresh && "fresh", flash && (flash.delta >= 0 ? "flash-up" : "flash-down"), burnable && "burnable"].filter(Boolean).join(" ");
+  const cls = ["pcard", mini && "mini", fresh && "fresh", flash && (flash.delta >= 0 ? "flash-up" : "flash-down"), burnable && "burnable"].filter(Boolean).join(" ");
   return (
     <button type="button" className={cls} onClick={onClick} aria-label={`${card.name}, ${fmt1(card.value)}`}>
       <span className="band" style={{ background: posColor(card.position) }} />

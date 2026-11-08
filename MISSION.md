@@ -177,6 +177,15 @@ stops being asked. **A decision is asked once.**
 
 ## Decisions
 
+- 2026-11-08 **How does the house dealer play?** Face up, by a fixed, published rule
+  with no randomness, answering the first round of owner play-testing ("I couldn't
+  see the dealer hand"). Players see every dealer card live, its total, its rule and
+  its next look. Easy hits under 15 and freezes at 17–21 with 3:00 or less left;
+  Sharp hits under 16 and freezes with 2:00 left. If the table's lockout comes
+  first, it freezes at its last look before the lockout. Otherwise it rides, busts
+  included. It looks every 15 seconds of game clock. This replaces the earlier
+  Easy dealer's random choices and settles PRD D6; the Jev dealer comes after
+  testing (see above).
 - 2026-11-08 **What is this release for?** User testing. A small group plays the
   alpha as a home-screen web app on their iPhones, hosted on Render, and the app
   collects their feedback and how they play. Requirements are settled from that.

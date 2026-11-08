@@ -6,6 +6,7 @@ const zero = (): Required<StatDelta> => ({
   passYds: 0, passTd: 0, int: 0, sacked: 0, rushYds: 0, rushTd: 0,
   rec: 0, recYds: 0, recTd: 0, fumLost: 0, twoPt: 0, retTd: 0,
   soloTkl: 0, astTkl: 0, sack: 0, defInt: 0, ff: 0, pd: 0, defTd: 0,
+  pts: 0, fg3m: 0, reb: 0, ast: 0, stl: 0, blk: 0, tov: 0,
 });
 
 function totals(gameId: string): Map<string, Required<StatDelta>> {

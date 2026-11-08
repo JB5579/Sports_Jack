@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { onboarding, track, useSportsJack } from "./api.ts";
-import { Lobby } from "./Lobby.tsx";
+import { Lobby, type Sport } from "./Lobby.tsx";
 import { FeedbackSheet, GridSheet, ResultSheet, RulesSheet, Sheet, WalletSheet } from "./Sheets.tsx";
 import { TableScreen } from "./TableScreen.tsx";
 import { refusalText } from "./format.ts";
@@ -15,6 +15,10 @@ export function App() {
   const [sheet, setSheet] = useState<SheetName>(null);
   const [dismissed, setDismissed] = useState<string | null>(null);
   const [welcome, setWelcome] = useState(() => !onboarding.done());
+  const [sport, setSport] = useState<Sport>(() => { try { return localStorage.getItem("sj-sport") === "nba" ? "nba" : "nfl"; } catch { return "nfl"; } });
+  const chooseSport = (s: Sport) => { setSport(s); track("sport_toggle", { sport: s }); try { localStorage.setItem("sj-sport", s); } catch { /* storage blocked */ } };
+  const rulesSport: Sport = state.table?.game.sport ?? sport;
+  const rules = state.lobby?.games.find((g) => g.sport === rulesSport)?.rules ?? state.rules;
   const startPractice = () => { onboarding.finish(); setWelcome(false); setSheet(null); sj.practice(); };
   useEffect(() => { track("app_open", { standalone: standalone(), width: innerWidth, firstVisit: welcome }); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const practiceDone = state.table?.table.practice && state.table.result ? state.table.result.handId : null;
@@ -38,7 +42,7 @@ export function App() {
         <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn}
           onGrid={() => setSheet("grid")} onFeedback={() => setSheet("feedback")} />
       ) : state.lobby && (
-        <Lobby lobby={state.lobby} balance={state.balance} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={startPractice} onFeedback={() => setSheet("feedback")} />
+        <Lobby lobby={state.lobby} balance={state.balance} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={startPractice} onFeedback={() => setSheet("feedback")} />
       )}
       {gridOpen && <GridSheet view={view!} onClose={() => setSheet(null)} />}
       {result && view && !gridOpen && (
@@ -55,7 +59,7 @@ export function App() {
       )}
       {sheet === "wallet" && <WalletSheet token={sj.token} balance={state.balance} onClose={() => setSheet(null)} />}
       {sheet === "feedback" && <FeedbackSheet screen={view ? (view.table.practice ? "practice" : "table") : "lobby"} gameId={view?.table.gameId ?? null} onClose={() => setSheet(null)} />}
-      {sheet === "rules" && <RulesSheet rules={state.rules} onClose={() => setSheet(null)} />}
+      {sheet === "rules" && <RulesSheet rules={rules} sport={rulesSport} onClose={() => setSheet(null)} />}
       {state.error && <div className="toast" role="status">{refusalText(state.error.reason)}</div>}
     </div>
   );

@@ -51,7 +51,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
   const fresh = (id: string) => { const isNew = !seen.current.has(id); seen.current.add(id); return isNew; };
   const vibrate = () => { try { navigator.vibrate?.(12); } catch { /* not supported */ } };
 
-  const [, , away, home] = game.gameId.split("_");
+  const { away, home } = game;
   const header = (
     <div className="statusbar">
       <button className="icon-btn" type="button" aria-label="Leave table" onClick={onLeave}>←</button>
@@ -113,14 +113,14 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
       <div className="ticker" aria-live="polite">
         {hand.plays.length === 0 && <div className="play">Waiting for the first snap of {qName(hand.qtr)}. Cards sit at face value until a player records a stat.</div>}
         {hand.plays.map((p) => {
-          const big = p.changes.some((c) => Math.abs(c.points) >= 4);
+          const big = p.changes.some((c) => Math.abs(c.points * hand.liveWeight) >= 2);
           const mineMoves = p.changes.filter((c) => c.mine);
           return (
             <div key={p.seq} className={`play${big ? " big" : ""}`}>
               <span className="when">{qName(p.qtr)} {clockText(p.clock)}</span>{playText(p.description)}
               {mineMoves.length > 0 && <span className="mine">{mineMoves.map((c) => (
                 <span key={c.playerId} style={{ color: c.points >= 0 ? "var(--up)" : "var(--down)", marginRight: 8 }}>
-                  {shortName(c.name)} {c.points >= 0 ? "+" : "−"}{fmt1(Math.abs(c.points / 2))}
+                  {shortName(c.name)} {c.points >= 0 ? "+" : "−"}{fmt1(Math.abs(c.points * hand.liveWeight))}
                 </span>))}</span>}
             </div>
           );

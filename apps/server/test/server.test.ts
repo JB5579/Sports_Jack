@@ -242,4 +242,24 @@ describe("SportsJack server", () => {
     const { port } = await start({ adminToken: undefined });
     expect((await fetch(`http://localhost:${port}/api/admin/summary?key=anything-at-all`)).status).toBe(404);
   });
+
+  it("runs an NBA table on the 2026 playoffs double-overtime game with the NBA rules", async () => {
+    const { port, lobby } = await start({ games: ["401873197"] });
+    const runner = lobby.runners.get("401873197")!;
+    expect(runner.periods.map((p) => [p.q, p.start])).toEqual([[1, 720], [2, 720], [3, 720], [4, 720], [5, 300], [6, 300]]);
+    const summary = lobby.summary();
+    expect(summary.games[0]).toMatchObject({ sport: "nba", home: "OKC", away: "SA", rules: { id: "alpha-nba-1", liveWeight: 0.2 } });
+    const p = await phone(port, tokenA);
+    const id = (p.welcome.account as { id: string }).id;
+    const table = [...lobby.tables.values()][0]!;
+    p.send({ type: "sit", tableId: table.spec.id });
+    await p.next((m) => m.type === "sat");
+    quarter(lobby, 6);
+    const view = table.view(id);
+    expect(view.hand).toMatchObject({ rules: "alpha-nba-1", liveWeight: 0.2 });
+    for (const c of view.hand!.mine!.cards) expect(["OKC", "SA"]).toContain(c.team);
+    untilSettled(lobby, table);
+    expect(table.result!.qtr).toBe(1);
+    expect(lobby.store.ledgerTotal(id)).toBe(lobby.store.balance(id));
+  });
 });

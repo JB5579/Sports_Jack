@@ -91,7 +91,9 @@ export class Hand {
     for (const id of options.seats) {
       const seat: SeatState = { cards: [], frozenAt: null, burned: false };
       this.#seats.set(id, seat);
-      seat.cards.push(this.#drawFor(seat), this.#drawFor(seat));
+      // One at a time: each draw has to see the cards already in the hand.
+      seat.cards.push(this.#drawFor(seat));
+      seat.cards.push(this.#drawFor(seat));
     }
   }
 

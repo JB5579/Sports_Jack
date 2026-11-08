@@ -1,0 +1,28 @@
+athlete_id,athlete_display_name,athlete_position_abbreviation,team_abbreviation,starter,did_not_play
+4431736,Toumani Camara,F,POR,True,False
+4683021,Deni Avdija,F,POR,True,False
+5105565,Donovan Clingan,C,POR,True,False
+6606,Damian Lillard,G,POR,True,False
+4683678,Scoot Henderson,G,POR,True,False
+4066211,Robert Williams III,C,POR,False,False
+5217746,Yang Hansen,C,POR,False,False
+3995,Jrue Holiday,G,POR,False,False
+4706557,Chris Youngblood,G,POR,False,False
+5081727,Sidy Cissoko,G,POR,False,False
+4066399,Micah Potter,C,POR,False,True
+4592435,Branden Carlson,C,POR,False,True
+4703889,Jayson Kent,G,POR,False,True
+4592691,Jake LaRavia,F,LAL,True,False
+4433136,Walker Kessler,C,LAL,True,False
+3907498,Matisse Thybulle,G,LAL,True,False
+3945274,Luka Doncic,G,LAL,True,False
+4066457,Austin Reaves,G,LAL,True,False
+4278580,Sandro Mamukelashvili,F,LAL,False,False
+4433137,Ziaire Williams,F,LAL,False,False
+5060631,Adou Thiero,F,LAL,False,False
+4277811,Collin Sexton,G,LAL,False,False
+4397014,Quentin Grimes,G,LAL,False,False
+3155535,Kevon Looney,F,LAL,False,True
+4278077,Jarred Vanderbilt,F,LAL,False,True
+4596528,Lawson Lovering,C,LAL,False,True
+4868423,Jaden Hardy,G,LAL,False,True

@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { GameRules } from "@sportsjack/engine";
 import { fetchHistory, sendFeedback, track, type HistoryRow, type TableView } from "./api.ts";
 import { GridCard } from "./Cards.tsx";
-import { clockText, fmt1, qName } from "./format.ts";
+import { clockText, fmt1, qName, weightText } from "./format.ts";
 
 export function Sheet({ children, onClose, label }: { children: ReactNode; onClose: () => void; label: string }) {
   return (
@@ -26,7 +26,7 @@ export function GridSheet({ view, onClose }: { view: TableView; onClose: () => v
         <div><div className="label">Your hand · {qName(hand.qtr)} {clockText(hand.clock)}</div><h2>{mine.cards.length} cards · {fmt1(mine.total)}</h2></div>
         <Close onClose={onClose} />
       </div>
-      <div className="grid">{mine.cards.map((c) => <GridCard key={c.playerId} card={c} />)}</div>
+      <div className="grid">{mine.cards.map((c) => <GridCard key={c.playerId} card={c} liveWeight={hand.liveWeight} />)}</div>
     </Sheet>
   );
 }
@@ -168,10 +168,14 @@ export function WalletSheet({ token, balance, onClose }: { token: string; balanc
   );
 }
 
-export function RulesSheet({ rules, onClose }: { rules: GameRules | null; onClose: () => void }) {
+export function RulesSheet({ rules, sport, onClose }: { rules: GameRules | null; sport: "nfl" | "nba"; onClose: () => void }) {
   useEffect(() => { track("rules_open"); }, []);
   const p = rules?.scoring.points;
-  const rows: [string, string][] = p ? [
+  const nbaRows: [string, string][] = p ? [
+    ["Point scored", String(p.pts)], ["Three-pointer made (bonus)", `+${p.fg3m}`], ["Rebound", String(p.reb)],
+    ["Assist", String(p.ast)], ["Steal", String(p.stl)], ["Block", String(p.blk)], ["Turnover", String(p.tov)],
+  ] : [];
+  const nflRows: [string, string][] = p ? [
     ["Passing yard", String(p.passYds)], ["Rushing or receiving yard", String(p.rushYds)], ["Reception", String(p.rec)],
     ["Rushing, receiving or return TD", String(p.rushTd)], ["Passing TD", String(p.passTd)],
     ["Interception thrown, fumble lost", String(p.int)], ["Sacked", String(p.sacked)],
@@ -182,12 +186,12 @@ export function RulesSheet({ rules, onClose }: { rules: GameRules | null; onClos
     <Sheet label="Rules" onClose={onClose}>
       <div className="sheet-head"><div><div className="label">Rules · {rules?.id} · {rules?.scoring.id}</div><h2>How a hand works</h2></div><Close onClose={onClose} /></div>
       <div className="rules">
-        <p>One quarter is one hand. Overtime is a bonus hand. You join between quarters, never during one.</p>
-        <p>The deck is every player on both game-day rosters. Each card is worth its <b>face value</b> (2 to 10, from the player's projection before the game) plus <b>half its live fantasy points</b> this quarter.</p>
+        <p>One quarter is one hand. {sport === "nba" ? "Every overtime period" : "Overtime"} is a bonus hand. You join between quarters, never during one.</p>
+        <p>The deck is every player {sport === "nba" ? "dressed for the game" : "on both game-day rosters"}. Each card is worth its <b>face value</b> (2 to 10, from the player's projection before the game) plus <b>{weightText(rules?.liveWeight ?? 0.5)} of its live fantasy points</b> this quarter.{sport === "nba" ? " Basketball scores all the time, so NBA cards count a smaller share of each point." : ""}</p>
         <h3>Your moves</h3>
         <p><b>Hit</b> as often as you like. <b>Burn</b> once to swap a card for a new draw. <b>Freeze</b> once to lock your total. There is no Stand: an unfrozen hand keeps moving until the whistle. Moves close at the table's lockout time.</p>
         <h3>Points per play</h3>
-        <table><tbody>{rows.map(([k, v]) => <tr key={k}><td>{k}</td><td>{v}</td></tr>)}</tbody></table>
+        <table><tbody>{(sport === "nba" ? nbaRows : nflRows).map(([k, v]) => <tr key={k}><td>{k}</td><td>{v}</td></tr>)}</tbody></table>
         <h3>Winning</h3>
         <p>Closest to 21 without going over wins. Busting is live: a negative play can pull you back under. If everyone busts, the hand closest from above wins. Ties split. A win against the dealer pays even money; a tie returns your ante. Player tables take a {Math.round((rules?.rake ?? 0.1) * 100)}% rake.</p>
       </div>

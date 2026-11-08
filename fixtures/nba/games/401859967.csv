@@ -1,0 +1,537 @@
+game_id,season,season_type,game_date,sequence_number,period_number,clock_minutes,clock_seconds,type_text,text,score_value,scoring_play,shooting_play,athlete_id_1,athlete_name_1,athlete_id_2,athlete_name_2,athlete_id_3,athlete_name_3,team_id,home_team_id,home_team_abbrev,away_team_id,away_team_abbrev,home_score,away_score,wallclock
+401859967,2026,3,2026-06-13,4,1,12,0,Jumpball,Karl-Anthony Towns vs. Victor Wembanyama (OG Anunoby gains possession),0,False,False,3136195,Karl-Anthony Towns,5104157,Victor Wembanyama,3934719,OG Anunoby,18,24,SA,18,NY,0,0,2026-06-14T00:43:27Z
+401859967,2026,3,2026-06-13,7,1,11,35,Driving Floating Jump Shot,Jalen Brunson misses driving floating jump shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:43:47Z
+401859967,2026,3,2026-06-13,8,1,11,32,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,0,0,2026-06-14T00:43:50Z
+401859967,2026,3,2026-06-13,9,1,11,12,Jump Shot,Stephon Castle misses 26-foot three point jumper,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,0,0,2026-06-14T00:44:11Z
+401859967,2026,3,2026-06-13,10,1,11,8,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:44:15Z
+401859967,2026,3,2026-06-13,11,1,10,45,Turnaround Bank Jump Shot,Josh Hart misses 19-foot two point shot,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:44:38Z
+401859967,2026,3,2026-06-13,12,1,10,43,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,0,0,2026-06-14T00:44:40Z
+401859967,2026,3,2026-06-13,13,1,10,26,Lost Ball Turnover,Stephon Castle lost ball turnover (Karl-Anthony Towns steals),0,False,False,4845367,Stephon Castle,3136195,Karl-Anthony Towns,,,24,24,SA,18,NY,0,0,2026-06-14T00:44:57Z
+401859967,2026,3,2026-06-13,15,1,10,16,Pullup Jump Shot,Mikal Bridges misses 13-foot pullup jump shot,0,False,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:45:07Z
+401859967,2026,3,2026-06-13,16,1,10,16,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:45:07Z
+401859967,2026,3,2026-06-13,17,1,10,16,Loose Ball Foul,Stephon Castle loose ball foul,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,0,0,2026-06-14T00:45:15Z
+401859967,2026,3,2026-06-13,19,1,10,6,Driving Finger Roll Layup,Josh Hart misses two point shot,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:45:42Z
+401859967,2026,3,2026-06-13,20,1,10,6,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:45:42Z
+401859967,2026,3,2026-06-13,21,1,10,6,Loose Ball Foul,Victor Wembanyama loose ball foul,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,0,0,2026-06-14T00:45:48Z
+401859967,2026,3,2026-06-13,25,1,9,57,Driving Layup Shot,Victor Wembanyama blocks Karl-Anthony Towns 's 5-foot driving layup,0,False,True,3136195,Karl-Anthony Towns,5104157,Victor Wembanyama,,,18,24,SA,18,NY,0,0,2026-06-14T00:47:05Z
+401859967,2026,3,2026-06-13,27,1,9,55,Offensive Rebound,Karl-Anthony Towns offensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,0,0,2026-06-14T00:47:07Z
+401859967,2026,3,2026-06-13,28,1,9,55,Bad Pass Turnover,Karl-Anthony Towns bad pass turnover (De'Aaron Fox steals),0,False,False,3136195,Karl-Anthony Towns,4066259,De'Aaron Fox,,,18,24,SA,18,NY,0,0,2026-06-14T00:47:12Z
+401859967,2026,3,2026-06-13,30,1,9,44,Running Dunk Shot,Victor Wembanyama makes 1-foot running dunk (Stephon Castle assists),2,True,True,5104157,Victor Wembanyama,4845367,Stephon Castle,,,24,24,SA,18,NY,2,0,2026-06-14T00:47:15Z
+401859967,2026,3,2026-06-13,32,1,9,30,Pullup Jump Shot,Jalen Brunson makes 25-foot three pointer (Mikal Bridges assists),3,True,True,3934672,Jalen Brunson,3147657,Mikal Bridges,,,18,24,SA,18,NY,2,3,2026-06-14T00:47:29Z
+401859967,2026,3,2026-06-13,34,1,9,15,Jump Shot,De'Aaron Fox misses 26-foot three point jumper,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,2,3,2026-06-14T00:47:44Z
+401859967,2026,3,2026-06-13,35,1,9,15,Defensive Rebound,Knicks defensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,2,3,2026-06-14T00:47:44Z
+401859967,2026,3,2026-06-13,37,1,8,58,Driving Floating Jump Shot,Victor Wembanyama blocks Karl-Anthony Towns 's 1-foot driving floating jump shot,0,False,True,3136195,Karl-Anthony Towns,5104157,Victor Wembanyama,,,18,24,SA,18,NY,2,3,2026-06-14T00:48:14Z
+401859967,2026,3,2026-06-13,39,1,8,55,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,2,3,2026-06-14T00:48:17Z
+401859967,2026,3,2026-06-13,40,1,8,47,Hook Driving Bank,Victor Wembanyama misses 2-foot two point shot,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,2,3,2026-06-14T00:48:25Z
+401859967,2026,3,2026-06-13,41,1,8,47,Offensive Rebound,Julian Champagnie offensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,2,3,2026-06-14T00:48:25Z
+401859967,2026,3,2026-06-13,42,1,8,43,Layup Shot Putback,Julian Champagnie makes two point shot,2,True,True,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,4,3,2026-06-14T00:48:29Z
+401859967,2026,3,2026-06-13,43,1,8,21,Driving Dunk Shot,Victor Wembanyama blocks OG Anunoby's driving dunk,0,False,True,3934719,OG Anunoby,5104157,Victor Wembanyama,,,18,24,SA,18,NY,4,3,2026-06-14T00:48:51Z
+401859967,2026,3,2026-06-13,45,1,8,18,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,4,3,2026-06-14T00:48:54Z
+401859967,2026,3,2026-06-13,46,1,8,13,Running Layup Shot,De'Aaron Fox misses running layup,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,4,3,2026-06-14T00:48:59Z
+401859967,2026,3,2026-06-13,47,1,8,10,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,4,3,2026-06-14T00:49:02Z
+401859967,2026,3,2026-06-13,49,1,8,8,Shooting Foul,Julian Champagnie shooting foul,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,4,3,2026-06-14T00:49:06Z
+401859967,2026,3,2026-06-13,51,1,8,8,Free Throw - 1 of 2,OG Anunoby makes free throw 1 of 2,1,True,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,4,4,2026-06-14T00:49:38Z
+401859967,2026,3,2026-06-13,52,1,8,8,Free Throw - 2 of 2,OG Anunoby makes free throw 2 of 2,1,True,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,4,5,2026-06-14T00:49:38Z
+401859967,2026,3,2026-06-13,53,1,7,49,Shooting Foul,Karl-Anthony Towns shooting foul,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,4,5,2026-06-14T00:50:23Z
+401859967,2026,3,2026-06-13,55,1,7,49,Free Throw - 1 of 2,Victor Wembanyama makes free throw 1 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,5,5,2026-06-14T00:50:55Z
+401859967,2026,3,2026-06-13,56,1,7,49,Substitution,Dylan Harper enters the game for De'Aaron Fox,0,False,False,5037871,Dylan Harper,4066259,De'Aaron Fox,,,24,24,SA,18,NY,5,5,2026-06-14T00:50:56Z
+401859967,2026,3,2026-06-13,57,1,7,49,Substitution,Keldon Johnson enters the game for Julian Champagnie,0,False,False,4395723,Keldon Johnson,4592479,Julian Champagnie,,,24,24,SA,18,NY,5,5,2026-06-14T00:50:56Z
+401859967,2026,3,2026-06-13,60,1,7,49,Free Throw - 2 of 2,Victor Wembanyama makes free throw 2 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,6,5,2026-06-14T00:51:23Z
+401859967,2026,3,2026-06-13,61,1,7,29,Jump Shot,Karl-Anthony Towns misses 26-foot three point jumper,0,False,True,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,6,5,2026-06-14T00:51:44Z
+401859967,2026,3,2026-06-13,62,1,7,27,Defensive Rebound,Keldon Johnson defensive rebound,0,False,False,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,6,5,2026-06-14T00:51:46Z
+401859967,2026,3,2026-06-13,63,1,7,17,Driving Floating Jump Shot,Keldon Johnson misses driving floating jump shot,0,False,True,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,6,5,2026-06-14T00:51:57Z
+401859967,2026,3,2026-06-13,64,1,7,16,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,6,5,2026-06-14T00:51:58Z
+401859967,2026,3,2026-06-13,65,1,7,16,Tip Dunk Shot,Victor Wembanyama makes tip in dunk,2,True,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,8,5,2026-06-14T00:52:01Z
+401859967,2026,3,2026-06-13,66,1,6,59,Step Back Jump Shot,OG Anunoby misses 12-foot step back jumpshot,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,8,5,2026-06-14T00:52:14Z
+401859967,2026,3,2026-06-13,67,1,6,55,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,8,5,2026-06-14T00:52:18Z
+401859967,2026,3,2026-06-13,68,1,6,40,Jump Shot,Dylan Harper makes 25-foot three point jumper (Victor Wembanyama assists),3,True,True,5037871,Dylan Harper,5104157,Victor Wembanyama,,,24,24,SA,18,NY,11,5,2026-06-14T00:52:33Z
+401859967,2026,3,2026-06-13,70,1,6,20,Jump Shot,OG Anunoby makes 22-foot three point jumper (Karl-Anthony Towns assists),3,True,True,3934719,OG Anunoby,3136195,Karl-Anthony Towns,,,18,24,SA,18,NY,11,8,2026-06-14T00:52:52Z
+401859967,2026,3,2026-06-13,72,1,6,8,Jump Shot,Devin Vassell misses 23-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,24,SA,18,NY,11,8,2026-06-14T00:53:05Z
+401859967,2026,3,2026-06-13,73,1,6,5,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,11,8,2026-06-14T00:53:08Z
+401859967,2026,3,2026-06-13,74,1,5,53,Step Back Jump Shot,Jalen Brunson misses 14-foot step back jumpshot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,11,8,2026-06-14T00:53:20Z
+401859967,2026,3,2026-06-13,75,1,5,51,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,11,8,2026-06-14T00:53:22Z
+401859967,2026,3,2026-06-13,77,1,5,51,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,24,SA,18,NY,11,8,2026-06-14T00:53:30Z
+401859967,2026,3,2026-06-13,78,1,5,51,Substitution,Luke Kornet enters the game for Victor Wembanyama,0,False,False,3064560,Luke Kornet,5104157,Victor Wembanyama,,,24,24,SA,18,NY,11,8,2026-06-14T00:56:52Z
+401859967,2026,3,2026-06-13,79,1,5,51,Substitution,De'Aaron Fox enters the game for Stephon Castle,0,False,False,4066259,De'Aaron Fox,4845367,Stephon Castle,,,24,24,SA,18,NY,11,8,2026-06-14T00:56:52Z
+401859967,2026,3,2026-06-13,80,1,5,51,Substitution,Landry Shamet enters the game for OG Anunoby,0,False,False,3914044,Landry Shamet,3934719,OG Anunoby,,,18,24,SA,18,NY,11,8,2026-06-14T00:56:52Z
+401859967,2026,3,2026-06-13,84,1,5,44,Jump Shot,Josh Hart misses 23-foot three point jumper,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,11,8,2026-06-14T00:57:31Z
+401859967,2026,3,2026-06-13,85,1,5,40,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,11,8,2026-06-14T00:57:35Z
+401859967,2026,3,2026-06-13,86,1,5,35,Running Pullup Jump Shot,Dylan Harper makes 7-foot running pullup jump shot,2,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,13,8,2026-06-14T00:57:41Z
+401859967,2026,3,2026-06-13,87,1,5,27,Kicked Ball,Luke Kornet kicked ball violation,0,False,False,3064560,Luke Kornet,,,,,24,24,SA,18,NY,13,8,2026-06-14T00:57:52Z
+401859967,2026,3,2026-06-13,88,1,5,10,Jump Shot,Mikal Bridges misses 26-foot three point jumper,0,False,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,13,8,2026-06-14T00:58:32Z
+401859967,2026,3,2026-06-13,89,1,5,8,Offensive Rebound,Josh Hart offensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,13,8,2026-06-14T00:58:34Z
+401859967,2026,3,2026-06-13,90,1,4,58,Running Pullup Jump Shot,Keldon Johnson misses running pullup jump shot,0,False,True,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,13,8,2026-06-14T00:58:42Z
+401859967,2026,3,2026-06-13,91,1,4,56,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,13,8,2026-06-14T00:58:44Z
+401859967,2026,3,2026-06-13,92,1,4,54,Bad Pass Turnover,Karl-Anthony Towns bad pass turnover (Devin Vassell steals),0,False,False,3136195,Karl-Anthony Towns,4395630,Devin Vassell,,,18,24,SA,18,NY,13,8,2026-06-14T00:58:47Z
+401859967,2026,3,2026-06-13,94,1,4,51,Jump Shot,Keldon Johnson misses 25-foot three point jumper,0,False,True,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,13,8,2026-06-14T00:58:50Z
+401859967,2026,3,2026-06-13,95,1,4,51,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,13,8,2026-06-14T00:58:53Z
+401859967,2026,3,2026-06-13,96,1,4,51,Loose Ball Foul,Mikal Bridges loose ball foul,0,False,False,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,13,8,2026-06-14T00:58:57Z
+401859967,2026,3,2026-06-13,98,1,4,51,Substitution,Jose Alvarado enters the game for Mikal Bridges,0,False,False,4277869,Jose Alvarado,3147657,Mikal Bridges,,,18,24,SA,18,NY,13,8,2026-06-14T00:59:16Z
+401859967,2026,3,2026-06-13,100,1,4,43,Layup Driving Reverse,Dylan Harper makes two point shot,2,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,15,8,2026-06-14T00:59:38Z
+401859967,2026,3,2026-06-13,101,1,4,19,Step Back Jump Shot,Landry Shamet misses 25-foot three point step back jumpshot,0,False,True,3914044,Landry Shamet,,,,,18,24,SA,18,NY,15,8,2026-06-14T01:00:04Z
+401859967,2026,3,2026-06-13,102,1,4,18,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,15,8,2026-06-14T01:00:05Z
+401859967,2026,3,2026-06-13,103,1,4,18,Shot Clock Turnover,shot clock turnover,0,False,False,,,,,,,18,24,SA,18,NY,15,8,2026-06-14T01:00:09Z
+401859967,2026,3,2026-06-13,104,1,4,18,Substitution,Julian Champagnie enters the game for Devin Vassell,0,False,False,4592479,Julian Champagnie,4395630,Devin Vassell,,,24,24,SA,18,NY,15,8,2026-06-14T01:00:14Z
+401859967,2026,3,2026-06-13,106,1,4,4,Jump Shot,De'Aaron Fox misses 25-foot three point jumper,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,15,8,2026-06-14T01:00:44Z
+401859967,2026,3,2026-06-13,107,1,4,1,Offensive Rebound,Keldon Johnson offensive rebound,0,False,False,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,15,8,2026-06-14T01:00:47Z
+401859967,2026,3,2026-06-13,108,1,4,1,Kicked Ball,Landry Shamet kicked ball violation,0,False,False,3914044,Landry Shamet,,,,,18,24,SA,18,NY,15,8,2026-06-14T01:00:54Z
+401859967,2026,3,2026-06-13,109,1,4,1,Substitution,OG Anunoby enters the game for Josh Hart,0,False,False,3934719,OG Anunoby,3062679,Josh Hart,,,18,24,SA,18,NY,15,8,2026-06-14T01:01:00Z
+401859967,2026,3,2026-06-13,110,1,4,1,Substitution,Mitchell Robinson enters the game for Karl-Anthony Towns,0,False,False,4351852,Mitchell Robinson,3136195,Karl-Anthony Towns,,,18,24,SA,18,NY,15,8,2026-06-14T01:01:00Z
+401859967,2026,3,2026-06-13,113,1,3,52,Lost Ball Turnover,Julian Champagnie lost ball turnover (OG Anunoby steals),0,False,False,4592479,Julian Champagnie,3934719,OG Anunoby,,,24,24,SA,18,NY,15,8,2026-06-14T01:01:17Z
+401859967,2026,3,2026-06-13,115,1,3,47,Running Layup Shot,OG Anunoby misses running layup,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,15,8,2026-06-14T01:01:23Z
+401859967,2026,3,2026-06-13,116,1,3,45,Defensive Rebound,Luke Kornet defensive rebound,0,False,False,3064560,Luke Kornet,,,,,24,24,SA,18,NY,15,8,2026-06-14T01:01:25Z
+401859967,2026,3,2026-06-13,117,1,3,40,Out of Bounds - Bad Pass Turnover,De'Aaron Fox out of bounds bad pass turnover,0,False,False,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,15,8,2026-06-14T01:01:30Z
+401859967,2026,3,2026-06-13,118,1,3,20,Driving Floating Jump Shot,Jalen Brunson misses driving floating jump shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,15,8,2026-06-14T01:01:58Z
+401859967,2026,3,2026-06-13,119,1,3,16,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,15,8,2026-06-14T01:02:02Z
+401859967,2026,3,2026-06-13,120,1,3,6,Jump Shot,Keldon Johnson makes 22-foot three point jumper (Dylan Harper assists),3,True,True,4395723,Keldon Johnson,5037871,Dylan Harper,,,24,24,SA,18,NY,18,8,2026-06-14T01:02:12Z
+401859967,2026,3,2026-06-13,122,1,2,43,Step Back Jump Shot,OG Anunoby misses 25-foot three point step back jumpshot,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,18,8,2026-06-14T01:02:35Z
+401859967,2026,3,2026-06-13,123,1,2,40,Offensive Rebound,Mitchell Robinson offensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,18,8,2026-06-14T01:02:38Z
+401859967,2026,3,2026-06-13,124,1,2,30,Lost Ball Turnover,Jalen Brunson lost ball turnover (Julian Champagnie steals),0,False,False,3934672,Jalen Brunson,4592479,Julian Champagnie,,,18,24,SA,18,NY,18,8,2026-06-14T01:02:49Z
+401859967,2026,3,2026-06-13,126,1,2,24,Running Jump Shot,Julian Champagnie misses 23-foot running jump shot,0,False,True,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,18,8,2026-06-14T01:02:54Z
+401859967,2026,3,2026-06-13,127,1,2,22,Defensive Rebound,Landry Shamet defensive rebound,0,False,False,3914044,Landry Shamet,,,,,18,24,SA,18,NY,18,8,2026-06-14T01:02:56Z
+401859967,2026,3,2026-06-13,128,1,2,14,Step Back Jump Shot,Jalen Brunson makes 11-foot step back jumpshot,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:03:04Z
+401859967,2026,3,2026-06-13,129,1,1,52,Jump Shot,Julian Champagnie misses 23-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,18,10,2026-06-14T01:03:25Z
+401859967,2026,3,2026-06-13,130,1,1,49,Defensive Rebound,Jose Alvarado defensive rebound,0,False,False,4277869,Jose Alvarado,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:03:28Z
+401859967,2026,3,2026-06-13,131,1,1,41,Driving Floating Jump Shot,Jose Alvarado misses driving floating jump shot,0,False,True,4277869,Jose Alvarado,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:03:37Z
+401859967,2026,3,2026-06-13,132,1,1,40,Offensive Rebound,Mitchell Robinson offensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:03:41Z
+401859967,2026,3,2026-06-13,133,1,1,40,Shooting Foul,Luke Kornet shooting foul,0,False,False,3064560,Luke Kornet,,,,,24,24,SA,18,NY,18,10,2026-06-14T01:03:42Z
+401859967,2026,3,2026-06-13,135,1,1,40,Full Timeout,Knicks Full timeout,0,False,False,,,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:03:56Z
+401859967,2026,3,2026-06-13,136,1,5,8,Lost Ball Turnover,Josh Hart lost ball turnover (De'Aaron Fox steals),0,False,False,3062679,Josh Hart,4066259,De'Aaron Fox,,,18,24,SA,18,NY,13,8,2026-06-14T00:58:37Z
+401859967,2026,3,2026-06-13,138,1,1,40,Substitution,Victor Wembanyama enters the game for Dylan Harper,0,False,False,5104157,Victor Wembanyama,5037871,Dylan Harper,,,24,24,SA,18,NY,18,10,2026-06-14T01:07:17Z
+401859967,2026,3,2026-06-13,139,1,1,40,Substitution,Stephon Castle enters the game for Keldon Johnson,0,False,False,4845367,Stephon Castle,4395723,Keldon Johnson,,,24,24,SA,18,NY,18,10,2026-06-14T01:07:17Z
+401859967,2026,3,2026-06-13,140,1,1,40,Substitution,Devin Vassell enters the game for Luke Kornet,0,False,False,4395630,Devin Vassell,3064560,Luke Kornet,,,24,24,SA,18,NY,18,10,2026-06-14T01:07:17Z
+401859967,2026,3,2026-06-13,144,1,1,40,Free Throw - 1 of 2,Mitchell Robinson misses free throw 1 of 2,0,False,True,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:07:46Z
+401859967,2026,3,2026-06-13,145,1,1,40,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:07:46Z
+401859967,2026,3,2026-06-13,146,1,1,40,Free Throw - 2 of 2,Mitchell Robinson misses free throw 2 of 2,0,False,True,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,18,10,2026-06-14T01:07:46Z
+401859967,2026,3,2026-06-13,147,1,1,37,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,18,10,2026-06-14T01:07:49Z
+401859967,2026,3,2026-06-13,148,1,1,24,Pullup Jump Shot,De'Aaron Fox makes 9-foot pullup jump shot,2,True,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,20,10,2026-06-14T01:08:24Z
+401859967,2026,3,2026-06-13,149,1,1,0,Pullup Jump Shot,Jalen Brunson makes 27-foot three pointer,3,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,20,13,2026-06-14T01:08:48Z
+401859967,2026,3,2026-06-13,150,1,0,51.7,Jump Shot,Victor Wembanyama misses 26-foot three point jumper,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,20,13,2026-06-14T01:09:00Z
+401859967,2026,3,2026-06-13,151,1,0,48.4,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,20,13,2026-06-14T01:09:03Z
+401859967,2026,3,2026-06-13,152,1,0,42,Jumpball,Jalen Brunson vs. Stephon Castle (Stephon Castle gains possession),0,False,False,4845367,Stephon Castle,3934672,Jalen Brunson,4845367,Stephon Castle,24,24,SA,18,NY,20,13,2026-06-14T01:10:04Z
+401859967,2026,3,2026-06-13,155,1,0,42,Lost Ball Turnover,Jalen Brunson lost ball turnover (Stephon Castle steals),0,False,False,3934672,Jalen Brunson,4845367,Stephon Castle,,,18,24,SA,18,NY,20,13,2026-06-14T01:10:04Z
+401859967,2026,3,2026-06-13,157,1,0,28.6,Personal Foul,OG Anunoby personal foul,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,20,13,2026-06-14T01:10:17Z
+401859967,2026,3,2026-06-13,159,1,0,22.5,Jump Shot,Julian Champagnie makes 25-foot three point jumper (De'Aaron Fox assists),3,True,True,4592479,Julian Champagnie,4066259,De'Aaron Fox,,,24,24,SA,18,NY,23,13,2026-06-14T01:10:38Z
+401859967,2026,3,2026-06-13,161,1,0,1.6,Jump Shot,Jose Alvarado misses 29-foot three point jumper,0,False,True,4277869,Jose Alvarado,,,,,18,24,SA,18,NY,23,13,2026-06-14T01:11:03Z
+401859967,2026,3,2026-06-13,162,1,0,0.1,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,23,13,2026-06-14T01:11:05Z
+401859967,2026,3,2026-06-13,163,1,0,0,End Period,End of the 1st Quarter,0,False,False,,,,,,,,24,SA,18,NY,23,13,2026-06-14T01:11:11Z
+401859967,2026,3,2026-06-13,164,2,12,0,Substitution,Carter Bryant enters the game for Devin Vassell,0,False,False,5061568,Carter Bryant,4395630,Devin Vassell,,,24,24,SA,18,NY,23,13,2026-06-14T01:14:09Z
+401859967,2026,3,2026-06-13,165,2,12,0,Substitution,Miles McBride enters the game for Jalen Brunson,0,False,False,4431823,Miles McBride,3934672,Jalen Brunson,,,18,24,SA,18,NY,23,13,2026-06-14T01:14:09Z
+401859967,2026,3,2026-06-13,166,2,12,0,Substitution,Karl-Anthony Towns enters the game for Mitchell Robinson,0,False,False,3136195,Karl-Anthony Towns,4351852,Mitchell Robinson,,,18,24,SA,18,NY,23,13,2026-06-14T01:14:09Z
+401859967,2026,3,2026-06-13,171,2,11,36,Pullup Bank Jump Shot,De'Aaron Fox misses 27-foot three point shot,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,23,13,2026-06-14T01:15:16Z
+401859967,2026,3,2026-06-13,172,2,11,32,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,23,13,2026-06-14T01:15:20Z
+401859967,2026,3,2026-06-13,173,2,11,17,Jump Shot,Victor Wembanyama blocks Jose Alvarado 's 22-foot three point jumper,0,False,True,4277869,Jose Alvarado,5104157,Victor Wembanyama,,,18,24,SA,18,NY,23,13,2026-06-14T01:15:35Z
+401859967,2026,3,2026-06-13,175,2,11,14,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,23,13,2026-06-14T01:15:38Z
+401859967,2026,3,2026-06-13,176,2,10,59,Jump Shot,Julian Champagnie makes 24-foot three point jumper,3,True,True,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:15:54Z
+401859967,2026,3,2026-06-13,179,2,10,42,Substitution,Dylan Harper enters the game for De'Aaron Fox,0,False,False,5037871,Dylan Harper,4066259,De'Aaron Fox,,,24,24,SA,18,NY,26,13,2026-06-14T01:16:17Z
+401859967,2026,3,2026-06-13,181,2,10,34,Cutting Layup Shot,Victor Wembanyama blocks Landry Shamet 's 2-foot layup,0,False,True,3914044,Landry Shamet,5104157,Victor Wembanyama,,,18,24,SA,18,NY,26,13,2026-06-14T01:16:46Z
+401859967,2026,3,2026-06-13,183,2,10,33,Defensive Rebound,Spurs defensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:16:47Z
+401859967,2026,3,2026-06-13,185,2,10,24,Personal Foul,Jose Alvarado personal foul,0,False,False,4277869,Jose Alvarado,,,,,18,24,SA,18,NY,26,13,2026-06-14T01:17:05Z
+401859967,2026,3,2026-06-13,187,2,10,24,Substitution,Mikal Bridges enters the game for Landry Shamet,0,False,False,3147657,Mikal Bridges,3914044,Landry Shamet,,,18,24,SA,18,NY,26,13,2026-06-14T01:17:28Z
+401859967,2026,3,2026-06-13,189,2,10,13,Driving Layup Shot,Karl-Anthony Towns blocks Stephon Castle's driving layup,0,False,True,4845367,Stephon Castle,3136195,Karl-Anthony Towns,,,24,24,SA,18,NY,26,13,2026-06-14T01:17:56Z
+401859967,2026,3,2026-06-13,191,2,10,12,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:17:57Z
+401859967,2026,3,2026-06-13,192,2,10,11,Fade Away Jump Shot,OG Anunoby blocks Stephon Castle's fade away jump shot,0,False,True,4845367,Stephon Castle,3934719,OG Anunoby,,,24,24,SA,18,NY,26,13,2026-06-14T01:18:02Z
+401859967,2026,3,2026-06-13,194,2,10,10,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:18:03Z
+401859967,2026,3,2026-06-13,195,2,10,10,Shot Clock Turnover,shot clock turnover,0,False,False,,,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:18:09Z
+401859967,2026,3,2026-06-13,196,2,10,2,8-Second Turnover,8 second turnover,0,False,False,,,,,,,18,24,SA,18,NY,26,13,2026-06-14T01:18:25Z
+401859967,2026,3,2026-06-13,197,2,9,52,Lost Ball Turnover,Victor Wembanyama lost ball turnover (Karl-Anthony Towns steals),0,False,False,5104157,Victor Wembanyama,3136195,Karl-Anthony Towns,,,24,24,SA,18,NY,26,13,2026-06-14T01:18:58Z
+401859967,2026,3,2026-06-13,199,2,9,33,Driving Finger Roll Layup,Jose Alvarado misses two point shot,0,False,True,4277869,Jose Alvarado,,,,,18,24,SA,18,NY,26,13,2026-06-14T01:19:17Z
+401859967,2026,3,2026-06-13,200,2,9,32,Defensive Rebound,Carter Bryant defensive rebound,0,False,False,5061568,Carter Bryant,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:19:18Z
+401859967,2026,3,2026-06-13,201,2,9,29,Shooting Foul,OG Anunoby shooting foul,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,26,13,2026-06-14T01:19:23Z
+401859967,2026,3,2026-06-13,203,2,9,29,Free Throw - 1 of 2,Dylan Harper makes free throw 1 of 2,1,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,27,13,2026-06-14T01:19:55Z
+401859967,2026,3,2026-06-13,204,2,9,29,Substitution,Josh Hart enters the game for OG Anunoby,0,False,False,3062679,Josh Hart,3934719,OG Anunoby,,,18,24,SA,18,NY,27,13,2026-06-14T01:19:55Z
+401859967,2026,3,2026-06-13,206,2,9,29,Free Throw - 2 of 2,Dylan Harper makes free throw 2 of 2,1,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,28,13,2026-06-14T01:20:21Z
+401859967,2026,3,2026-06-13,207,2,9,4,Turnaround Fade Away Jump Shot,Karl-Anthony Towns makes 18-foot two point shot,2,True,True,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,28,15,2026-06-14T01:20:49Z
+401859967,2026,3,2026-06-13,208,2,8,39,Jump Shot,Dylan Harper misses 25-foot three point jumper,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,28,15,2026-06-14T01:21:13Z
+401859967,2026,3,2026-06-13,209,2,8,37,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,28,15,2026-06-14T01:21:15Z
+401859967,2026,3,2026-06-13,210,2,8,35,Out of Bounds - Lost Ball Turnover,Karl-Anthony Towns out of bounds lost ball turnover,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,28,15,2026-06-14T01:21:24Z
+401859967,2026,3,2026-06-13,211,2,8,35,Substitution,Jalen Brunson enters the game for Jose Alvarado,0,False,False,3934672,Jalen Brunson,4277869,Jose Alvarado,,,18,24,SA,18,NY,28,15,2026-06-14T01:21:29Z
+401859967,2026,3,2026-06-13,213,2,8,29,Jump Shot,Victor Wembanyama makes 25-foot three point jumper,3,True,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,31,15,2026-06-14T01:22:03Z
+401859967,2026,3,2026-06-13,216,2,8,19,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,24,SA,18,NY,31,15,2026-06-14T01:22:35Z
+401859967,2026,3,2026-06-13,217,2,8,19,Coach's Challenge (Overturned),(08:19) [Spurs] COACH'S CHALLENGE (CALL OVERTURNED) [Spurs] retain their timeout,0,False,False,,,,,,,24,24,SA,18,NY,31,15,2026-06-14T01:24:57Z
+401859967,2026,3,2026-06-13,218,2,8,19,Offensive Foul,Karl-Anthony Towns offensive foul,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,31,15,2026-06-14T01:25:11Z
+401859967,2026,3,2026-06-13,220,2,8,19,Offensive Foul Turnover,Karl-Anthony Towns offensive foul turnover,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,31,15,2026-06-14T01:25:11Z
+401859967,2026,3,2026-06-13,221,2,8,19,Substitution,Devin Vassell enters the game for Victor Wembanyama,0,False,False,4395630,Devin Vassell,5104157,Victor Wembanyama,,,24,24,SA,18,NY,31,15,2026-06-14T01:25:50Z
+401859967,2026,3,2026-06-13,222,2,8,19,Substitution,Luke Kornet enters the game for Julian Champagnie,0,False,False,3064560,Luke Kornet,4592479,Julian Champagnie,,,24,24,SA,18,NY,31,15,2026-06-14T01:25:50Z
+401859967,2026,3,2026-06-13,225,2,10,10,Hook Shot,Victor Wembanyama misses 3-foot hook shot,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:18:05Z
+401859967,2026,3,2026-06-13,226,2,10,10,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,26,13,2026-06-14T01:18:05Z
+401859967,2026,3,2026-06-13,227,2,8,4,Lost Ball Turnover,Carter Bryant lost ball turnover (Jalen Brunson steals),0,False,False,5061568,Carter Bryant,3934672,Jalen Brunson,,,24,24,SA,18,NY,31,15,2026-06-14T01:26:38Z
+401859967,2026,3,2026-06-13,229,2,7,44,Jump Shot,Mikal Bridges makes 23-foot three point jumper (Miles McBride assists),3,True,True,3147657,Mikal Bridges,4431823,Miles McBride,,,18,24,SA,18,NY,31,18,2026-06-14T01:26:58Z
+401859967,2026,3,2026-06-13,231,2,7,30,Driving Floating Bank Jump Shot,Stephon Castle misses two point shot,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,31,18,2026-06-14T01:27:12Z
+401859967,2026,3,2026-06-13,232,2,7,28,Offensive Rebound,Luke Kornet offensive rebound,0,False,False,3064560,Luke Kornet,,,,,24,24,SA,18,NY,31,18,2026-06-14T01:27:14Z
+401859967,2026,3,2026-06-13,233,2,7,26,Jump Shot,Devin Vassell misses 23-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,24,SA,18,NY,31,18,2026-06-14T01:27:15Z
+401859967,2026,3,2026-06-13,234,2,7,24,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,31,18,2026-06-14T01:27:17Z
+401859967,2026,3,2026-06-13,235,2,7,16,Driving Layup Shot,Karl-Anthony Towns misses driving layup,0,False,True,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,31,18,2026-06-14T01:27:26Z
+401859967,2026,3,2026-06-13,236,2,7,14,Defensive Rebound,Spurs defensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,31,18,2026-06-14T01:27:28Z
+401859967,2026,3,2026-06-13,238,2,7,6,Jump Shot,Stephon Castle misses 27-foot three point jumper,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,31,18,2026-06-14T01:27:49Z
+401859967,2026,3,2026-06-13,239,2,7,2,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,31,18,2026-06-14T01:27:53Z
+401859967,2026,3,2026-06-13,240,2,6,51,Driving Layup Shot,Jalen Brunson misses driving layup,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,31,18,2026-06-14T01:28:04Z
+401859967,2026,3,2026-06-13,241,2,6,49,Defensive Rebound,Carter Bryant defensive rebound,0,False,False,5061568,Carter Bryant,,,,,24,24,SA,18,NY,31,18,2026-06-14T01:28:05Z
+401859967,2026,3,2026-06-13,242,2,6,41,Pullup Jump Shot,Dylan Harper makes 14-foot pullup jump shot,2,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,33,18,2026-06-14T01:28:13Z
+401859967,2026,3,2026-06-13,243,2,6,21,Jump Shot,Josh Hart makes 25-foot three point jumper (Mikal Bridges assists),3,True,True,3062679,Josh Hart,3147657,Mikal Bridges,,,18,24,SA,18,NY,33,21,2026-06-14T01:28:33Z
+401859967,2026,3,2026-06-13,245,2,6,4,Out of Bounds - Bad Pass Turnover,Luke Kornet out of bounds bad pass turnover,0,False,False,3064560,Luke Kornet,,,,,24,24,SA,18,NY,33,21,2026-06-14T01:28:53Z
+401859967,2026,3,2026-06-13,246,2,6,4,Substitution,Keldon Johnson enters the game for Stephon Castle,0,False,False,4395723,Keldon Johnson,4845367,Stephon Castle,,,24,24,SA,18,NY,33,21,2026-06-14T01:28:59Z
+401859967,2026,3,2026-06-13,247,2,6,4,Substitution,De'Aaron Fox enters the game for Carter Bryant,0,False,False,4066259,De'Aaron Fox,5061568,Carter Bryant,,,24,24,SA,18,NY,33,21,2026-06-14T01:28:59Z
+401859967,2026,3,2026-06-13,248,2,6,4,Substitution,Mitchell Robinson enters the game for Karl-Anthony Towns,0,False,False,4351852,Mitchell Robinson,3136195,Karl-Anthony Towns,,,18,24,SA,18,NY,33,21,2026-06-14T01:28:59Z
+401859967,2026,3,2026-06-13,252,2,5,47,Driving Floating Jump Shot,Jalen Brunson misses driving floating jump shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,33,21,2026-06-14T01:29:32Z
+401859967,2026,3,2026-06-13,253,2,5,46,Offensive Rebound,Mitchell Robinson offensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,33,21,2026-06-14T01:29:33Z
+401859967,2026,3,2026-06-13,254,2,5,46,Tip Shot,Mitchell Robinson misses tip shot,0,False,True,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,33,21,2026-06-14T01:29:36Z
+401859967,2026,3,2026-06-13,255,2,5,46,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,33,21,2026-06-14T01:29:38Z
+401859967,2026,3,2026-06-13,257,2,5,46,Substitution,Victor Wembanyama enters the game for Luke Kornet,0,False,False,5104157,Victor Wembanyama,3064560,Luke Kornet,,,24,24,SA,18,NY,33,21,2026-06-14T01:29:40Z
+401859967,2026,3,2026-06-13,259,2,5,32,Step Back Jump Shot,Josh Hart misses 25-foot three point step back jumpshot,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,33,21,2026-06-14T01:30:08Z
+401859967,2026,3,2026-06-13,260,2,5,29,Offensive Rebound,Jalen Brunson offensive rebound,0,False,False,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,33,21,2026-06-14T01:30:11Z
+401859967,2026,3,2026-06-13,261,2,5,28,Jump Shot,Jalen Brunson makes 26-foot three point jumper,3,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,33,24,2026-06-14T01:30:12Z
+401859967,2026,3,2026-06-13,262,2,5,17,Jump Shot,Victor Wembanyama misses 15-foot jumper,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,33,24,2026-06-14T01:30:23Z
+401859967,2026,3,2026-06-13,263,2,5,15,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,33,24,2026-06-14T01:30:25Z
+401859967,2026,3,2026-06-13,264,2,5,6,Jump Shot Bank,Miles McBride misses 27-foot jump bank shot,0,False,True,4431823,Miles McBride,,,,,18,24,SA,18,NY,33,24,2026-06-14T01:30:35Z
+401859967,2026,3,2026-06-13,265,2,5,2,Defensive Rebound,Keldon Johnson defensive rebound,0,False,False,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,33,24,2026-06-14T01:30:39Z
+401859967,2026,3,2026-06-13,268,2,4,57,Running Finger Roll Layup,Devin Vassell makes two point shot,2,True,True,4395630,Devin Vassell,,,,,24,24,SA,18,NY,35,24,2026-06-14T01:30:53Z
+401859967,2026,3,2026-06-13,269,2,4,57,Defensive Goaltending,Mitchell Robinson defensive goaltending violation,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,35,24,2026-06-14T01:30:56Z
+401859967,2026,3,2026-06-13,270,2,4,44,Pullup Jump Shot,Jalen Brunson makes 10-foot pullup jump shot,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,35,26,2026-06-14T01:31:26Z
+401859967,2026,3,2026-06-13,271,2,4,30,Jump Shot,Victor Wembanyama misses 26-foot three point jumper,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,35,26,2026-06-14T01:31:41Z
+401859967,2026,3,2026-06-13,272,2,4,30,Defensive Rebound,Mitchell Robinson defensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,35,26,2026-06-14T01:31:41Z
+401859967,2026,3,2026-06-13,273,2,4,6,Jump Shot,Jalen Brunson makes 20-foot jumper,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,35,28,2026-06-14T01:32:04Z
+401859967,2026,3,2026-06-13,274,2,3,50,Driving Floating Jump Shot,Victor Wembanyama misses driving floating jump shot,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,35,28,2026-06-14T01:32:21Z
+401859967,2026,3,2026-06-13,275,2,3,50,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,35,28,2026-06-14T01:32:21Z
+401859967,2026,3,2026-06-13,276,2,3,32,Jump Shot,De'Aaron Fox makes 24-foot three point jumper (Victor Wembanyama assists),3,True,True,4066259,De'Aaron Fox,5104157,Victor Wembanyama,,,24,24,SA,18,NY,38,28,2026-06-14T01:32:38Z
+401859967,2026,3,2026-06-13,278,2,3,15,Shooting Foul,Victor Wembanyama shooting foul,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,38,28,2026-06-14T01:32:57Z
+401859967,2026,3,2026-06-13,282,2,3,15,Free Throw - 1 of 2,Jalen Brunson misses free throw 1 of 2,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,38,28,2026-06-14T01:33:30Z
+401859967,2026,3,2026-06-13,283,2,3,15,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,38,28,2026-06-14T01:33:30Z
+401859967,2026,3,2026-06-13,284,2,3,15,Substitution,Julian Champagnie enters the game for Dylan Harper,0,False,False,4592479,Julian Champagnie,5037871,Dylan Harper,,,24,24,SA,18,NY,38,28,2026-06-14T01:33:32Z
+401859967,2026,3,2026-06-13,285,2,3,15,Substitution,Stephon Castle enters the game for Keldon Johnson,0,False,False,4845367,Stephon Castle,4395723,Keldon Johnson,,,24,24,SA,18,NY,38,28,2026-06-14T01:33:32Z
+401859967,2026,3,2026-06-13,286,2,3,15,Substitution,OG Anunoby enters the game for Miles McBride,0,False,False,3934719,OG Anunoby,4431823,Miles McBride,,,18,24,SA,18,NY,38,28,2026-06-14T01:33:32Z
+401859967,2026,3,2026-06-13,292,2,3,15,Free Throw - 2 of 2,Jalen Brunson makes free throw 2 of 2,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,38,29,2026-06-14T01:33:30Z
+401859967,2026,3,2026-06-13,293,2,3,5,Jump Shot,Stephon Castle misses 22-foot three point jumper,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,38,29,2026-06-14T01:34:08Z
+401859967,2026,3,2026-06-13,294,2,3,0,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,38,29,2026-06-14T01:34:13Z
+401859967,2026,3,2026-06-13,295,2,2,45,Jump Shot,Mikal Bridges makes 26-foot three point jumper (Jalen Brunson assists),3,True,True,3147657,Mikal Bridges,3934672,Jalen Brunson,,,18,24,SA,18,NY,38,32,2026-06-14T01:34:28Z
+401859967,2026,3,2026-06-13,297,2,2,34,Shooting Foul,Karl-Anthony Towns shooting foul,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,38,32,2026-06-14T01:34:41Z
+401859967,2026,3,2026-06-13,299,2,2,34,Full Timeout,Knicks Full timeout,0,False,False,,,,,,,18,24,SA,18,NY,38,32,2026-06-14T01:35:01Z
+401859967,2026,3,2026-06-13,300,2,8,37,Tip Shot,Victor Wembanyama misses 1-foot tip shot,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,28,15,2026-06-14T01:21:18Z
+401859967,2026,3,2026-06-13,301,2,8,36,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,28,15,2026-06-14T01:21:19Z
+401859967,2026,3,2026-06-13,304,2,2,34,Free Throw - 1 of 2,Stephon Castle makes free throw 1 of 2,1,True,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,39,32,2026-06-14T01:38:50Z
+401859967,2026,3,2026-06-13,305,2,3,15,Substitution,Karl-Anthony Towns enters the game for Mitchell Robinson,0,False,False,3136195,Karl-Anthony Towns,4351852,Mitchell Robinson,,,18,24,SA,18,NY,38,29,2026-06-14T01:33:32Z
+401859967,2026,3,2026-06-13,307,2,2,34,Free Throw - 2 of 2,Stephon Castle makes free throw 2 of 2,1,True,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,40,32,2026-06-14T01:39:09Z
+401859967,2026,3,2026-06-13,308,2,2,23,Pullup Jump Shot,Mikal Bridges misses 25-foot three point pullup jump shot,0,False,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,40,32,2026-06-14T01:39:22Z
+401859967,2026,3,2026-06-13,309,2,2,21,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,40,32,2026-06-14T01:39:24Z
+401859967,2026,3,2026-06-13,310,2,2,10,Driving Floating Jump Shot,Stephon Castle misses driving floating jump shot,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,40,32,2026-06-14T01:39:35Z
+401859967,2026,3,2026-06-13,311,2,2,8,Defensive Rebound,Jalen Brunson defensive rebound,0,False,False,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,40,32,2026-06-14T01:39:37Z
+401859967,2026,3,2026-06-13,312,2,1,57,Jump Shot,Mikal Bridges misses 26-foot three point jumper,0,False,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,40,32,2026-06-14T01:39:48Z
+401859967,2026,3,2026-06-13,313,2,1,54,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,40,32,2026-06-14T01:39:51Z
+401859967,2026,3,2026-06-13,314,2,1,43,Step Back Jump Shot,De'Aaron Fox misses 10-foot step back jumpshot,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,40,32,2026-06-14T01:40:02Z
+401859967,2026,3,2026-06-13,315,2,1,40,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,40,32,2026-06-14T01:40:05Z
+401859967,2026,3,2026-06-13,316,2,1,37,Running Pullup Jump Shot,Jalen Brunson misses running pullup jump shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,40,32,2026-06-14T01:40:08Z
+401859967,2026,3,2026-06-13,317,2,1,34,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,40,32,2026-06-14T01:40:11Z
+401859967,2026,3,2026-06-13,318,2,1,21,Bad Pass Turnover,Stephon Castle bad pass turnover (OG Anunoby steals),0,False,False,4845367,Stephon Castle,3934719,OG Anunoby,,,24,24,SA,18,NY,40,32,2026-06-14T01:40:24Z
+401859967,2026,3,2026-06-13,320,2,1,18,Running Finger Roll Layup,Josh Hart makes two point shot,2,True,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,40,34,2026-06-14T01:40:31Z
+401859967,2026,3,2026-06-13,321,2,1,18,Flagrant Foul Type 1,De'Aaron Fox flagrant foul type 1,0,False,False,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,40,34,2026-06-14T01:40:38Z
+401859967,2026,3,2026-06-13,323,2,1,18,Ref-Initiated Review (Overturned),(01:18) [Knicks] REF-INITIATED REVIEW (CALL OVERTURNED),0,False,False,,,,,,,,24,SA,18,NY,40,34,2026-06-14T01:40:56Z
+401859967,2026,3,2026-06-13,325,2,1,18,Free Throw - Flagrant 1 of 1,Josh Hart makes free throw flagrant 1 of 1,1,True,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,40,35,2026-06-14T01:43:07Z
+401859967,2026,3,2026-06-13,326,2,1,18,Substitution,Dylan Harper enters the game for Stephon Castle,0,False,False,5037871,Dylan Harper,4845367,Stephon Castle,,,24,24,SA,18,NY,40,35,2026-06-14T01:43:09Z
+401859967,2026,3,2026-06-13,328,2,1,7,Driving Floating Jump Shot,Mikal Bridges makes 4-foot driving floating jump shot (Mitchell Robinson assists),2,True,True,3147657,Mikal Bridges,4351852,Mitchell Robinson,,,18,24,SA,18,NY,40,37,2026-06-14T01:43:37Z
+401859967,2026,3,2026-06-13,329,2,0,50.7,Turnaround Jump Shot,Dylan Harper misses 9-foot turnaround jump shot,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,40,37,2026-06-14T01:43:54Z
+401859967,2026,3,2026-06-13,330,2,0,47.2,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,40,37,2026-06-14T01:43:58Z
+401859967,2026,3,2026-06-13,331,2,0,47.2,Loose Ball Foul,Josh Hart loose ball foul,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,40,37,2026-06-14T01:44:03Z
+401859967,2026,3,2026-06-13,334,2,0,36.3,Pullup Jump Shot,De'Aaron Fox misses 26-foot three point pullup jump shot,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,40,37,2026-06-14T01:44:40Z
+401859967,2026,3,2026-06-13,335,2,0,32.9,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,40,37,2026-06-14T01:44:43Z
+401859967,2026,3,2026-06-13,336,2,0,18,Turnaround Jump Shot,Josh Hart misses 9-foot turnaround jump shot,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,40,37,2026-06-14T01:44:58Z
+401859967,2026,3,2026-06-13,337,2,0,14,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,40,37,2026-06-14T01:45:02Z
+401859967,2026,3,2026-06-13,338,2,0,0.1,Pullup Jump Shot,Devin Vassell makes 12-foot pullup jump shot (De'Aaron Fox assists),2,True,True,4395630,Devin Vassell,4066259,De'Aaron Fox,,,24,24,SA,18,NY,42,37,2026-06-14T01:45:17Z
+401859967,2026,3,2026-06-13,339,2,0,0,Ref-Initiated Review (Supported),(00:00) [Knicks] REF-INITIATED REVIEW (REPLAY SUPPORTS CALL),0,False,False,,,,,,,,24,SA,18,NY,42,37,2026-06-14T01:45:23Z
+401859967,2026,3,2026-06-13,340,2,2,34,Substitution,Mitchell Robinson enters the game for Karl-Anthony Towns,0,False,False,4351852,Mitchell Robinson,3136195,Karl-Anthony Towns,,,18,24,SA,18,NY,40,32,2026-06-14T01:36:56Z
+401859967,2026,3,2026-06-13,342,2,0,0,End Period,End of the 2nd Quarter,0,False,False,,,,,,,,24,SA,18,NY,42,37,2026-06-14T01:45:55Z
+401859967,2026,3,2026-06-13,344,3,12,0,Substitution,Stephon Castle enters the game for Dylan Harper,0,False,False,4845367,Stephon Castle,5037871,Dylan Harper,,,24,24,SA,18,NY,42,37,2026-06-14T02:01:24Z
+401859967,2026,3,2026-06-13,345,3,12,0,Substitution,Karl-Anthony Towns enters the game for Mitchell Robinson,0,False,False,3136195,Karl-Anthony Towns,4351852,Mitchell Robinson,,,18,24,SA,18,NY,42,37,2026-06-14T02:01:24Z
+401859967,2026,3,2026-06-13,349,3,11,45,Personal Foul,Karl-Anthony Towns personal foul,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,42,37,2026-06-14T02:03:01Z
+401859967,2026,3,2026-06-13,351,3,11,45,Substitution,Mitchell Robinson enters the game for Karl-Anthony Towns,0,False,False,4351852,Mitchell Robinson,3136195,Karl-Anthony Towns,,,18,24,SA,18,NY,42,37,2026-06-14T02:03:15Z
+401859967,2026,3,2026-06-13,353,3,11,36,Jump Shot,De'Aaron Fox misses 23-foot three point jumper,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,42,37,2026-06-14T02:03:37Z
+401859967,2026,3,2026-06-13,354,3,11,32,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,42,37,2026-06-14T02:03:41Z
+401859967,2026,3,2026-06-13,355,3,11,26,Jump Shot,OG Anunoby misses 24-foot three point jumper,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,42,37,2026-06-14T02:03:46Z
+401859967,2026,3,2026-06-13,356,3,11,24,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,42,37,2026-06-14T02:03:48Z
+401859967,2026,3,2026-06-13,357,3,11,16,Offensive Foul,Stephon Castle offensive foul,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,42,37,2026-06-14T02:04:03Z
+401859967,2026,3,2026-06-13,359,3,11,16,Offensive Foul Turnover,Stephon Castle offensive foul turnover,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,42,37,2026-06-14T02:04:03Z
+401859967,2026,3,2026-06-13,360,3,10,54,Driving Floating Jump Shot,Mikal Bridges makes 6-foot driving floating jump shot,2,True,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,42,39,2026-06-14T02:04:36Z
+401859967,2026,3,2026-06-13,361,3,10,41,Jump Shot,Julian Champagnie makes 23-foot three point jumper (Stephon Castle assists),3,True,True,4592479,Julian Champagnie,4845367,Stephon Castle,,,24,24,SA,18,NY,45,39,2026-06-14T02:04:49Z
+401859967,2026,3,2026-06-13,363,3,10,22,Pullup Jump Shot,Jalen Brunson makes 12-foot pullup jump shot (Mitchell Robinson assists),2,True,True,3934672,Jalen Brunson,4351852,Mitchell Robinson,,,18,24,SA,18,NY,45,41,2026-06-14T02:05:08Z
+401859967,2026,3,2026-06-13,364,3,10,16,Offensive Foul,Julian Champagnie offensive foul,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,45,41,2026-06-14T02:05:18Z
+401859967,2026,3,2026-06-13,366,3,10,16,Offensive Foul Turnover,Julian Champagnie offensive foul turnover,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,45,41,2026-06-14T02:05:18Z
+401859967,2026,3,2026-06-13,367,3,9,59,Pullup Jump Shot,Jalen Brunson misses 26-foot three point pullup jump shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,45,41,2026-06-14T02:05:54Z
+401859967,2026,3,2026-06-13,368,3,9,56,Offensive Rebound,Mitchell Robinson offensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,45,41,2026-06-14T02:05:57Z
+401859967,2026,3,2026-06-13,369,3,9,46,Bad Pass Turnover,OG Anunoby bad pass turnover (Devin Vassell steals),0,False,False,3934719,OG Anunoby,4395630,Devin Vassell,,,18,24,SA,18,NY,45,41,2026-06-14T02:06:08Z
+401859967,2026,3,2026-06-13,371,3,9,42,Running Dunk Shot,Victor Wembanyama makes 1-foot running dunk (De'Aaron Fox assists),2,True,True,5104157,Victor Wembanyama,4066259,De'Aaron Fox,,,24,24,SA,18,NY,47,41,2026-06-14T02:06:13Z
+401859967,2026,3,2026-06-13,373,3,9,42,Flagrant Foul Type 1,Mitchell Robinson flagrant foul type 1,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,47,41,2026-06-14T02:06:16Z
+401859967,2026,3,2026-06-13,375,3,9,42,Ref-Initiated Review (Overturned),(09:42) [Knicks] REF-INITIATED REVIEW (CALL OVERTURNED),0,False,False,,,,,,,,24,SA,18,NY,47,41,2026-06-14T02:06:38Z
+401859967,2026,3,2026-06-13,377,3,9,42,Free Throw - Flagrant 1 of 1,Victor Wembanyama makes free throw flagrant 1 of 1,1,True,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,48,41,2026-06-14T02:09:08Z
+401859967,2026,3,2026-06-13,378,3,9,29,Step Back Jump Shot,Julian Champagnie makes 25-foot three point step back jumpshot (De'Aaron Fox assists),3,True,True,4592479,Julian Champagnie,4066259,De'Aaron Fox,,,24,24,SA,18,NY,51,41,2026-06-14T02:09:37Z
+401859967,2026,3,2026-06-13,380,3,9,12,Personal Foul,Stephon Castle personal foul,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,51,41,2026-06-14T02:09:57Z
+401859967,2026,3,2026-06-13,382,3,9,0,Jump Shot,Mikal Bridges misses 23-foot three point jumper,0,False,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,51,41,2026-06-14T02:10:38Z
+401859967,2026,3,2026-06-13,383,3,8,57,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,51,41,2026-06-14T02:10:41Z
+401859967,2026,3,2026-06-13,384,3,8,49,Turnaround Jump Shot,Victor Wembanyama makes 10-foot turnaround jump shot,2,True,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,53,41,2026-06-14T02:10:50Z
+401859967,2026,3,2026-06-13,385,3,8,36,Jump Shot,Mikal Bridges makes 25-foot three point jumper (Jalen Brunson assists),3,True,True,3147657,Mikal Bridges,3934672,Jalen Brunson,,,18,24,SA,18,NY,53,44,2026-06-14T02:11:02Z
+401859967,2026,3,2026-06-13,387,3,8,21,Jump Shot,Victor Wembanyama misses 26-foot three point jumper,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,53,44,2026-06-14T02:11:18Z
+401859967,2026,3,2026-06-13,388,3,8,18,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,53,44,2026-06-14T02:11:21Z
+401859967,2026,3,2026-06-13,389,3,8,6,Pullup Jump Shot,Jalen Brunson makes 16-foot pullup jump shot,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,53,46,2026-06-14T02:11:33Z
+401859967,2026,3,2026-06-13,390,3,7,48,Personal Foul,OG Anunoby personal foul,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,53,46,2026-06-14T02:11:53Z
+401859967,2026,3,2026-06-13,392,3,7,48,Substitution,Dylan Harper enters the game for Victor Wembanyama,0,False,False,5037871,Dylan Harper,5104157,Victor Wembanyama,,,24,24,SA,18,NY,53,46,2026-06-14T02:11:59Z
+401859967,2026,3,2026-06-13,393,3,7,48,Substitution,Luke Kornet enters the game for De'Aaron Fox,0,False,False,3064560,Luke Kornet,4066259,De'Aaron Fox,,,24,24,SA,18,NY,53,46,2026-06-14T02:11:59Z
+401859967,2026,3,2026-06-13,396,3,7,48,Substitution,Ariel Hukporti enters the game for Mitchell Robinson,0,False,False,4871141,Ariel Hukporti,4351852,Mitchell Robinson,,,18,24,SA,18,NY,53,46,2026-06-14T02:12:20Z
+401859967,2026,3,2026-06-13,398,3,7,41,Driving Finger Roll Layup,Dylan Harper makes 1-foot two point shot,2,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,55,46,2026-06-14T02:12:42Z
+401859967,2026,3,2026-06-13,399,3,7,22,Step Back Jump Shot,Devin Vassell blocks OG Anunoby 's 23-foot three point step back jumpshot,0,False,True,3934719,OG Anunoby,4395630,Devin Vassell,,,18,24,SA,18,NY,55,46,2026-06-14T02:13:03Z
+401859967,2026,3,2026-06-13,401,3,7,22,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,55,46,2026-06-14T02:13:03Z
+401859967,2026,3,2026-06-13,403,3,7,22,Substitution,Landry Shamet enters the game for Ariel Hukporti,0,False,False,3914044,Landry Shamet,4871141,Ariel Hukporti,,,18,24,SA,18,NY,55,46,2026-06-14T02:13:18Z
+401859967,2026,3,2026-06-13,405,3,7,12,Driving Finger Roll Layup,Jalen Brunson makes 3-foot two point shot (Josh Hart assists),2,True,True,3934672,Jalen Brunson,3062679,Josh Hart,,,18,24,SA,18,NY,55,48,2026-06-14T02:13:53Z
+401859967,2026,3,2026-06-13,406,3,7,1,Jump Shot,Julian Champagnie misses 23-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,55,48,2026-06-14T02:14:04Z
+401859967,2026,3,2026-06-13,407,3,6,58,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,55,48,2026-06-14T02:14:07Z
+401859967,2026,3,2026-06-13,408,3,6,49,Jump Shot,Jalen Brunson misses 26-foot three point jumper,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,55,48,2026-06-14T02:14:17Z
+401859967,2026,3,2026-06-13,409,3,6,44,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,55,48,2026-06-14T02:14:22Z
+401859967,2026,3,2026-06-13,410,3,6,40,Driving Finger Roll Layup,Dylan Harper misses two point shot,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,55,48,2026-06-14T02:14:28Z
+401859967,2026,3,2026-06-13,411,3,6,39,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,55,48,2026-06-14T02:14:29Z
+401859967,2026,3,2026-06-13,412,3,6,33,Running Layup Shot,OG Anunoby makes running layup,2,True,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,55,50,2026-06-14T02:14:35Z
+401859967,2026,3,2026-06-13,413,3,6,27,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,24,SA,18,NY,55,50,2026-06-14T02:14:45Z
+401859967,2026,3,2026-06-13,415,3,6,27,Substitution,Victor Wembanyama enters the game for Stephon Castle,0,False,False,5104157,Victor Wembanyama,4845367,Stephon Castle,,,24,24,SA,18,NY,55,50,2026-06-14T02:18:00Z
+401859967,2026,3,2026-06-13,416,3,6,27,Substitution,De'Aaron Fox enters the game for Luke Kornet,0,False,False,4066259,De'Aaron Fox,3064560,Luke Kornet,,,24,24,SA,18,NY,55,50,2026-06-14T02:18:00Z
+401859967,2026,3,2026-06-13,417,3,6,27,Substitution,Keldon Johnson enters the game for Julian Champagnie,0,False,False,4395723,Keldon Johnson,4592479,Julian Champagnie,,,24,24,SA,18,NY,55,50,2026-06-14T02:18:00Z
+401859967,2026,3,2026-06-13,418,3,6,27,Substitution,Miles McBride enters the game for OG Anunoby,0,False,False,4431823,Miles McBride,3934719,OG Anunoby,,,18,24,SA,18,NY,55,50,2026-06-14T02:18:00Z
+401859967,2026,3,2026-06-13,423,3,6,17,Step Back Jump Shot,Dylan Harper makes 16-foot step back jumpshot (Devin Vassell assists),2,True,True,5037871,Dylan Harper,4395630,Devin Vassell,,,24,24,SA,18,NY,57,50,2026-06-14T02:18:38Z
+401859967,2026,3,2026-06-13,425,3,5,51,Jump Shot,Landry Shamet misses 27-foot three point jumper,0,False,True,3914044,Landry Shamet,,,,,18,24,SA,18,NY,57,50,2026-06-14T02:19:05Z
+401859967,2026,3,2026-06-13,426,3,5,48,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,57,50,2026-06-14T02:19:08Z
+401859967,2026,3,2026-06-13,427,3,5,39,Layup Shot,Victor Wembanyama makes layup (Dylan Harper assists),2,True,True,5104157,Victor Wembanyama,5037871,Dylan Harper,,,24,24,SA,18,NY,59,50,2026-06-14T02:19:16Z
+401859967,2026,3,2026-06-13,429,3,5,29,Pullup Jump Shot,Jalen Brunson makes 26-foot three pointer,3,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,59,53,2026-06-14T02:19:25Z
+401859967,2026,3,2026-06-13,430,3,5,19,Jump Shot,Devin Vassell makes 25-foot three point jumper (Dylan Harper assists),3,True,True,4395630,Devin Vassell,5037871,Dylan Harper,,,24,24,SA,18,NY,62,53,2026-06-14T02:19:36Z
+401859967,2026,3,2026-06-13,432,3,5,18,Full Timeout,Knicks Full timeout,0,False,False,,,,,,,18,24,SA,18,NY,62,53,2026-06-14T02:19:42Z
+401859967,2026,3,2026-06-13,433,3,5,18,Substitution,OG Anunoby enters the game for Josh Hart,0,False,False,3934719,OG Anunoby,3062679,Josh Hart,,,18,24,SA,18,NY,62,53,2026-06-14T02:23:12Z
+401859967,2026,3,2026-06-13,434,3,5,18,Substitution,Mitchell Robinson enters the game for Miles McBride,0,False,False,4351852,Mitchell Robinson,4431823,Miles McBride,,,18,24,SA,18,NY,62,53,2026-06-14T02:23:12Z
+401859967,2026,3,2026-06-13,437,3,5,5,Kicked Ball,Victor Wembanyama kicked ball violation,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,62,53,2026-06-14T02:23:46Z
+401859967,2026,3,2026-06-13,438,3,4,53,Jumpball,Mikal Bridges vs. Dylan Harper (Landry Shamet gains possession),0,False,False,3147657,Mikal Bridges,5037871,Dylan Harper,3914044,Landry Shamet,18,24,SA,18,NY,62,53,2026-06-14T02:24:52Z
+401859967,2026,3,2026-06-13,441,3,4,48,Turnaround Fade Away Jump Shot,Landry Shamet misses 20-foot two point shot,0,False,True,3914044,Landry Shamet,,,,,18,24,SA,18,NY,62,53,2026-06-14T02:24:54Z
+401859967,2026,3,2026-06-13,442,3,4,44,Defensive Rebound,Keldon Johnson defensive rebound,0,False,False,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,62,53,2026-06-14T02:24:58Z
+401859967,2026,3,2026-06-13,443,3,4,31,Jump Shot,Dylan Harper makes 26-foot three point jumper (De'Aaron Fox assists),3,True,True,5037871,Dylan Harper,4066259,De'Aaron Fox,,,24,24,SA,18,NY,65,53,2026-06-14T02:25:11Z
+401859967,2026,3,2026-06-13,445,3,4,15,Substitution,Jordan Clarkson enters the game for Landry Shamet,0,False,False,2528426,Jordan Clarkson,3914044,Landry Shamet,,,18,24,SA,18,NY,65,53,2026-06-14T02:25:41Z
+401859967,2026,3,2026-06-13,447,3,4,15,Jumpball,Jalen Brunson vs. Dylan Harper (Mitchell Robinson gains possession),0,False,False,3934672,Jalen Brunson,5037871,Dylan Harper,4351852,Mitchell Robinson,18,24,SA,18,NY,65,53,2026-06-14T02:26:01Z
+401859967,2026,3,2026-06-13,450,3,4,3,Turnaround Jump Shot,Jalen Brunson misses 14-foot turnaround jump shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,65,53,2026-06-14T02:26:11Z
+401859967,2026,3,2026-06-13,451,3,4,0,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,65,53,2026-06-14T02:26:14Z
+401859967,2026,3,2026-06-13,452,3,4,0,Loose Ball Foul,Keldon Johnson loose ball foul,0,False,False,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,65,53,2026-06-14T02:26:18Z
+401859967,2026,3,2026-06-13,454,3,4,0,Substitution,Stephon Castle enters the game for De'Aaron Fox,0,False,False,4845367,Stephon Castle,4066259,De'Aaron Fox,,,24,24,SA,18,NY,65,53,2026-06-14T02:26:37Z
+401859967,2026,3,2026-06-13,455,3,4,0,Substitution,Julian Champagnie enters the game for Devin Vassell,0,False,False,4592479,Julian Champagnie,4395630,Devin Vassell,,,24,24,SA,18,NY,65,53,2026-06-14T02:26:37Z
+401859967,2026,3,2026-06-13,458,3,3,57,Personal Foul,Dylan Harper personal foul,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,65,53,2026-06-14T02:27:01Z
+401859967,2026,3,2026-06-13,460,3,3,57,Personal Foul,Keldon Johnson personal foul,0,False,False,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,65,53,2026-06-14T02:27:42Z
+401859967,2026,3,2026-06-13,462,3,3,57,Substitution,Josh Hart enters the game for Mitchell Robinson,0,False,False,3062679,Josh Hart,4351852,Mitchell Robinson,,,18,24,SA,18,NY,65,53,2026-06-14T02:28:01Z
+401859967,2026,3,2026-06-13,464,3,3,43,Driving Layup Shot,OG Anunoby misses driving layup,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,65,53,2026-06-14T02:28:34Z
+401859967,2026,3,2026-06-13,465,3,3,42,Offensive Rebound,Jordan Clarkson offensive rebound,0,False,False,2528426,Jordan Clarkson,,,,,18,24,SA,18,NY,65,53,2026-06-14T02:28:35Z
+401859967,2026,3,2026-06-13,466,3,3,35,Shooting Foul,Josh Hart shooting foul,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,65,53,2026-06-14T02:28:42Z
+401859967,2026,3,2026-06-13,468,3,3,35,Free Throw - 1 of 2,Dylan Harper misses free throw 1 of 2,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,65,53,2026-06-14T02:29:37Z
+401859967,2026,3,2026-06-13,469,3,3,35,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,65,53,2026-06-14T02:29:37Z
+401859967,2026,3,2026-06-13,470,3,3,35,Substitution,Luke Kornet enters the game for Victor Wembanyama,0,False,False,3064560,Luke Kornet,5104157,Victor Wembanyama,,,24,24,SA,18,NY,65,53,2026-06-14T02:29:38Z
+401859967,2026,3,2026-06-13,472,3,3,35,Free Throw - 2 of 2,Dylan Harper makes free throw 2 of 2,1,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,66,53,2026-06-14T02:29:37Z
+401859967,2026,3,2026-06-13,473,3,3,22,Step Back Jump Shot,OG Anunoby misses 25-foot three point step back jumpshot,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,66,53,2026-06-14T02:30:15Z
+401859967,2026,3,2026-06-13,474,3,3,19,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,66,53,2026-06-14T02:30:18Z
+401859967,2026,3,2026-06-13,475,3,3,13,Driving Layup Shot,Dylan Harper misses driving layup,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,66,53,2026-06-14T02:30:27Z
+401859967,2026,3,2026-06-13,476,3,3,12,Offensive Rebound,Dylan Harper offensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,66,53,2026-06-14T02:30:28Z
+401859967,2026,3,2026-06-13,477,3,3,11,Layup Shot Putback,Dylan Harper makes two point shot,2,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,68,53,2026-06-14T02:30:31Z
+401859967,2026,3,2026-06-13,478,3,2,59,Personal Foul,Dylan Harper personal foul,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,68,53,2026-06-14T02:30:42Z
+401859967,2026,3,2026-06-13,480,3,2,59,Free Throw - 1 of 2,Jalen Brunson makes free throw 1 of 2,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,68,54,2026-06-14T02:31:23Z
+401859967,2026,3,2026-06-13,481,3,2,59,Substitution,Miles McBride enters the game for Mikal Bridges,0,False,False,4431823,Miles McBride,3147657,Mikal Bridges,,,18,24,SA,18,NY,68,54,2026-06-14T02:31:23Z
+401859967,2026,3,2026-06-13,483,3,2,59,Free Throw - 2 of 2,Jalen Brunson makes free throw 2 of 2,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,68,55,2026-06-14T02:31:49Z
+401859967,2026,3,2026-06-13,484,3,2,51,Personal Foul,OG Anunoby personal foul,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,68,55,2026-06-14T02:32:03Z
+401859967,2026,3,2026-06-13,486,3,2,51,Free Throw - 1 of 2,Keldon Johnson makes free throw 1 of 2,1,True,True,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,69,55,2026-06-14T02:32:32Z
+401859967,2026,3,2026-06-13,487,3,2,51,Substitution,De'Aaron Fox enters the game for Dylan Harper,0,False,False,4066259,De'Aaron Fox,5037871,Dylan Harper,,,24,24,SA,18,NY,69,55,2026-06-14T02:32:35Z
+401859967,2026,3,2026-06-13,488,3,2,51,Substitution,Ariel Hukporti enters the game for OG Anunoby,0,False,False,4871141,Ariel Hukporti,3934719,OG Anunoby,,,18,24,SA,18,NY,69,55,2026-06-14T02:32:35Z
+401859967,2026,3,2026-06-13,491,3,2,51,Free Throw - 2 of 2,Keldon Johnson misses free throw 2 of 2,0,False,True,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,69,55,2026-06-14T02:32:32Z
+401859967,2026,3,2026-06-13,492,3,2,48,Offensive Rebound,Julian Champagnie offensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,69,55,2026-06-14T02:32:35Z
+401859967,2026,3,2026-06-13,496,3,2,34,Running Jump Shot,Jordan Clarkson misses 23-foot running jump shot,0,False,True,2528426,Jordan Clarkson,,,,,18,24,SA,18,NY,69,55,2026-06-14T02:33:15Z
+401859967,2026,3,2026-06-13,497,3,2,31,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,69,55,2026-06-14T02:33:18Z
+401859967,2026,3,2026-06-13,498,3,2,25,Shooting Foul,Miles McBride shooting foul,0,False,False,4431823,Miles McBride,,,,,18,24,SA,18,NY,69,55,2026-06-14T02:33:26Z
+401859967,2026,3,2026-06-13,500,3,2,25,Free Throw - 1 of 2,Stephon Castle misses free throw 1 of 2,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,69,55,2026-06-14T02:33:59Z
+401859967,2026,3,2026-06-13,501,3,2,25,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,69,55,2026-06-14T02:33:59Z
+401859967,2026,3,2026-06-13,502,3,2,25,Substitution,Victor Wembanyama enters the game for Keldon Johnson,0,False,False,5104157,Victor Wembanyama,4395723,Keldon Johnson,,,24,24,SA,18,NY,69,55,2026-06-14T02:34:03Z
+401859967,2026,3,2026-06-13,503,3,2,25,Substitution,Dylan Harper enters the game for Luke Kornet,0,False,False,5037871,Dylan Harper,3064560,Luke Kornet,,,24,24,SA,18,NY,69,55,2026-06-14T02:34:03Z
+401859967,2026,3,2026-06-13,506,3,2,25,Free Throw - 2 of 2,Stephon Castle makes free throw 2 of 2,1,True,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,70,55,2026-06-14T02:33:59Z
+401859967,2026,3,2026-06-13,507,3,3,42,Tip Shot,Jordan Clarkson misses tip shot,0,False,True,2528426,Jordan Clarkson,,,,,18,24,SA,18,NY,65,53,2026-06-14T02:28:38Z
+401859967,2026,3,2026-06-13,508,3,3,41,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,65,53,2026-06-14T02:28:39Z
+401859967,2026,3,2026-06-13,509,3,2,4,Pullup Jump Shot,Josh Hart makes 26-foot three pointer (Ariel Hukporti assists),3,True,True,3062679,Josh Hart,4871141,Ariel Hukporti,,,18,24,SA,18,NY,70,58,2026-06-14T02:34:57Z
+401859967,2026,3,2026-06-13,511,3,1,48,Jump Shot,Julian Champagnie misses 26-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,70,58,2026-06-14T02:35:14Z
+401859967,2026,3,2026-06-13,512,3,1,44,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,70,58,2026-06-14T02:35:18Z
+401859967,2026,3,2026-06-13,513,3,1,42,Bad Pass Turnover,Victor Wembanyama bad pass turnover (Jalen Brunson steals),0,False,False,5104157,Victor Wembanyama,3934672,Jalen Brunson,,,24,24,SA,18,NY,70,58,2026-06-14T02:35:19Z
+401859967,2026,3,2026-06-13,515,3,1,36,Running Finger Roll Layup,Jalen Brunson misses two point shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,70,58,2026-06-14T02:35:25Z
+401859967,2026,3,2026-06-13,516,3,1,34,Offensive Rebound,Ariel Hukporti offensive rebound,0,False,False,4871141,Ariel Hukporti,,,,,18,24,SA,18,NY,70,58,2026-06-14T02:35:27Z
+401859967,2026,3,2026-06-13,517,3,1,31,Driving Floating Jump Shot,Dylan Harper blocks Jordan Clarkson 's 11-foot driving floating jump shot,0,False,True,2528426,Jordan Clarkson,5037871,Dylan Harper,,,18,24,SA,18,NY,70,58,2026-06-14T02:35:31Z
+401859967,2026,3,2026-06-13,519,3,1,31,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,70,58,2026-06-14T02:35:31Z
+401859967,2026,3,2026-06-13,521,3,1,31,Substitution,Devin Vassell enters the game for Stephon Castle,0,False,False,4395630,Devin Vassell,4845367,Stephon Castle,,,24,24,SA,18,NY,70,58,2026-06-14T02:35:47Z
+401859967,2026,3,2026-06-13,523,3,1,26,Shooting Foul,Dylan Harper shooting foul,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,70,58,2026-06-14T02:36:10Z
+401859967,2026,3,2026-06-13,525,3,1,26,Free Throw - 1 of 3,Jalen Brunson makes free throw 1 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,70,59,2026-06-14T02:36:44Z
+401859967,2026,3,2026-06-13,526,3,1,26,Substitution,Mitchell Robinson enters the game for Ariel Hukporti,0,False,False,4351852,Mitchell Robinson,4871141,Ariel Hukporti,,,18,24,SA,18,NY,70,59,2026-06-14T02:36:45Z
+401859967,2026,3,2026-06-13,528,3,1,26,Free Throw - 2 of 3,Jalen Brunson makes free throw 2 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,70,60,2026-06-14T02:37:08Z
+401859967,2026,3,2026-06-13,529,3,1,26,Free Throw - 3 of 3,Jalen Brunson makes free throw 3 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,70,61,2026-06-14T02:37:36Z
+401859967,2026,3,2026-06-13,530,3,1,16,Driving Floating Jump Shot,De'Aaron Fox makes 7-foot driving floating jump shot,2,True,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,72,61,2026-06-14T02:37:48Z
+401859967,2026,3,2026-06-13,531,3,1,3,Jump Shot,Miles McBride misses 23-foot three point jumper,0,False,True,4431823,Miles McBride,,,,,18,24,SA,18,NY,72,61,2026-06-14T02:38:01Z
+401859967,2026,3,2026-06-13,532,3,1,0,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,72,61,2026-06-14T02:38:04Z
+401859967,2026,3,2026-06-13,533,3,0,51.6,Jump Shot,Dylan Harper misses 23-foot three point jumper,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,72,61,2026-06-14T02:38:13Z
+401859967,2026,3,2026-06-13,534,3,0,47.9,Defensive Rebound,Mitchell Robinson defensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,72,61,2026-06-14T02:38:17Z
+401859967,2026,3,2026-06-13,535,3,0,39.5,Driving Floating Jump Shot,Jordan Clarkson makes 10-foot driving floating jump shot (Jalen Brunson assists),2,True,True,2528426,Jordan Clarkson,3934672,Jalen Brunson,,,18,24,SA,18,NY,72,63,2026-06-14T02:38:25Z
+401859967,2026,3,2026-06-13,537,3,0,27.5,Jump Shot,De'Aaron Fox misses 23-foot three point jumper,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,72,63,2026-06-14T02:38:42Z
+401859967,2026,3,2026-06-13,538,3,0,24.2,Defensive Rebound,Mitchell Robinson defensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,72,63,2026-06-14T02:38:46Z
+401859967,2026,3,2026-06-13,539,3,0,5.1,Fade Away Jump Shot,Jalen Brunson misses 9-foot fade away jump shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,72,63,2026-06-14T02:39:05Z
+401859967,2026,3,2026-06-13,540,3,0,3.5,Offensive Rebound,Mitchell Robinson offensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,72,63,2026-06-14T02:39:06Z
+401859967,2026,3,2026-06-13,541,3,0,3.5,Tip Shot,Mitchell Robinson makes tip shot,2,True,True,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,72,65,2026-06-14T02:39:10Z
+401859967,2026,3,2026-06-13,542,3,0,0.1,Heave Jump Shot,Victor Wembanyama misses heave jump shot,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,72,65,2026-06-14T02:39:13Z
+401859967,2026,3,2026-06-13,543,3,0,0.1,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,72,65,2026-06-14T02:39:13Z
+401859967,2026,3,2026-06-13,544,3,0,0,End Period,End of the 3rd Quarter,0,False,False,,,,,,,,24,SA,18,NY,72,65,2026-06-14T02:39:19Z
+401859967,2026,3,2026-06-13,545,4,12,0,Substitution,Keldon Johnson enters the game for Dylan Harper,0,False,False,4395723,Keldon Johnson,5037871,Dylan Harper,,,24,24,SA,18,NY,72,65,2026-06-14T02:42:20Z
+401859967,2026,3,2026-06-13,546,4,12,0,Substitution,Stephon Castle enters the game for Julian Champagnie,0,False,False,4845367,Stephon Castle,4592479,Julian Champagnie,,,24,24,SA,18,NY,72,65,2026-06-14T02:42:20Z
+401859967,2026,3,2026-06-13,547,4,12,0,Substitution,Jose Alvarado enters the game for Miles McBride,0,False,False,4277869,Jose Alvarado,4431823,Miles McBride,,,18,24,SA,18,NY,72,65,2026-06-14T02:42:20Z
+401859967,2026,3,2026-06-13,548,4,12,0,Substitution,Mikal Bridges enters the game for Jalen Brunson,0,False,False,3147657,Mikal Bridges,3934672,Jalen Brunson,,,18,24,SA,18,NY,72,65,2026-06-14T02:42:20Z
+401859967,2026,3,2026-06-13,549,4,12,0,Substitution,Karl-Anthony Towns enters the game for Mitchell Robinson,0,False,False,3136195,Karl-Anthony Towns,4351852,Mitchell Robinson,,,18,24,SA,18,NY,72,65,2026-06-14T02:42:20Z
+401859967,2026,3,2026-06-13,556,4,11,35,Jump Shot,Jordan Clarkson misses 26-foot three point jumper,0,False,True,2528426,Jordan Clarkson,,,,,18,24,SA,18,NY,72,65,2026-06-14T02:43:17Z
+401859967,2026,3,2026-06-13,557,4,11,31,Offensive Rebound,Josh Hart offensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,72,65,2026-06-14T02:43:21Z
+401859967,2026,3,2026-06-13,558,4,11,26,Out of Bounds - Bad Pass Turnover,Karl-Anthony Towns out of bounds bad pass turnover,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,72,65,2026-06-14T02:43:28Z
+401859967,2026,3,2026-06-13,560,4,11,13,Jump Shot,Keldon Johnson makes 24-foot three point jumper (Stephon Castle assists),3,True,True,4395723,Keldon Johnson,4845367,Stephon Castle,,,24,24,SA,18,NY,75,65,2026-06-14T02:44:08Z
+401859967,2026,3,2026-06-13,562,4,10,59,Jump Shot,Josh Hart makes 25-foot three point jumper (Mikal Bridges assists),3,True,True,3062679,Josh Hart,3147657,Mikal Bridges,,,18,24,SA,18,NY,75,68,2026-06-14T02:44:21Z
+401859967,2026,3,2026-06-13,563,3,2,43,Alley Oop Layup Shot,Ariel Hukporti blocks Luke Kornet 's 4-foot alley oop layup,0,False,True,3064560,Luke Kornet,4871141,Ariel Hukporti,,,24,24,SA,18,NY,69,55,2026-06-14T02:32:33Z
+401859967,2026,3,2026-06-13,565,3,2,42,Defensive Rebound,Jalen Brunson defensive rebound,0,False,False,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,69,55,2026-06-14T02:32:34Z
+401859967,2026,3,2026-06-13,566,4,10,45,Jump Shot,Devin Vassell misses 25-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,24,SA,18,NY,75,68,2026-06-14T02:44:41Z
+401859967,2026,3,2026-06-13,567,4,10,43,Offensive Rebound,Keldon Johnson offensive rebound,0,False,False,4395723,Keldon Johnson,,,,,24,24,SA,18,NY,75,68,2026-06-14T02:44:43Z
+401859967,2026,3,2026-06-13,568,4,10,35,Driving Dunk Shot,Victor Wembanyama makes 1-foot driving dunk (Devin Vassell assists),2,True,True,5104157,Victor Wembanyama,4395630,Devin Vassell,,,24,24,SA,18,NY,77,68,2026-06-14T02:44:46Z
+401859967,2026,3,2026-06-13,572,4,10,8,Shot Clock Turnover,shot clock turnover,0,False,False,,,,,,,18,24,SA,18,NY,77,68,2026-06-14T02:45:28Z
+401859967,2026,3,2026-06-13,573,4,9,46,Alley Oop Layup Shot,Victor Wembanyama misses alley oop layup,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,77,68,2026-06-14T02:46:03Z
+401859967,2026,3,2026-06-13,574,4,9,43,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,77,68,2026-06-14T02:46:06Z
+401859967,2026,3,2026-06-13,575,4,10,8,Substitution,Landry Shamet enters the game for Jordan Clarkson,0,False,False,3914044,Landry Shamet,2528426,Jordan Clarkson,,,18,24,SA,18,NY,77,68,2026-06-14T02:45:46Z
+401859967,2026,3,2026-06-13,577,4,9,28,Jump Shot,Landry Shamet makes 25-foot three point jumper (Mikal Bridges assists),3,True,True,3914044,Landry Shamet,3147657,Mikal Bridges,,,18,24,SA,18,NY,77,71,2026-06-14T02:46:21Z
+401859967,2026,3,2026-06-13,579,4,9,10,Jump Shot,Devin Vassell makes 26-foot three point jumper (Stephon Castle assists),3,True,True,4395630,Devin Vassell,4845367,Stephon Castle,,,24,24,SA,18,NY,80,71,2026-06-14T02:46:39Z
+401859967,2026,3,2026-06-13,581,4,8,57,Driving Floating Bank Jump Shot,Jose Alvarado misses two point shot,0,False,True,4277869,Jose Alvarado,,,,,18,24,SA,18,NY,80,71,2026-06-14T02:46:53Z
+401859967,2026,3,2026-06-13,582,4,8,54,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,80,71,2026-06-14T02:46:56Z
+401859967,2026,3,2026-06-13,583,4,8,51,Shooting Foul,Josh Hart shooting foul,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,80,71,2026-06-14T02:47:01Z
+401859967,2026,3,2026-06-13,586,4,8,51,Full Timeout,Knicks Full timeout,0,False,False,,,,,,,18,24,SA,18,NY,80,71,2026-06-14T02:47:34Z
+401859967,2026,3,2026-06-13,588,4,8,51,Coach's Challenge (Stands),(08:51) [Knicks] COACH'S CHALLENGE (CALL STANDS) [Knicks] charged with a timeout,0,False,False,,,,,,,18,24,SA,18,NY,80,71,2026-06-14T02:47:50Z
+401859967,2026,3,2026-06-13,589,4,8,51,Substitution,Julian Champagnie enters the game for Keldon Johnson,0,False,False,4592479,Julian Champagnie,4395723,Keldon Johnson,,,24,24,SA,18,NY,80,71,2026-06-14T02:51:03Z
+401859967,2026,3,2026-06-13,590,4,8,51,Substitution,OG Anunoby enters the game for Josh Hart,0,False,False,3934719,OG Anunoby,3062679,Josh Hart,,,18,24,SA,18,NY,80,71,2026-06-14T02:51:03Z
+401859967,2026,3,2026-06-13,591,4,8,51,Substitution,Jalen Brunson enters the game for Jose Alvarado,0,False,False,3934672,Jalen Brunson,4277869,Jose Alvarado,,,18,24,SA,18,NY,80,71,2026-06-14T02:51:03Z
+401859967,2026,3,2026-06-13,595,4,8,51,Free Throw - 1 of 2,Stephon Castle misses free throw 1 of 2,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,80,71,2026-06-14T02:51:42Z
+401859967,2026,3,2026-06-13,596,4,8,51,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,80,71,2026-06-14T02:51:42Z
+401859967,2026,3,2026-06-13,597,4,8,51,Substitution,Dylan Harper enters the game for De'Aaron Fox,0,False,False,5037871,Dylan Harper,4066259,De'Aaron Fox,,,24,24,SA,18,NY,80,71,2026-06-14T02:51:44Z
+401859967,2026,3,2026-06-13,599,4,8,51,Free Throw - 2 of 2,Stephon Castle makes free throw 2 of 2,1,True,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,81,71,2026-06-14T02:51:42Z
+401859967,2026,3,2026-06-13,600,4,8,31,Driving Layup Shot,Landry Shamet makes driving layup,2,True,True,3914044,Landry Shamet,,,,,18,24,SA,18,NY,81,73,2026-06-14T02:52:33Z
+401859967,2026,3,2026-06-13,601,4,8,21,Driving Finger Roll Layup,Dylan Harper makes 1-foot two point shot (Julian Champagnie assists),2,True,True,5037871,Dylan Harper,4592479,Julian Champagnie,,,24,24,SA,18,NY,83,73,2026-06-14T02:52:43Z
+401859967,2026,3,2026-06-13,603,4,8,1,Jump Shot,Landry Shamet misses 23-foot three point jumper,0,False,True,3914044,Landry Shamet,,,,,18,24,SA,18,NY,83,73,2026-06-14T02:53:03Z
+401859967,2026,3,2026-06-13,604,4,7,58,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,83,73,2026-06-14T02:53:06Z
+401859967,2026,3,2026-06-13,605,4,7,54,Personal Take Foul,Landry Shamet personal take foul,0,False,False,3914044,Landry Shamet,,,,,18,24,SA,18,NY,83,73,2026-06-14T02:53:17Z
+401859967,2026,3,2026-06-13,607,4,7,54,Substitution,Josh Hart enters the game for Landry Shamet,0,False,False,3062679,Josh Hart,3914044,Landry Shamet,,,18,24,SA,18,NY,83,73,2026-06-14T02:53:33Z
+401859967,2026,3,2026-06-13,609,4,7,47,Bad Pass Turnover,Julian Champagnie bad pass turnover (OG Anunoby steals),0,False,False,4592479,Julian Champagnie,3934719,OG Anunoby,,,24,24,SA,18,NY,83,73,2026-06-14T02:53:51Z
+401859967,2026,3,2026-06-13,611,4,7,43,Shooting Foul,Stephon Castle shooting foul,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,83,73,2026-06-14T02:54:01Z
+401859967,2026,3,2026-06-13,613,4,7,43,Free Throw - 1 of 3,Jalen Brunson misses free throw 1 of 3,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,73,2026-06-14T02:54:32Z
+401859967,2026,3,2026-06-13,614,4,7,43,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,83,73,2026-06-14T02:54:32Z
+401859967,2026,3,2026-06-13,615,4,7,43,Free Throw - 2 of 3,Jalen Brunson makes free throw 2 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,74,2026-06-14T02:54:32Z
+401859967,2026,3,2026-06-13,616,4,7,43,Free Throw - 3 of 3,Jalen Brunson makes free throw 3 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,75,2026-06-14T02:54:32Z
+401859967,2026,3,2026-06-13,617,4,7,24,Fade Away Jump Shot,Victor Wembanyama misses 16-foot fade away jump shot,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,83,75,2026-06-14T02:55:35Z
+401859967,2026,3,2026-06-13,618,4,7,21,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,83,75,2026-06-14T02:55:38Z
+401859967,2026,3,2026-06-13,619,4,7,14,Driving Finger Roll Layup,Jalen Brunson makes 1-foot two point shot,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,77,2026-06-14T02:55:46Z
+401859967,2026,3,2026-06-13,620,4,7,14,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,24,SA,18,NY,83,77,2026-06-14T02:55:55Z
+401859967,2026,3,2026-06-13,621,4,6,50,Pullup Jump Shot,Stephon Castle misses 13-foot pullup jump shot,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,83,77,2026-06-14T02:59:49Z
+401859967,2026,3,2026-06-13,622,4,6,50,Defensive Rebound,Knicks defensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,83,77,2026-06-14T02:59:49Z
+401859967,2026,3,2026-06-13,623,4,6,50,Loose Ball Foul,Victor Wembanyama loose ball foul,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,83,77,2026-06-14T02:59:56Z
+401859967,2026,3,2026-06-13,625,4,6,50,Substitution,De'Aaron Fox enters the game for Stephon Castle,0,False,False,4066259,De'Aaron Fox,4845367,Stephon Castle,,,24,24,SA,18,NY,83,77,2026-06-14T03:00:08Z
+401859967,2026,3,2026-06-13,627,4,6,28,Driving Finger Roll Layup,Jalen Brunson makes 1-foot two point shot,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,79,2026-06-14T03:00:39Z
+401859967,2026,3,2026-06-13,628,4,6,6,Lost Ball Turnover,Julian Champagnie lost ball turnover (Karl-Anthony Towns steals),0,False,False,4592479,Julian Champagnie,3136195,Karl-Anthony Towns,,,24,24,SA,18,NY,83,79,2026-06-14T03:01:01Z
+401859967,2026,3,2026-06-13,630,4,5,48,Step Back Jump Shot,Karl-Anthony Towns misses 25-foot three point step back jumpshot,0,False,True,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,83,79,2026-06-14T03:01:18Z
+401859967,2026,3,2026-06-13,631,4,5,45,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,83,79,2026-06-14T03:01:21Z
+401859967,2026,3,2026-06-13,635,4,5,31,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,24,SA,18,NY,83,79,2026-06-14T03:02:09Z
+401859967,2026,3,2026-06-13,636,4,5,31,Coach's Challenge (Overturned),(05:31) [Spurs] COACH'S CHALLENGE (CALL OVERTURNED) [Spurs] retain their timeout,0,False,False,,,,,,,24,24,SA,18,NY,83,79,2026-06-14T03:02:08Z
+401859967,2026,3,2026-06-13,637,4,5,31,Personal Foul,Karl-Anthony Towns personal foul,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,83,79,2026-06-14T03:03:51Z
+401859967,2026,3,2026-06-13,639,4,5,31,Substitution,Mitchell Robinson enters the game for Karl-Anthony Towns,0,False,False,4351852,Mitchell Robinson,3136195,Karl-Anthony Towns,,,18,24,SA,18,NY,83,79,2026-06-14T03:04:13Z
+401859967,2026,3,2026-06-13,641,4,5,23,Pullup Jump Shot,De'Aaron Fox misses 11-foot pullup jump shot,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,83,79,2026-06-14T03:04:37Z
+401859967,2026,3,2026-06-13,642,4,5,22,Defensive Rebound,Mikal Bridges defensive rebound,0,False,False,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,83,79,2026-06-14T03:04:38Z
+401859967,2026,3,2026-06-13,643,4,5,18,Shooting Foul,Julian Champagnie shooting foul,0,False,False,4592479,Julian Champagnie,,,,,24,24,SA,18,NY,83,79,2026-06-14T03:04:46Z
+401859967,2026,3,2026-06-13,645,4,5,18,Free Throw - 1 of 2,Jalen Brunson makes free throw 1 of 2,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,80,2026-06-14T03:05:20Z
+401859967,2026,3,2026-06-13,646,4,5,18,Substitution,Luke Kornet enters the game for Victor Wembanyama,0,False,False,3064560,Luke Kornet,5104157,Victor Wembanyama,,,24,24,SA,18,NY,83,80,2026-06-14T03:05:21Z
+401859967,2026,3,2026-06-13,648,4,5,18,Free Throw - 2 of 2,Jalen Brunson makes free throw 2 of 2,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,81,2026-06-14T03:05:20Z
+401859967,2026,3,2026-06-13,650,4,4,59,Pullup Jump Shot,De'Aaron Fox misses 16-foot pullup jump shot,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,83,81,2026-06-14T03:06:17Z
+401859967,2026,3,2026-06-13,651,4,4,52,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,83,81,2026-06-14T03:06:24Z
+401859967,2026,3,2026-06-13,652,4,4,48,Running Finger Roll Layup,Jalen Brunson makes two point shot,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,83,83,2026-06-14T03:06:28Z
+401859967,2026,3,2026-06-13,653,4,4,26,Pullup Jump Shot,Dylan Harper misses 15-foot pullup jump shot,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,83,83,2026-06-14T03:06:49Z
+401859967,2026,3,2026-06-13,654,4,4,25,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,83,83,2026-06-14T03:06:50Z
+401859967,2026,3,2026-06-13,655,4,4,25,Loose Ball Foul,OG Anunoby loose ball foul,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,83,83,2026-06-14T03:06:55Z
+401859967,2026,3,2026-06-13,657,4,4,25,Substitution,Victor Wembanyama enters the game for Luke Kornet,0,False,False,5104157,Victor Wembanyama,3064560,Luke Kornet,,,24,24,SA,18,NY,83,83,2026-06-14T03:07:06Z
+401859967,2026,3,2026-06-13,659,4,4,14,Pullup Jump Shot,Devin Vassell makes 16-foot pullup jump shot (Dylan Harper assists),2,True,True,4395630,Devin Vassell,5037871,Dylan Harper,,,24,24,SA,18,NY,85,83,2026-06-14T03:07:34Z
+401859967,2026,3,2026-06-13,661,4,3,54,Turnaround Fade Away Jump Shot,Jalen Brunson misses 13-foot two point shot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,85,83,2026-06-14T03:07:53Z
+401859967,2026,3,2026-06-13,662,4,3,53,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,85,83,2026-06-14T03:07:54Z
+401859967,2026,3,2026-06-13,664,4,3,40,Shooting Foul,Devin Vassell shooting foul,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,85,83,2026-06-14T03:08:33Z
+401859967,2026,3,2026-06-13,666,4,3,40,Free Throw - 1 of 3,Jalen Brunson makes free throw 1 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,85,84,2026-06-14T03:09:04Z
+401859967,2026,3,2026-06-13,667,4,3,40,Free Throw - 2 of 3,Jalen Brunson makes free throw 2 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,85,85,2026-06-14T03:09:26Z
+401859967,2026,3,2026-06-13,668,4,3,40,Free Throw - 3 of 3,Jalen Brunson makes free throw 3 of 3,1,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:09:46Z
+401859967,2026,3,2026-06-13,669,4,3,24,Pullup Jump Shot,De'Aaron Fox misses 17-foot pullup jump shot,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,85,86,2026-06-14T03:10:07Z
+401859967,2026,3,2026-06-13,670,4,3,20,Defensive Rebound,Mitchell Robinson defensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:10:11Z
+401859967,2026,3,2026-06-13,671,4,3,17,Full Timeout,Knicks Full timeout,0,False,False,,,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:10:22Z
+401859967,2026,3,2026-06-13,672,4,3,17,Substitution,Stephon Castle enters the game for Julian Champagnie,0,False,False,4845367,Stephon Castle,4592479,Julian Champagnie,,,24,24,SA,18,NY,85,86,2026-06-14T03:11:50Z
+401859967,2026,3,2026-06-13,673,4,3,17,Substitution,Karl-Anthony Towns enters the game for Mitchell Robinson,0,False,False,3136195,Karl-Anthony Towns,4351852,Mitchell Robinson,,,18,24,SA,18,NY,85,86,2026-06-14T03:11:50Z
+401859967,2026,3,2026-06-13,676,4,3,15,Offensive Foul,Jalen Brunson offensive foul,0,False,False,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:12:03Z
+401859967,2026,3,2026-06-13,678,4,3,15,Offensive Foul Turnover,Jalen Brunson offensive foul turnover,0,False,False,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:12:03Z
+401859967,2026,3,2026-06-13,679,4,2,59,Driving Layup Shot,Stephon Castle misses driving layup,0,False,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,85,86,2026-06-14T03:12:29Z
+401859967,2026,3,2026-06-13,680,4,2,56,Defensive Rebound,Mikal Bridges defensive rebound,0,False,False,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:12:32Z
+401859967,2026,3,2026-06-13,681,4,2,37,Driving Floating Jump Shot,Karl-Anthony Towns misses driving floating jump shot,0,False,True,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:12:52Z
+401859967,2026,3,2026-06-13,682,4,2,36,Offensive Rebound,Josh Hart offensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:12:53Z
+401859967,2026,3,2026-06-13,683,4,2,29,Running Layup Shot,Mikal Bridges blocks Dylan Harper 's 6-foot running layup,0,False,True,5037871,Dylan Harper,3147657,Mikal Bridges,,,24,24,SA,18,NY,85,86,2026-06-14T03:13:03Z
+401859967,2026,3,2026-06-13,685,4,2,28,Offensive Rebound,Dylan Harper offensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,85,86,2026-06-14T03:13:04Z
+401859967,2026,3,2026-06-13,686,4,2,19,Driving Finger Roll Layup,Dylan Harper misses two point shot,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,85,86,2026-06-14T03:13:11Z
+401859967,2026,3,2026-06-13,687,4,2,18,Defensive Rebound,Karl-Anthony Towns defensive rebound,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:13:12Z
+401859967,2026,3,2026-06-13,688,4,2,7,Cutting Dunk Shot,OG Anunoby makes dunk (Josh Hart assists),2,True,True,3934719,OG Anunoby,3062679,Josh Hart,,,18,24,SA,18,NY,85,88,2026-06-14T03:13:22Z
+401859967,2026,3,2026-06-13,690,4,2,7,Defensive Goaltending,Devin Vassell defensive goaltending violation,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,85,88,2026-06-14T03:13:31Z
+401859967,2026,3,2026-06-13,691,4,1,53,Shooting Foul,Karl-Anthony Towns shooting foul,0,False,False,3136195,Karl-Anthony Towns,,,,,18,24,SA,18,NY,85,88,2026-06-14T03:13:52Z
+401859967,2026,3,2026-06-13,694,4,1,53,Substitution,Mitchell Robinson enters the game for Karl-Anthony Towns,0,False,False,4351852,Mitchell Robinson,3136195,Karl-Anthony Towns,,,18,24,SA,18,NY,85,88,2026-06-14T03:14:36Z
+401859967,2026,3,2026-06-13,696,4,1,53,Free Throw - 1 of 2,Victor Wembanyama misses free throw 1 of 2,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,85,88,2026-06-14T03:14:43Z
+401859967,2026,3,2026-06-13,697,4,1,53,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,85,88,2026-06-14T03:14:43Z
+401859967,2026,3,2026-06-13,698,4,1,53,Free Throw - 2 of 2,Victor Wembanyama makes free throw 2 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,86,88,2026-06-14T03:15:11Z
+401859967,2026,3,2026-06-13,699,4,2,36,Layup Shot Putback,Josh Hart misses two point shot,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,85,86,2026-06-14T03:12:58Z
+401859967,2026,3,2026-06-13,700,4,2,35,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,85,86,2026-06-14T03:12:59Z
+401859967,2026,3,2026-06-13,701,4,1,29,Step Back Jump Shot,Jalen Brunson misses 14-foot step back jumpshot,0,False,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,86,88,2026-06-14T03:15:37Z
+401859967,2026,3,2026-06-13,702,4,1,29,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,86,88,2026-06-14T03:15:42Z
+401859967,2026,3,2026-06-13,703,4,1,29,Shot Clock Turnover,shot clock turnover,0,False,False,,,,,,,18,24,SA,18,NY,86,88,2026-06-14T03:15:45Z
+401859967,2026,3,2026-06-13,704,4,1,16,Turnaround Jump Shot,Dylan Harper makes 8-foot turnaround jump shot,2,True,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,88,88,2026-06-14T03:16:12Z
+401859967,2026,3,2026-06-13,705,4,1,5,Driving Floating Jump Shot,Jalen Brunson makes 11-foot driving floating jump shot,2,True,True,3934672,Jalen Brunson,,,,,18,24,SA,18,NY,88,90,2026-06-14T03:16:25Z
+401859967,2026,3,2026-06-13,706,4,0,54.3,Jump Shot,De'Aaron Fox misses 23-foot three point jumper,0,False,True,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,88,90,2026-06-14T03:16:41Z
+401859967,2026,3,2026-06-13,707,4,0,51.3,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,88,90,2026-06-14T03:16:44Z
+401859967,2026,3,2026-06-13,708,4,0,36.3,Jump Shot,Josh Hart misses 26-foot three point jumper,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,88,90,2026-06-14T03:16:59Z
+401859967,2026,3,2026-06-13,709,4,0,32.1,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,88,90,2026-06-14T03:17:03Z
+401859967,2026,3,2026-06-13,710,4,0,27.3,Running Finger Roll Layup,Dylan Harper misses two point shot,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,88,90,2026-06-14T03:17:08Z
+401859967,2026,3,2026-06-13,711,4,0,27.3,Defensive Rebound,Josh Hart defensive rebound,0,False,False,3062679,Josh Hart,,,,,18,24,SA,18,NY,88,90,2026-06-14T03:17:08Z
+401859967,2026,3,2026-06-13,712,4,0,26.1,Personal Take Foul,De'Aaron Fox personal take foul,0,False,False,4066259,De'Aaron Fox,,,,,24,24,SA,18,NY,88,90,2026-06-14T03:17:16Z
+401859967,2026,3,2026-06-13,714,4,0,26.1,Free Throw - 1 of 2,Josh Hart makes free throw 1 of 2,1,True,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,88,91,2026-06-14T03:17:51Z
+401859967,2026,3,2026-06-13,715,4,0,26.1,Substitution,Luke Kornet enters the game for De'Aaron Fox,0,False,False,3064560,Luke Kornet,4066259,De'Aaron Fox,,,24,24,SA,18,NY,88,91,2026-06-14T03:17:53Z
+401859967,2026,3,2026-06-13,716,4,0,26.1,Substitution,Landry Shamet enters the game for Jalen Brunson,0,False,False,3914044,Landry Shamet,3934672,Jalen Brunson,,,18,24,SA,18,NY,88,91,2026-06-14T03:17:53Z
+401859967,2026,3,2026-06-13,719,4,0,26.1,Free Throw - 2 of 2,Josh Hart misses free throw 2 of 2,0,False,True,3062679,Josh Hart,,,,,18,24,SA,18,NY,88,91,2026-06-14T03:17:51Z
+401859967,2026,3,2026-06-13,720,4,0,22.2,Offensive Rebound,Mitchell Robinson offensive rebound,0,False,False,4351852,Mitchell Robinson,,,,,18,24,SA,18,NY,88,91,2026-06-14T03:17:55Z
+401859967,2026,3,2026-06-13,721,4,0,21.6,Personal Take Foul,Luke Kornet personal take foul,0,False,False,3064560,Luke Kornet,,,,,24,24,SA,18,NY,88,91,2026-06-14T03:18:25Z
+401859967,2026,3,2026-06-13,723,4,0,21.6,Free Throw - 1 of 2,OG Anunoby makes free throw 1 of 2,1,True,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,88,92,2026-06-14T03:18:48Z
+401859967,2026,3,2026-06-13,724,4,0,21.6,Free Throw - 2 of 2,OG Anunoby misses free throw 2 of 2,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,88,92,2026-06-14T03:18:48Z
+401859967,2026,3,2026-06-13,725,4,0,20,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,24,SA,18,NY,88,92,2026-06-14T03:18:50Z
+401859967,2026,3,2026-06-13,726,4,0,20,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,24,SA,18,NY,88,92,2026-06-14T03:19:11Z
+401859967,2026,3,2026-06-13,727,4,0,20,Substitution,De'Aaron Fox enters the game for Luke Kornet,0,False,False,4066259,De'Aaron Fox,3064560,Luke Kornet,,,24,24,SA,18,NY,88,92,2026-06-14T03:20:32Z
+401859967,2026,3,2026-06-13,729,4,0,17.9,Jump Shot,Victor Wembanyama misses 26-foot three point jumper,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,88,92,2026-06-14T03:21:15Z
+401859967,2026,3,2026-06-13,730,4,0,16.3,Offensive Rebound,Stephon Castle offensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,24,SA,18,NY,88,92,2026-06-14T03:21:22Z
+401859967,2026,3,2026-06-13,731,4,0,16.3,Tip Dunk Shot,Stephon Castle makes tip in dunk,2,True,True,4845367,Stephon Castle,,,,,24,24,SA,18,NY,90,92,2026-06-14T03:21:22Z
+401859967,2026,3,2026-06-13,732,4,0,16.3,Full Timeout,Knicks Full timeout,0,False,False,,,,,,,18,24,SA,18,NY,90,92,2026-06-14T03:21:26Z
+401859967,2026,3,2026-06-13,733,4,0,16.3,Substitution,Jalen Brunson enters the game for Mitchell Robinson,0,False,False,3934672,Jalen Brunson,4351852,Mitchell Robinson,,,18,24,SA,18,NY,90,92,2026-06-14T03:22:41Z
+401859967,2026,3,2026-06-13,735,4,0,8.8,Personal Foul,Dylan Harper personal foul,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,90,92,2026-06-14T03:23:35Z
+401859967,2026,3,2026-06-13,737,4,0,8.8,Free Throw - 1 of 2,Mikal Bridges misses free throw 1 of 2,0,False,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,90,92,2026-06-14T03:24:10Z
+401859967,2026,3,2026-06-13,738,4,0,8.8,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,90,92,2026-06-14T03:24:10Z
+401859967,2026,3,2026-06-13,739,4,0,8.8,Substitution,Luke Kornet enters the game for De'Aaron Fox,0,False,False,3064560,Luke Kornet,4066259,De'Aaron Fox,,,24,24,SA,18,NY,90,92,2026-06-14T03:24:12Z
+401859967,2026,3,2026-06-13,740,4,0,8.8,Substitution,Mitchell Robinson enters the game for Jalen Brunson,0,False,False,4351852,Mitchell Robinson,3934672,Jalen Brunson,,,18,24,SA,18,NY,90,92,2026-06-14T03:24:12Z
+401859967,2026,3,2026-06-13,743,4,0,8.8,Free Throw - 2 of 2,Mikal Bridges makes free throw 2 of 2,1,True,True,3147657,Mikal Bridges,,,,,18,24,SA,18,NY,90,93,2026-06-14T03:24:36Z
+401859967,2026,3,2026-06-13,744,4,0,8.8,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,24,SA,18,NY,90,93,2026-06-14T03:24:39Z
+401859967,2026,3,2026-06-13,745,4,0,8.8,Substitution,Jeremy Sochan enters the game for Mitchell Robinson,0,False,False,4610139,Jeremy Sochan,4351852,Mitchell Robinson,,,18,24,SA,18,NY,90,93,2026-06-14T03:25:56Z
+401859967,2026,3,2026-06-13,747,4,0,8.8,Substitution,De'Aaron Fox enters the game for Luke Kornet,0,False,False,4066259,De'Aaron Fox,3064560,Luke Kornet,,,24,24,SA,18,NY,90,93,2026-06-14T03:26:20Z
+401859967,2026,3,2026-06-13,749,4,0,8.5,Personal Take Foul,Landry Shamet personal take foul,0,False,False,3914044,Landry Shamet,,,,,18,24,SA,18,NY,90,93,2026-06-14T03:26:51Z
+401859967,2026,3,2026-06-13,751,4,0,8.5,Free Throw - 1 of 2,Dylan Harper misses free throw 1 of 2,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,90,93,2026-06-14T03:27:56Z
+401859967,2026,3,2026-06-13,753,4,0,8.5,Substitution,Luke Kornet enters the game for De'Aaron Fox,0,False,False,3064560,Luke Kornet,4066259,De'Aaron Fox,,,24,24,SA,18,NY,90,93,2026-06-14T03:27:30Z
+401859967,2026,3,2026-06-13,754,4,0,8.5,Substitution,Ariel Hukporti enters the game for Landry Shamet,0,False,False,4871141,Ariel Hukporti,3914044,Landry Shamet,,,18,24,SA,18,NY,90,93,2026-06-14T03:27:30Z
+401859967,2026,3,2026-06-13,757,4,0,8.5,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,24,SA,18,NY,90,93,2026-06-14T03:27:56Z
+401859967,2026,3,2026-06-13,758,4,0,7.7,Personal Take Foul,Dylan Harper personal take foul,0,False,False,5037871,Dylan Harper,,,,,24,24,SA,18,NY,90,93,2026-06-14T03:28:02Z
+401859967,2026,3,2026-06-13,760,4,0,7.7,Free Throw - 1 of 2,OG Anunoby misses free throw 1 of 2,0,False,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,90,93,2026-06-14T03:28:34Z
+401859967,2026,3,2026-06-13,761,4,0,7.7,Offensive Rebound,Knicks offensive team rebound,0,False,False,,,,,,,18,24,SA,18,NY,90,93,2026-06-14T03:28:34Z
+401859967,2026,3,2026-06-13,762,4,0,7.7,Substitution,Julian Champagnie enters the game for Stephon Castle,0,False,False,4592479,Julian Champagnie,4845367,Stephon Castle,,,24,24,SA,18,NY,90,93,2026-06-14T03:28:38Z
+401859967,2026,3,2026-06-13,763,4,0,7.7,Substitution,De'Aaron Fox enters the game for Luke Kornet,0,False,False,4066259,De'Aaron Fox,3064560,Luke Kornet,,,24,24,SA,18,NY,90,93,2026-06-14T03:28:38Z
+401859967,2026,3,2026-06-13,764,4,0,7.7,Substitution,Landry Shamet enters the game for Ariel Hukporti,0,False,False,3914044,Landry Shamet,4871141,Ariel Hukporti,,,18,24,SA,18,NY,90,93,2026-06-14T03:28:38Z
+401859967,2026,3,2026-06-13,768,4,0,7.7,Free Throw - 2 of 2,OG Anunoby makes free throw 2 of 2,1,True,True,3934719,OG Anunoby,,,,,18,24,SA,18,NY,90,94,2026-06-14T03:29:03Z
+401859967,2026,3,2026-06-13,769,4,0,2,Jump Shot,Victor Wembanyama misses 25-foot three point jumper,0,False,True,5104157,Victor Wembanyama,,,,,24,24,SA,18,NY,90,94,2026-06-14T03:29:10Z
+401859967,2026,3,2026-06-13,770,4,0,2,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,90,94,2026-06-14T03:29:10Z
+401859967,2026,3,2026-06-13,771,4,0,0,End Period,End of the 4th Quarter,0,False,False,,,,,,,,24,SA,18,NY,90,94,2026-06-14T03:29:24Z
+401859967,2026,3,2026-06-13,772,4,0,0,End Game,End of Game,0,False,False,,,,,,,,24,SA,18,NY,90,94,2026-06-14T03:29:26Z
+401859967,2026,3,2026-06-13,773,4,0,8.5,Free Throw - 2 of 2,Dylan Harper misses free throw 2 of 2,0,False,True,5037871,Dylan Harper,,,,,24,24,SA,18,NY,90,93,2026-06-14T03:27:56Z
+401859967,2026,3,2026-06-13,774,4,0,8.5,Defensive Rebound,OG Anunoby defensive rebound,0,False,False,3934719,OG Anunoby,,,,,18,24,SA,18,NY,90,93,2026-06-14T03:27:56Z

@@ -1,6 +1,5 @@
-import { buildDeck, type DealerLevel, type TableMode } from "@sportsjack/engine";
-import type { RecordedGame } from "@sportsjack/feed";
-import { loadNflverseGame, loadNflversePlayers, loadProjections, type GameInfo } from "@sportsjack/feed";
+import { buildDeck, rulesFor, type DealerLevel, type GameRules, type TableMode } from "@sportsjack/engine";
+import { loadNbaGame, loadNbaRoster, loadNflverseGame, loadNflversePlayers, loadProjections, type GameInfo, type RecordedGame } from "@sportsjack/feed";
 import type { ServerConfig } from "./config.ts";
 import { GameRunner } from "./runner.ts";
 import { Store } from "./store.ts";
@@ -12,7 +11,13 @@ const LABELS: Record<string, string> = {
   "2025_16_LA_SEA": "Week 16 · went to overtime",
   "2025_04_GB_DAL": "Week 4 · 40–40 overtime tie",
   "2026_07_NE_CHI": "2026 Week 7 · Thursday night",
+  "401859967": "2026 NBA Finals",
+  "401873197": "2026 Playoffs · double overtime",
+  "401909294": "2026-27 season · Friday night",
 };
+
+/** NBA games use ESPN's numeric ids; NFL games use nflverse ids like 2025_22_SEA_NE. */
+const isNba = (gameId: string) => /^\d+$/.test(gameId);
 
 export interface OpenTable { gameId: string; mode: TableMode; ante: number; lockout: number; level: DealerLevel }
 
@@ -25,6 +30,7 @@ export class Lobby {
   readonly #decks = new Map<string, ReturnType<typeof buildDeck>>();
   readonly #onChange: (table: Table | null) => void;
   readonly #recorded = new Map<string, RecordedGame>();
+  readonly #rules = new Map<string, GameRules>();
   readonly #practices = new Map<string, GameRunner>();
   readonly #config: ServerConfig;
   #nextId = 1;
@@ -34,9 +40,12 @@ export class Lobby {
     this.#onChange = onChange;
     this.#config = config;
     for (const gameId of config.games) {
-      const recorded = loadNflverseGame(`${config.fixtures}games/${gameId}.csv`);
-      const deck = buildDeck(loadNflversePlayers(`${config.fixtures}rosters/${gameId}.csv`),
-        loadProjections(`${config.fixtures}projections/${gameId}.csv`));
+      const dir = `${config.fixtures}${isNba(gameId) ? "nba" : "nflverse"}/`;
+      const recorded = isNba(gameId) ? loadNbaGame(`${dir}games/${gameId}.csv`) : loadNflverseGame(`${dir}games/${gameId}.csv`);
+      const rules = rulesFor(recorded.game.sport);
+      const roster = isNba(gameId) ? loadNbaRoster(`${dir}rosters/${gameId}.csv`) : loadNflversePlayers(`${dir}rosters/${gameId}.csv`);
+      const deck = buildDeck(roster, loadProjections(`${dir}projections/${gameId}.csv`), rules);
+      this.#rules.set(gameId, rules);
       const runner = new GameRunner(recorded, { speed: config.speed, fromQuarter: config.fromQuarter, breakSeconds: config.breakSeconds, loop: config.loop });
       runner.on("quarter_start", () => onChange(null));
       runner.on("quarter_end", () => onChange(null));
@@ -59,7 +68,7 @@ export class Lobby {
     if (spec.mode !== "dealer" && spec.mode !== "players") throw new Error("bad_mode");
     if (spec.level !== "easy" && spec.level !== "sharp") throw new Error("bad_level");
     const full: TableSpec = { ...spec, id: `t${this.#nextId++}`, openedBy };
-    const table = new Table(full, runner, this.store, this.#decks.get(spec.gameId)!, () => this.#onChange(table));
+    const table = new Table(full, runner, this.store, this.#decks.get(spec.gameId)!, this.#rules.get(spec.gameId)!, () => this.#onChange(table));
     this.tables.set(full.id, table);
     return table;
   }
@@ -72,7 +81,7 @@ export class Lobby {
     const gameId = this.#recorded.has("2025_22_SEA_NE") ? "2025_22_SEA_NE" : [...this.#recorded.keys()][0]!;
     const runner = new GameRunner(this.#recorded.get(gameId)!, { speed: this.#config.speed, fromQuarter: 4, breakSeconds: 1, loop: false });
     const spec: TableSpec = { id: `p${this.#nextId++}`, gameId, mode: "dealer", ante: 0, lockout: 30, level: "easy", openedBy: accountId, practice: true };
-    const table = new Table(spec, runner, this.store, this.#decks.get(gameId)!, () => this.#onChange(table));
+    const table = new Table(spec, runner, this.store, this.#decks.get(gameId)!, this.#rules.get(gameId)!, () => this.#onChange(table));
     this.tables.set(spec.id, table);
     this.#practices.set(spec.id, runner);
     table.sit(accountId);
@@ -96,7 +105,7 @@ export class Lobby {
 
   summary() {
     return {
-      games: [...this.games.values()].map((g) => ({ ...g, status: this.runners.get(g.gameId)!.status(), periods: this.runners.get(g.gameId)!.periods })),
+      games: [...this.games.values()].map((g) => ({ ...g, status: this.runners.get(g.gameId)!.status(), periods: this.runners.get(g.gameId)!.periods, rules: this.#rules.get(g.gameId)! })),
       tables: [...this.tables.values()].filter((t) => !t.spec.practice).map((t) => ({ ...t.spec, seated: t.seated.size, inHand: t.humans.length })),
     };
   }

@@ -6,7 +6,9 @@ plays. Read `MISSION.md` (scope, invariants, open questions), then
 `prd/PHASE1-ALPHA.md`; the full product is `prd/SportsJack-PRD.html`.
 
 - Checks: `python harness/ci.py` (typecheck + tests). Run before every commit.
-- Real-game data: `fixtures/nflverse/`; add games with `npm run fixtures -- --games <id>`.
+- Real-game data: `fixtures/nflverse/` (NFL; add games with `npm run fixtures -- --games <id>`) and
+  `fixtures/nba/` (NBA; `uv run --with pyarrow tools/nba/fetch_fixtures.py --games <espn id>`, then
+  `node --experimental-strip-types tools/nba/projections.ts`).
 - Watch a real game replay: `npm run replay -- 2025_22_SEA_NE --speed 120 --qtr 4`.
 - Run the game server: `npm start` (port 8787; `PORT`, `SPORTSJACK_DB`, `SPORTSJACK_REPLAY`,
   `SPORTSJACK_REPLAY_SPEED` and `SPORTSJACK_TEST_CONTROLS=1` are in `apps/server/src/config.ts`).

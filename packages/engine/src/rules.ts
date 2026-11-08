@@ -1,4 +1,5 @@
-import { SPORTSJACK_V1, type ScoringRules } from "./scoring.ts";
+import type { Sport } from "@sportsjack/feed";
+import { NBA_V1, SPORTSJACK_V1, type ScoringRules } from "./scoring.ts";
 
 /** Everything a hand's outcome depends on, shown to players on the rules screen. */
 export interface GameRules {
@@ -24,7 +25,20 @@ export const ALPHA_RULES: GameRules = {
   rake: 0.1,
 };
 
-/** Face value at the deal: 2 + 2 × projected quarter points, capped at 2–10. */
+/** NBA: basketball scores constantly, so faces scale less and live points weigh less (docs/analysis/NBA-tuning.md). */
+export const NBA_ALPHA_RULES: GameRules = {
+  id: "alpha-nba-1",
+  scoring: NBA_V1,
+  liveWeight: 0.2,
+  faceMin: 2,
+  faceMax: 10,
+  facePerProjectedPoint: 0.25,
+  rake: 0.1,
+};
+
+export const rulesFor = (sport: Sport): GameRules => (sport === "nba" ? NBA_ALPHA_RULES : ALPHA_RULES);
+
+/** Face value at the deal: faceMin + scale × projected quarter points, capped (NFL: 2 + 2 × points, 2–10). */
 export function faceValue(projectedQuarterPoints: number, rules: GameRules = ALPHA_RULES): number {
   const face = rules.faceMin + Math.round(rules.facePerProjectedPoint * projectedQuarterPoints);
   return Math.min(rules.faceMax, Math.max(rules.faceMin, face));

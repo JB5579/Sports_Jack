@@ -8,8 +8,17 @@ export interface CoachHand {
   canAct: boolean;
 }
 
-export const COACH_TEXT: Record<Exclude<CoachStep, "done">, { title: string; body: string; action: "next" | "skip" | "got" }> = {
-  cards: { title: "These are your cards", body: "Each one is a real player in this game. A card is worth its face value plus half the fantasy points he scores this quarter.", action: "next" },
+type Text = { title: string; body: string; action: "next" | "skip" | "got" };
+
+/** The coach's words for a step, in the sport being played. */
+export function coachText(step: Exclude<CoachStep, "done">, sport: "nfl" | "nba", liveShare: string): Text {
+  if (step === "cards") return { ...COACH_TEXT.cards, body: `Each one is a real player in this game. A card is worth its face value plus ${liveShare} of the fantasy points he scores this quarter.` };
+  if (step === "whistle" && sport === "nba") return { ...COACH_TEXT.whistle, body: "Busting isn't final until then: a turnover can pull you back under. Beat the dealer's total to win." };
+  return COACH_TEXT[step];
+}
+
+const COACH_TEXT: Record<Exclude<CoachStep, "done">, Text> = {
+  cards: { title: "These are your cards", body: "", action: "next" },
   live: { title: "Values move on real plays", body: "Watch the ticker. When a play involves one of your players, his card moves and flashes.", action: "next" },
   hit: { title: "Tap Hit to draw a player", body: "Hitting is free and there's no limit, but every card adds to your total. You want to finish close to 21 without going over.", action: "skip" },
   burn: { title: "Burn swaps one card", body: "Once per hand, tap Burn and then a card to trade it for a new draw. Try it on your weakest card.", action: "skip" },

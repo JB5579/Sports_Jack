@@ -17,6 +17,9 @@ export const qName = (q: number) => (q === 5 ? "OT" : q > 5 ? `${q - 4}OT` : `Q$
 /** A live weight as people say it: 0.5 → "½", 0.2 → "⅕". */
 export const weightText = (w: number) => ({ 0.5: "½", 0.25: "¼", 0.2: "⅕" } as Record<number, string>)[w] ?? String(w);
 
+/** The same share in words, for sentences: 0.5 → "half", 0.2 → "a fifth". */
+export const weightWords = (w: number) => ({ 0.5: "half", 0.25: "a quarter", 0.2: "a fifth" } as Record<number, string>)[w] ?? `${w} ×`;
+
 export function shortName(name: string): string {
   const parts = name.split(" ");
   return parts.length > 1 ? `${parts[0]![0]}. ${parts.slice(1).join(" ")}` : name;

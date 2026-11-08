@@ -1,5 +1,5 @@
 import { buildDeck, rulesFor, type DealerLevel, type GameRules, type TableMode } from "@sportsjack/engine";
-import { loadNbaGame, loadNbaRoster, loadNflverseGame, loadNflversePlayers, loadProjections, type GameInfo, type RecordedGame } from "@sportsjack/feed";
+import { loadNbaGame, loadNbaRoster, loadNflverseGame, loadNflversePlayers, loadProjections, type GameInfo, type RecordedGame, type Sport } from "@sportsjack/feed";
 import type { ServerConfig } from "./config.ts";
 import { GameRunner } from "./runner.ts";
 import { Store } from "./store.ts";
@@ -77,8 +77,11 @@ export class Lobby {
    * A free practice hand for a first-time player (PRD §8.1): a private replay of a
    * dramatic quarter that deals at once, so nobody joins a quarter already under way.
    */
-  practice(accountId: string): Table {
-    const gameId = this.#recorded.has("2025_22_SEA_NE") ? "2025_22_SEA_NE" : [...this.#recorded.keys()][0]!;
+  practice(accountId: string, sport: Sport = "nfl"): Table {
+    // The fourth quarter of each sport's title game: Super Bowl LX, the 2026 NBA Finals.
+    const preferred = sport === "nba" ? "401859967" : "2025_22_SEA_NE";
+    const ofSport = [...this.#recorded.keys()].filter((id) => this.#recorded.get(id)!.game.sport === sport);
+    const gameId = this.#recorded.has(preferred) ? preferred : ofSport[0] ?? [...this.#recorded.keys()][0]!;
     const runner = new GameRunner(this.#recorded.get(gameId)!, { speed: this.#config.speed, fromQuarter: 4, breakSeconds: 1, loop: false });
     const spec: TableSpec = { id: `p${this.#nextId++}`, gameId, mode: "dealer", ante: 0, lockout: 30, level: "easy", openedBy: accountId, practice: true };
     const table = new Table(spec, runner, this.store, this.#decks.get(gameId)!, this.#rules.get(gameId)!, () => this.#onChange(table));

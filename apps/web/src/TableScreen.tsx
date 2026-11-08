@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import type { TableView } from "./api.ts";
 import { Dial, PlayingCard, type Flash } from "./Cards.tsx";
-import { advance, COACH_TEXT, following, type CoachStep } from "./coach.ts";
+import { advance, coachText, following, type CoachStep } from "./coach.ts";
 import { track } from "./api.ts";
-import { clockText, fmt1, playText, qName, shortName } from "./format.ts";
+import { clockText, fmt1, playText, qName, shortName, weightWords } from "./format.ts";
 
 export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, onFeedback }: {
   view: TableView; onLeave: () => void; onHit: () => void; onFreeze: () => void; onBurn: (playerId: string) => void; onGrid: () => void; onFeedback: () => void;
@@ -126,15 +126,18 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
           );
         })}
       </div>
-      {table.practice && coach !== "done" && !hand.over && (
-        <div className="coach" role="note">
-          <div className="coach-title">{COACH_TEXT[coach].title}</div>
-          <p>{COACH_TEXT[coach].body}</p>
-          <button type="button" className="text-btn" onClick={() => { track("coach_step", { from: coach, to: following(coach), how: COACH_TEXT[coach].action }); setCoach(following(coach)); }}>
-            {COACH_TEXT[coach].action === "next" ? "Next" : COACH_TEXT[coach].action === "skip" ? "Skip this step" : "Got it"}
-          </button>
-        </div>
-      )}
+      {table.practice && coach !== "done" && !hand.over && (() => {
+        const text = coachText(coach, game.sport, weightWords(hand.liveWeight));
+        return (
+          <div className="coach" role="note">
+            <div className="coach-title">{text.title}</div>
+            <p>{text.body}</p>
+            <button type="button" className="text-btn" onClick={() => { track("coach_step", { from: coach, to: following(coach), how: text.action, sport: game.sport }); setCoach(following(coach)); }}>
+              {text.action === "next" ? "Next" : text.action === "skip" ? "Skip this step" : "Got it"}
+            </button>
+          </div>
+        );
+      })()}
       <div className="notice">{burnPick ? "Tap the card you want to burn" : hand.locked && !mine.frozen && !hand.over ? `Moves locked with ${clockText(hand.lockout)} left` : ""}</div>
       <div className="rail">
         <button className={`burn${table.practice && coach === "burn" ? " coached" : ""}`} type="button" disabled={!canAct || mine.burned} onClick={() => setBurnPick(!burnPick)}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : "1 left"}</small></button>

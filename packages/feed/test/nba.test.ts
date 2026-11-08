@@ -26,8 +26,7 @@ describe("NBA replay source on real games", () => {
     const { game, events } = loadNbaGame(`${NBA}games/401859967.csv`);
     expect(game).toMatchObject({ sport: "nba", home: "SA", away: "NY", playoffs: true, date: "2026-06-13" });
     expect(events.filter((e) => e.kind === "quarter_end").map((e) => e.clock.qtr)).toEqual([1, 2, 3, 4]);
-    // ESPN logged two corrections after the final whistle; the game_end event carries the final score.
-    expect(events.find((e) => e.kind === "game_end")).toMatchObject({ score: { home: 90, away: 94 } });
+    expect(events.at(-1)).toMatchObject({ kind: "game_end", score: { home: 90, away: 94 } });
     expect(events.find((e) => e.kind === "play")!.clock.quarterSecondsRemaining).toBe(720);
   });
 
@@ -53,6 +52,19 @@ describe("NBA replay source on real games", () => {
           reb: Number(r.rebounds), ast: Number(r.assists), stl: Number(r.steals), blk: Number(r.blocks), tov: Number(r.turnovers),
         });
       }
+    });
+
+    it(`orders ${gameId}'s events by period and clock, with each period's end last, despite ESPN's late corrections`, () => {
+      const { events } = loadNbaGame(`${NBA}games/${gameId}.csv`);
+      for (let i = 1; i < events.length; i++) {
+        const [a, b] = [events[i - 1]!, events[i]!];
+        expect(b.clock.qtr >= a.clock.qtr, `event ${i}`).toBe(true);
+        if (b.clock.qtr === a.clock.qtr && a.kind === "play" && b.kind === "play") {
+          expect(b.clock.quarterSecondsRemaining <= a.clock.quarterSecondsRemaining, `event ${i}`).toBe(true);
+        }
+        if (a.kind === "quarter_end") expect(b.clock.qtr > a.clock.qtr || b.kind === "game_end", `event ${i}`).toBe(true);
+      }
+      expect(events.at(-1)!.kind).toBe("game_end");
     });
 
     it(`deals every player who records a stat in ${gameId} from its dressed roster`, () => {

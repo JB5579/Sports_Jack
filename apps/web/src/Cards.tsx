@@ -47,6 +47,7 @@ export function PlayingCard({ card, flash, fresh, burnable, onClick, mini = fals
       <span className="band" style={{ background: posColor(card.position) }} />
       {flash && <span className={`delta ${flash.delta >= 0 ? "up" : "down"}`}>{flash.delta >= 0 ? "▲" : "▼"}{fmt1(Math.abs(flash.delta))}</span>}
       <span className="pos">{card.position} · {card.team}</span>
+      {!!card.sharedWith && <span className="shared" title={`Also face up in ${card.sharedWith} other hand${card.sharedWith === 1 ? "" : "s"}`}>×{card.sharedWith + 1}</span>}
       <span className="nm">{shortName(card.name)}</span>
       <span className="val num">{fmt1(card.value)}</span>
       <span className="split num">{card.face} face {live >= 0 ? "+" : "−"} {fmt1(Math.abs(live))} live</span>

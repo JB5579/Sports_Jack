@@ -38,7 +38,7 @@ export class GameRunner extends EventEmitter {
   readonly game: GameInfo;
   readonly periods: Period[];
   readonly #events: FeedEvent[];
-  readonly #options: { speed: number; fromQuarter: number; breakSeconds: number; loop: boolean };
+  readonly #options: { speed: number; fromQuarter: number; breakSeconds: number; loop: boolean; firstBreakSeconds?: number };
   phase: Phase = "break";
   qtr: number;
   clock = 900;
@@ -47,14 +47,14 @@ export class GameRunner extends EventEmitter {
   #idx = 0;
   #score = { home: 0, away: 0 };
 
-  constructor(recorded: RecordedGame, options: { speed: number; fromQuarter: number; breakSeconds: number; loop: boolean }) {
+  constructor(recorded: RecordedGame, options: { speed: number; fromQuarter: number; breakSeconds: number; loop: boolean; firstBreakSeconds?: number }) {
     super();
     this.game = recorded.game;
     this.#events = recorded.events;
     this.periods = periodsOf(recorded);
     this.#options = options;
     this.qtr = Math.min(options.fromQuarter, this.periods.at(-1)!.q) - 1;
-    this.#breakLeft = options.breakSeconds;
+    this.#breakLeft = options.firstBreakSeconds ?? options.breakSeconds;
     this.#scoreBefore(this.qtr + 1);
   }
 

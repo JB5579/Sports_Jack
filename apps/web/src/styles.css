@@ -228,6 +228,21 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
 .dial-wrap.compact { gap: 2px; }
 .dial-wrap.compact .dial { width: 200px; }
 .dial-wrap.compact .dial .total { font-size: 50px; }
+.opponents.rows { flex-direction: column; overflow: visible; gap: 6px; }
+.opp.row { flex: none; min-width: 0; padding: 6px 8px; display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: center; gap: 8px; }
+.opp-head { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.opp-head .who { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.opp-head .tot { font-size: 20px; line-height: 1.05; }
+.opp-cards { display: flex; gap: 4px; overflow-x: auto; }
+.opp-cards .pcard.mini { width: 46px; height: 50px; padding: 4px 4px 3px; border-radius: 6px; }
+.opp-cards .pcard.mini .band { height: 3px; border-radius: 6px 6px 0 0; }
+.opp-cards .pcard.mini .pos { font-size: 7px; letter-spacing: 0; white-space: nowrap; overflow: hidden; }
+.opp-cards .pcard.mini .nm { font-size: 8.5px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.opp-cards .pcard.mini .delta { display: none; }
+.opp-cards .pcard.mini .val { font-size: 16px; }
+.pcard.mini.back { display: block; background: repeating-linear-gradient(45deg, var(--felt-600) 0 6px, var(--felt-700) 6px 12px); border: 2px solid var(--paper-edge); box-shadow: none; }
+.pcard .shared { position: absolute; left: 6px; bottom: 26px; font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--paper); background: var(--ink-soft); padding: 1px 4px; border-radius: 4px; }
+.pcard.mini .shared { bottom: 6px; left: auto; right: 5px; }
 .versus { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--on-felt-dim); }
 details.open-table summary { cursor: pointer; list-style: none; color: var(--gold); font-weight: 600; padding: 4px 0; }
 details.open-table summary::-webkit-details-marker { display: none; }

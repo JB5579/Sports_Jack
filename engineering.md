@@ -28,6 +28,6 @@ Read `MISSION.md` first: it decides what is in scope. The release being built is
   game that shows a case (a fumble, overtime, a two-point conversion)? Add one with
   `npm run fixtures -- --games <game_id>`. Never edit a fixture by hand.
 - Scoring rulesets are immutable once used. Add a new id; never change one.
-- Money is integer yards. No floats in balances, pots or rake.
+- Money is integer chips. No floats in balances, pots or rake.
 
 See [factory workflow policy](factory/WORKFLOW_POLICY.md) for factory-specific shared-workflow requirements.

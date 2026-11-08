@@ -41,6 +41,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
     const watch: [string, number, boolean][] = [
       ...mine.cards.map((c) => [`me:${c.playerId}`, c.value, mine.frozen] as [string, number, boolean]),
       ...(hand.dealer?.cards ?? []).map((c) => [`dealer:${c.playerId}`, c.value, hand.dealer!.frozen] as [string, number, boolean]),
+      ...(hand.dealer ? [] : hand.others.flatMap((o, i) => o.shown.map((c) => [`${i}:${c.playerId}`, c.value, o.frozen] as [string, number, boolean]))),
     ];
     for (const [key, value, frozen] of watch) {
       const before = previous.current.get(key);
@@ -76,7 +77,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
         {header}
         {game.paused && <div className="banner">Live data paused. Hands hold until the feed is back.</div>}
         <div className="waiting">
-          <span className="label">{table.mode === "dealer" ? `House dealer · ${table.level}` : "Player table"} · {table.ante} yd ante · {table.lockout ? `locks at ${clockText(table.lockout)}` : "no lockout"}</span>
+          <span className="label">{table.mode === "dealer" ? `House dealer · ${table.level}` : "Player table"} · {table.ante}-chip ante · {table.lockout ? `locks at ${clockText(table.lockout)}` : "no lockout"}</span>
           <div className="big">{view.you.joiningNextBreak || game.phase === "quarter" ? `You're in from ${next ? qName(next) : "the next quarter"}` : next ? `${qName(next)} deals soon` : "This game is over"}</div>
           {game.phase === "break" && next && <div className="count num">{clockText(game.breakLeft)}</div>}
           <p className="help">{game.phase === "quarter" ? "Players join between quarters, never during one. Watch this quarter play out; you'll be dealt in at the next break." : "Your ante comes out when the cards are dealt."}</p>
@@ -114,16 +115,26 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
             {" · "}hits under {DEALER_RULES[hand.dealer.level].hitBelow} · freezes 17–21 from {clockText(freezeWindow(hand.dealer.level, hand.lockout))}
           </div>
         </div>
-      ) : <div className="opponents">
+      ) : <div className="opponents rows" aria-label="Other hands">
         {hand.others.map((o, i) => (
-          <div key={i} className="opp">
-            <div className="who">{o.bot && <span className="bot">BOT</span>}{o.name}</div>
-            <div className={`tot num${o.frozen ? " frozen" : o.total > 21 ? " bust" : ""}`}>{fmt1(o.total)}</div>
-            <div className="act">{o.cards} cards{o.lastAct ? ` · ${o.lastAct}` : ""}</div>
+          <div key={i} className="opp row">
+            <div className="opp-head">
+              <span className="who">{o.bot && <span className="bot">BOT</span>}{o.name}</span>
+              <span className="act">{o.frozen ? "Frozen" : o.lastAct}</span>
+              <span className={`tot num${o.frozen ? " frozen" : (o.total ?? o.shownTotal) > 21 ? " bust" : ""}`}>
+                {o.total !== null ? fmt1(o.total) : `${fmt1(o.shownTotal)} + ?`}
+              </span>
+            </div>
+            <div className="opp-cards">
+              {o.shown.map((c) => (
+                <PlayingCard key={c.playerId} card={c} mini flash={flashes.get(`${i}:${c.playerId}`)} fresh={fresh(`${i}:${c.playerId}`)} burnable={false} onClick={() => undefined} />
+              ))}
+              {Array.from({ length: o.hidden }, (_, k) => <span key={`hole-${k}`} className="pcard mini back" aria-label="Face-down card" />)}
+            </div>
           </div>
         ))}
       </div>}
-      <div className={`dial-wrap${hand.dealer ? " compact" : ""}`}><Dial total={mine.total} frozen={mine.frozen} />{status}
+      <div className="dial-wrap compact"><Dial total={mine.total} frozen={mine.frozen} />{status}
         {hand.dealer && <div className="versus num">{versus(mine.total, hand.dealer.total)}</div>}</div>
       <div>
         <div className="hand-head"><span className="label">Your hand · {mine.cards.length} cards</span>

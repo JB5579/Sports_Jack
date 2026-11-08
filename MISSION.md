@@ -21,7 +21,7 @@ every drive of a game you are already watching.
 
 This release is the **Phase 1 play-money alpha** (PRD §17). It runs the full game
 loop on **real NFL and NBA games replayed from recorded play-by-play** (nflverse;
-sportsdataverse's ESPN NBA data), with play-money yards. Its purpose is to be put in
+sportsdataverse's ESPN NBA data), with play-money chips. Its purpose is to be put in
 front of a small group of test users on their phones, to settle requirements. There is no wallet, no USDC, no blockchain and no KYC in this
 release. There is one deployment, and one authoritative game server per table.
 
@@ -48,7 +48,7 @@ The factory may accept issues in these areas.
 **Game engine (server-authoritative)**
 - Hands per quarter (plus an overtime bonus hand): ante, deal from the full
   game-day roster, live card values, Hit, Freeze, Burn, live
-  bust and recovery, end-of-quarter settlement in play-money yards
+  bust and recovery, end-of-quarter settlement in play-money chips
 - The vs-Dealer mode with an AI dealer that Hits, Freezes and Burns, at
   selectable difficulty levels: a Jev decision model, with a rule-based dealer
   behind the same interface
@@ -84,7 +84,7 @@ The factory may accept issues in these areas.
 - Anything purchasable that changes a hand's outcome in real-money PvP: power-ups,
   extra charges, better draws, peeks (PRD §6, §14 guardrail)
 - A SportsJack token, NFT cards, staking, or yield and interest on balances
-- Transfers or gifting of yards from one user to another
+- Transfers or gifting of chips from one user to another
 
 **Not deceptive**
 - House bots at a PvP table that are not clearly labeled as bots
@@ -103,7 +103,7 @@ human commit.
    shows "live data paused" and does not settle until the feed resumes. Settled
    hands are final; they are never re-settled after stat corrections.
 3. **This release moves no real money.** No code path in this release touches a
-   wallet, USDC, a blockchain, a payment provider or real-money balances. Yards
+   wallet, USDC, a blockchain, a payment provider or real-money balances. Chips
    are play-money.
 4. **Scoring is versioned.** Every hand records the ruleset id it was scored
    under. A change to point values is a new ruleset, never an edit to a used one.
@@ -177,6 +177,19 @@ stops being asked. **A decision is asked once.**
 
 ## Decisions
 
+- 2026-11-08 **What is the play currency called?** Chips, for both sports. "Yards"
+  (PRD §5) meant nothing in basketball and confused testers; "points" would collide
+  with fantasy points.
+- 2026-11-08 **How do player tables start?** Sitting at a listed player table starts
+  the player's own table: a private replay that deals at once at the top of the next
+  quarter, with the table's ante and lockout and labeled bot opponents. Nobody waits
+  out a quarter of a replayed game. (Players still never join a quarter already under
+  way: the private replay starts at a quarter's beginning.)
+- 2026-11-08 **What can you see of other hands at a player table?** Their face-up
+  cards, live. Each hand's second card is face down to everyone else until that
+  player Freezes or the whistle; a frozen hand flips face up. Your cards show how many
+  other hands are showing the same player (the same player can be in several hands).
+  The house dealer still plays fully face up.
 - 2026-11-08 **How does the house dealer play?** Face up, by a fixed, published rule
   with no randomness, answering the first round of owner play-testing ("I couldn't
   see the dealer hand"). Players see every dealer card live, its total, its rule and

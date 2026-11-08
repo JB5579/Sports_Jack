@@ -65,7 +65,7 @@ const REFUSALS: Record<string, string> = {
   burn_used: "You've already used your Burn this hand.",
   settled: "That hand has settled.",
   not_in_hand: "You're not in this hand. You'll be dealt in at the next quarter.",
-  bad_ante: "Pick a 25, 100 or 1,000-yard ante.",
+  bad_ante: "Pick a 25, 100 or 1,000-chip ante.",
   bad_lockout: "Pick a lockout of none, 0:30, 1:00 or 2:00.",
 };
 export const refusalText = (reason: string) => REFUSALS[reason] ?? "That didn't work. Try again.";

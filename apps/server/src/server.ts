@@ -182,7 +182,9 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       }
       // falls through: whoever opens a table sits at it
       case "sit": {
-        const t = table(msg.tableId);
+        const listed = table(msg.tableId);
+        // Player tables deal at once on the player's own replay (MISSION.md, 2026-11-08).
+        const t = listed.spec.mode === "players" && !listed.spec.personal ? lobby.personal(c.accountId, listed) : listed;
         if (c.tableId && c.tableId !== t.spec.id) lobby.tables.get(c.tableId)?.leave(c.accountId);
         const status = t.sit(c.accountId);
         c.tableId = t.spec.id;
@@ -203,9 +205,11 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       }
       case "leave": {
         const leaving = c.tableId ? lobby.tables.get(c.tableId) : undefined;
-        if (leaving) log(c, "leave", { tableId: leaving.spec.id, practice: !!leaving.spec.practice, midHand: !!leaving.hand && !leaving.hand.over && leaving.humans.includes(c.accountId) });
+        const midHand = !!leaving?.hand && !leaving.hand.over && leaving.humans.includes(c.accountId);
+        if (leaving) log(c, "leave", { tableId: leaving.spec.id, practice: !!leaving.spec.practice, personal: !!leaving.spec.personal, midHand });
         leaving?.leave(c.accountId);
-        if (leaving?.spec.practice) lobby.dispose(leaving.spec.id);
+        // A personal table mid-hand plays on to the whistle (the ante is in), then closes itself.
+        if (leaving?.spec.practice || (leaving?.spec.personal && !midHand)) lobby.dispose(leaving.spec.id);
         c.tableId = null;
         send(c.socket, { type: "lobby", ...lobby.summary(), balance: lobby.store.balance(c.accountId) });
         return;

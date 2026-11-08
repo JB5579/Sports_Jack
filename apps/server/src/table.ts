@@ -19,6 +19,8 @@ export interface TableSpec {
   openedBy: string | null;
   /** A free, private onboarding hand: no ante, not saved, not listed in the lobby. */
   practice?: boolean;
+  /** One player's own player table with bots, dealt at once on a private replay; not listed. */
+  personal?: boolean;
 }
 
 export const LOCKOUTS = [0, 30, 60, 120];
@@ -224,6 +226,16 @@ export class Table {
       };
     };
     const mine = accountId && hand && this.#humans.includes(accountId) ? accountId : null;
+    // At player tables each hand's second card is face down to everyone else until that
+    // player Freezes or the whistle blows (MISSION.md, 2026-11-08). The house dealer plays face up.
+    const others = !hand ? [] : [
+      ...this.#humans.filter((id) => id !== mine).map((id) => ({ seat: id, name: "Player", bot: false, dealer: false, lastAct: "" })),
+      ...this.#ai.map((s) => ({ seat: s.id, name: s.name, bot: !s.dealer, dealer: s.dealer, lastAct: s.lastAct })),
+    ].map((o) => {
+      const cards = hand.cards(o.seat);
+      const faceUp = o.dealer || hand.over || hand.frozen(o.seat);
+      return { ...o, shown: faceUp ? [...cards] : cards.filter((_, i) => i !== 1) };
+    });
     return {
       table: { ...this.spec, seated: this.seated.size, pending: this.pending.size },
       game: status,
@@ -236,13 +248,22 @@ export class Table {
         liveWeight: hand.rules.liveWeight, rules: hand.rules.id,
         over: hand.over, commitment: this.commitment, paused: status.paused,
         mine: mine ? {
-          cards: hand.cards(mine).map(card), total: hand.total(mine), frozen: hand.frozen(mine),
-          burned: hand.burned(mine), canAct: hand.canAct(mine),
+          cards: hand.cards(mine).map((id) => ({
+            ...card(id),
+            // How many other hands show this player face up: the same player can be in several hands.
+            sharedWith: others.filter((o) => o.shown.includes(id)).length,
+          })),
+          total: hand.total(mine), frozen: hand.frozen(mine), burned: hand.burned(mine), canAct: hand.canAct(mine),
         } : null,
-        others: [
-          ...this.#humans.filter((id) => id !== mine).map((id) => ({ name: "Player", bot: false, dealer: false, cards: hand.cards(id).length, total: hand.total(id), frozen: hand.frozen(id), lastAct: "" })),
-          ...this.#ai.map((s) => ({ name: s.name, bot: !s.dealer, dealer: s.dealer, cards: hand.cards(s.id).length, total: hand.total(s.id), frozen: hand.frozen(s.id), lastAct: s.lastAct })),
-        ],
+        others: others.map((o) => ({
+          name: o.name, bot: o.bot, dealer: o.dealer, frozen: hand.frozen(o.seat), lastAct: o.lastAct,
+          cards: hand.cards(o.seat).length,
+          shown: o.shown.map(card),
+          hidden: hand.cards(o.seat).length - o.shown.length,
+          shownTotal: o.shown.reduce((sum, id) => sum + hand.value(id), 0),
+          // The full total only once the whole hand is showing.
+          total: o.shown.length === hand.cards(o.seat).length ? hand.total(o.seat) : null,
+        })),
         // The house dealer plays face up (MISSION.md Q6): its whole hand, its rule, and when it looks next.
         dealer: (() => {
           const d = this.#ai.find((s) => s.dealer);
@@ -267,4 +288,5 @@ export class Table {
 }
 
 export type TableView = ReturnType<Table["view"]>;
-export type CardView = NonNullable<NonNullable<TableView["hand"]>["mine"]>["cards"][number];
+/** A face-up card as a phone sees it; only your own cards carry `sharedWith`. */
+export type CardView = NonNullable<NonNullable<TableView["hand"]>["dealer"]>["cards"][number] & { sharedWith?: number };

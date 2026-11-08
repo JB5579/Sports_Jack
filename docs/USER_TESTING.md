@@ -16,7 +16,7 @@ collect what they think and how they play.
 >
 > It's play money only. Nothing real is at stake.
 
-Each phone gets its own play-money account with 1,000 yards. Nobody signs up. If a
+Each phone gets its own play-money account with 1,000 chips. Nobody signs up. If a
 tester adds their name in the feedback form, it's saved with their feedback.
 
 ## What gets collected

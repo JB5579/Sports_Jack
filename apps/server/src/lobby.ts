@@ -91,7 +91,31 @@ export class Lobby {
     return table;
   }
 
-  /** Remove a practice table and its private replay. */
+  /**
+   * A player table of one's own: a private replay that deals the next quarter of the
+   * listed table's game at once, with the listed table's ante, lockout and labeled bots.
+   * Sitting at a listed player table lands here, so nobody waits out a quarter
+   * (MISSION.md, 2026-11-08). It plays on quarter after quarter until the player leaves.
+   */
+  personal(accountId: string, listed: Table): Table {
+    const shared = this.runners.get(listed.spec.gameId)!;
+    const status = shared.status();
+    const next = status.phase === "final" ? 1 : status.qtr + 1;
+    const fromQuarter = shared.periods.some((p) => p.q === next) ? next : 1;
+    const runner = new GameRunner(this.#recorded.get(listed.spec.gameId)!, {
+      speed: this.#config.speed, fromQuarter, breakSeconds: this.#config.breakSeconds, firstBreakSeconds: 1, loop: false,
+    });
+    const spec: TableSpec = { ...listed.spec, id: `m${this.#nextId++}`, openedBy: accountId, personal: true };
+    const table = new Table(spec, runner, this.store, this.#decks.get(spec.gameId)!, this.#rules.get(spec.gameId)!, () => this.#onChange(table));
+    this.tables.set(spec.id, table);
+    this.#practices.set(spec.id, runner);
+    // Close it once nobody is left after a whistle, or when the game is over.
+    runner.on("quarter_end", () => { if (table.seated.size === 0 || runner.phase === "final") this.dispose(spec.id); });
+    table.sit(accountId);
+    return table;
+  }
+
+  /** Remove a private table (practice or personal) and its replay. */
   dispose(tableId: string): void {
     const runner = this.#practices.get(tableId);
     if (!runner) return;
@@ -109,7 +133,7 @@ export class Lobby {
   summary() {
     return {
       games: [...this.games.values()].map((g) => ({ ...g, status: this.runners.get(g.gameId)!.status(), periods: this.runners.get(g.gameId)!.periods, rules: this.#rules.get(g.gameId)! })),
-      tables: [...this.tables.values()].filter((t) => !t.spec.practice).map((t) => ({ ...t.spec, seated: t.seated.size, inHand: t.humans.length })),
+      tables: [...this.tables.values()].filter((t) => !t.spec.practice && !t.spec.personal).map((t) => ({ ...t.spec, seated: t.seated.size, inHand: t.humans.length })),
     };
   }
 }

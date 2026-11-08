@@ -1,0 +1,31 @@
+athlete_id,athlete_display_name,athlete_position_abbreviation,team_abbreviation,starter,did_not_play
+3934719,OG Anunoby,F,NY,True,False
+3136195,Karl-Anthony Towns,C,NY,True,False
+3062679,Josh Hart,G,NY,True,False
+3147657,Mikal Bridges,G,NY,True,False
+3934672,Jalen Brunson,G,NY,True,False
+4610139,Jeremy Sochan,F,NY,False,False
+4351852,Mitchell Robinson,C,NY,False,False
+4871141,Ariel Hukporti,C,NY,False,False
+2528426,Jordan Clarkson,G,NY,False,False
+3914044,Landry Shamet,G,NY,False,False
+4277869,Jose Alvarado,G,NY,False,False
+4431823,Miles McBride,G,NY,False,False
+5211983,Pacome Dadiet,F,NY,False,True
+5289900,Mohamed Diawara,F,NY,False,True
+4433225,Tyler Kolek,G,NY,False,True
+4592479,Julian Champagnie,F,SA,True,False
+5104157,Victor Wembanyama,F,SA,True,False
+4066259,De'Aaron Fox,G,SA,True,False
+4395630,Devin Vassell,G,SA,True,False
+4845367,Stephon Castle,G,SA,True,False
+4395723,Keldon Johnson,F,SA,False,False
+5061568,Carter Bryant,F,SA,False,False
+3064560,Luke Kornet,C,SA,False,False
+5037871,Dylan Harper,G,SA,False,False
+6578,Harrison Barnes,F,SA,False,True
+2489663,Kelly Olynyk,F,SA,False,True
+4066317,Lindy Waters III,F,SA,False,True
+6427,Bismack Biyombo,C,SA,False,True
+2488653,Mason Plumlee,C,SA,False,True
+3134916,Jordan McLaughlin,G,SA,False,True

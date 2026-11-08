@@ -1,0 +1,580 @@
+game_id,season,season_type,game_date,sequence_number,period_number,clock_minutes,clock_seconds,type_text,text,score_value,scoring_play,shooting_play,athlete_id_1,athlete_name_1,athlete_id_2,athlete_name_2,athlete_id_3,athlete_name_3,team_id,home_team_id,home_team_abbrev,away_team_id,away_team_abbrev,home_score,away_score,wallclock
+401873197,2026,3,2026-05-18,4,1,12,0,Jumpball,Victor Wembanyama vs. Chet Holmgren (Julian Champagnie gains possession),0,False,False,5104157,Victor Wembanyama,4433255,Chet Holmgren,4592479,Julian Champagnie,24,25,OKC,24,SA,0,0,2026-05-19T00:37:12Z
+401873197,2026,3,2026-05-18,7,1,11,42,Jump Shot,Stephon Castle makes 26-foot three point jumper (Dylan Harper assists),3,True,True,4845367,Stephon Castle,5037871,Dylan Harper,,,24,25,OKC,24,SA,0,3,2026-05-19T00:37:28Z
+401873197,2026,3,2026-05-18,9,1,11,17,Floating Jump Shot,Isaiah Hartenstein misses 8-foot floating jump shot,0,False,True,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,0,3,2026-05-19T00:37:52Z
+401873197,2026,3,2026-05-18,10,1,11,13,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,0,3,2026-05-19T00:37:56Z
+401873197,2026,3,2026-05-18,11,1,11,4,Shooting Foul,Luguentz Dort shooting foul,0,False,False,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,0,3,2026-05-19T00:38:07Z
+401873197,2026,3,2026-05-18,13,1,11,4,Free Throw - 1 of 2,Victor Wembanyama makes free throw 1 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,4,2026-05-19T00:38:39Z
+401873197,2026,3,2026-05-18,14,1,11,4,Free Throw - 2 of 2,Victor Wembanyama makes free throw 2 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,5,2026-05-19T00:39:03Z
+401873197,2026,3,2026-05-18,15,1,10,46,Lost Ball Turnover,Shai Gilgeous-Alexander lost ball turnover (Dylan Harper steals),0,False,False,4278073,Shai Gilgeous-Alexander,5037871,Dylan Harper,,,25,25,OKC,24,SA,0,5,2026-05-19T00:39:23Z
+401873197,2026,3,2026-05-18,17,1,10,42,Running Jump Shot,Julian Champagnie misses 26-foot running jump shot,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,0,5,2026-05-19T00:39:28Z
+401873197,2026,3,2026-05-18,18,1,10,37,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,5,2026-05-19T00:39:31Z
+401873197,2026,3,2026-05-18,19,1,10,37,Tip Shot,Victor Wembanyama misses tip shot,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,5,2026-05-19T00:39:31Z
+401873197,2026,3,2026-05-18,20,1,10,36,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,5,2026-05-19T00:39:33Z
+401873197,2026,3,2026-05-18,21,1,10,36,Tip Shot,Victor Wembanyama misses tip shot,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,5,2026-05-19T00:39:33Z
+401873197,2026,3,2026-05-18,22,1,10,35,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,5,2026-05-19T00:39:34Z
+401873197,2026,3,2026-05-18,23,1,10,35,Tip Shot,Victor Wembanyama makes tip shot,2,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,7,2026-05-19T00:39:34Z
+401873197,2026,3,2026-05-18,24,1,10,21,Pullup Bank Jump Shot,Shai Gilgeous-Alexander misses 7-foot two point shot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,0,7,2026-05-19T00:39:48Z
+401873197,2026,3,2026-05-18,25,1,10,17,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,0,7,2026-05-19T00:39:52Z
+401873197,2026,3,2026-05-18,26,1,10,3,Lost Ball Turnover,Stephon Castle lost ball turnover (Shai Gilgeous-Alexander steals),0,False,False,4845367,Stephon Castle,4278073,Shai Gilgeous-Alexander,,,24,25,OKC,24,SA,0,7,2026-05-19T00:40:06Z
+401873197,2026,3,2026-05-18,28,1,9,54,Jump Shot,Luguentz Dort misses 22-foot three point jumper,0,False,True,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,0,7,2026-05-19T00:40:14Z
+401873197,2026,3,2026-05-18,29,1,9,50,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,0,7,2026-05-19T00:40:18Z
+401873197,2026,3,2026-05-18,30,1,9,46,Personal Foul,Chet Holmgren personal foul,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,0,7,2026-05-19T00:40:26Z
+401873197,2026,3,2026-05-18,32,1,9,33,Jump Shot,Dylan Harper misses 23-foot three point jumper,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,0,7,2026-05-19T00:40:59Z
+401873197,2026,3,2026-05-18,33,1,9,30,Defensive Rebound,Chet Holmgren defensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,0,7,2026-05-19T00:41:02Z
+401873197,2026,3,2026-05-18,34,1,9,24,Personal Foul,Dylan Harper personal foul,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,0,7,2026-05-19T00:41:09Z
+401873197,2026,3,2026-05-18,36,1,9,24,Substitution,Alex Caruso enters the game for Isaiah Hartenstein,0,False,False,2991350,Alex Caruso,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,0,7,2026-05-19T00:41:18Z
+401873197,2026,3,2026-05-18,38,1,9,8,Step Back Jump Shot,Shai Gilgeous-Alexander misses 25-foot three point step back jumpshot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,0,7,2026-05-19T00:41:53Z
+401873197,2026,3,2026-05-18,39,1,9,6,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,0,7,2026-05-19T00:41:55Z
+401873197,2026,3,2026-05-18,40,1,8,58,Out of Bounds - Bad Pass Turnover,Victor Wembanyama out of bounds bad pass turnover,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,0,7,2026-05-19T00:42:04Z
+401873197,2026,3,2026-05-18,41,1,8,46,Jump Shot,Alex Caruso makes 24-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,3,7,2026-05-19T00:42:21Z
+401873197,2026,3,2026-05-18,43,1,8,27,Step Back Jump Shot,Julian Champagnie makes 26-foot three point step back jumpshot (Stephon Castle assists),3,True,True,4592479,Julian Champagnie,4845367,Stephon Castle,,,24,25,OKC,24,SA,3,10,2026-05-19T00:42:41Z
+401873197,2026,3,2026-05-18,45,1,8,14,Bad Pass Turnover,Alex Caruso bad pass turnover (Devin Vassell steals),0,False,False,2991350,Alex Caruso,4395630,Devin Vassell,,,25,25,OKC,24,SA,3,10,2026-05-19T00:42:53Z
+401873197,2026,3,2026-05-18,47,1,8,9,Running Jump Shot,Dylan Harper misses 27-foot running jump shot,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,3,10,2026-05-19T00:42:59Z
+401873197,2026,3,2026-05-18,48,1,8,7,Defensive Rebound,Thunder defensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,3,10,2026-05-19T00:43:01Z
+401873197,2026,3,2026-05-18,50,1,7,58,Jump Shot,Alex Caruso misses 24-foot three point jumper,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,3,10,2026-05-19T00:43:23Z
+401873197,2026,3,2026-05-18,51,1,7,54,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,3,10,2026-05-19T00:43:27Z
+401873197,2026,3,2026-05-18,52,1,7,47,Jump Shot,Julian Champagnie misses 26-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,3,10,2026-05-19T00:43:34Z
+401873197,2026,3,2026-05-18,53,1,7,44,Defensive Rebound,Jalen Williams defensive rebound,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,3,10,2026-05-19T00:43:37Z
+401873197,2026,3,2026-05-18,54,1,7,40,Running Layup Shot,Devin Vassell blocks Jalen Williams 's 6-foot running layup,0,False,True,4593803,Jalen Williams,4395630,Devin Vassell,,,25,25,OKC,24,SA,3,10,2026-05-19T00:43:41Z
+401873197,2026,3,2026-05-18,56,1,7,40,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,3,10,2026-05-19T00:43:41Z
+401873197,2026,3,2026-05-18,57,1,7,34,Personal Foul,Jalen Williams personal foul,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,3,10,2026-05-19T00:43:49Z
+401873197,2026,3,2026-05-18,59,1,7,34,Substitution,Ajay Mitchell enters the game for Jalen Williams,0,False,False,4900671,Ajay Mitchell,4593803,Jalen Williams,,,25,25,OKC,24,SA,3,10,2026-05-19T00:43:59Z
+401873197,2026,3,2026-05-18,61,1,7,28,Shooting Foul,Ajay Mitchell shooting foul,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,3,10,2026-05-19T00:44:17Z
+401873197,2026,3,2026-05-18,63,1,7,28,Free Throw - 1 of 2,Stephon Castle makes free throw 1 of 2,1,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,3,11,2026-05-19T00:44:43Z
+401873197,2026,3,2026-05-18,64,1,7,28,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,3,11,2026-05-19T00:44:50Z
+401873197,2026,3,2026-05-18,65,1,7,28,Substitution,Keldon Johnson enters the game for Dylan Harper,0,False,False,4395723,Keldon Johnson,5037871,Dylan Harper,,,24,25,OKC,24,SA,3,11,2026-05-19T00:47:50Z
+401873197,2026,3,2026-05-18,67,1,7,28,Free Throw - 2 of 2,Stephon Castle makes free throw 2 of 2,1,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,3,12,2026-05-19T00:48:40Z
+401873197,2026,3,2026-05-18,68,1,7,20,Personal Foul,Stephon Castle personal foul,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,3,12,2026-05-19T00:48:51Z
+401873197,2026,3,2026-05-18,70,1,7,11,Driving Layup Shot,Alex Caruso makes driving layup (Ajay Mitchell assists),2,True,True,2991350,Alex Caruso,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,5,12,2026-05-19T00:49:21Z
+401873197,2026,3,2026-05-18,72,1,6,54,Bad Pass Turnover,Devin Vassell bad pass turnover (Alex Caruso steals),0,False,False,4395630,Devin Vassell,2991350,Alex Caruso,,,24,25,OKC,24,SA,5,12,2026-05-19T00:49:37Z
+401873197,2026,3,2026-05-18,74,1,6,48,Running Finger Roll Layup,Alex Caruso makes two point shot,2,True,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,7,12,2026-05-19T00:49:42Z
+401873197,2026,3,2026-05-18,75,1,6,48,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,7,12,2026-05-19T00:49:45Z
+401873197,2026,3,2026-05-18,76,1,6,34,Alley Oop Layup Shot,Victor Wembanyama misses alley oop layup,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,7,12,2026-05-19T00:53:45Z
+401873197,2026,3,2026-05-18,77,1,6,32,Defensive Rebound,Shai Gilgeous-Alexander defensive rebound,0,False,False,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,7,12,2026-05-19T00:53:47Z
+401873197,2026,3,2026-05-18,78,1,6,27,Running Pullup Jump Shot,Shai Gilgeous-Alexander makes 15-foot running pullup jump shot,2,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,9,12,2026-05-19T00:53:52Z
+401873197,2026,3,2026-05-18,79,1,6,6,Jump Shot,Keldon Johnson makes 25-foot three point jumper (Stephon Castle assists),3,True,True,4395723,Keldon Johnson,4845367,Stephon Castle,,,24,25,OKC,24,SA,9,15,2026-05-19T00:54:12Z
+401873197,2026,3,2026-05-18,81,1,5,52,Fade Away Jump Shot,Shai Gilgeous-Alexander misses 13-foot fade away jump shot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,9,15,2026-05-19T00:54:27Z
+401873197,2026,3,2026-05-18,82,1,5,50,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,9,15,2026-05-19T00:54:29Z
+401873197,2026,3,2026-05-18,83,1,5,46,Running Layup Shot,Alex Caruso blocks Keldon Johnson 's 1-foot running layup,0,False,True,4395723,Keldon Johnson,2991350,Alex Caruso,,,24,25,OKC,24,SA,9,15,2026-05-19T00:54:33Z
+401873197,2026,3,2026-05-18,85,1,5,44,Defensive Rebound,Alex Caruso defensive rebound,0,False,False,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,9,15,2026-05-19T00:54:35Z
+401873197,2026,3,2026-05-18,86,1,5,35,Jump Shot,Luguentz Dort misses 24-foot three point jumper,0,False,True,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,9,15,2026-05-19T00:54:44Z
+401873197,2026,3,2026-05-18,87,1,5,31,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,9,15,2026-05-19T00:54:48Z
+401873197,2026,3,2026-05-18,88,1,5,15,Pullup Jump Shot,Victor Wembanyama misses 9-foot pullup jump shot,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,9,15,2026-05-19T00:55:03Z
+401873197,2026,3,2026-05-18,89,1,5,13,Defensive Rebound,Chet Holmgren defensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,9,15,2026-05-19T00:55:05Z
+401873197,2026,3,2026-05-18,90,1,4,55,Jump Shot,Alex Caruso makes 23-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,12,15,2026-05-19T00:55:23Z
+401873197,2026,3,2026-05-18,92,1,4,42,Jump Shot,Keldon Johnson misses 22-foot three point jumper,0,False,True,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,12,15,2026-05-19T00:55:37Z
+401873197,2026,3,2026-05-18,93,1,4,39,Defensive Rebound,Luguentz Dort defensive rebound,0,False,False,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,12,15,2026-05-19T00:55:40Z
+401873197,2026,3,2026-05-18,94,1,4,26,Jump Shot,Luguentz Dort misses 25-foot three point jumper,0,False,True,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,12,15,2026-05-19T00:55:52Z
+401873197,2026,3,2026-05-18,95,1,4,24,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,12,15,2026-05-19T00:55:54Z
+401873197,2026,3,2026-05-18,96,1,4,18,Shooting Foul,Alex Caruso shooting foul,0,False,False,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,12,15,2026-05-19T00:56:04Z
+401873197,2026,3,2026-05-18,98,1,4,18,Free Throw - 1 of 2,Stephon Castle makes free throw 1 of 2,1,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,99,1,4,18,Substitution,Isaiah Hartenstein enters the game for Shai Gilgeous-Alexander,0,False,False,4222252,Isaiah Hartenstein,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,100,1,4,18,Substitution,Jalen Williams enters the game for Luguentz Dort,0,False,False,4593803,Jalen Williams,4397020,Luguentz Dort,,,25,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,101,1,4,18,Substitution,Jared McCain enters the game for Chet Holmgren,0,False,False,4683778,Jared McCain,4433255,Chet Holmgren,,,25,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,102,1,4,18,Substitution,Cason Wallace enters the game for Alex Caruso,0,False,False,4683692,Cason Wallace,2991350,Alex Caruso,,,25,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,103,1,4,18,Substitution,Dylan Harper enters the game for Victor Wembanyama,0,False,False,5037871,Dylan Harper,5104157,Victor Wembanyama,,,24,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,104,1,4,18,Substitution,Luke Kornet enters the game for Julian Champagnie,0,False,False,3064560,Luke Kornet,4592479,Julian Champagnie,,,24,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,105,1,4,18,Substitution,Harrison Barnes enters the game for Keldon Johnson,0,False,False,6578,Harrison Barnes,4395723,Keldon Johnson,,,24,25,OKC,24,SA,12,16,2026-05-19T00:56:31Z
+401873197,2026,3,2026-05-18,113,1,4,18,Free Throw - 2 of 2,Stephon Castle makes free throw 2 of 2,1,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,12,17,2026-05-19T00:57:03Z
+401873197,2026,3,2026-05-18,114,1,4,3,Driving Finger Roll Layup,Jalen Williams makes 1-foot two point shot (Isaiah Hartenstein assists),2,True,True,4593803,Jalen Williams,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,14,17,2026-05-19T00:57:20Z
+401873197,2026,3,2026-05-18,116,1,3,49,Jump Shot,Stephon Castle misses 28-foot three point jumper,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,14,17,2026-05-19T00:57:33Z
+401873197,2026,3,2026-05-18,117,1,3,45,Defensive Rebound,Jalen Williams defensive rebound,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,14,17,2026-05-19T00:57:37Z
+401873197,2026,3,2026-05-18,118,1,3,39,Pullup Jump Shot,Jalen Williams misses 13-foot pullup jump shot,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,14,17,2026-05-19T00:57:43Z
+401873197,2026,3,2026-05-18,119,1,3,37,Offensive Rebound,Jalen Williams offensive rebound,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,14,17,2026-05-19T00:57:45Z
+401873197,2026,3,2026-05-18,120,1,3,35,Driving Floating Jump Shot,Jalen Williams makes 5-foot driving floating jump shot,2,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,16,17,2026-05-19T00:57:47Z
+401873197,2026,3,2026-05-18,121,1,3,15,Bad Pass Turnover,Luke Kornet bad pass turnover (Ajay Mitchell steals),0,False,False,3064560,Luke Kornet,4900671,Ajay Mitchell,,,24,25,OKC,24,SA,16,17,2026-05-19T00:58:07Z
+401873197,2026,3,2026-05-18,123,1,3,11,Running Dunk Shot,Jalen Williams makes running dunk (Ajay Mitchell assists),2,True,True,4593803,Jalen Williams,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,18,17,2026-05-19T00:58:11Z
+401873197,2026,3,2026-05-18,125,1,2,50,Step Back Jump Shot,Dylan Harper misses 25-foot three point step back jumpshot,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,18,17,2026-05-19T00:58:32Z
+401873197,2026,3,2026-05-18,126,1,2,48,Defensive Rebound,Isaiah Hartenstein defensive rebound,0,False,False,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,18,17,2026-05-19T00:58:34Z
+401873197,2026,3,2026-05-18,127,1,2,43,Running Finger Roll Layup,Jared McCain makes two point shot,2,True,True,4683778,Jared McCain,,,,,25,25,OKC,24,SA,20,17,2026-05-19T00:58:39Z
+401873197,2026,3,2026-05-18,128,1,2,21,Hook Driving Bank,Stephon Castle makes 1-foot two point shot,2,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,20,19,2026-05-19T00:59:02Z
+401873197,2026,3,2026-05-18,129,1,2,21,Shooting Foul,Ajay Mitchell shooting foul,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,20,19,2026-05-19T00:59:06Z
+401873197,2026,3,2026-05-18,131,1,2,21,Free Throw - 1 of 1,Stephon Castle misses free throw 1 of 1,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,20,19,2026-05-19T00:59:38Z
+401873197,2026,3,2026-05-18,132,1,2,19,Defensive Rebound,Jalen Williams defensive rebound,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,20,19,2026-05-19T00:59:40Z
+401873197,2026,3,2026-05-18,133,1,2,13,Driving Layup Shot,Jalen Williams makes driving layup,2,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,22,19,2026-05-19T00:59:47Z
+401873197,2026,3,2026-05-18,134,1,1,58,Driving Floating Jump Shot,Stephon Castle makes 4-foot driving floating jump shot,2,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,22,21,2026-05-19T01:00:01Z
+401873197,2026,3,2026-05-18,135,1,1,48,Pullup Jump Shot,Jared McCain misses 26-foot three point pullup jump shot,0,False,True,4683778,Jared McCain,,,,,25,25,OKC,24,SA,22,21,2026-05-19T01:00:10Z
+401873197,2026,3,2026-05-18,136,1,1,46,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,22,21,2026-05-19T01:00:12Z
+401873197,2026,3,2026-05-18,137,1,1,34,Shooting Foul,Jalen Williams shooting foul,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,22,21,2026-05-19T01:00:25Z
+401873197,2026,3,2026-05-18,139,1,1,34,Free Throw - 1 of 2,Dylan Harper makes free throw 1 of 2,1,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,22,22,2026-05-19T01:01:01Z
+401873197,2026,3,2026-05-18,140,1,1,34,Substitution,Jaylin Williams enters the game for Ajay Mitchell,0,False,False,4432823,Jaylin Williams,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,22,22,2026-05-19T01:01:01Z
+401873197,2026,3,2026-05-18,141,1,1,34,Substitution,Shai Gilgeous-Alexander enters the game for Isaiah Hartenstein,0,False,False,4278073,Shai Gilgeous-Alexander,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,22,22,2026-05-19T01:01:01Z
+401873197,2026,3,2026-05-18,142,1,1,34,Substitution,Victor Wembanyama enters the game for Stephon Castle,0,False,False,5104157,Victor Wembanyama,4845367,Stephon Castle,,,24,25,OKC,24,SA,22,22,2026-05-19T01:01:01Z
+401873197,2026,3,2026-05-18,143,1,1,34,Substitution,Keldon Johnson enters the game for Luke Kornet,0,False,False,4395723,Keldon Johnson,3064560,Luke Kornet,,,24,25,OKC,24,SA,22,22,2026-05-19T01:01:01Z
+401873197,2026,3,2026-05-18,148,1,1,34,Free Throw - 2 of 2,Dylan Harper makes free throw 2 of 2,1,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,22,23,2026-05-19T01:01:29Z
+401873197,2026,3,2026-05-18,149,1,1,17,Jump Shot,Cason Wallace makes 25-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,4683692,Cason Wallace,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,25,23,2026-05-19T01:01:50Z
+401873197,2026,3,2026-05-18,151,1,0,55.5,Turnaround Jump Shot,Dylan Harper misses 1-foot turnaround jump shot,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,25,23,2026-05-19T01:02:13Z
+401873197,2026,3,2026-05-18,152,1,0,54.5,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,25,23,2026-05-19T01:02:14Z
+401873197,2026,3,2026-05-18,153,1,0,54.5,Tip Shot,Victor Wembanyama makes tip shot,2,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,25,25,2026-05-19T01:02:15Z
+401873197,2026,3,2026-05-18,154,1,0,39.1,Jump Shot,Jalen Williams misses 22-foot three point jumper,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,25,25,2026-05-19T01:02:31Z
+401873197,2026,3,2026-05-18,155,1,0,35.8,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,25,25,2026-05-19T01:02:35Z
+401873197,2026,3,2026-05-18,156,1,0,15.9,Driving Layup Shot,Dylan Harper makes driving layup,2,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,25,27,2026-05-19T01:02:55Z
+401873197,2026,3,2026-05-18,157,1,0,2.7,Shooting Foul,Keldon Johnson shooting foul,0,False,False,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,25,27,2026-05-19T01:03:14Z
+401873197,2026,3,2026-05-18,159,1,0,2.7,Free Throw - 1 of 2,Jalen Williams makes free throw 1 of 2,1,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,26,27,2026-05-19T01:03:44Z
+401873197,2026,3,2026-05-18,160,1,0,2.7,Substitution,Alex Caruso enters the game for Jared McCain,0,False,False,2991350,Alex Caruso,4683778,Jared McCain,,,25,25,OKC,24,SA,26,27,2026-05-19T01:03:44Z
+401873197,2026,3,2026-05-18,161,1,0,2.7,Substitution,Isaiah Hartenstein enters the game for Jaylin Williams,0,False,False,4222252,Isaiah Hartenstein,4432823,Jaylin Williams,,,25,25,OKC,24,SA,26,27,2026-05-19T01:03:44Z
+401873197,2026,3,2026-05-18,162,1,0,2.7,Substitution,Julian Champagnie enters the game for Harrison Barnes,0,False,False,4592479,Julian Champagnie,6578,Harrison Barnes,,,24,25,OKC,24,SA,26,27,2026-05-19T01:03:44Z
+401873197,2026,3,2026-05-18,163,1,0,2.7,Substitution,Stephon Castle enters the game for Keldon Johnson,0,False,False,4845367,Stephon Castle,4395723,Keldon Johnson,,,24,25,OKC,24,SA,26,27,2026-05-19T01:03:44Z
+401873197,2026,3,2026-05-18,168,1,0,2.7,Free Throw - 2 of 2,Jalen Williams makes free throw 2 of 2,1,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,27,27,2026-05-19T01:04:14Z
+401873197,2026,3,2026-05-18,169,1,0,0,Lost Ball Turnover,Stephon Castle lost ball turnover (Cason Wallace steals),0,False,False,4845367,Stephon Castle,4683692,Cason Wallace,,,24,25,OKC,24,SA,27,27,2026-05-19T01:04:26Z
+401873197,2026,3,2026-05-18,171,1,0,0,End Period,End of the 1st Quarter,0,False,False,,,,,,,,25,OKC,24,SA,27,27,2026-05-19T01:04:38Z
+401873197,2026,3,2026-05-18,172,2,12,0,Substitution,Jaylin Williams enters the game for Jalen Williams,0,False,False,4432823,Jaylin Williams,4593803,Jalen Williams,,,25,25,OKC,24,SA,27,27,2026-05-19T01:04:41Z
+401873197,2026,3,2026-05-18,173,2,12,0,Substitution,Aaron Wiggins enters the game for Isaiah Hartenstein,0,False,False,4397183,Aaron Wiggins,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,27,27,2026-05-19T01:04:41Z
+401873197,2026,3,2026-05-18,174,2,12,0,Substitution,Keldon Johnson enters the game for Devin Vassell,0,False,False,4395723,Keldon Johnson,4395630,Devin Vassell,,,24,25,OKC,24,SA,27,27,2026-05-19T01:04:41Z
+401873197,2026,3,2026-05-18,175,2,12,0,Substitution,Carter Bryant enters the game for Stephon Castle,0,False,False,5061568,Carter Bryant,4845367,Stephon Castle,,,24,25,OKC,24,SA,27,27,2026-05-19T01:04:41Z
+401873197,2026,3,2026-05-18,181,2,11,41,Jump Shot,Cason Wallace misses 25-foot three point jumper,0,False,True,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,27,27,2026-05-19T01:08:41Z
+401873197,2026,3,2026-05-18,182,2,11,37,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,27,27,2026-05-19T01:08:45Z
+401873197,2026,3,2026-05-18,183,2,11,20,Jump Shot,Keldon Johnson misses 22-foot three point jumper,0,False,True,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,27,27,2026-05-19T01:09:01Z
+401873197,2026,3,2026-05-18,184,2,11,17,Defensive Rebound,Cason Wallace defensive rebound,0,False,False,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,27,27,2026-05-19T01:09:04Z
+401873197,2026,3,2026-05-18,185,2,11,3,Jump Shot,Alex Caruso misses 23-foot three point jumper,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,27,27,2026-05-19T01:09:18Z
+401873197,2026,3,2026-05-18,186,2,11,0,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,27,27,2026-05-19T01:09:21Z
+401873197,2026,3,2026-05-18,187,2,10,39,Pullup Jump Shot,Carter Bryant misses 27-foot three point pullup jump shot,0,False,True,5061568,Carter Bryant,,,,,24,25,OKC,24,SA,27,27,2026-05-19T01:09:42Z
+401873197,2026,3,2026-05-18,188,2,10,36,Defensive Rebound,Cason Wallace defensive rebound,0,False,False,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,27,27,2026-05-19T01:09:45Z
+401873197,2026,3,2026-05-18,189,2,10,33,Running Jump Shot,Aaron Wiggins misses 23-foot running jump shot,0,False,True,4397183,Aaron Wiggins,,,,,25,25,OKC,24,SA,27,27,2026-05-19T01:09:48Z
+401873197,2026,3,2026-05-18,190,2,10,31,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,27,27,2026-05-19T01:09:50Z
+401873197,2026,3,2026-05-18,191,2,10,17,Jump Shot,Keldon Johnson makes 26-foot three point jumper (Dylan Harper assists),3,True,True,4395723,Keldon Johnson,5037871,Dylan Harper,,,24,25,OKC,24,SA,27,30,2026-05-19T01:10:04Z
+401873197,2026,3,2026-05-18,193,2,10,1,Shooting Foul,Julian Champagnie shooting foul,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,27,30,2026-05-19T01:10:21Z
+401873197,2026,3,2026-05-18,195,2,10,1,Free Throw - 1 of 2,Shai Gilgeous-Alexander makes free throw 1 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,28,30,2026-05-19T01:10:46Z
+401873197,2026,3,2026-05-18,196,2,10,1,Free Throw - 2 of 2,Shai Gilgeous-Alexander makes free throw 2 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,29,30,2026-05-19T01:11:01Z
+401873197,2026,3,2026-05-18,197,2,9,47,Jump Shot,Julian Champagnie misses 26-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,29,30,2026-05-19T01:11:18Z
+401873197,2026,3,2026-05-18,198,2,9,42,Offensive Rebound,Julian Champagnie offensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,29,30,2026-05-19T01:11:23Z
+401873197,2026,3,2026-05-18,199,2,9,34,Jump Shot,Carter Bryant makes 25-foot three point jumper (Dylan Harper assists),3,True,True,5061568,Carter Bryant,5037871,Dylan Harper,,,24,25,OKC,24,SA,29,33,2026-05-19T01:11:32Z
+401873197,2026,3,2026-05-18,201,2,9,20,Jump Shot,Aaron Wiggins misses 22-foot three point jumper,0,False,True,4397183,Aaron Wiggins,,,,,25,25,OKC,24,SA,29,33,2026-05-19T01:11:45Z
+401873197,2026,3,2026-05-18,202,2,9,17,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,29,33,2026-05-19T01:11:48Z
+401873197,2026,3,2026-05-18,203,2,9,11,Jump Shot,Dylan Harper makes 26-foot three point jumper (Victor Wembanyama assists),3,True,True,5037871,Dylan Harper,5104157,Victor Wembanyama,,,24,25,OKC,24,SA,29,36,2026-05-19T01:11:55Z
+401873197,2026,3,2026-05-18,205,2,9,9,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,29,36,2026-05-19T01:12:00Z
+401873197,2026,3,2026-05-18,206,2,8,49,Pullup Jump Shot,Aaron Wiggins misses 22-foot three point pullup jump shot,0,False,True,4397183,Aaron Wiggins,,,,,25,25,OKC,24,SA,29,36,2026-05-19T01:16:13Z
+401873197,2026,3,2026-05-18,207,2,8,45,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,29,36,2026-05-19T01:16:17Z
+401873197,2026,3,2026-05-18,208,2,8,23,Fade Away Jump Shot,Dylan Harper misses 8-foot fade away jump shot,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,29,36,2026-05-19T01:16:39Z
+401873197,2026,3,2026-05-18,209,2,8,20,Defensive Rebound,Jaylin Williams defensive rebound,0,False,False,4432823,Jaylin Williams,,,,,25,25,OKC,24,SA,29,36,2026-05-19T01:16:42Z
+401873197,2026,3,2026-05-18,210,2,8,10,Jump Shot,Cason Wallace misses 24-foot three point jumper,0,False,True,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,29,36,2026-05-19T01:16:51Z
+401873197,2026,3,2026-05-18,211,2,8,8,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,29,36,2026-05-19T01:16:53Z
+401873197,2026,3,2026-05-18,212,2,8,3,Personal Foul,Alex Caruso personal foul,0,False,False,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,29,36,2026-05-19T01:17:04Z
+401873197,2026,3,2026-05-18,214,2,8,3,Substitution,Jared McCain enters the game for Jaylin Williams,0,False,False,4683778,Jared McCain,4432823,Jaylin Williams,,,25,25,OKC,24,SA,29,36,2026-05-19T01:17:09Z
+401873197,2026,3,2026-05-18,215,2,8,3,Substitution,Chet Holmgren enters the game for Aaron Wiggins,0,False,False,4433255,Chet Holmgren,4397183,Aaron Wiggins,,,25,25,OKC,24,SA,29,36,2026-05-19T01:17:09Z
+401873197,2026,3,2026-05-18,216,2,8,3,Substitution,Stephon Castle enters the game for Dylan Harper,0,False,False,4845367,Stephon Castle,5037871,Dylan Harper,,,24,25,OKC,24,SA,29,36,2026-05-19T01:17:09Z
+401873197,2026,3,2026-05-18,217,2,8,3,Substitution,Devin Vassell enters the game for Julian Champagnie,0,False,False,4395630,Devin Vassell,4592479,Julian Champagnie,,,24,25,OKC,24,SA,29,36,2026-05-19T01:17:09Z
+401873197,2026,3,2026-05-18,223,2,7,49,Driving Layup Shot,Keldon Johnson misses driving layup,0,False,True,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,29,36,2026-05-19T01:18:05Z
+401873197,2026,3,2026-05-18,224,2,7,48,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,29,36,2026-05-19T01:18:06Z
+401873197,2026,3,2026-05-18,225,2,7,48,Tip Shot,Victor Wembanyama makes tip shot,2,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,29,38,2026-05-19T01:18:10Z
+401873197,2026,3,2026-05-18,226,2,7,37,Jump Shot,Alex Caruso makes 24-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,32,38,2026-05-19T01:18:22Z
+401873197,2026,3,2026-05-18,228,2,7,20,Cutting Dunk Shot,Victor Wembanyama makes 1-foot dunk (Stephon Castle assists),2,True,True,5104157,Victor Wembanyama,4845367,Stephon Castle,,,24,25,OKC,24,SA,32,40,2026-05-19T01:18:39Z
+401873197,2026,3,2026-05-18,230,2,7,17,Personal Foul,Carter Bryant personal foul,0,False,False,5061568,Carter Bryant,,,,,24,25,OKC,24,SA,32,40,2026-05-19T01:18:44Z
+401873197,2026,3,2026-05-18,233,2,7,8,Driving Layup Shot,Alex Caruso misses driving layup,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,32,40,2026-05-19T01:19:07Z
+401873197,2026,3,2026-05-18,234,2,7,5,Defensive Rebound,Carter Bryant defensive rebound,0,False,False,5061568,Carter Bryant,,,,,24,25,OKC,24,SA,32,40,2026-05-19T01:19:10Z
+401873197,2026,3,2026-05-18,239,2,6,42,Jump Shot,Alex Caruso makes 24-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,35,40,2026-05-19T01:19:44Z
+401873197,2026,3,2026-05-18,241,2,6,22,Jump Shot,Devin Vassell misses 26-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,35,40,2026-05-19T01:20:04Z
+401873197,2026,3,2026-05-18,242,2,6,19,Defensive Rebound,Jared McCain defensive rebound,0,False,False,4683778,Jared McCain,,,,,25,25,OKC,24,SA,35,40,2026-05-19T01:20:07Z
+401873197,2026,3,2026-05-18,243,2,6,8,Lost Ball Turnover,Shai Gilgeous-Alexander lost ball turnover (Stephon Castle steals),0,False,False,4278073,Shai Gilgeous-Alexander,4845367,Stephon Castle,,,25,25,OKC,24,SA,35,40,2026-05-19T01:20:18Z
+401873197,2026,3,2026-05-18,245,2,6,0,Driving Finger Roll Layup,Keldon Johnson makes 3-foot two point shot (Devin Vassell assists),2,True,True,4395723,Keldon Johnson,4395630,Devin Vassell,,,24,25,OKC,24,SA,35,42,2026-05-19T01:20:26Z
+401873197,2026,3,2026-05-18,247,2,5,40,Jump Shot,Alex Caruso misses 23-foot three point jumper,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,35,42,2026-05-19T01:20:45Z
+401873197,2026,3,2026-05-18,248,2,5,37,Offensive Rebound,Thunder offensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,35,42,2026-05-19T01:20:48Z
+401873197,2026,3,2026-05-18,250,2,5,37,Substitution,Isaiah Hartenstein enters the game for Shai Gilgeous-Alexander,0,False,False,4222252,Isaiah Hartenstein,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,35,42,2026-05-19T01:20:57Z
+401873197,2026,3,2026-05-18,251,2,5,37,Substitution,Ajay Mitchell enters the game for Alex Caruso,0,False,False,4900671,Ajay Mitchell,2991350,Alex Caruso,,,25,25,OKC,24,SA,35,42,2026-05-19T01:20:57Z
+401873197,2026,3,2026-05-18,252,2,5,37,Substitution,Jalen Williams enters the game for Cason Wallace,0,False,False,4593803,Jalen Williams,4683692,Cason Wallace,,,25,25,OKC,24,SA,35,42,2026-05-19T01:20:57Z
+401873197,2026,3,2026-05-18,253,2,5,37,Substitution,Luke Kornet enters the game for Victor Wembanyama,0,False,False,3064560,Luke Kornet,5104157,Victor Wembanyama,,,24,25,OKC,24,SA,35,42,2026-05-19T01:20:57Z
+401873197,2026,3,2026-05-18,254,2,5,37,Substitution,Julian Champagnie enters the game for Keldon Johnson,0,False,False,4592479,Julian Champagnie,4395723,Keldon Johnson,,,24,25,OKC,24,SA,35,42,2026-05-19T01:20:57Z
+401873197,2026,3,2026-05-18,255,2,5,37,Substitution,Dylan Harper enters the game for Carter Bryant,0,False,False,5037871,Dylan Harper,5061568,Carter Bryant,,,24,25,OKC,24,SA,35,42,2026-05-19T01:20:57Z
+401873197,2026,3,2026-05-18,262,2,5,23,Bad Pass Turnover,Jared McCain bad pass turnover (Dylan Harper steals),0,False,False,4683778,Jared McCain,5037871,Dylan Harper,,,25,25,OKC,24,SA,35,42,2026-05-19T01:21:39Z
+401873197,2026,3,2026-05-18,264,2,5,7,Cutting Layup Shot,Isaiah Hartenstein blocks Luke Kornet 's 1-foot layup,0,False,True,3064560,Luke Kornet,4222252,Isaiah Hartenstein,,,24,25,OKC,24,SA,35,42,2026-05-19T01:21:55Z
+401873197,2026,3,2026-05-18,266,2,5,7,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,35,42,2026-05-19T01:21:55Z
+401873197,2026,3,2026-05-18,268,2,5,7,Substitution,Harrison Barnes enters the game for Stephon Castle,0,False,False,6578,Harrison Barnes,4845367,Stephon Castle,,,24,25,OKC,24,SA,35,42,2026-05-19T01:22:01Z
+401873197,2026,3,2026-05-18,270,2,5,2,Layup Shot,Harrison Barnes misses layup,0,False,True,6578,Harrison Barnes,,,,,24,25,OKC,24,SA,35,42,2026-05-19T01:22:28Z
+401873197,2026,3,2026-05-18,271,2,5,0,Defensive Rebound,Chet Holmgren defensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,35,42,2026-05-19T01:22:30Z
+401873197,2026,3,2026-05-18,272,2,4,54,Jump Shot,Jared McCain misses 24-foot three point jumper,0,False,True,4683778,Jared McCain,,,,,25,25,OKC,24,SA,35,42,2026-05-19T01:22:36Z
+401873197,2026,3,2026-05-18,273,2,4,50,Defensive Rebound,Luke Kornet defensive rebound,0,False,False,3064560,Luke Kornet,,,,,24,25,OKC,24,SA,35,42,2026-05-19T01:22:40Z
+401873197,2026,3,2026-05-18,274,2,4,31,Driving Layup Shot,Isaiah Hartenstein blocks Dylan Harper 's 3-foot driving layup,0,False,True,5037871,Dylan Harper,4222252,Isaiah Hartenstein,,,24,25,OKC,24,SA,35,42,2026-05-19T01:22:58Z
+401873197,2026,3,2026-05-18,276,2,4,28,Defensive Rebound,Jared McCain defensive rebound,0,False,False,4683778,Jared McCain,,,,,25,25,OKC,24,SA,35,42,2026-05-19T01:23:01Z
+401873197,2026,3,2026-05-18,277,2,4,26,Shooting Foul,Luke Kornet shooting foul,0,False,False,3064560,Luke Kornet,,,,,24,25,OKC,24,SA,35,42,2026-05-19T01:23:06Z
+401873197,2026,3,2026-05-18,279,2,4,26,Ref-Initiated Review (Stands),(04:26) [Spurs] REF-INITIATED REVIEW (CALL STANDS),0,False,False,,,,,,,,25,OKC,24,SA,35,42,2026-05-19T01:23:39Z
+401873197,2026,3,2026-05-18,280,2,4,26,Substitution,Stephon Castle enters the game for Dylan Harper,0,False,False,4845367,Stephon Castle,5037871,Dylan Harper,,,24,25,OKC,24,SA,35,42,2026-05-19T01:25:46Z
+401873197,2026,3,2026-05-18,282,2,4,26,Free Throw - 1 of 2,Chet Holmgren makes free throw 1 of 2,1,True,True,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,36,42,2026-05-19T01:26:10Z
+401873197,2026,3,2026-05-18,283,2,4,26,Free Throw - 2 of 2,Chet Holmgren makes free throw 2 of 2,1,True,True,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,37,42,2026-05-19T01:26:10Z
+401873197,2026,3,2026-05-18,284,2,4,16,Turnaround Jump Shot,Devin Vassell makes 15-foot turnaround jump shot (Luke Kornet assists),2,True,True,4395630,Devin Vassell,3064560,Luke Kornet,,,24,25,OKC,24,SA,37,44,2026-05-19T01:26:45Z
+401873197,2026,3,2026-05-18,286,2,4,1,Driving Floating Bank Jump Shot,Jalen Williams misses two point shot,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,37,44,2026-05-19T01:27:01Z
+401873197,2026,3,2026-05-18,287,2,3,58,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,37,44,2026-05-19T01:27:04Z
+401873197,2026,3,2026-05-18,288,2,3,51,Driving Floating Jump Shot,Stephon Castle misses driving floating jump shot,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,37,44,2026-05-19T01:27:10Z
+401873197,2026,3,2026-05-18,289,2,3,50,Defensive Rebound,Isaiah Hartenstein defensive rebound,0,False,False,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,37,44,2026-05-19T01:27:11Z
+401873197,2026,3,2026-05-18,290,2,3,47,Running Layup Shot,Jalen Williams makes running layup (Jared McCain assists),2,True,True,4593803,Jalen Williams,4683778,Jared McCain,,,25,25,OKC,24,SA,39,44,2026-05-19T01:27:15Z
+401873197,2026,3,2026-05-18,292,2,3,36,Bad Pass Turnover,Stephon Castle bad pass turnover (Isaiah Hartenstein steals),0,False,False,4845367,Stephon Castle,4222252,Isaiah Hartenstein,,,24,25,OKC,24,SA,39,44,2026-05-19T01:27:25Z
+401873197,2026,3,2026-05-18,294,2,3,30,Running Layup Shot,Jared McCain makes running layup,2,True,True,4683778,Jared McCain,,,,,25,25,OKC,24,SA,41,44,2026-05-19T01:27:32Z
+401873197,2026,3,2026-05-18,295,2,3,30,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,41,44,2026-05-19T01:27:40Z
+401873197,2026,3,2026-05-18,296,2,6,53,Out of Bounds - Lost Ball Turnover,Stephon Castle out of bounds lost ball turnover,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,32,40,2026-05-19T01:19:16Z
+401873197,2026,3,2026-05-18,297,2,3,30,Substitution,Shai Gilgeous-Alexander enters the game for Jared McCain,0,False,False,4278073,Shai Gilgeous-Alexander,4683778,Jared McCain,,,25,25,OKC,24,SA,41,44,2026-05-19T01:31:03Z
+401873197,2026,3,2026-05-18,298,2,3,30,Substitution,Cason Wallace enters the game for Isaiah Hartenstein,0,False,False,4683692,Cason Wallace,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,41,44,2026-05-19T01:31:03Z
+401873197,2026,3,2026-05-18,299,2,3,30,Substitution,Dylan Harper enters the game for Luke Kornet,0,False,False,5037871,Dylan Harper,3064560,Luke Kornet,,,24,25,OKC,24,SA,41,44,2026-05-19T01:31:03Z
+401873197,2026,3,2026-05-18,300,2,3,30,Substitution,Victor Wembanyama enters the game for Harrison Barnes,0,False,False,5104157,Victor Wembanyama,6578,Harrison Barnes,,,24,25,OKC,24,SA,41,44,2026-05-19T01:31:03Z
+401873197,2026,3,2026-05-18,305,2,3,9,Step Back Jump Shot,Stephon Castle misses 23-foot three point step back jumpshot,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,41,44,2026-05-19T01:31:46Z
+401873197,2026,3,2026-05-18,306,2,3,5,Defensive Rebound,Ajay Mitchell defensive rebound,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,41,44,2026-05-19T01:31:50Z
+401873197,2026,3,2026-05-18,307,2,2,56,Step Back Jump Shot,Shai Gilgeous-Alexander misses 18-foot step back jumpshot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,41,44,2026-05-19T01:32:00Z
+401873197,2026,3,2026-05-18,308,2,2,52,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,41,44,2026-05-19T01:32:04Z
+401873197,2026,3,2026-05-18,309,2,2,33,Turnaround Jump Shot,Victor Wembanyama makes 4-foot turnaround jump shot,2,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,41,46,2026-05-19T01:32:22Z
+401873197,2026,3,2026-05-18,310,2,2,12,Bad Pass Turnover,Jalen Williams bad pass turnover (Julian Champagnie steals),0,False,False,4593803,Jalen Williams,4592479,Julian Champagnie,,,25,25,OKC,24,SA,41,46,2026-05-19T01:32:43Z
+401873197,2026,3,2026-05-18,312,2,2,3,Lost Ball Turnover,Stephon Castle lost ball turnover (Shai Gilgeous-Alexander steals),0,False,False,4845367,Stephon Castle,4278073,Shai Gilgeous-Alexander,,,24,25,OKC,24,SA,41,46,2026-05-19T01:32:51Z
+401873197,2026,3,2026-05-18,314,2,1,54,Pullup Jump Shot,Ajay Mitchell misses 9-foot pullup jump shot,0,False,True,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,41,46,2026-05-19T01:33:01Z
+401873197,2026,3,2026-05-18,315,2,1,52,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,41,46,2026-05-19T01:33:03Z
+401873197,2026,3,2026-05-18,316,2,1,33,Driving Dunk Shot,Victor Wembanyama makes 3-foot driving dunk (Stephon Castle assists),2,True,True,5104157,Victor Wembanyama,4845367,Stephon Castle,,,24,25,OKC,24,SA,41,48,2026-05-19T01:33:22Z
+401873197,2026,3,2026-05-18,318,2,1,8,Driving Layup Shot,Jalen Williams misses driving layup,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,41,48,2026-05-19T01:33:47Z
+401873197,2026,3,2026-05-18,319,2,1,5,Offensive Rebound,Cason Wallace offensive rebound,0,False,False,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,41,48,2026-05-19T01:33:50Z
+401873197,2026,3,2026-05-18,320,2,1,2,Jump Shot,Cason Wallace misses 24-foot three point jumper,0,False,True,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,41,48,2026-05-19T01:33:53Z
+401873197,2026,3,2026-05-18,321,2,0,59.4,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,41,48,2026-05-19T01:33:55Z
+401873197,2026,3,2026-05-18,322,2,0,53.5,Jump Shot,Devin Vassell makes 28-foot three point jumper (Dylan Harper assists),3,True,True,4395630,Devin Vassell,5037871,Dylan Harper,,,24,25,OKC,24,SA,41,51,2026-05-19T01:34:02Z
+401873197,2026,3,2026-05-18,324,2,0,42.4,Jump Shot,Chet Holmgren makes 22-foot three point jumper (Jalen Williams assists),3,True,True,4433255,Chet Holmgren,4593803,Jalen Williams,,,25,25,OKC,24,SA,44,51,2026-05-19T01:34:16Z
+401873197,2026,3,2026-05-18,326,2,0,18.9,Turnaround Fade Away Jump Shot,Victor Wembanyama misses 15-foot two point shot,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,44,51,2026-05-19T01:34:44Z
+401873197,2026,3,2026-05-18,327,2,0,16.1,Defensive Rebound,Thunder defensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,44,51,2026-05-19T01:34:46Z
+401873197,2026,3,2026-05-18,328,2,0,16.1,Loose Ball Foul,Dylan Harper loose ball foul,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,44,51,2026-05-19T01:34:48Z
+401873197,2026,3,2026-05-18,330,2,0,16.1,Substitution,Isaiah Joe enters the game for Ajay Mitchell,0,False,False,4395702,Isaiah Joe,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,44,51,2026-05-19T01:34:55Z
+401873197,2026,3,2026-05-18,331,2,0,16.1,Substitution,Jared McCain enters the game for Cason Wallace,0,False,False,4683778,Jared McCain,4683692,Cason Wallace,,,25,25,OKC,24,SA,44,51,2026-05-19T01:34:55Z
+401873197,2026,3,2026-05-18,334,2,0,1.8,Step Back Jump Shot,Jalen Williams misses 13-foot step back jumpshot,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,44,51,2026-05-19T01:35:27Z
+401873197,2026,3,2026-05-18,335,2,0,1.8,Offensive Rebound,Chet Holmgren offensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,44,51,2026-05-19T01:35:27Z
+401873197,2026,3,2026-05-18,336,2,0,0,Ref-Initiated Review (Supported),(00:00) [Spurs] REF-INITIATED REVIEW (REPLAY SUPPORTS CALL),0,False,False,,,,,,,,25,OKC,24,SA,44,51,2026-05-19T01:35:43Z
+401873197,2026,3,2026-05-18,337,2,0,0,End Period,End of the 2nd Quarter,0,False,False,,,,,,,,25,OKC,24,SA,44,51,2026-05-19T01:36:08Z
+401873197,2026,3,2026-05-18,338,2,0,1,Tip Shot,Chet Holmgren misses 2-foot tip shot,0,False,True,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,44,51,2026-05-19T01:35:35Z
+401873197,2026,3,2026-05-18,339,2,0,1,Offensive Rebound,Thunder offensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,44,51,2026-05-19T01:35:35Z
+401873197,2026,3,2026-05-18,340,3,12,0,Substitution,Luguentz Dort enters the game for Isaiah Joe,0,False,False,4397020,Luguentz Dort,4395702,Isaiah Joe,,,25,25,OKC,24,SA,44,51,2026-05-19T01:51:34Z
+401873197,2026,3,2026-05-18,341,3,12,0,Substitution,Cason Wallace enters the game for Jared McCain,0,False,False,4683692,Cason Wallace,4683778,Jared McCain,,,25,25,OKC,24,SA,44,51,2026-05-19T01:51:34Z
+401873197,2026,3,2026-05-18,345,3,11,41,Lost Ball Turnover,Jalen Williams lost ball turnover (Dylan Harper steals),0,False,False,4593803,Jalen Williams,5037871,Dylan Harper,,,25,25,OKC,24,SA,44,51,2026-05-19T01:52:32Z
+401873197,2026,3,2026-05-18,347,3,11,38,Running Layup Shot,Dylan Harper makes running layup,2,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,44,53,2026-05-19T01:52:36Z
+401873197,2026,3,2026-05-18,348,3,11,29,Fade Away Jump Shot,Shai Gilgeous-Alexander misses 13-foot fade away jump shot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,44,53,2026-05-19T01:52:44Z
+401873197,2026,3,2026-05-18,349,3,11,27,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,44,53,2026-05-19T01:52:46Z
+401873197,2026,3,2026-05-18,350,3,11,13,Jump Shot,Devin Vassell misses 22-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,44,53,2026-05-19T01:53:01Z
+401873197,2026,3,2026-05-18,351,3,11,9,Offensive Rebound,Julian Champagnie offensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,44,53,2026-05-19T01:53:05Z
+401873197,2026,3,2026-05-18,352,3,11,3,Jump Shot,Stephon Castle misses 28-foot three point jumper,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,44,53,2026-05-19T01:53:11Z
+401873197,2026,3,2026-05-18,353,3,11,0,Defensive Rebound,Cason Wallace defensive rebound,0,False,False,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,44,53,2026-05-19T01:53:14Z
+401873197,2026,3,2026-05-18,354,3,10,50,Pullup Jump Shot,Jalen Williams makes 11-foot pullup jump shot,2,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,46,53,2026-05-19T01:53:24Z
+401873197,2026,3,2026-05-18,355,3,10,50,Shooting Foul,Stephon Castle shooting foul,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,46,53,2026-05-19T01:53:27Z
+401873197,2026,3,2026-05-18,357,3,10,50,Free Throw - 1 of 1,Jalen Williams makes free throw 1 of 1,1,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,47,53,2026-05-19T01:53:58Z
+401873197,2026,3,2026-05-18,358,3,10,32,Jump Shot,Devin Vassell misses 23-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,47,53,2026-05-19T01:54:20Z
+401873197,2026,3,2026-05-18,359,3,10,28,Defensive Rebound,Chet Holmgren defensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,47,53,2026-05-19T01:54:24Z
+401873197,2026,3,2026-05-18,360,3,10,18,Jump Shot,Chet Holmgren makes 26-foot three point jumper (Luguentz Dort assists),3,True,True,4433255,Chet Holmgren,4397020,Luguentz Dort,,,25,25,OKC,24,SA,50,53,2026-05-19T01:54:34Z
+401873197,2026,3,2026-05-18,362,3,10,2,Driving Layup Shot,Stephon Castle makes driving layup,2,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,50,55,2026-05-19T01:54:51Z
+401873197,2026,3,2026-05-18,363,3,9,48,Driving Layup Shot,Cason Wallace makes driving layup,2,True,True,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,52,55,2026-05-19T01:55:04Z
+401873197,2026,3,2026-05-18,364,3,9,31,Jump Shot,Julian Champagnie misses 22-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,52,55,2026-05-19T01:55:20Z
+401873197,2026,3,2026-05-18,365,3,9,29,Defensive Rebound,Shai Gilgeous-Alexander defensive rebound,0,False,False,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,52,55,2026-05-19T01:55:22Z
+401873197,2026,3,2026-05-18,366,3,9,17,Jump Shot,Luguentz Dort misses 26-foot three point jumper,0,False,True,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,52,55,2026-05-19T01:55:35Z
+401873197,2026,3,2026-05-18,367,3,9,13,Offensive Rebound,Cason Wallace offensive rebound,0,False,False,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,52,55,2026-05-19T01:55:39Z
+401873197,2026,3,2026-05-18,368,3,9,3,Step Back Jump Shot,Shai Gilgeous-Alexander misses 14-foot step back jumpshot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,52,55,2026-05-19T01:55:49Z
+401873197,2026,3,2026-05-18,369,3,9,1,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,52,55,2026-05-19T01:55:51Z
+401873197,2026,3,2026-05-18,370,3,8,48,Driving Layup Shot,Julian Champagnie makes driving layup (Victor Wembanyama assists),2,True,True,4592479,Julian Champagnie,5104157,Victor Wembanyama,,,24,25,OKC,24,SA,52,57,2026-05-19T01:56:03Z
+401873197,2026,3,2026-05-18,371,3,8,20,Jump Shot,Shai Gilgeous-Alexander makes 23-foot three point jumper (Jalen Williams assists),3,True,True,4278073,Shai Gilgeous-Alexander,4593803,Jalen Williams,,,25,25,OKC,24,SA,55,57,2026-05-19T01:56:32Z
+401873197,2026,3,2026-05-18,373,3,8,7,8-Second Turnover,8 second turnover,0,False,False,,,,,,,24,25,OKC,24,SA,55,57,2026-05-19T01:56:54Z
+401873197,2026,3,2026-05-18,374,3,7,55,Step Back Jump Shot,Shai Gilgeous-Alexander misses 27-foot three point step back jumpshot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,55,57,2026-05-19T01:57:23Z
+401873197,2026,3,2026-05-18,375,3,7,53,Offensive Rebound,Luguentz Dort offensive rebound,0,False,False,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,55,57,2026-05-19T01:57:25Z
+401873197,2026,3,2026-05-18,376,3,7,50,Jump Shot,Luguentz Dort makes 23-foot three point jumper (Jalen Williams assists),3,True,True,4397020,Luguentz Dort,4593803,Jalen Williams,,,25,25,OKC,24,SA,58,57,2026-05-19T01:57:28Z
+401873197,2026,3,2026-05-18,378,3,7,46,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,58,57,2026-05-19T01:57:36Z
+401873197,2026,3,2026-05-18,380,3,7,33,Shooting Foul,Shai Gilgeous-Alexander shooting foul,0,False,False,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,58,57,2026-05-19T02:01:41Z
+401873197,2026,3,2026-05-18,382,3,7,33,Free Throw - 1 of 2,Victor Wembanyama makes free throw 1 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,58,58,2026-05-19T02:02:15Z
+401873197,2026,3,2026-05-18,383,3,7,33,Substitution,Carter Bryant enters the game for Dylan Harper,0,False,False,5061568,Carter Bryant,5037871,Dylan Harper,,,24,25,OKC,24,SA,58,58,2026-05-19T02:02:15Z
+401873197,2026,3,2026-05-18,385,3,7,33,Free Throw - 2 of 2,Victor Wembanyama makes free throw 2 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,58,59,2026-05-19T02:02:50Z
+401873197,2026,3,2026-05-18,386,3,7,18,Fade Away Jump Shot,Chet Holmgren misses 12-foot fade away jump shot,0,False,True,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,58,59,2026-05-19T02:03:06Z
+401873197,2026,3,2026-05-18,387,3,7,16,Defensive Rebound,Carter Bryant defensive rebound,0,False,False,5061568,Carter Bryant,,,,,24,25,OKC,24,SA,58,59,2026-05-19T02:03:08Z
+401873197,2026,3,2026-05-18,388,3,7,1,Jump Shot,Julian Champagnie makes 25-foot three point jumper (Carter Bryant assists),3,True,True,4592479,Julian Champagnie,5061568,Carter Bryant,,,24,25,OKC,24,SA,58,62,2026-05-19T02:03:23Z
+401873197,2026,3,2026-05-18,390,3,6,35,Jump Shot,Julian Champagnie blocks Chet Holmgren 's 25-foot three point jumper,0,False,True,4433255,Chet Holmgren,4592479,Julian Champagnie,,,25,25,OKC,24,SA,58,62,2026-05-19T02:03:49Z
+401873197,2026,3,2026-05-18,392,3,6,30,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,58,62,2026-05-19T02:03:54Z
+401873197,2026,3,2026-05-18,393,3,6,27,Shooting Foul,Shai Gilgeous-Alexander shooting foul,0,False,False,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,58,62,2026-05-19T02:04:03Z
+401873197,2026,3,2026-05-18,395,3,6,27,Free Throw - 1 of 2,Stephon Castle makes free throw 1 of 2,1,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,58,63,2026-05-19T02:04:29Z
+401873197,2026,3,2026-05-18,396,3,6,27,Substitution,Alex Caruso enters the game for Jalen Williams,0,False,False,2991350,Alex Caruso,4593803,Jalen Williams,,,25,25,OKC,24,SA,58,63,2026-05-19T02:04:30Z
+401873197,2026,3,2026-05-18,397,3,6,27,Substitution,Jared McCain enters the game for Cason Wallace,0,False,False,4683778,Jared McCain,4683692,Cason Wallace,,,25,25,OKC,24,SA,58,63,2026-05-19T02:04:30Z
+401873197,2026,3,2026-05-18,398,3,6,27,Substitution,Luke Kornet enters the game for Victor Wembanyama,0,False,False,3064560,Luke Kornet,5104157,Victor Wembanyama,,,24,25,OKC,24,SA,58,63,2026-05-19T02:04:30Z
+401873197,2026,3,2026-05-18,399,3,6,27,Substitution,Keldon Johnson enters the game for Devin Vassell,0,False,False,4395723,Keldon Johnson,4395630,Devin Vassell,,,24,25,OKC,24,SA,58,63,2026-05-19T02:04:30Z
+401873197,2026,3,2026-05-18,404,3,6,27,Substitution,Isaiah Hartenstein enters the game for Chet Holmgren,0,False,False,4222252,Isaiah Hartenstein,4433255,Chet Holmgren,,,25,25,OKC,24,SA,58,63,2026-05-19T02:04:41Z
+401873197,2026,3,2026-05-18,406,3,6,27,Free Throw - 2 of 2,Stephon Castle makes free throw 2 of 2,1,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,58,64,2026-05-19T02:05:07Z
+401873197,2026,3,2026-05-18,407,3,6,5,Shooting Foul,Julian Champagnie shooting foul,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,58,64,2026-05-19T02:05:32Z
+401873197,2026,3,2026-05-18,409,3,6,5,Free Throw - 1 of 2,Isaiah Hartenstein makes free throw 1 of 2,1,True,True,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,59,64,2026-05-19T02:05:59Z
+401873197,2026,3,2026-05-18,410,3,6,5,Substitution,Ajay Mitchell enters the game for Luguentz Dort,0,False,False,4900671,Ajay Mitchell,4397020,Luguentz Dort,,,25,25,OKC,24,SA,59,64,2026-05-19T02:06:00Z
+401873197,2026,3,2026-05-18,412,3,6,5,Free Throw - 2 of 2,Isaiah Hartenstein makes free throw 2 of 2,1,True,True,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,60,64,2026-05-19T02:06:16Z
+401873197,2026,3,2026-05-18,413,3,5,46,Traveling,Stephon Castle traveling turnover,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,60,64,2026-05-19T02:06:43Z
+401873197,2026,3,2026-05-18,414,3,5,30,Jump Shot,Jared McCain makes 22-foot three point jumper (Ajay Mitchell assists),3,True,True,4683778,Jared McCain,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,63,64,2026-05-19T02:07:14Z
+401873197,2026,3,2026-05-18,416,3,5,6,Out of Bounds - Step Turnover,Keldon Johnson steps out of bounds turnover,0,False,False,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,63,64,2026-05-19T02:07:41Z
+401873197,2026,3,2026-05-18,417,3,5,6,Substitution,Dylan Harper enters the game for Stephon Castle,0,False,False,5037871,Dylan Harper,4845367,Stephon Castle,,,24,25,OKC,24,SA,63,64,2026-05-19T02:07:46Z
+401873197,2026,3,2026-05-18,419,3,4,51,Lost Ball Turnover,Jared McCain lost ball turnover (Dylan Harper steals),0,False,False,4683778,Jared McCain,5037871,Dylan Harper,,,25,25,OKC,24,SA,63,64,2026-05-19T02:08:15Z
+401873197,2026,3,2026-05-18,421,3,4,46,Running Layup Shot,Dylan Harper makes running layup,2,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,63,66,2026-05-19T02:08:20Z
+401873197,2026,3,2026-05-18,422,3,4,44,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,63,66,2026-05-19T02:08:27Z
+401873197,2026,3,2026-05-18,423,3,4,44,Substitution,Luguentz Dort enters the game for Shai Gilgeous-Alexander,0,False,False,4397020,Luguentz Dort,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,63,66,2026-05-19T02:11:49Z
+401873197,2026,3,2026-05-18,424,3,4,44,Substitution,Jalen Williams enters the game for Alex Caruso,0,False,False,4593803,Jalen Williams,2991350,Alex Caruso,,,25,25,OKC,24,SA,63,66,2026-05-19T02:11:49Z
+401873197,2026,3,2026-05-18,425,3,4,44,Substitution,Devin Vassell enters the game for Julian Champagnie,0,False,False,4395630,Devin Vassell,4592479,Julian Champagnie,,,24,25,OKC,24,SA,63,66,2026-05-19T02:11:49Z
+401873197,2026,3,2026-05-18,429,3,4,29,Driving Floating Jump Shot,Jalen Williams misses driving floating jump shot,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,63,66,2026-05-19T02:12:27Z
+401873197,2026,3,2026-05-18,430,3,4,26,Defensive Rebound,Luke Kornet defensive rebound,0,False,False,3064560,Luke Kornet,,,,,24,25,OKC,24,SA,63,66,2026-05-19T02:12:30Z
+401873197,2026,3,2026-05-18,431,3,4,20,Driving Layup Shot,Dylan Harper makes driving layup,2,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,63,68,2026-05-19T02:12:37Z
+401873197,2026,3,2026-05-18,432,3,4,9,Pullup Jump Shot,Ajay Mitchell makes 15-foot pullup jump shot,2,True,True,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,65,68,2026-05-19T02:12:47Z
+401873197,2026,3,2026-05-18,433,3,3,54,Shooting Foul,Isaiah Hartenstein shooting foul,0,False,False,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,65,68,2026-05-19T02:13:05Z
+401873197,2026,3,2026-05-18,435,3,3,54,Free Throw - 1 of 2,Keldon Johnson makes free throw 1 of 2,1,True,True,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,65,69,2026-05-19T02:13:29Z
+401873197,2026,3,2026-05-18,436,3,3,54,Free Throw - 2 of 2,Keldon Johnson makes free throw 2 of 2,1,True,True,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,65,70,2026-05-19T02:13:45Z
+401873197,2026,3,2026-05-18,437,3,3,37,Layup Driving Reverse,Ajay Mitchell misses two point shot,0,False,True,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,65,70,2026-05-19T02:14:04Z
+401873197,2026,3,2026-05-18,438,3,3,33,Defensive Rebound,Luke Kornet defensive rebound,0,False,False,3064560,Luke Kornet,,,,,24,25,OKC,24,SA,65,70,2026-05-19T02:14:08Z
+401873197,2026,3,2026-05-18,439,3,3,16,Lost Ball Turnover,Devin Vassell lost ball turnover (Ajay Mitchell steals),0,False,False,4395630,Devin Vassell,4900671,Ajay Mitchell,,,24,25,OKC,24,SA,65,70,2026-05-19T02:14:25Z
+401873197,2026,3,2026-05-18,441,3,3,16,Personal Foul,Devin Vassell personal foul,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,65,70,2026-05-19T02:14:30Z
+401873197,2026,3,2026-05-18,443,3,3,16,Substitution,Stephon Castle enters the game for Dylan Harper,0,False,False,4845367,Stephon Castle,5037871,Dylan Harper,,,24,25,OKC,24,SA,65,70,2026-05-19T02:14:42Z
+401873197,2026,3,2026-05-18,445,3,3,5,Cutting Dunk Shot,Jalen Williams makes 1-foot dunk (Isaiah Hartenstein assists),2,True,True,4593803,Jalen Williams,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,67,70,2026-05-19T02:14:58Z
+401873197,2026,3,2026-05-18,447,3,2,54,Personal Foul,Luguentz Dort personal foul,0,False,False,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,67,70,2026-05-19T02:15:11Z
+401873197,2026,3,2026-05-18,449,3,2,54,Substitution,Shai Gilgeous-Alexander enters the game for Ajay Mitchell,0,False,False,4278073,Shai Gilgeous-Alexander,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,67,70,2026-05-19T02:15:17Z
+401873197,2026,3,2026-05-18,450,3,2,54,Substitution,Jaylin Williams enters the game for Isaiah Hartenstein,0,False,False,4432823,Jaylin Williams,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,67,70,2026-05-19T02:15:17Z
+401873197,2026,3,2026-05-18,451,3,2,54,Substitution,Dylan Harper enters the game for Luke Kornet,0,False,False,5037871,Dylan Harper,3064560,Luke Kornet,,,24,25,OKC,24,SA,67,70,2026-05-19T02:15:17Z
+401873197,2026,3,2026-05-18,452,3,2,54,Substitution,Victor Wembanyama enters the game for Carter Bryant,0,False,False,5104157,Victor Wembanyama,5061568,Carter Bryant,,,24,25,OKC,24,SA,67,70,2026-05-19T02:15:17Z
+401873197,2026,3,2026-05-18,457,3,2,47,Shooting Foul,Jaylin Williams shooting foul,0,False,False,4432823,Jaylin Williams,,,,,25,25,OKC,24,SA,67,70,2026-05-19T02:15:59Z
+401873197,2026,3,2026-05-18,459,3,2,47,Free Throw - 1 of 2,Victor Wembanyama makes free throw 1 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,67,71,2026-05-19T02:16:31Z
+401873197,2026,3,2026-05-18,460,3,2,47,Free Throw - 2 of 2,Victor Wembanyama misses free throw 2 of 2,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,67,71,2026-05-19T02:16:31Z
+401873197,2026,3,2026-05-18,461,3,2,44,Defensive Rebound,Jaylin Williams defensive rebound,0,False,False,4432823,Jaylin Williams,,,,,25,25,OKC,24,SA,67,71,2026-05-19T02:16:34Z
+401873197,2026,3,2026-05-18,462,3,2,35,Driving Hook Shot,Jalen Williams misses 3-foot two point shot,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,67,71,2026-05-19T02:17:12Z
+401873197,2026,3,2026-05-18,463,3,2,33,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,67,71,2026-05-19T02:17:14Z
+401873197,2026,3,2026-05-18,464,3,2,27,Jump Shot,Devin Vassell misses 25-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,67,71,2026-05-19T02:17:20Z
+401873197,2026,3,2026-05-18,465,3,2,24,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,67,71,2026-05-19T02:17:24Z
+401873197,2026,3,2026-05-18,466,3,2,21,Turnaround Jump Shot,Victor Wembanyama misses 6-foot turnaround jump shot,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,67,71,2026-05-19T02:17:26Z
+401873197,2026,3,2026-05-18,467,3,2,20,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,67,71,2026-05-19T02:17:27Z
+401873197,2026,3,2026-05-18,468,3,2,20,Shooting Foul,Jared McCain shooting foul,0,False,False,4683778,Jared McCain,,,,,25,25,OKC,24,SA,67,71,2026-05-19T02:17:36Z
+401873197,2026,3,2026-05-18,470,3,2,20,Free Throw - 1 of 2,Victor Wembanyama makes free throw 1 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,67,72,2026-05-19T02:18:03Z
+401873197,2026,3,2026-05-18,471,3,2,20,Free Throw - 2 of 2,Victor Wembanyama makes free throw 2 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,67,73,2026-05-19T02:18:31Z
+401873197,2026,3,2026-05-18,472,3,1,58,Step Back Jump Shot,Jared McCain misses 13-foot step back jumpshot,0,False,True,4683778,Jared McCain,,,,,25,25,OKC,24,SA,67,73,2026-05-19T02:18:55Z
+401873197,2026,3,2026-05-18,473,3,1,57,Offensive Rebound,Jalen Williams offensive rebound,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,67,73,2026-05-19T02:18:56Z
+401873197,2026,3,2026-05-18,474,3,1,57,Tip Shot,Victor Wembanyama blocks Jalen Williams's tip shot,0,False,True,4593803,Jalen Williams,5104157,Victor Wembanyama,,,25,25,OKC,24,SA,67,73,2026-05-19T02:19:11Z
+401873197,2026,3,2026-05-18,476,3,1,56,Defensive Rebound,Spurs defensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,67,73,2026-05-19T02:19:12Z
+401873197,2026,3,2026-05-18,478,3,1,43,Pullup Jump Shot,Devin Vassell makes 11-foot pullup jump shot (Stephon Castle assists),2,True,True,4395630,Devin Vassell,4845367,Stephon Castle,,,24,25,OKC,24,SA,67,75,2026-05-19T02:19:16Z
+401873197,2026,3,2026-05-18,480,3,1,25,Step Back Jump Shot,Shai Gilgeous-Alexander makes 26-foot three point step back jumpshot,3,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,70,75,2026-05-19T02:19:33Z
+401873197,2026,3,2026-05-18,481,3,1,7,Personal Foul,Luguentz Dort personal foul,0,False,False,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,70,75,2026-05-19T02:19:54Z
+401873197,2026,3,2026-05-18,483,3,1,7,Free Throw - 1 of 2,Victor Wembanyama makes free throw 1 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,70,76,2026-05-19T02:20:33Z
+401873197,2026,3,2026-05-18,484,3,1,7,Substitution,Alex Caruso enters the game for Jared McCain,0,False,False,2991350,Alex Caruso,4683778,Jared McCain,,,25,25,OKC,24,SA,70,76,2026-05-19T02:20:34Z
+401873197,2026,3,2026-05-18,485,3,1,7,Substitution,Julian Champagnie enters the game for Keldon Johnson,0,False,False,4592479,Julian Champagnie,4395723,Keldon Johnson,,,24,25,OKC,24,SA,70,76,2026-05-19T02:20:34Z
+401873197,2026,3,2026-05-18,488,3,1,7,Free Throw - 2 of 2,Victor Wembanyama makes free throw 2 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,70,77,2026-05-19T02:21:07Z
+401873197,2026,3,2026-05-18,489,3,0,58.9,Bad Pass Turnover,Jaylin Williams bad pass turnover (Dylan Harper steals),0,False,False,4432823,Jaylin Williams,5037871,Dylan Harper,,,25,25,OKC,24,SA,70,77,2026-05-19T02:21:17Z
+401873197,2026,3,2026-05-18,491,3,0,47.1,Jump Shot,Dylan Harper misses 24-foot three point jumper,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,70,77,2026-05-19T02:21:29Z
+401873197,2026,3,2026-05-18,492,3,0,44.9,Defensive Rebound,Thunder defensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,70,77,2026-05-19T02:21:31Z
+401873197,2026,3,2026-05-18,494,3,0,33.7,Jump Shot,Alex Caruso makes 22-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,73,77,2026-05-19T02:21:49Z
+401873197,2026,3,2026-05-18,496,3,0,9,Jump Shot,Devin Vassell makes 23-foot three point jumper (Stephon Castle assists),3,True,True,4395630,Devin Vassell,4845367,Stephon Castle,,,24,25,OKC,24,SA,73,80,2026-05-19T02:22:17Z
+401873197,2026,3,2026-05-18,498,3,0,1.9,Pullup Jump Shot,Alex Caruso misses 27-foot three point pullup jump shot,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,73,80,2026-05-19T02:22:32Z
+401873197,2026,3,2026-05-18,499,3,0,1.9,Defensive Rebound,Stephon Castle defensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,73,80,2026-05-19T02:22:32Z
+401873197,2026,3,2026-05-18,500,3,0,0,End Period,End of the 3rd Quarter,0,False,False,,,,,,,,25,OKC,24,SA,73,80,2026-05-19T02:22:38Z
+401873197,2026,3,2026-05-18,501,4,12,0,Substitution,Cason Wallace enters the game for Luguentz Dort,0,False,False,4683692,Cason Wallace,4397020,Luguentz Dort,,,25,25,OKC,24,SA,73,80,2026-05-19T02:22:41Z
+401873197,2026,3,2026-05-18,502,4,12,0,Substitution,Chet Holmgren enters the game for Jaylin Williams,0,False,False,4433255,Chet Holmgren,4432823,Jaylin Williams,,,25,25,OKC,24,SA,73,80,2026-05-19T02:22:41Z
+401873197,2026,3,2026-05-18,503,4,12,0,Substitution,Ajay Mitchell enters the game for Jalen Williams,0,False,False,4900671,Ajay Mitchell,4593803,Jalen Williams,,,25,25,OKC,24,SA,73,80,2026-05-19T02:22:41Z
+401873197,2026,3,2026-05-18,504,4,12,0,Substitution,Keldon Johnson enters the game for Dylan Harper,0,False,False,4395723,Keldon Johnson,5037871,Dylan Harper,,,24,25,OKC,24,SA,73,80,2026-05-19T02:22:41Z
+401873197,2026,3,2026-05-18,505,4,12,0,Substitution,Carter Bryant enters the game for Julian Champagnie,0,False,False,5061568,Carter Bryant,4592479,Julian Champagnie,,,24,25,OKC,24,SA,73,80,2026-05-19T02:22:41Z
+401873197,2026,3,2026-05-18,512,4,11,40,Turnaround Jump Shot,Victor Wembanyama misses 8-foot turnaround jump shot,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,73,80,2026-05-19T02:26:49Z
+401873197,2026,3,2026-05-18,513,4,11,38,Defensive Rebound,Chet Holmgren defensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,73,80,2026-05-19T02:26:51Z
+401873197,2026,3,2026-05-18,514,4,11,29,Out of Bounds - Step Turnover,Chet Holmgren steps out of bounds turnover,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,73,80,2026-05-19T02:27:04Z
+401873197,2026,3,2026-05-18,515,4,11,14,Jump Shot,Keldon Johnson makes 23-foot three point jumper (Stephon Castle assists),3,True,True,4395723,Keldon Johnson,4845367,Stephon Castle,,,24,25,OKC,24,SA,73,83,2026-05-19T02:27:30Z
+401873197,2026,3,2026-05-18,517,4,11,2,Pullup Jump Shot,Ajay Mitchell makes 23-foot pullup jump shot,2,True,True,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,75,83,2026-05-19T02:27:41Z
+401873197,2026,3,2026-05-18,518,4,10,48,Jump Shot,Victor Wembanyama misses 28-foot three point jumper,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,75,83,2026-05-19T02:27:55Z
+401873197,2026,3,2026-05-18,519,4,10,46,Defensive Rebound,Ajay Mitchell defensive rebound,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,75,83,2026-05-19T02:27:57Z
+401873197,2026,3,2026-05-18,520,4,10,39,Pullup Jump Shot,Shai Gilgeous-Alexander misses 13-foot pullup jump shot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,75,83,2026-05-19T02:28:04Z
+401873197,2026,3,2026-05-18,521,4,10,37,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,75,83,2026-05-19T02:28:06Z
+401873197,2026,3,2026-05-18,522,4,10,28,Offensive Foul,Devin Vassell offensive foul,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,75,83,2026-05-19T02:28:20Z
+401873197,2026,3,2026-05-18,524,4,10,28,Offensive Foul Turnover,Devin Vassell offensive foul turnover,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,75,83,2026-05-19T02:28:20Z
+401873197,2026,3,2026-05-18,525,4,10,28,Substitution,Dylan Harper enters the game for Stephon Castle,0,False,False,5037871,Dylan Harper,4845367,Stephon Castle,,,24,25,OKC,24,SA,75,83,2026-05-19T02:28:26Z
+401873197,2026,3,2026-05-18,527,4,10,8,Bad Pass Turnover,Cason Wallace bad pass turnover (Dylan Harper steals),0,False,False,4683692,Cason Wallace,5037871,Dylan Harper,,,25,25,OKC,24,SA,75,83,2026-05-19T02:28:56Z
+401873197,2026,3,2026-05-18,529,4,9,49,Driving Layup Shot,Victor Wembanyama makes driving layup,2,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,75,85,2026-05-19T02:29:15Z
+401873197,2026,3,2026-05-18,530,4,9,28,Shooting Foul,Carter Bryant shooting foul,0,False,False,5061568,Carter Bryant,,,,,24,25,OKC,24,SA,75,85,2026-05-19T02:29:38Z
+401873197,2026,3,2026-05-18,532,4,9,28,Free Throw - 1 of 2,Shai Gilgeous-Alexander makes free throw 1 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,76,85,2026-05-19T02:30:13Z
+401873197,2026,3,2026-05-18,533,4,9,28,Substitution,Stephon Castle enters the game for Carter Bryant,0,False,False,4845367,Stephon Castle,5061568,Carter Bryant,,,24,25,OKC,24,SA,76,85,2026-05-19T02:30:14Z
+401873197,2026,3,2026-05-18,535,4,9,28,Free Throw - 2 of 2,Shai Gilgeous-Alexander makes free throw 2 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,77,85,2026-05-19T02:30:33Z
+401873197,2026,3,2026-05-18,536,4,9,10,Alley Oop Dunk Shot,Victor Wembanyama makes 1-foot alley oop dunk (Devin Vassell assists),2,True,True,5104157,Victor Wembanyama,4395630,Devin Vassell,,,24,25,OKC,24,SA,77,87,2026-05-19T02:30:55Z
+401873197,2026,3,2026-05-18,538,4,8,53,Jump Shot,Alex Caruso makes 23-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,80,87,2026-05-19T02:31:11Z
+401873197,2026,3,2026-05-18,540,4,8,37,Fade Away Jump Shot,Stephon Castle misses 6-foot fade away jump shot,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,80,87,2026-05-19T02:31:27Z
+401873197,2026,3,2026-05-18,541,4,8,34,Defensive Rebound,Ajay Mitchell defensive rebound,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,80,87,2026-05-19T02:31:30Z
+401873197,2026,3,2026-05-18,542,4,8,26,Jump Shot,Shai Gilgeous-Alexander misses 6-foot jumper,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,80,87,2026-05-19T02:31:38Z
+401873197,2026,3,2026-05-18,543,4,8,24,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,80,87,2026-05-19T02:31:40Z
+401873197,2026,3,2026-05-18,544,4,8,24,Personal Foul,Shai Gilgeous-Alexander personal foul,0,False,False,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,80,87,2026-05-19T02:31:48Z
+401873197,2026,3,2026-05-18,546,4,8,24,Substitution,Isaiah Hartenstein enters the game for Alex Caruso,0,False,False,4222252,Isaiah Hartenstein,2991350,Alex Caruso,,,25,25,OKC,24,SA,80,87,2026-05-19T02:31:52Z
+401873197,2026,3,2026-05-18,547,4,8,24,Substitution,Jared McCain enters the game for Cason Wallace,0,False,False,4683778,Jared McCain,4683692,Cason Wallace,,,25,25,OKC,24,SA,80,87,2026-05-19T02:31:52Z
+401873197,2026,3,2026-05-18,548,4,8,24,Substitution,Luke Kornet enters the game for Victor Wembanyama,0,False,False,3064560,Luke Kornet,5104157,Victor Wembanyama,,,24,25,OKC,24,SA,80,87,2026-05-19T02:31:52Z
+401873197,2026,3,2026-05-18,549,4,8,24,Substitution,Julian Champagnie enters the game for Devin Vassell,0,False,False,4592479,Julian Champagnie,4395630,Devin Vassell,,,24,25,OKC,24,SA,80,87,2026-05-19T02:31:52Z
+401873197,2026,3,2026-05-18,554,4,8,9,Jump Shot,Keldon Johnson misses 22-foot three point jumper,0,False,True,4395723,Keldon Johnson,,,,,24,25,OKC,24,SA,80,87,2026-05-19T02:32:42Z
+401873197,2026,3,2026-05-18,555,4,8,2,Offensive Rebound,Stephon Castle offensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,80,87,2026-05-19T02:32:49Z
+401873197,2026,3,2026-05-18,556,4,8,1,Bad Pass Turnover,Stephon Castle bad pass turnover (Shai Gilgeous-Alexander steals),0,False,False,4845367,Stephon Castle,4278073,Shai Gilgeous-Alexander,,,24,25,OKC,24,SA,80,87,2026-05-19T02:32:49Z
+401873197,2026,3,2026-05-18,558,4,7,58,Running Layup Shot,Shai Gilgeous-Alexander misses running layup,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,80,87,2026-05-19T02:32:52Z
+401873197,2026,3,2026-05-18,559,4,7,58,Offensive Rebound,Thunder offensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,80,87,2026-05-19T02:32:55Z
+401873197,2026,3,2026-05-18,561,4,7,48,Offensive Foul,Isaiah Hartenstein offensive foul,0,False,False,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,80,87,2026-05-19T02:33:35Z
+401873197,2026,3,2026-05-18,563,4,7,48,Offensive Foul Turnover,Isaiah Hartenstein offensive foul turnover,0,False,False,4222252,Isaiah Hartenstein,,,,,25,25,OKC,24,SA,80,87,2026-05-19T02:33:35Z
+401873197,2026,3,2026-05-18,564,4,7,31,Fade Away Jump Shot,Dylan Harper makes 8-foot fade away jump shot,2,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,80,89,2026-05-19T02:34:06Z
+401873197,2026,3,2026-05-18,565,4,7,30,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,80,89,2026-05-19T02:34:10Z
+401873197,2026,3,2026-05-18,566,4,7,30,Substitution,Luguentz Dort enters the game for Chet Holmgren,0,False,False,4397020,Luguentz Dort,4433255,Chet Holmgren,,,25,25,OKC,24,SA,80,89,2026-05-19T02:37:48Z
+401873197,2026,3,2026-05-18,567,4,7,30,Substitution,Jaylin Williams enters the game for Isaiah Hartenstein,0,False,False,4432823,Jaylin Williams,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,80,89,2026-05-19T02:37:48Z
+401873197,2026,3,2026-05-18,568,4,7,30,Substitution,Victor Wembanyama enters the game for Luke Kornet,0,False,False,5104157,Victor Wembanyama,3064560,Luke Kornet,,,24,25,OKC,24,SA,80,89,2026-05-19T02:37:48Z
+401873197,2026,3,2026-05-18,572,4,7,8,Cutting Dunk Shot,Luguentz Dort makes 1-foot dunk (Ajay Mitchell assists),2,True,True,4397020,Luguentz Dort,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,82,89,2026-05-19T02:38:28Z
+401873197,2026,3,2026-05-18,574,4,6,46,Personal Foul,Luguentz Dort personal foul,0,False,False,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,82,89,2026-05-19T02:38:58Z
+401873197,2026,3,2026-05-18,576,4,6,46,Substitution,Devin Vassell enters the game for Keldon Johnson,0,False,False,4395630,Devin Vassell,4395723,Keldon Johnson,,,24,25,OKC,24,SA,82,89,2026-05-19T02:39:05Z
+401873197,2026,3,2026-05-18,579,4,6,33,Pullup Jump Shot,Stephon Castle misses 30-foot three point pullup jump shot,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,82,89,2026-05-19T02:39:41Z
+401873197,2026,3,2026-05-18,580,4,6,32,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,82,89,2026-05-19T02:39:42Z
+401873197,2026,3,2026-05-18,581,4,6,32,Loose Ball Foul,Jared McCain loose ball foul,0,False,False,4683778,Jared McCain,,,,,25,25,OKC,24,SA,82,89,2026-05-19T02:39:46Z
+401873197,2026,3,2026-05-18,583,4,6,20,Jump Shot,Julian Champagnie misses 23-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,82,89,2026-05-19T02:40:13Z
+401873197,2026,3,2026-05-18,584,4,6,19,Defensive Rebound,Thunder defensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,82,89,2026-05-19T02:40:14Z
+401873197,2026,3,2026-05-18,585,4,6,19,Loose Ball Foul,Victor Wembanyama loose ball foul,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,82,89,2026-05-19T02:40:20Z
+401873197,2026,3,2026-05-18,587,4,6,6,Step Back Jump Shot,Victor Wembanyama blocks Shai Gilgeous-Alexander 's 10-foot step back jumpshot,0,False,True,4278073,Shai Gilgeous-Alexander,5104157,Victor Wembanyama,,,25,25,OKC,24,SA,82,89,2026-05-19T02:40:43Z
+401873197,2026,3,2026-05-18,589,4,6,2,Defensive Rebound,Devin Vassell defensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,82,89,2026-05-19T02:40:47Z
+401873197,2026,3,2026-05-18,590,4,5,44,Turnaround Fade Away Jump Shot,Dylan Harper misses 10-foot two point shot,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,82,89,2026-05-19T02:41:05Z
+401873197,2026,3,2026-05-18,591,4,5,41,Defensive Rebound,Jaylin Williams defensive rebound,0,False,False,4432823,Jaylin Williams,,,,,25,25,OKC,24,SA,82,89,2026-05-19T02:41:08Z
+401873197,2026,3,2026-05-18,592,4,5,26,Driving Layup Shot,Shai Gilgeous-Alexander makes driving layup,2,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,84,89,2026-05-19T02:41:23Z
+401873197,2026,3,2026-05-18,593,4,5,26,Shooting Foul,Victor Wembanyama shooting foul,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,84,89,2026-05-19T02:41:27Z
+401873197,2026,3,2026-05-18,595,4,5,26,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,84,89,2026-05-19T02:41:42Z
+401873197,2026,3,2026-05-18,596,4,5,26,Substitution,Chet Holmgren enters the game for Luguentz Dort,0,False,False,4433255,Chet Holmgren,4397020,Luguentz Dort,,,25,25,OKC,24,SA,84,89,2026-05-19T02:44:01Z
+401873197,2026,3,2026-05-18,597,4,5,26,Substitution,Jalen Williams enters the game for Jaylin Williams,0,False,False,4593803,Jalen Williams,4432823,Jaylin Williams,,,25,25,OKC,24,SA,84,89,2026-05-19T02:44:01Z
+401873197,2026,3,2026-05-18,598,4,5,26,Substitution,Alex Caruso enters the game for Ajay Mitchell,0,False,False,2991350,Alex Caruso,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,84,89,2026-05-19T02:44:01Z
+401873197,2026,3,2026-05-18,602,4,5,26,Free Throw - 1 of 1,Shai Gilgeous-Alexander misses free throw 1 of 1,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,84,89,2026-05-19T02:45:47Z
+401873197,2026,3,2026-05-18,603,4,5,23,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,84,89,2026-05-19T02:45:50Z
+401873197,2026,3,2026-05-18,604,4,5,0,Driving Layup Shot,Dylan Harper makes driving layup (Victor Wembanyama assists),2,True,True,5037871,Dylan Harper,5104157,Victor Wembanyama,,,24,25,OKC,24,SA,84,91,2026-05-19T02:46:11Z
+401873197,2026,3,2026-05-18,606,4,4,48,Shooting Foul,Dylan Harper shooting foul,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,84,91,2026-05-19T02:46:27Z
+401873197,2026,3,2026-05-18,608,4,4,48,Free Throw - 1 of 2,Shai Gilgeous-Alexander makes free throw 1 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,85,91,2026-05-19T02:46:52Z
+401873197,2026,3,2026-05-18,609,4,4,48,Substitution,Ajay Mitchell enters the game for Jared McCain,0,False,False,4900671,Ajay Mitchell,4683778,Jared McCain,,,25,25,OKC,24,SA,85,91,2026-05-19T02:46:52Z
+401873197,2026,3,2026-05-18,611,4,4,48,Free Throw - 2 of 2,Shai Gilgeous-Alexander makes free throw 2 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,86,91,2026-05-19T02:47:10Z
+401873197,2026,3,2026-05-18,612,4,4,36,Driving Layup Shot,Alex Caruso blocks Stephon Castle 's 6-foot driving layup,0,False,True,4845367,Stephon Castle,2991350,Alex Caruso,,,24,25,OKC,24,SA,86,91,2026-05-19T02:47:26Z
+401873197,2026,3,2026-05-18,614,4,4,36,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,86,91,2026-05-19T02:47:26Z
+401873197,2026,3,2026-05-18,616,4,4,34,Jump Shot,Devin Vassell misses 16-foot jumper,0,False,True,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,86,91,2026-05-19T02:47:45Z
+401873197,2026,3,2026-05-18,617,4,4,31,Defensive Rebound,Shai Gilgeous-Alexander defensive rebound,0,False,False,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,86,91,2026-05-19T02:47:48Z
+401873197,2026,3,2026-05-18,618,4,4,19,Pullup Jump Shot,Jalen Williams makes 9-foot pullup jump shot,2,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,88,91,2026-05-19T02:48:00Z
+401873197,2026,3,2026-05-18,619,4,4,2,Jump Shot,Julian Champagnie misses 26-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,88,91,2026-05-19T02:48:17Z
+401873197,2026,3,2026-05-18,620,4,3,59,Offensive Rebound,Devin Vassell offensive rebound,0,False,False,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,88,91,2026-05-19T02:48:20Z
+401873197,2026,3,2026-05-18,621,4,3,54,Jump Shot,Dylan Harper misses 23-foot three point jumper,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,88,91,2026-05-19T02:48:26Z
+401873197,2026,3,2026-05-18,622,4,3,52,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,88,91,2026-05-19T02:48:28Z
+401873197,2026,3,2026-05-18,624,4,3,52,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,88,91,2026-05-19T02:48:38Z
+401873197,2026,3,2026-05-18,625,4,3,38,Driving Dunk Shot,Chet Holmgren blocks Victor Wembanyama's driving dunk,0,False,True,5104157,Victor Wembanyama,4433255,Chet Holmgren,,,24,25,OKC,24,SA,88,91,2026-05-19T02:50:37Z
+401873197,2026,3,2026-05-18,626,4,3,37,Defensive Rebound,Thunder defensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,88,91,2026-05-19T02:50:38Z
+401873197,2026,3,2026-05-18,628,4,3,23,Cutting Layup Shot,Alex Caruso makes 1-foot layup (Shai Gilgeous-Alexander assists),2,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,90,91,2026-05-19T02:51:03Z
+401873197,2026,3,2026-05-18,631,4,3,0,Jump Shot,Devin Vassell misses 23-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,90,91,2026-05-19T02:51:26Z
+401873197,2026,3,2026-05-18,632,4,2,57,Offensive Rebound,Stephon Castle offensive rebound,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,90,91,2026-05-19T02:51:29Z
+401873197,2026,3,2026-05-18,633,4,2,56,Lost Ball Turnover,Stephon Castle lost ball turnover (Shai Gilgeous-Alexander steals),0,False,False,4845367,Stephon Castle,4278073,Shai Gilgeous-Alexander,,,24,25,OKC,24,SA,90,91,2026-05-19T02:51:30Z
+401873197,2026,3,2026-05-18,635,4,2,51,Running Pullup Jump Shot,Shai Gilgeous-Alexander misses running pullup jump shot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,90,91,2026-05-19T02:51:35Z
+401873197,2026,3,2026-05-18,636,4,2,48,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,90,91,2026-05-19T02:51:38Z
+401873197,2026,3,2026-05-18,637,4,2,35,Personal Foul,Ajay Mitchell personal foul,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,90,91,2026-05-19T02:51:54Z
+401873197,2026,3,2026-05-18,639,4,2,25,Jump Shot,Devin Vassell makes 23-foot three point jumper (Julian Champagnie assists),3,True,True,4395630,Devin Vassell,4592479,Julian Champagnie,,,24,25,OKC,24,SA,90,94,2026-05-19T02:52:39Z
+401873197,2026,3,2026-05-18,641,4,2,10,Step Back Jump Shot,Shai Gilgeous-Alexander makes 10-foot step back jumpshot,2,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,92,94,2026-05-19T02:52:55Z
+401873197,2026,3,2026-05-18,642,4,2,0,Offensive Foul,Victor Wembanyama offensive foul,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,92,94,2026-05-19T02:53:06Z
+401873197,2026,3,2026-05-18,644,4,2,0,Offensive Foul Turnover,Victor Wembanyama offensive foul turnover,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,92,94,2026-05-19T02:53:06Z
+401873197,2026,3,2026-05-18,645,4,2,0,Ref-Initiated Review (Supported),(02:00) [Spurs] REF-INITIATED REVIEW (REPLAY SUPPORTS CALL),0,False,False,,,,,,,,25,OKC,24,SA,92,94,2026-05-19T02:53:21Z
+401873197,2026,3,2026-05-18,647,4,1,51,Jump Shot,Alex Caruso makes 25-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,95,94,2026-05-19T02:55:42Z
+401873197,2026,3,2026-05-18,649,4,1,26,Jump Shot,Julian Champagnie makes 23-foot three point jumper (Stephon Castle assists),3,True,True,4592479,Julian Champagnie,4845367,Stephon Castle,,,24,25,OKC,24,SA,95,97,2026-05-19T02:56:12Z
+401873197,2026,3,2026-05-18,651,4,1,12,Driving Floating Jump Shot,Jalen Williams makes 11-foot driving floating jump shot (Alex Caruso assists),2,True,True,4593803,Jalen Williams,2991350,Alex Caruso,,,25,25,OKC,24,SA,97,97,2026-05-19T02:56:28Z
+401873197,2026,3,2026-05-18,653,4,1,5,Bad Pass Turnover,Stephon Castle bad pass turnover (Shai Gilgeous-Alexander steals),0,False,False,4845367,Stephon Castle,4278073,Shai Gilgeous-Alexander,,,24,25,OKC,24,SA,97,97,2026-05-19T02:56:45Z
+401873197,2026,3,2026-05-18,655,4,0,59.3,Running Layup Shot,Shai Gilgeous-Alexander misses running layup,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,97,97,2026-05-19T02:56:51Z
+401873197,2026,3,2026-05-18,656,4,0,57.2,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,97,97,2026-05-19T02:56:53Z
+401873197,2026,3,2026-05-18,657,4,0,53.4,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,97,97,2026-05-19T02:57:04Z
+401873197,2026,3,2026-05-18,658,4,0,37.1,Shooting Foul,Chet Holmgren shooting foul,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,97,97,2026-05-19T02:59:06Z
+401873197,2026,3,2026-05-18,660,4,0,37.1,Free Throw - 1 of 2,Dylan Harper makes free throw 1 of 2,1,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,97,98,2026-05-19T02:59:28Z
+401873197,2026,3,2026-05-18,661,4,0,37.1,Substitution,Jaylin Williams enters the game for Shai Gilgeous-Alexander,0,False,False,4432823,Jaylin Williams,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,97,98,2026-05-19T02:59:37Z
+401873197,2026,3,2026-05-18,662,4,0,37.1,Substitution,Isaiah Hartenstein enters the game for Ajay Mitchell,0,False,False,4222252,Isaiah Hartenstein,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,97,98,2026-05-19T02:59:37Z
+401873197,2026,3,2026-05-18,665,4,0,37.1,Free Throw - 2 of 2,Dylan Harper makes free throw 2 of 2,1,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,97,99,2026-05-19T03:00:07Z
+401873197,2026,3,2026-05-18,666,4,0,37.1,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,97,99,2026-05-19T03:00:10Z
+401873197,2026,3,2026-05-18,667,4,0,37.1,Substitution,Shai Gilgeous-Alexander enters the game for Jaylin Williams,0,False,False,4278073,Shai Gilgeous-Alexander,4432823,Jaylin Williams,,,25,25,OKC,24,SA,97,99,2026-05-19T03:00:11Z
+401873197,2026,3,2026-05-18,668,4,0,37.1,Substitution,Ajay Mitchell enters the game for Isaiah Hartenstein,0,False,False,4900671,Ajay Mitchell,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,97,99,2026-05-19T03:00:11Z
+401873197,2026,3,2026-05-18,671,4,0,33.2,Shooting Foul,Stephon Castle shooting foul,0,False,False,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,97,99,2026-05-19T03:02:04Z
+401873197,2026,3,2026-05-18,673,4,0,33.2,Free Throw - 1 of 2,Shai Gilgeous-Alexander makes free throw 1 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,98,99,2026-05-19T03:02:33Z
+401873197,2026,3,2026-05-18,674,4,0,33.2,Free Throw - 2 of 2,Shai Gilgeous-Alexander makes free throw 2 of 2,1,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,99,99,2026-05-19T03:02:49Z
+401873197,2026,3,2026-05-18,675,4,0,11.5,Turnaround Jump Shot,Victor Wembanyama makes 3-foot turnaround jump shot,2,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,99,101,2026-05-19T03:03:17Z
+401873197,2026,3,2026-05-18,676,4,0,11.5,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,99,101,2026-05-19T03:03:27Z
+401873197,2026,3,2026-05-18,677,4,0,3.1,Driving Finger Roll Layup,Shai Gilgeous-Alexander makes 2-foot two point shot (Ajay Mitchell assists),2,True,True,4278073,Shai Gilgeous-Alexander,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,101,101,2026-05-19T03:05:15Z
+401873197,2026,3,2026-05-18,679,4,0,3.1,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,101,101,2026-05-19T03:05:23Z
+401873197,2026,3,2026-05-18,680,4,0,3.1,Substitution,Cason Wallace enters the game for Shai Gilgeous-Alexander,0,False,False,4683692,Cason Wallace,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,101,101,2026-05-19T03:06:35Z
+401873197,2026,3,2026-05-18,681,4,0,3.1,Substitution,Isaiah Hartenstein enters the game for Ajay Mitchell,0,False,False,4222252,Isaiah Hartenstein,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,101,101,2026-05-19T03:06:35Z
+401873197,2026,3,2026-05-18,684,4,0,0,Floating Jump Shot,Chet Holmgren blocks Victor Wembanyama 's 3-foot floating jump shot,0,False,True,5104157,Victor Wembanyama,4433255,Chet Holmgren,,,24,25,OKC,24,SA,101,101,2026-05-19T03:07:17Z
+401873197,2026,3,2026-05-18,686,4,0,0,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,101,101,2026-05-19T03:07:17Z
+401873197,2026,3,2026-05-18,687,4,0,0,End Period,End of the 4th Quarter,0,False,False,,,,,,,,25,OKC,24,SA,101,101,2026-05-19T03:07:46Z
+401873197,2026,3,2026-05-18,688,5,5,0,Substitution,Ajay Mitchell enters the game for Jalen Williams,0,False,False,4900671,Ajay Mitchell,4593803,Jalen Williams,,,25,25,OKC,24,SA,101,101,2026-05-19T03:08:10Z
+401873197,2026,3,2026-05-18,689,5,5,0,Substitution,Shai Gilgeous-Alexander enters the game for Isaiah Hartenstein,0,False,False,4278073,Shai Gilgeous-Alexander,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,101,101,2026-05-19T03:08:10Z
+401873197,2026,3,2026-05-18,694,5,5,0,Jumpball,Victor Wembanyama vs. Chet Holmgren (Stephon Castle gains possession),0,False,False,5104157,Victor Wembanyama,4433255,Chet Holmgren,4845367,Stephon Castle,24,25,OKC,24,SA,101,101,2026-05-19T03:10:35Z
+401873197,2026,3,2026-05-18,697,5,4,48,Jump Shot,Devin Vassell misses 26-foot three point jumper,0,False,True,4395630,Devin Vassell,,,,,24,25,OKC,24,SA,101,101,2026-05-19T03:10:44Z
+401873197,2026,3,2026-05-18,698,5,4,45,Defensive Rebound,Chet Holmgren defensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,101,101,2026-05-19T03:10:47Z
+401873197,2026,3,2026-05-18,699,5,4,37,Lost Ball Turnover,Shai Gilgeous-Alexander lost ball turnover (Victor Wembanyama steals),0,False,False,4278073,Shai Gilgeous-Alexander,5104157,Victor Wembanyama,,,25,25,OKC,24,SA,101,101,2026-05-19T03:10:55Z
+401873197,2026,3,2026-05-18,701,5,4,33,Out of Bounds - Lost Ball Turnover,Dylan Harper out of bounds lost ball turnover,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,101,101,2026-05-19T03:11:01Z
+401873197,2026,3,2026-05-18,702,5,4,14,Step Back Jump Shot,Shai Gilgeous-Alexander misses 29-foot three point step back jumpshot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,101,101,2026-05-19T03:11:25Z
+401873197,2026,3,2026-05-18,704,5,4,10,Offensive Rebound,Cason Wallace offensive rebound,0,False,False,4683692,Cason Wallace,,,,,25,25,OKC,24,SA,101,101,2026-05-19T03:11:29Z
+401873197,2026,3,2026-05-18,705,5,4,9,Out of Bounds - Lost Ball Turnover,Alex Caruso out of bounds lost ball turnover,0,False,False,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,101,101,2026-05-19T03:11:35Z
+401873197,2026,3,2026-05-18,706,5,3,56,Personal Foul,Ajay Mitchell personal foul,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,101,101,2026-05-19T03:12:01Z
+401873197,2026,3,2026-05-18,708,5,3,56,Substitution,Jalen Williams enters the game for Cason Wallace,0,False,False,4593803,Jalen Williams,4683692,Cason Wallace,,,25,25,OKC,24,SA,101,101,2026-05-19T03:12:17Z
+401873197,2026,3,2026-05-18,710,5,3,46,Driving Dunk Shot,Stephon Castle makes driving dunk,2,True,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,101,103,2026-05-19T03:12:36Z
+401873197,2026,3,2026-05-18,711,5,3,27,Driving Floating Jump Shot,Shai Gilgeous-Alexander misses driving floating jump shot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,101,103,2026-05-19T03:12:54Z
+401873197,2026,3,2026-05-18,712,5,3,25,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,101,103,2026-05-19T03:12:55Z
+401873197,2026,3,2026-05-18,713,5,3,18,Bad Pass Turnover,Stephon Castle bad pass turnover (Chet Holmgren steals),0,False,False,4845367,Stephon Castle,4433255,Chet Holmgren,,,24,25,OKC,24,SA,101,103,2026-05-19T03:13:03Z
+401873197,2026,3,2026-05-18,715,5,3,13,Running Layup Shot,Julian Champagnie blocks Jalen Williams 's 3-foot running layup,0,False,True,4593803,Jalen Williams,4592479,Julian Champagnie,,,25,25,OKC,24,SA,101,103,2026-05-19T03:13:13Z
+401873197,2026,3,2026-05-18,716,5,3,13,Defensive Rebound,Spurs defensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,101,103,2026-05-19T03:13:13Z
+401873197,2026,3,2026-05-18,718,5,3,13,Challenge,Spurs Coach's Challenge,0,False,False,,,,,,,24,25,OKC,24,SA,101,103,2026-05-19T03:13:55Z
+401873197,2026,3,2026-05-18,719,5,3,13,Coach's Challenge (Overturned),(03:13) [Spurs] COACH'S CHALLENGE (CALL OVERTURNED) [Spurs] retain their timeout,0,False,False,,,,,,,24,25,OKC,24,SA,101,103,2026-05-19T03:13:57Z
+401873197,2026,3,2026-05-18,721,5,2,51,Jump Shot,Stephon Castle misses 28-foot three point jumper,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,101,103,2026-05-19T03:15:24Z
+401873197,2026,3,2026-05-18,722,5,2,47,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,101,103,2026-05-19T03:15:28Z
+401873197,2026,3,2026-05-18,723,5,2,47,Layup Shot Putback,Victor Wembanyama makes two point shot,2,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,101,105,2026-05-19T03:15:29Z
+401873197,2026,3,2026-05-18,724,5,2,32,Jump Shot,Alex Caruso misses 26-foot three point jumper,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,101,105,2026-05-19T03:15:43Z
+401873197,2026,3,2026-05-18,725,5,2,31,Offensive Rebound,Thunder offensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,101,105,2026-05-19T03:15:48Z
+401873197,2026,3,2026-05-18,726,5,2,31,Loose Ball Foul,Victor Wembanyama loose ball foul,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,101,105,2026-05-19T03:15:49Z
+401873197,2026,3,2026-05-18,728,5,2,21,Jump Shot,Alex Caruso makes 22-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,2991350,Alex Caruso,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,104,105,2026-05-19T03:16:17Z
+401873197,2026,3,2026-05-18,730,5,1,55,Bad Pass Turnover,Stephon Castle bad pass turnover (Alex Caruso steals),0,False,False,4845367,Stephon Castle,2991350,Alex Caruso,,,24,25,OKC,24,SA,104,105,2026-05-19T03:16:43Z
+401873197,2026,3,2026-05-18,732,5,1,52,Running Dunk Shot,Jalen Williams makes 1-foot running dunk,2,True,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,106,105,2026-05-19T03:16:47Z
+401873197,2026,3,2026-05-18,733,5,1,35,Lost Ball Turnover,Victor Wembanyama lost ball turnover (Jalen Williams steals),0,False,False,5104157,Victor Wembanyama,4593803,Jalen Williams,,,24,25,OKC,24,SA,106,105,2026-05-19T03:17:06Z
+401873197,2026,3,2026-05-18,735,5,1,31,Running Jump Shot,Ajay Mitchell misses 27-foot running jump shot,0,False,True,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,106,105,2026-05-19T03:17:10Z
+401873197,2026,3,2026-05-18,736,5,1,28,Defensive Rebound,Spurs defensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,106,105,2026-05-19T03:17:13Z
+401873197,2026,3,2026-05-18,738,5,1,15,Jump Shot,Julian Champagnie misses 22-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,106,105,2026-05-19T03:17:58Z
+401873197,2026,3,2026-05-18,739,5,1,10,Offensive Rebound,Victor Wembanyama offensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,106,105,2026-05-19T03:18:03Z
+401873197,2026,3,2026-05-18,740,5,1,10,Tip Shot,Victor Wembanyama misses tip shot,0,False,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,106,105,2026-05-19T03:18:02Z
+401873197,2026,3,2026-05-18,741,5,1,8,Defensive Rebound,Alex Caruso defensive rebound,0,False,False,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,106,105,2026-05-19T03:18:06Z
+401873197,2026,3,2026-05-18,743,5,0,57.6,Driving Dunk Shot,Shai Gilgeous-Alexander makes 1-foot driving dunk,2,True,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,108,105,2026-05-19T03:18:45Z
+401873197,2026,3,2026-05-18,744,5,0,50.5,Jump Shot,Julian Champagnie misses 25-foot three point jumper,0,False,True,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,108,105,2026-05-19T03:18:56Z
+401873197,2026,3,2026-05-18,745,5,0,46.3,Defensive Rebound,Ajay Mitchell defensive rebound,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,108,105,2026-05-19T03:19:00Z
+401873197,2026,3,2026-05-18,746,5,0,33.6,Pullup Bank Jump Shot,Jalen Williams misses 13-foot two point shot,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,108,105,2026-05-19T03:19:13Z
+401873197,2026,3,2026-05-18,747,5,0,31.3,Defensive Rebound,Julian Champagnie defensive rebound,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,108,105,2026-05-19T03:19:15Z
+401873197,2026,3,2026-05-18,748,5,0,27,Running Jump Shot,Victor Wembanyama makes 27-foot running jump shot (Stephon Castle assists),3,True,True,5104157,Victor Wembanyama,4845367,Stephon Castle,,,24,25,OKC,24,SA,108,108,2026-05-19T03:19:20Z
+401873197,2026,3,2026-05-18,750,5,0,26.3,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,108,108,2026-05-19T03:19:34Z
+401873197,2026,3,2026-05-18,751,5,0,4.3,Jump Shot,Jalen Williams misses 26-foot three point jumper,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,108,108,2026-05-19T03:21:52Z
+401873197,2026,3,2026-05-18,752,5,0,0.7,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,108,108,2026-05-19T03:21:55Z
+401873197,2026,3,2026-05-18,753,5,0,0.7,Full Timeout,Spurs Full timeout,0,False,False,,,,,,,24,25,OKC,24,SA,108,108,2026-05-19T03:22:09Z
+401873197,2026,3,2026-05-18,754,5,0,0.7,Substitution,Isaiah Hartenstein enters the game for Ajay Mitchell,0,False,False,4222252,Isaiah Hartenstein,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,108,108,2026-05-19T03:23:27Z
+401873197,2026,3,2026-05-18,756,5,0,0,End Period,End of the 1st Overtime,0,False,False,,,,,,,,25,OKC,24,SA,108,108,2026-05-19T03:24:28Z
+401873197,2026,3,2026-05-18,757,6,5,0,Substitution,Luguentz Dort enters the game for Jalen Williams,0,False,False,4397020,Luguentz Dort,4593803,Jalen Williams,,,25,25,OKC,24,SA,108,108,2026-05-19T03:24:33Z
+401873197,2026,3,2026-05-18,758,6,5,0,Substitution,Cason Wallace enters the game for Alex Caruso,0,False,False,4683692,Cason Wallace,2991350,Alex Caruso,,,25,25,OKC,24,SA,108,108,2026-05-19T03:24:33Z
+401873197,2026,3,2026-05-18,759,6,5,0,Substitution,Ajay Mitchell enters the game for Isaiah Hartenstein,0,False,False,4900671,Ajay Mitchell,4222252,Isaiah Hartenstein,,,25,25,OKC,24,SA,108,108,2026-05-19T03:24:33Z
+401873197,2026,3,2026-05-18,765,6,5,0,Jumpball,Victor Wembanyama vs. Chet Holmgren (Dylan Harper gains possession),0,False,False,5104157,Victor Wembanyama,4433255,Chet Holmgren,5037871,Dylan Harper,24,25,OKC,24,SA,108,108,2026-05-19T03:27:00Z
+401873197,2026,3,2026-05-18,768,6,4,46,Driving Floating Jump Shot,Stephon Castle misses driving floating jump shot,0,False,True,4845367,Stephon Castle,,,,,24,25,OKC,24,SA,108,108,2026-05-19T03:27:11Z
+401873197,2026,3,2026-05-18,769,6,4,44,Offensive Rebound,Dylan Harper offensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,108,108,2026-05-19T03:27:13Z
+401873197,2026,3,2026-05-18,770,6,4,44,Layup Shot Putback,Shai Gilgeous-Alexander blocks Dylan Harper 's 1-foot two point shot,0,False,True,5037871,Dylan Harper,4278073,Shai Gilgeous-Alexander,,,24,25,OKC,24,SA,108,108,2026-05-19T03:27:14Z
+401873197,2026,3,2026-05-18,772,6,4,41,Defensive Rebound,Luguentz Dort defensive rebound,0,False,False,4397020,Luguentz Dort,,,,,25,25,OKC,24,SA,108,108,2026-05-19T03:27:17Z
+401873197,2026,3,2026-05-18,773,6,4,19,Shot Clock Turnover,shot clock turnover,0,False,False,,,,,,,25,25,OKC,24,SA,108,108,2026-05-19T03:27:41Z
+401873197,2026,3,2026-05-18,774,6,4,5,Lost Ball Turnover,Julian Champagnie lost ball turnover (Cason Wallace steals),0,False,False,4592479,Julian Champagnie,4683692,Cason Wallace,,,24,25,OKC,24,SA,108,108,2026-05-19T03:28:15Z
+401873197,2026,3,2026-05-18,776,6,3,51,Step Back Jump Shot,Chet Holmgren misses 22-foot three point step back jumpshot,0,False,True,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,108,108,2026-05-19T03:28:29Z
+401873197,2026,3,2026-05-18,777,6,3,49,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,108,108,2026-05-19T03:28:31Z
+401873197,2026,3,2026-05-18,778,6,3,40,Driving Dunk Shot,Victor Wembanyama makes 1-foot driving dunk (Dylan Harper assists),2,True,True,5104157,Victor Wembanyama,5037871,Dylan Harper,,,24,25,OKC,24,SA,108,110,2026-05-19T03:28:41Z
+401873197,2026,3,2026-05-18,780,6,3,23,Step Back Jump Shot,Shai Gilgeous-Alexander misses 25-foot three point step back jumpshot,0,False,True,4278073,Shai Gilgeous-Alexander,,,,,25,25,OKC,24,SA,108,110,2026-05-19T03:28:58Z
+401873197,2026,3,2026-05-18,781,6,3,19,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,108,110,2026-05-19T03:29:02Z
+401873197,2026,3,2026-05-18,782,6,3,16,Personal Foul,Ajay Mitchell personal foul,0,False,False,4900671,Ajay Mitchell,,,,,25,25,OKC,24,SA,108,110,2026-05-19T03:29:12Z
+401873197,2026,3,2026-05-18,784,6,3,16,Free Throw - 1 of 2,Victor Wembanyama makes free throw 1 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,108,111,2026-05-19T03:29:52Z
+401873197,2026,3,2026-05-18,785,6,3,16,Substitution,Jalen Williams enters the game for Luguentz Dort,0,False,False,4593803,Jalen Williams,4397020,Luguentz Dort,,,25,25,OKC,24,SA,108,111,2026-05-19T03:29:52Z
+401873197,2026,3,2026-05-18,789,6,3,16,Substitution,Alex Caruso enters the game for Ajay Mitchell,0,False,False,2991350,Alex Caruso,4900671,Ajay Mitchell,,,25,25,OKC,24,SA,108,111,2026-05-19T03:29:52Z
+401873197,2026,3,2026-05-18,790,6,3,16,Free Throw - 2 of 2,Victor Wembanyama makes free throw 2 of 2,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,108,112,2026-05-19T03:30:21Z
+401873197,2026,3,2026-05-18,791,6,2,57,Step Back Jump Shot,Alex Caruso misses 23-foot three point step back jumpshot,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,108,112,2026-05-19T03:30:41Z
+401873197,2026,3,2026-05-18,792,6,2,55,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,108,112,2026-05-19T03:30:43Z
+401873197,2026,3,2026-05-18,793,6,2,34,Pullup Jump Shot,Dylan Harper misses 31-foot three point pullup jump shot,0,False,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,108,112,2026-05-19T03:31:05Z
+401873197,2026,3,2026-05-18,794,6,2,33,Offensive Rebound,Spurs offensive team rebound,0,False,False,,,,,,,24,25,OKC,24,SA,108,112,2026-05-19T03:31:06Z
+401873197,2026,3,2026-05-18,795,6,2,33,Shot Clock Turnover,shot clock turnover,0,False,False,,,,,,,24,25,OKC,24,SA,108,112,2026-05-19T03:31:10Z
+401873197,2026,3,2026-05-18,796,6,2,24,Jump Shot,Cason Wallace makes 27-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,4683692,Cason Wallace,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,111,112,2026-05-19T03:31:28Z
+401873197,2026,3,2026-05-18,798,6,2,4,Driving Finger Roll Layup,Dylan Harper makes 1-foot two point shot (Stephon Castle assists),2,True,True,5037871,Dylan Harper,4845367,Stephon Castle,,,24,25,OKC,24,SA,111,114,2026-05-19T03:31:49Z
+401873197,2026,3,2026-05-18,800,6,2,4,Shooting Foul,Alex Caruso shooting foul,0,False,False,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,111,114,2026-05-19T03:32:49Z
+401873197,2026,3,2026-05-18,802,6,2,4,Ref-Initiated Review (Stands),(02:04) [Spurs] REF-INITIATED REVIEW (CALL STANDS),0,False,False,,,,,,,,25,OKC,24,SA,111,114,2026-05-19T03:33:00Z
+401873197,2026,3,2026-05-18,803,6,2,4,Free Throw - 1 of 1,Dylan Harper makes free throw 1 of 1,1,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,111,115,2026-05-19T03:35:24Z
+401873197,2026,3,2026-05-18,804,6,1,48,Bad Pass Turnover,Shai Gilgeous-Alexander bad pass turnover (Dylan Harper steals),0,False,False,4278073,Shai Gilgeous-Alexander,5037871,Dylan Harper,,,25,25,OKC,24,SA,111,115,2026-05-19T03:35:40Z
+401873197,2026,3,2026-05-18,806,6,1,30,Driving Layup Shot,Jalen Williams blocks Dylan Harper 's 3-foot driving layup,0,False,True,5037871,Dylan Harper,4593803,Jalen Williams,,,24,25,OKC,24,SA,111,115,2026-05-19T03:35:59Z
+401873197,2026,3,2026-05-18,808,6,1,25,Defensive Rebound,Jalen Williams defensive rebound,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,111,115,2026-05-19T03:36:04Z
+401873197,2026,3,2026-05-18,809,6,1,21,Jump Shot,Jalen Williams makes 27-foot three point jumper (Shai Gilgeous-Alexander assists),3,True,True,4593803,Jalen Williams,4278073,Shai Gilgeous-Alexander,,,25,25,OKC,24,SA,114,115,2026-05-19T03:36:07Z
+401873197,2026,3,2026-05-18,811,6,1,1,Dunk Shot,Victor Wembanyama makes dunk (Dylan Harper assists),2,True,True,5104157,Victor Wembanyama,5037871,Dylan Harper,,,24,25,OKC,24,SA,114,117,2026-05-19T03:36:38Z
+401873197,2026,3,2026-05-18,813,6,1,1,Shooting Foul,Chet Holmgren shooting foul,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,114,117,2026-05-19T03:36:40Z
+401873197,2026,3,2026-05-18,815,6,1,1,Substitution,Ajay Mitchell enters the game for Cason Wallace,0,False,False,4900671,Ajay Mitchell,4683692,Cason Wallace,,,25,25,OKC,24,SA,114,117,2026-05-19T03:36:56Z
+401873197,2026,3,2026-05-18,817,6,1,1,Free Throw - 1 of 1,Victor Wembanyama makes free throw 1 of 1,1,True,True,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,114,118,2026-05-19T03:37:28Z
+401873197,2026,3,2026-05-18,818,6,0,46.1,Layup Driving Reverse,Alex Caruso misses two point shot,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,114,118,2026-05-19T03:37:45Z
+401873197,2026,3,2026-05-18,819,6,0,44.2,Offensive Rebound,Chet Holmgren offensive rebound,0,False,False,4433255,Chet Holmgren,,,,,25,25,OKC,24,SA,114,118,2026-05-19T03:37:47Z
+401873197,2026,3,2026-05-18,820,6,0,43.8,Layup Shot Putback,Devin Vassell blocks Chet Holmgren 's 1-foot two point shot,0,False,True,4433255,Chet Holmgren,4395630,Devin Vassell,,,25,25,OKC,24,SA,114,118,2026-05-19T03:37:47Z
+401873197,2026,3,2026-05-18,822,6,0,40,Offensive Rebound,Jalen Williams offensive rebound,0,False,False,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,114,118,2026-05-19T03:37:51Z
+401873197,2026,3,2026-05-18,823,6,0,39.5,Layup Shot Putback,Jalen Williams misses two point shot,0,False,True,4593803,Jalen Williams,,,,,25,25,OKC,24,SA,114,118,2026-05-19T03:37:52Z
+401873197,2026,3,2026-05-18,824,6,0,37.6,Defensive Rebound,Dylan Harper defensive rebound,0,False,False,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,114,118,2026-05-19T03:37:53Z
+401873197,2026,3,2026-05-18,825,6,0,22,Alley Oop Dunk Shot,Victor Wembanyama makes 1-foot alley oop dunk (Stephon Castle assists),2,True,True,5104157,Victor Wembanyama,4845367,Stephon Castle,,,24,25,OKC,24,SA,114,120,2026-05-19T03:38:10Z
+401873197,2026,3,2026-05-18,827,6,0,22,Full Timeout,Thunder Full timeout,0,False,False,,,,,,,25,25,OKC,24,SA,114,120,2026-05-19T03:38:13Z
+401873197,2026,3,2026-05-18,828,6,0,22,Substitution,Jared McCain enters the game for Chet Holmgren,0,False,False,4683778,Jared McCain,4433255,Chet Holmgren,,,25,25,OKC,24,SA,114,120,2026-05-19T03:39:35Z
+401873197,2026,3,2026-05-18,830,6,0,17.9,Driving Finger Roll Layup,Victor Wembanyama blocks Jalen Williams's two point shot,0,False,True,4593803,Jalen Williams,5104157,Victor Wembanyama,,,25,25,OKC,24,SA,114,120,2026-05-19T03:40:04Z
+401873197,2026,3,2026-05-18,832,6,0,15.1,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,114,120,2026-05-19T03:40:07Z
+401873197,2026,3,2026-05-18,833,6,0,14.5,Personal Foul,Jared McCain personal foul,0,False,False,4683778,Jared McCain,,,,,25,25,OKC,24,SA,114,120,2026-05-19T03:40:10Z
+401873197,2026,3,2026-05-18,835,6,0,14.5,Free Throw - 1 of 2,Dylan Harper makes free throw 1 of 2,1,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,114,121,2026-05-19T03:40:44Z
+401873197,2026,3,2026-05-18,836,6,0,14.5,Free Throw - 2 of 2,Dylan Harper makes free throw 2 of 2,1,True,True,5037871,Dylan Harper,,,,,24,25,OKC,24,SA,114,122,2026-05-19T03:41:06Z
+401873197,2026,3,2026-05-18,837,6,0,9.8,Shooting Foul,Julian Champagnie shooting foul,0,False,False,4592479,Julian Champagnie,,,,,24,25,OKC,24,SA,114,122,2026-05-19T03:41:14Z
+401873197,2026,3,2026-05-18,839,6,0,9.8,Free Throw - 1 of 3,Alex Caruso makes free throw 1 of 3,1,True,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,115,122,2026-05-19T03:41:43Z
+401873197,2026,3,2026-05-18,840,6,0,9.8,Free Throw - 2 of 3,Alex Caruso misses free throw 2 of 3,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,115,122,2026-05-19T03:41:43Z
+401873197,2026,3,2026-05-18,841,6,0,9.8,Offensive Rebound,Thunder offensive team rebound,0,False,False,,,,,,,25,25,OKC,24,SA,115,122,2026-05-19T03:41:43Z
+401873197,2026,3,2026-05-18,842,6,0,9.8,Substitution,Isaiah Hartenstein enters the game for Jared McCain,0,False,False,4222252,Isaiah Hartenstein,4683778,Jared McCain,,,25,25,OKC,24,SA,115,122,2026-05-19T03:42:14Z
+401873197,2026,3,2026-05-18,843,6,0,9.8,Substitution,Carter Bryant enters the game for Dylan Harper,0,False,False,5061568,Carter Bryant,5037871,Dylan Harper,,,24,25,OKC,24,SA,115,122,2026-05-19T03:42:14Z
+401873197,2026,3,2026-05-18,844,6,0,9.8,Substitution,Luke Kornet enters the game for Stephon Castle,0,False,False,3064560,Luke Kornet,4845367,Stephon Castle,,,24,25,OKC,24,SA,115,122,2026-05-19T03:42:14Z
+401873197,2026,3,2026-05-18,848,6,0,9.8,Free Throw - 3 of 3,Alex Caruso misses free throw 3 of 3,0,False,True,2991350,Alex Caruso,,,,,25,25,OKC,24,SA,115,122,2026-05-19T03:41:43Z
+401873197,2026,3,2026-05-18,849,6,0,6.9,Defensive Rebound,Victor Wembanyama defensive rebound,0,False,False,5104157,Victor Wembanyama,,,,,24,25,OKC,24,SA,115,122,2026-05-19T03:41:46Z
+401873197,2026,3,2026-05-18,850,6,0,0,End Period,End of the 2nd Overtime,0,False,False,,,,,,,,25,OKC,24,SA,115,122,2026-05-19T03:43:06Z
+401873197,2026,3,2026-05-18,851,6,0,0,End Game,End of Game,0,False,False,,,,,,,,25,OKC,24,SA,115,122,2026-05-19T03:43:09Z

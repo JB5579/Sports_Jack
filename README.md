@@ -1,6 +1,6 @@
 # SportsJack
 
-**Live blackjack where the cards are NFL players.** Each quarter is a hand; card values move with the player's real fantasy points as the game is played. Hit, Stand, Freeze or Burn to finish closest to 21. The canonical design is the PRD (`prd/SportsJack-PRD.html`). The Hold'em product brief in `docs/` is superseded.
+**Live blackjack where the cards are NFL and NBA players.** Each quarter is a hand; card values move with the player's real fantasy points as the game is played. Hit, Stand, Freeze or Burn to finish closest to 21. The canonical design is the PRD (`prd/SportsJack-PRD.html`). The Hold'em product brief in `docs/` is superseded.
 
 **Status:** building the Phase 1 play-money alpha (`prd/PHASE1-ALPHA.md`) on replays of real recorded NFL games, using the AI Software Factory. Start with `MISSION.md`, then `docs/FACTORY_SETUP.md`.
 
@@ -23,7 +23,8 @@ npm run replay -- 2025_22_SEA_NE --speed 120 --qtr 4      # watch Super Bowl LX'
 | `MISSION.md` | Scope, never-build list, invariants, open questions (human-owned) |
 | `packages/feed` | `FeedSource` interface, nflverse play-by-play parser, `ReplaySource` |
 | `packages/engine` | Game rules; today per-quarter fantasy scoring |
-| `fixtures/nflverse/` | Real recorded games (plays, rosters, box scores), CC-BY 4.0 nflverse |
+| `fixtures/nflverse/` | Real recorded NFL games (plays, rosters, box scores, projections), CC-BY 4.0 nflverse |
+| `fixtures/nba/` | Real recorded NBA games from sportsdataverse's ESPN data (MIT) |
 | `tools/` | Fixture fetcher, replay CLI, real-season analyses |
 | `harness/`, `factory/`, `.factory/` | AI Software Factory installation (protected) |
 | `docs/analysis/` | Evidence for open design decisions (D1 score normalization) |

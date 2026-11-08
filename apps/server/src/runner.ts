@@ -1,11 +1,14 @@
 import { EventEmitter } from "node:events";
-import type { FeedEvent, GameInfo, RecordedGame } from "@sportsjack/feed";
+import { periodStart, type FeedEvent, type GameInfo, type RecordedGame } from "@sportsjack/feed";
 
 export interface Period { q: number; start: number; end: number }
 export type Phase = "break" | "quarter" | "final";
 
 export interface RunnerStatus {
   gameId: string;
+  sport: GameInfo["sport"];
+  home: string;
+  away: string;
   phase: Phase;
   qtr: number;
   clock: number;
@@ -16,12 +19,12 @@ export interface RunnerStatus {
   breakLeft: number;
 }
 
-/** Regular-season overtime is 10 minutes; playoff overtime and every quarter are 15. */
+/** Each period's real clock: where it starts (by sport and overtime rules) and where it ended. */
 export function periodsOf(recorded: RecordedGame): Period[] {
   const { game, events } = recorded;
   return events.filter((e) => e.kind === "quarter_end").map((e) => ({
     q: e.clock.qtr,
-    start: e.clock.qtr <= 4 || game.week > 18 ? 900 : 600,
+    start: periodStart(game, e.clock.qtr),
     end: e.clock.quarterSecondsRemaining,
   }));
 }
@@ -58,7 +61,7 @@ export class GameRunner extends EventEmitter {
   status(): RunnerStatus {
     const upcoming = this.qtr + 1;
     return {
-      gameId: this.game.gameId, phase: this.phase, qtr: this.qtr, clock: this.clock, score: this.#score,
+      gameId: this.game.gameId, sport: this.game.sport, home: this.game.home, away: this.game.away, phase: this.phase, qtr: this.qtr, clock: this.clock, score: this.#score,
       paused: this.paused, breakLeft: Math.max(0, this.#breakLeft),
       nextQtr: this.periods.some((p) => p.q === upcoming) ? upcoming : null,
     };

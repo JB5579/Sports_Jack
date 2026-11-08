@@ -7,6 +7,7 @@ describe("phone formatting", () => {
     expect(clockText(0.4)).toBe("0:01");
     expect(qName(4)).toBe("Q4");
     expect(qName(5)).toBe("OT");
+    expect(qName(6)).toBe("2OT");
   });
 
   it("strips the clock and formation notes from real play text", () => {
@@ -19,6 +20,7 @@ describe("phone formatting", () => {
     expect(statLine({ rec: 1, recYds: 35, recTd: 1 })).toBe("1 rec, 35 yds, 1 TD");
     expect(statLine({ soloTkl: 1, sack: 1, ff: 1 })).toBe("1 tackle · 1 sack · 1 forced fumble");
     expect(statLine({})).toBe("No stats yet this quarter");
+    expect(statLine({ pts: 8, fg3m: 2, reb: 3, ast: 1, tov: 1 })).toBe("8 pts (2 threes) · 3 reb · 1 ast · 1 turnover");
     expect(shortName("Jaxon Smith-Njigba")).toBe("J. Smith-Njigba");
   });
 });

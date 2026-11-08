@@ -1,0 +1,540 @@
+game_id,season,season_type,game_date,sequence_number,period_number,clock_minutes,clock_seconds,type_text,text,score_value,scoring_play,shooting_play,athlete_id_1,athlete_name_1,athlete_id_2,athlete_name_2,athlete_id_3,athlete_name_3,team_id,home_team_id,home_team_abbrev,away_team_id,away_team_abbrev,home_score,away_score,wallclock
+401909294,2027,2,2026-11-06,4,1,12,0,Jumpball,Donovan Clingan vs. Walker Kessler (Luka Doncic gains possession),0,False,False,4433136,Walker Kessler,5105565,Donovan Clingan,3945274,Luka Doncic,13,13,LAL,22,POR,0,0,2026-11-07T03:13:35Z
+401909294,2027,2,2026-11-06,7,1,11,43,Jump Shot,Luka Doncic misses 24-foot three point jumper,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:13:52Z
+401909294,2027,2,2026-11-06,8,1,11,43,Defensive Rebound,Scoot Henderson defensive rebound,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,0,0,2026-11-07T03:13:52Z
+401909294,2027,2,2026-11-06,9,1,11,37,Lost Ball Turnover,Scoot Henderson lost ball turnover (Jake LaRavia steals),0,False,False,4683678,Scoot Henderson,4592691,Jake LaRavia,,,22,13,LAL,22,POR,0,0,2026-11-07T03:13:57Z
+401909294,2027,2,2026-11-06,11,1,11,33,Jump Shot,Austin Reaves misses 27-foot three point jumper,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:14:01Z
+401909294,2027,2,2026-11-06,12,1,11,33,Offensive Rebound,Matisse Thybulle offensive rebound,0,False,False,3907498,Matisse Thybulle,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:14:01Z
+401909294,2027,2,2026-11-06,13,1,11,27,Jump Shot,Jake LaRavia misses 25-foot three point jumper,0,False,True,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:14:07Z
+401909294,2027,2,2026-11-06,14,1,11,27,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,0,0,2026-11-07T03:14:07Z
+401909294,2027,2,2026-11-06,15,1,11,9,Jump Shot,Scoot Henderson misses 23-foot three point jumper,0,False,True,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,0,0,2026-11-07T03:14:26Z
+401909294,2027,2,2026-11-06,16,1,11,9,Defensive Rebound,Jake LaRavia defensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:14:26Z
+401909294,2027,2,2026-11-06,17,1,10,45,Fade Away Jump Shot,Donovan Clingan blocks Austin Reaves 's 10-foot fade away jump shot,0,False,True,4066457,Austin Reaves,5105565,Donovan Clingan,,,13,13,LAL,22,POR,0,0,2026-11-07T03:14:49Z
+401909294,2027,2,2026-11-06,18,1,10,45,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:14:49Z
+401909294,2027,2,2026-11-06,21,1,10,44,Jump Shot,Austin Reaves misses 23-foot three point jumper,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:15:12Z
+401909294,2027,2,2026-11-06,22,1,10,44,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:15:12Z
+401909294,2027,2,2026-11-06,24,1,10,34,Fade Away Jump Shot,Luka Doncic misses 13-foot fade away jump shot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:15:41Z
+401909294,2027,2,2026-11-06,25,1,10,34,Defensive Rebound,Deni Avdija defensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,0,0,2026-11-07T03:15:41Z
+401909294,2027,2,2026-11-06,27,1,10,18,Jump Shot,Donovan Clingan misses 26-foot three point jumper,0,False,True,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,0,0,2026-11-07T03:16:08Z
+401909294,2027,2,2026-11-06,28,1,10,18,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:16:08Z
+401909294,2027,2,2026-11-06,29,1,9,54,Out of Bounds - Lost Ball Turnover,Austin Reaves out of bounds lost ball turnover,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,0,0,2026-11-07T03:16:32Z
+401909294,2027,2,2026-11-06,30,1,9,42,Out of Bounds - Bad Pass Turnover,Damian Lillard out of bounds bad pass turnover,0,False,False,6606,Damian Lillard,,,,,22,13,LAL,22,POR,0,0,2026-11-07T03:16:50Z
+401909294,2027,2,2026-11-06,31,1,9,24,Fade Away Jump Shot,Luka Doncic makes 12-foot fade away jump shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,2,0,2026-11-07T03:17:13Z
+401909294,2027,2,2026-11-06,32,1,9,18,Out of Bounds - Step Turnover,Scoot Henderson steps out of bounds turnover,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,2,0,2026-11-07T03:17:19Z
+401909294,2027,2,2026-11-06,33,1,9,6,Step Back Jump Shot,Luka Doncic misses 25-foot three point step back jumpshot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,2,0,2026-11-07T03:17:47Z
+401909294,2027,2,2026-11-06,34,1,9,6,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,2,0,2026-11-07T03:17:47Z
+401909294,2027,2,2026-11-06,35,1,9,0,Running Layup Shot,Deni Avdija makes running layup (Toumani Camara assists),2,True,True,4683021,Deni Avdija,4431736,Toumani Camara,,,22,13,LAL,22,POR,2,2,2026-11-07T03:17:53Z
+401909294,2027,2,2026-11-06,37,1,8,49,Pullup Jump Shot,Austin Reaves misses 13-foot pullup jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,2,2,2026-11-07T03:18:04Z
+401909294,2027,2,2026-11-06,38,1,8,49,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,2,2,2026-11-07T03:18:04Z
+401909294,2027,2,2026-11-06,40,1,8,28,Driving Dunk Shot,Toumani Camara makes 2-foot driving dunk (Deni Avdija assists),2,True,True,4431736,Toumani Camara,4683021,Deni Avdija,,,22,13,LAL,22,POR,2,4,2026-11-07T03:18:45Z
+401909294,2027,2,2026-11-06,42,1,8,15,Driving Layup Shot,Luka Doncic makes driving layup,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,4,4,2026-11-07T03:19:05Z
+401909294,2027,2,2026-11-06,43,1,8,2,Lost Ball Turnover,Donovan Clingan lost ball turnover (Matisse Thybulle steals),0,False,False,5105565,Donovan Clingan,3907498,Matisse Thybulle,,,22,13,LAL,22,POR,4,4,2026-11-07T03:19:18Z
+401909294,2027,2,2026-11-06,45,1,7,56,Running Jump Shot,Austin Reaves misses 23-foot running jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,4,4,2026-11-07T03:19:25Z
+401909294,2027,2,2026-11-06,46,1,7,56,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,4,4,2026-11-07T03:19:25Z
+401909294,2027,2,2026-11-06,47,1,7,44,Fade Away Jump Shot,Damian Lillard misses 8-foot fade away jump shot,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,4,4,2026-11-07T03:19:37Z
+401909294,2027,2,2026-11-06,48,1,7,44,Offensive Rebound,Donovan Clingan offensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,4,4,2026-11-07T03:19:37Z
+401909294,2027,2,2026-11-06,49,1,7,40,Jump Shot,Toumani Camara misses 25-foot three point jumper,0,False,True,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,4,4,2026-11-07T03:19:41Z
+401909294,2027,2,2026-11-06,50,1,7,40,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,4,4,2026-11-07T03:19:41Z
+401909294,2027,2,2026-11-06,51,1,7,37,Loose Ball Foul,Walker Kessler loose ball foul,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,4,4,2026-11-07T03:19:43Z
+401909294,2027,2,2026-11-06,53,1,7,30,Jump Shot,Donovan Clingan makes 24-foot three point jumper,3,True,True,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,4,7,2026-11-07T03:20:16Z
+401909294,2027,2,2026-11-06,54,1,7,9,Layup Shot,Walker Kessler misses layup,0,False,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,4,7,2026-11-07T03:20:37Z
+401909294,2027,2,2026-11-06,55,1,7,9,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,4,7,2026-11-07T03:20:37Z
+401909294,2027,2,2026-11-06,56,1,7,3,Running Pullup Jump Shot,Damian Lillard makes 27-foot running pullup jump shot (Deni Avdija assists),3,True,True,6606,Damian Lillard,4683021,Deni Avdija,,,22,13,LAL,22,POR,4,10,2026-11-07T03:20:44Z
+401909294,2027,2,2026-11-06,58,1,7,2,Full Timeout,Lakers Full timeout,0,False,False,,,,,,,13,13,LAL,22,POR,4,10,2026-11-07T03:20:45Z
+401909294,2027,2,2026-11-06,61,1,7,2,Substitution,Quentin Grimes enters the game for Jake LaRavia,0,False,False,4397014,Quentin Grimes,4592691,Jake LaRavia,,,13,13,LAL,22,POR,4,10,2026-11-07T03:20:45Z
+401909294,2027,2,2026-11-06,62,1,7,2,Substitution,Sandro Mamukelashvili enters the game for Matisse Thybulle,0,False,False,4278580,Sandro Mamukelashvili,3907498,Matisse Thybulle,,,13,13,LAL,22,POR,4,10,2026-11-07T03:20:45Z
+401909294,2027,2,2026-11-06,63,1,6,54,Personal Foul,Toumani Camara personal foul,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,4,10,2026-11-07T03:24:33Z
+401909294,2027,2,2026-11-06,65,1,6,46,Alley Oop Layup Shot,Walker Kessler makes alley oop layup (Luka Doncic assists),2,True,True,4433136,Walker Kessler,3945274,Luka Doncic,,,13,13,LAL,22,POR,6,10,2026-11-07T03:25:02Z
+401909294,2027,2,2026-11-06,67,1,6,46,Shooting Foul,Donovan Clingan shooting foul,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,6,10,2026-11-07T03:25:02Z
+401909294,2027,2,2026-11-06,69,1,6,46,Free Throw - 1 of 1,Walker Kessler misses free throw 1 of 1,0,False,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,6,10,2026-11-07T03:25:02Z
+401909294,2027,2,2026-11-06,70,1,6,46,Defensive Rebound,Deni Avdija defensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,6,10,2026-11-07T03:25:02Z
+401909294,2027,2,2026-11-06,71,1,6,31,Driving Layup Shot,Toumani Camara misses driving layup,0,False,True,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,6,10,2026-11-07T03:25:41Z
+401909294,2027,2,2026-11-06,72,1,6,31,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,6,10,2026-11-07T03:25:41Z
+401909294,2027,2,2026-11-06,73,1,6,20,Shooting Foul,Toumani Camara shooting foul,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,6,10,2026-11-07T03:25:51Z
+401909294,2027,2,2026-11-06,75,1,6,20,Free Throw - 1 of 2,Luka Doncic misses free throw 1 of 2,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,6,10,2026-11-07T03:25:51Z
+401909294,2027,2,2026-11-06,76,1,6,20,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,6,10,2026-11-07T03:25:51Z
+401909294,2027,2,2026-11-06,77,1,6,20,Free Throw - 2 of 2,Luka Doncic makes free throw 2 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,7,10,2026-11-07T03:26:57Z
+401909294,2027,2,2026-11-06,79,1,6,20,Substitution,Jrue Holiday enters the game for Scoot Henderson,0,False,False,3995,Jrue Holiday,4683678,Scoot Henderson,,,22,13,LAL,22,POR,7,10,2026-11-07T03:25:51Z
+401909294,2027,2,2026-11-06,80,1,6,4,Pullup Jump Shot,Damian Lillard misses 27-foot three point pullup jump shot,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,7,10,2026-11-07T03:27:14Z
+401909294,2027,2,2026-11-06,81,1,6,4,Defensive Rebound,Lakers defensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,7,10,2026-11-07T03:27:14Z
+401909294,2027,2,2026-11-06,83,1,5,51,Offensive Foul,Quentin Grimes offensive foul,0,False,False,4397014,Quentin Grimes,,,,,13,13,LAL,22,POR,7,10,2026-11-07T03:27:33Z
+401909294,2027,2,2026-11-06,85,1,5,51,Offensive Foul Turnover,Quentin Grimes offensive foul turnover,0,False,False,4397014,Quentin Grimes,,,,,13,13,LAL,22,POR,7,10,2026-11-07T03:27:33Z
+401909294,2027,2,2026-11-06,87,1,5,51,Substitution,Sidy Cissoko enters the game for Toumani Camara,0,False,False,5081727,Sidy Cissoko,4431736,Toumani Camara,,,22,13,LAL,22,POR,7,10,2026-11-07T03:27:33Z
+401909294,2027,2,2026-11-06,88,1,5,37,Jump Shot,Sidy Cissoko makes 25-foot three point jumper (Deni Avdija assists),3,True,True,5081727,Sidy Cissoko,4683021,Deni Avdija,,,22,13,LAL,22,POR,7,13,2026-11-07T03:28:10Z
+401909294,2027,2,2026-11-06,90,1,5,23,Layup Shot,Donovan Clingan blocks Luka Doncic's layup,0,False,True,3945274,Luka Doncic,5105565,Donovan Clingan,,,13,13,LAL,22,POR,7,13,2026-11-07T03:28:24Z
+401909294,2027,2,2026-11-06,91,1,5,23,Offensive Rebound,Luka Doncic offensive rebound,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,7,13,2026-11-07T03:28:24Z
+401909294,2027,2,2026-11-06,93,1,5,18,Floating Jump Shot,Luka Doncic makes 9-foot floating jump shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,9,13,2026-11-07T03:28:29Z
+401909294,2027,2,2026-11-06,94,1,5,8,Jump Shot,Deni Avdija makes 24-foot three point jumper (Jrue Holiday assists),3,True,True,4683021,Deni Avdija,3995,Jrue Holiday,,,22,13,LAL,22,POR,9,16,2026-11-07T03:28:39Z
+401909294,2027,2,2026-11-06,97,1,4,50,Jump Shot,Quentin Grimes misses 25-foot three point jumper,0,False,True,4397014,Quentin Grimes,,,,,13,13,LAL,22,POR,9,16,2026-11-07T03:29:11Z
+401909294,2027,2,2026-11-06,98,1,4,50,Defensive Rebound,Trail Blazers defensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,9,16,2026-11-07T03:29:11Z
+401909294,2027,2,2026-11-06,101,1,4,48,Substitution,Ziaire Williams enters the game for Walker Kessler,0,False,False,4433137,Ziaire Williams,4433136,Walker Kessler,,,13,13,LAL,22,POR,9,16,2026-11-07T03:29:13Z
+401909294,2027,2,2026-11-06,104,1,4,48,Substitution,Robert Williams III enters the game for Donovan Clingan,0,False,False,4066211,Robert Williams III,5105565,Donovan Clingan,,,22,13,LAL,22,POR,9,16,2026-11-07T03:29:13Z
+401909294,2027,2,2026-11-06,105,1,4,48,Substitution,Scoot Henderson enters the game for Damian Lillard,0,False,False,4683678,Scoot Henderson,6606,Damian Lillard,,,22,13,LAL,22,POR,9,16,2026-11-07T03:29:13Z
+401909294,2027,2,2026-11-06,106,1,4,34,Shooting Foul,Ziaire Williams shooting foul,0,False,False,4433137,Ziaire Williams,,,,,13,13,LAL,22,POR,9,16,2026-11-07T03:29:49Z
+401909294,2027,2,2026-11-06,108,1,4,34,Free Throw - 1 of 2,Deni Avdija makes free throw 1 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,9,17,2026-11-07T03:30:16Z
+401909294,2027,2,2026-11-06,109,1,4,34,Free Throw - 2 of 2,Deni Avdija misses free throw 2 of 2,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,9,17,2026-11-07T03:30:16Z
+401909294,2027,2,2026-11-06,110,1,4,34,Defensive Rebound,Luka Doncic defensive rebound,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,9,17,2026-11-07T03:30:16Z
+401909294,2027,2,2026-11-06,111,1,4,19,Jump Shot,Sandro Mamukelashvili misses 24-foot three point jumper,0,False,True,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,9,17,2026-11-07T03:30:47Z
+401909294,2027,2,2026-11-06,112,1,4,19,Defensive Rebound,Deni Avdija defensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,9,17,2026-11-07T03:30:47Z
+401909294,2027,2,2026-11-06,113,1,4,8,Out of Bounds - Lost Ball Turnover,Scoot Henderson out of bounds lost ball turnover,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,9,17,2026-11-07T03:30:58Z
+401909294,2027,2,2026-11-06,114,1,3,52,Driving Floating Bank Jump Shot,Luka Doncic makes 3-foot two point shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,11,17,2026-11-07T03:31:22Z
+401909294,2027,2,2026-11-06,115,1,3,46,Driving Layup Shot,Deni Avdija misses driving layup,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:31:28Z
+401909294,2027,2,2026-11-06,116,1,3,46,Offensive Rebound,Deni Avdija offensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:31:28Z
+401909294,2027,2,2026-11-06,117,1,3,43,Tip Shot,Deni Avdija misses tip shot,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:31:31Z
+401909294,2027,2,2026-11-06,118,1,3,43,Offensive Rebound,Deni Avdija offensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:31:31Z
+401909294,2027,2,2026-11-06,119,1,3,43,Tip Shot,Deni Avdija misses tip shot,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:31:31Z
+401909294,2027,2,2026-11-06,120,1,3,43,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:31:31Z
+401909294,2027,2,2026-11-06,125,1,3,34,Driving Floating Bank Jump Shot,Sidy Cissoko misses two point shot,0,False,True,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:32:02Z
+401909294,2027,2,2026-11-06,126,1,3,34,Offensive Rebound,Robert Williams III offensive rebound,0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:32:02Z
+401909294,2027,2,2026-11-06,129,1,3,43,Substitution,Adou Thiero enters the game for Austin Reaves,0,False,False,5060631,Adou Thiero,4066457,Austin Reaves,,,13,13,LAL,22,POR,11,17,2026-11-07T03:31:31Z
+401909294,2027,2,2026-11-06,131,1,3,43,Substitution,Chris Youngblood enters the game for Deni Avdija,0,False,False,4706557,Chris Youngblood,4683021,Deni Avdija,,,22,13,LAL,22,POR,11,17,2026-11-07T03:31:31Z
+401909294,2027,2,2026-11-06,134,1,3,14,Jump Shot,Ziaire Williams misses 23-foot three point jumper,0,False,True,4433137,Ziaire Williams,,,,,13,13,LAL,22,POR,11,19,2026-11-07T03:32:38Z
+401909294,2027,2,2026-11-06,135,1,3,14,Offensive Rebound,Adou Thiero offensive rebound,0,False,False,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,11,19,2026-11-07T03:32:38Z
+401909294,2027,2,2026-11-06,136,1,3,10,Layup Shot Putback,Adou Thiero misses two point shot,0,False,True,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,11,19,2026-11-07T03:32:42Z
+401909294,2027,2,2026-11-06,137,1,3,10,Offensive Rebound,Sandro Mamukelashvili offensive rebound,0,False,False,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,11,19,2026-11-07T03:32:42Z
+401909294,2027,2,2026-11-06,138,1,3,8,Tip Shot,Sandro Mamukelashvili makes tip shot,2,True,True,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,13,19,2026-11-07T03:32:44Z
+401909294,2027,2,2026-11-06,139,1,3,1,Shooting Foul,Adou Thiero shooting foul,0,False,False,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,13,19,2026-11-07T03:32:51Z
+401909294,2027,2,2026-11-06,141,1,3,1,Free Throw - 1 of 2,Scoot Henderson misses free throw 1 of 2,0,False,True,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,13,19,2026-11-07T03:32:51Z
+401909294,2027,2,2026-11-06,142,1,3,1,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,13,19,2026-11-07T03:32:51Z
+401909294,2027,2,2026-11-06,143,1,3,1,Free Throw - 2 of 2,Scoot Henderson makes free throw 2 of 2,1,True,True,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,13,20,2026-11-07T03:33:29Z
+401909294,2027,2,2026-11-06,144,1,2,44,Alley Oop Dunk Shot,Ziaire Williams makes alley oop dunk (Adou Thiero assists),2,True,True,4433137,Ziaire Williams,5060631,Adou Thiero,,,13,13,LAL,22,POR,15,20,2026-11-07T03:33:49Z
+401909294,2027,2,2026-11-06,148,1,2,33,Jump Shot,Chris Youngblood misses 27-foot three point jumper,0,False,True,4706557,Chris Youngblood,,,,,22,13,LAL,22,POR,15,20,2026-11-07T03:34:00Z
+401909294,2027,2,2026-11-06,149,1,2,33,Offensive Rebound,Robert Williams III offensive rebound,0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,15,20,2026-11-07T03:34:00Z
+401909294,2027,2,2026-11-06,150,1,2,25,Jump Shot,Jrue Holiday makes 23-foot three point jumper (Robert Williams III assists),3,True,True,3995,Jrue Holiday,4066211,Robert Williams III,,,22,13,LAL,22,POR,15,23,2026-11-07T03:34:08Z
+401909294,2027,2,2026-11-06,152,1,1,56,Floating Jump Shot,Luka Doncic misses 21-foot floating jump shot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,15,23,2026-11-07T03:34:37Z
+401909294,2027,2,2026-11-06,153,1,1,56,Defensive Rebound,Robert Williams III defensive rebound,0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,15,23,2026-11-07T03:34:37Z
+401909294,2027,2,2026-11-06,154,1,1,47,Jump Shot,Chris Youngblood makes 27-foot three point jumper (Sidy Cissoko assists),3,True,True,4706557,Chris Youngblood,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,15,26,2026-11-07T03:34:46Z
+401909294,2027,2,2026-11-06,158,1,1,29,Jump Shot,Sandro Mamukelashvili misses 25-foot three point jumper,0,False,True,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,15,26,2026-11-07T03:35:04Z
+401909294,2027,2,2026-11-06,159,1,1,29,Defensive Rebound,Jrue Holiday defensive rebound,0,False,False,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,15,26,2026-11-07T03:35:04Z
+401909294,2027,2,2026-11-06,160,1,1,21,Shooting Foul,Quentin Grimes shooting foul,0,False,False,4397014,Quentin Grimes,,,,,13,13,LAL,22,POR,15,26,2026-11-07T03:35:12Z
+401909294,2027,2,2026-11-06,162,1,1,21,Full Timeout,Trail Blazers Full timeout,0,False,False,,,,,,,22,13,LAL,22,POR,15,26,2026-11-07T03:35:12Z
+401909294,2027,2,2026-11-06,163,1,1,21,Free Throw - 1 of 2,Scoot Henderson misses free throw 1 of 2,0,False,True,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,15,26,2026-11-07T03:35:12Z
+401909294,2027,2,2026-11-06,164,1,1,21,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,15,26,2026-11-07T03:35:12Z
+401909294,2027,2,2026-11-06,165,1,1,21,Free Throw - 2 of 2,Scoot Henderson makes free throw 2 of 2,1,True,True,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,15,27,2026-11-07T03:39:11Z
+401909294,2027,2,2026-11-06,166,1,1,9,Alley Oop Dunk Shot,Adou Thiero makes alley oop dunk (Luka Doncic assists),2,True,True,5060631,Adou Thiero,3945274,Luka Doncic,,,13,13,LAL,22,POR,17,27,2026-11-07T03:39:25Z
+401909294,2027,2,2026-11-06,168,1,0,54.1,Jump Shot,Chris Youngblood misses 27-foot three point jumper,0,False,True,4706557,Chris Youngblood,,,,,22,13,LAL,22,POR,17,27,2026-11-07T03:39:40Z
+401909294,2027,2,2026-11-06,169,1,0,54.1,Defensive Rebound,Lakers defensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,17,27,2026-11-07T03:39:40Z
+401909294,2027,2,2026-11-06,171,1,0,30.4,Cutting Layup Shot,Sidy Cissoko blocks Luka Doncic 's 1-foot layup,0,False,True,3945274,Luka Doncic,5081727,Sidy Cissoko,,,13,13,LAL,22,POR,17,27,2026-11-07T03:40:27Z
+401909294,2027,2,2026-11-06,172,1,0,30.4,Offensive Rebound,Adou Thiero offensive rebound,0,False,False,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,17,27,2026-11-07T03:40:27Z
+401909294,2027,2,2026-11-06,174,1,0,28.6,Putback Dunk Shot,Adou Thiero makes 2-foot dunk,2,True,True,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,19,27,2026-11-07T03:40:32Z
+401909294,2027,2,2026-11-06,175,1,0,23,Personal Foul,Luka Doncic personal foul,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,19,27,2026-11-07T03:40:38Z
+401909294,2027,2,2026-11-06,177,1,0,23,Free Throw - 1 of 2,Sidy Cissoko misses free throw 1 of 2,0,False,True,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,19,27,2026-11-07T03:40:38Z
+401909294,2027,2,2026-11-06,178,1,0,23,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,19,27,2026-11-07T03:40:38Z
+401909294,2027,2,2026-11-06,179,1,0,23,Free Throw - 2 of 2,Sidy Cissoko makes free throw 2 of 2,1,True,True,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,19,28,2026-11-07T03:41:36Z
+401909294,2027,2,2026-11-06,181,1,0,23,Substitution,Austin Reaves enters the game for Ziaire Williams,0,False,False,4066457,Austin Reaves,4433137,Ziaire Williams,,,13,13,LAL,22,POR,19,28,2026-11-07T03:40:38Z
+401909294,2027,2,2026-11-06,182,1,0,6.5,Personal Foul,Jrue Holiday personal foul,0,False,False,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,19,28,2026-11-07T03:41:54Z
+401909294,2027,2,2026-11-06,184,1,0,6.5,Technical Foul,Luka Doncic technical foul,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,19,28,2026-11-07T03:41:54Z
+401909294,2027,2,2026-11-06,185,1,0,6.5,Free Throw - Technical,Jrue Holiday makes technical free throw,1,True,True,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,19,29,2026-11-07T03:42:27Z
+401909294,2027,2,2026-11-06,186,1,0,6.5,Away from Play Foul,Chris Youngblood away from play foul,0,False,False,4706557,Chris Youngblood,,,,,22,13,LAL,22,POR,19,29,2026-11-07T03:42:27Z
+401909294,2027,2,2026-11-06,188,1,0,6.5,Free Throw - 1 of 1,Luka Doncic makes free throw 1 of 1,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,20,29,2026-11-07T03:43:36Z
+401909294,2027,2,2026-11-06,189,1,0,4.6,Jump Shot,Luka Doncic misses 27-foot three point jumper,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,20,29,2026-11-07T03:43:54Z
+401909294,2027,2,2026-11-06,190,1,0,4.6,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,20,29,2026-11-07T03:43:54Z
+401909294,2027,2,2026-11-06,192,1,0,0.3,Jump Shot,Austin Reaves misses 23-foot three point jumper,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,20,29,2026-11-07T03:44:17Z
+401909294,2027,2,2026-11-06,193,1,0,0.3,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,20,29,2026-11-07T03:44:17Z
+401909294,2027,2,2026-11-06,194,1,0,0,End Period,End of the 1st Quarter,0,False,False,,,,,,,,13,LAL,22,POR,20,29,2026-11-07T03:44:18Z
+401909294,2027,2,2026-11-06,199,2,12,0,Substitution,Walker Kessler enters the game for Luka Doncic,0,False,False,4433136,Walker Kessler,3945274,Luka Doncic,,,13,13,LAL,22,POR,20,29,2026-11-07T03:47:56Z
+401909294,2027,2,2026-11-06,200,2,12,0,Substitution,Collin Sexton enters the game for Quentin Grimes,0,False,False,4277811,Collin Sexton,4397014,Quentin Grimes,,,13,13,LAL,22,POR,20,29,2026-11-07T03:47:56Z
+401909294,2027,2,2026-11-06,201,2,12,0,Substitution,Matisse Thybulle enters the game for Sandro Mamukelashvili,0,False,False,3907498,Matisse Thybulle,4278580,Sandro Mamukelashvili,,,13,13,LAL,22,POR,20,29,2026-11-07T03:47:56Z
+401909294,2027,2,2026-11-06,202,2,12,0,Substitution,Ziaire Williams enters the game for Adou Thiero,0,False,False,4433137,Ziaire Williams,5060631,Adou Thiero,,,13,13,LAL,22,POR,20,29,2026-11-07T03:47:56Z
+401909294,2027,2,2026-11-06,206,2,12,0,Substitution,Damian Lillard enters the game for Jrue Holiday,0,False,False,6606,Damian Lillard,3995,Jrue Holiday,,,22,13,LAL,22,POR,20,29,2026-11-07T03:47:56Z
+401909294,2027,2,2026-11-06,207,2,12,0,Substitution,Donovan Clingan enters the game for Scoot Henderson,0,False,False,5105565,Donovan Clingan,4683678,Scoot Henderson,,,22,13,LAL,22,POR,20,29,2026-11-07T03:47:56Z
+401909294,2027,2,2026-11-06,208,2,12,0,Substitution,Deni Avdija enters the game for Robert Williams III,0,False,False,4683021,Deni Avdija,4066211,Robert Williams III,,,22,13,LAL,22,POR,20,29,2026-11-07T03:47:56Z
+401909294,2027,2,2026-11-06,210,2,11,48,Shooting Foul,Austin Reaves shooting foul,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,20,29,2026-11-07T03:48:08Z
+401909294,2027,2,2026-11-06,212,2,11,48,Free Throw - 1 of 2,Deni Avdija makes free throw 1 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,20,30,2026-11-07T03:48:40Z
+401909294,2027,2,2026-11-06,213,2,11,48,Free Throw - 2 of 2,Deni Avdija makes free throw 2 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,20,31,2026-11-07T03:48:56Z
+401909294,2027,2,2026-11-06,214,2,11,29,Jump Shot,Ziaire Williams misses 25-foot three point jumper,0,False,True,4433137,Ziaire Williams,,,,,13,13,LAL,22,POR,20,31,2026-11-07T03:49:17Z
+401909294,2027,2,2026-11-06,215,2,11,29,Defensive Rebound,Chris Youngblood defensive rebound,0,False,False,4706557,Chris Youngblood,,,,,22,13,LAL,22,POR,20,31,2026-11-07T03:49:17Z
+401909294,2027,2,2026-11-06,216,2,11,26,Bad Pass Turnover,Chris Youngblood bad pass turnover (Ziaire Williams steals),0,False,False,4706557,Chris Youngblood,4433137,Ziaire Williams,,,22,13,LAL,22,POR,20,31,2026-11-07T03:49:20Z
+401909294,2027,2,2026-11-06,218,2,11,21,Bad Pass Turnover,Ziaire Williams bad pass turnover (Deni Avdija steals),0,False,False,4433137,Ziaire Williams,4683021,Deni Avdija,,,13,13,LAL,22,POR,20,31,2026-11-07T03:49:25Z
+401909294,2027,2,2026-11-06,220,2,11,17,Running Pullup Jump Shot,Chris Youngblood makes 26-foot running pullup jump shot (Deni Avdija assists),3,True,True,4706557,Chris Youngblood,4683021,Deni Avdija,,,22,13,LAL,22,POR,20,34,2026-11-07T03:49:28Z
+401909294,2027,2,2026-11-06,222,2,10,54,Layup Shot,Walker Kessler makes layup (Ziaire Williams assists),2,True,True,4433136,Walker Kessler,4433137,Ziaire Williams,,,13,13,LAL,22,POR,22,34,2026-11-07T03:49:52Z
+401909294,2027,2,2026-11-06,224,2,10,40,Jump Shot,Sidy Cissoko misses 25-foot three point jumper,0,False,True,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,22,34,2026-11-07T03:50:05Z
+401909294,2027,2,2026-11-06,225,2,10,40,Defensive Rebound,Matisse Thybulle defensive rebound,0,False,False,3907498,Matisse Thybulle,,,,,13,13,LAL,22,POR,22,34,2026-11-07T03:50:05Z
+401909294,2027,2,2026-11-06,226,2,10,25,Shooting Foul,Sidy Cissoko shooting foul,0,False,False,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,22,34,2026-11-07T03:50:21Z
+401909294,2027,2,2026-11-06,228,2,10,25,Free Throw - 1 of 2,Austin Reaves makes free throw 1 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,23,34,2026-11-07T03:50:51Z
+401909294,2027,2,2026-11-06,229,2,10,25,Free Throw - 2 of 2,Austin Reaves makes free throw 2 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,24,34,2026-11-07T03:51:10Z
+401909294,2027,2,2026-11-06,230,2,10,12,Fade Away Jump Shot,Damian Lillard makes 12-foot fade away jump shot,2,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,24,36,2026-11-07T03:51:24Z
+401909294,2027,2,2026-11-06,231,2,9,56,Dunk Shot,Walker Kessler makes 3-foot dunk (Collin Sexton assists),2,True,True,4433136,Walker Kessler,4277811,Collin Sexton,,,13,13,LAL,22,POR,26,36,2026-11-07T03:51:40Z
+401909294,2027,2,2026-11-06,233,2,9,43,Driving Floating Jump Shot,Deni Avdija makes 6-foot driving floating jump shot,2,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,26,38,2026-11-07T03:51:57Z
+401909294,2027,2,2026-11-06,234,2,9,43,Shooting Foul,Collin Sexton shooting foul,0,False,False,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,26,38,2026-11-07T03:51:57Z
+401909294,2027,2,2026-11-06,236,2,9,43,Free Throw - 1 of 1,Deni Avdija misses free throw 1 of 1,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,26,38,2026-11-07T03:51:57Z
+401909294,2027,2,2026-11-06,238,2,9,43,Substitution,Jake LaRavia enters the game for Ziaire Williams,0,False,False,4592691,Jake LaRavia,4433137,Ziaire Williams,,,13,13,LAL,22,POR,26,38,2026-11-07T03:51:57Z
+401909294,2027,2,2026-11-06,239,2,9,43,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,26,38,2026-11-07T03:51:57Z
+401909294,2027,2,2026-11-06,240,2,9,27,Shooting Foul,Donovan Clingan shooting foul,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,26,38,2026-11-07T03:52:50Z
+401909294,2027,2,2026-11-06,242,2,9,27,Free Throw - 1 of 2,Walker Kessler makes free throw 1 of 2,1,True,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,27,38,2026-11-07T03:53:21Z
+401909294,2027,2,2026-11-06,243,2,9,27,Free Throw - 2 of 2,Walker Kessler makes free throw 2 of 2,1,True,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,28,38,2026-11-07T03:53:45Z
+401909294,2027,2,2026-11-06,244,2,9,15,Offensive Foul,Donovan Clingan offensive foul,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,28,38,2026-11-07T03:53:58Z
+401909294,2027,2,2026-11-06,246,2,9,15,Offensive Foul Turnover,Donovan Clingan offensive foul turnover,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,28,38,2026-11-07T03:53:58Z
+401909294,2027,2,2026-11-06,248,2,9,15,Substitution,Robert Williams III enters the game for Donovan Clingan,0,False,False,4066211,Robert Williams III,5105565,Donovan Clingan,,,22,13,LAL,22,POR,28,38,2026-11-07T03:53:58Z
+401909294,2027,2,2026-11-06,249,2,9,7,Personal Foul,Chris Youngblood personal foul,0,False,False,4706557,Chris Youngblood,,,,,22,13,LAL,22,POR,28,38,2026-11-07T03:54:43Z
+401909294,2027,2,2026-11-06,251,2,9,1,Floating Jump Shot,Austin Reaves misses 8-foot floating jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,28,38,2026-11-07T03:55:12Z
+401909294,2027,2,2026-11-06,252,2,9,1,Defensive Rebound,Sidy Cissoko defensive rebound,0,False,False,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,28,38,2026-11-07T03:55:12Z
+401909294,2027,2,2026-11-06,253,2,8,54,Running Layup Shot,Deni Avdija makes running layup (Sidy Cissoko assists),2,True,True,4683021,Deni Avdija,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,28,40,2026-11-07T03:55:19Z
+401909294,2027,2,2026-11-06,255,2,8,50,Bad Pass Turnover,Matisse Thybulle bad pass turnover (Chris Youngblood steals),0,False,False,3907498,Matisse Thybulle,4706557,Chris Youngblood,,,13,13,LAL,22,POR,28,40,2026-11-07T03:55:23Z
+401909294,2027,2,2026-11-06,257,2,8,43,Running Jump Shot,Deni Avdija misses 24-foot running jump shot,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,28,40,2026-11-07T03:55:30Z
+401909294,2027,2,2026-11-06,258,2,8,43,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,28,40,2026-11-07T03:55:30Z
+401909294,2027,2,2026-11-06,259,2,8,30,Driving Floating Jump Shot,Austin Reaves makes 5-foot driving floating jump shot,2,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,30,40,2026-11-07T03:55:43Z
+401909294,2027,2,2026-11-06,260,2,8,20,Jump Shot,Damian Lillard makes 30-foot three point jumper (Deni Avdija assists),3,True,True,6606,Damian Lillard,4683021,Deni Avdija,,,22,13,LAL,22,POR,30,43,2026-11-07T03:55:53Z
+401909294,2027,2,2026-11-06,262,2,8,0,Jump Shot,Matisse Thybulle misses 23-foot three point jumper,0,False,True,3907498,Matisse Thybulle,,,,,13,13,LAL,22,POR,30,43,2026-11-07T03:56:13Z
+401909294,2027,2,2026-11-06,263,2,8,0,Defensive Rebound,Deni Avdija defensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,30,43,2026-11-07T03:56:13Z
+401909294,2027,2,2026-11-06,264,2,7,54,Personal Foul,Jake LaRavia personal foul,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,30,43,2026-11-07T03:56:19Z
+401909294,2027,2,2026-11-06,267,2,7,54,Substitution,Toumani Camara enters the game for Sidy Cissoko,0,False,False,4431736,Toumani Camara,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,30,43,2026-11-07T03:56:19Z
+401909294,2027,2,2026-11-06,268,2,7,43,Traveling,Damian Lillard traveling turnover,0,False,False,6606,Damian Lillard,,,,,22,13,LAL,22,POR,30,43,2026-11-07T03:56:57Z
+401909294,2027,2,2026-11-06,269,2,7,43,Full Timeout,Lakers Full timeout,0,False,False,,,,,,,13,13,LAL,22,POR,30,43,2026-11-07T03:56:57Z
+401909294,2027,2,2026-11-06,271,2,7,43,Substitution,Scoot Henderson enters the game for Damian Lillard,0,False,False,4683678,Scoot Henderson,6606,Damian Lillard,,,22,13,LAL,22,POR,30,43,2026-11-07T03:56:57Z
+401909294,2027,2,2026-11-06,272,2,7,25,Pullup Jump Shot,Austin Reaves makes 9-foot pullup jump shot,2,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,32,43,2026-11-07T04:00:54Z
+401909294,2027,2,2026-11-06,273,2,7,10,Alley Oop Dunk Shot,Robert Williams III makes 1-foot alley oop dunk (Deni Avdija assists),2,True,True,4066211,Robert Williams III,4683021,Deni Avdija,,,22,13,LAL,22,POR,32,45,2026-11-07T04:01:09Z
+401909294,2027,2,2026-11-06,275,2,6,55,Pullup Jump Shot,Collin Sexton misses 24-foot three point pullup jump shot,0,False,True,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,32,45,2026-11-07T04:01:24Z
+401909294,2027,2,2026-11-06,276,2,6,55,Offensive Rebound,Walker Kessler offensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,32,45,2026-11-07T04:01:24Z
+401909294,2027,2,2026-11-06,277,2,6,54,Lost Ball Turnover,Jake LaRavia lost ball turnover (Robert Williams III steals),0,False,False,4592691,Jake LaRavia,4066211,Robert Williams III,,,13,13,LAL,22,POR,32,45,2026-11-07T04:01:24Z
+401909294,2027,2,2026-11-06,279,2,6,54,Personal Foul,Jake LaRavia personal foul,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,32,45,2026-11-07T04:01:24Z
+401909294,2027,2,2026-11-06,282,2,6,54,Substitution,Luka Doncic enters the game for Matisse Thybulle,0,False,False,3945274,Luka Doncic,3907498,Matisse Thybulle,,,13,13,LAL,22,POR,32,45,2026-11-07T04:01:24Z
+401909294,2027,2,2026-11-06,284,2,6,54,Substitution,Jrue Holiday enters the game for Chris Youngblood,0,False,False,3995,Jrue Holiday,4706557,Chris Youngblood,,,22,13,LAL,22,POR,32,45,2026-11-07T04:01:24Z
+401909294,2027,2,2026-11-06,288,2,6,45,Substitution,Sandro Mamukelashvili enters the game for Walker Kessler,0,False,False,4278580,Sandro Mamukelashvili,4433136,Walker Kessler,,,13,13,LAL,22,POR,32,45,2026-11-07T04:02:09Z
+401909294,2027,2,2026-11-06,289,2,6,45,Substitution,Quentin Grimes enters the game for Collin Sexton,0,False,False,4397014,Quentin Grimes,4277811,Collin Sexton,,,13,13,LAL,22,POR,32,45,2026-11-07T04:02:09Z
+401909294,2027,2,2026-11-06,290,2,6,40,Bad Pass Turnover,Deni Avdija bad pass turnover (Austin Reaves steals),0,False,False,4683021,Deni Avdija,4066457,Austin Reaves,,,22,13,LAL,22,POR,32,45,2026-11-07T04:02:38Z
+401909294,2027,2,2026-11-06,292,2,6,29,Jump Shot,Jake LaRavia makes 23-foot three point jumper (Austin Reaves assists),3,True,True,4592691,Jake LaRavia,4066457,Austin Reaves,,,13,13,LAL,22,POR,35,45,2026-11-07T04:02:50Z
+401909294,2027,2,2026-11-06,295,2,6,11,Jump Shot,Toumani Camara makes 26-foot three point jumper (Robert Williams III assists),3,True,True,4431736,Toumani Camara,4066211,Robert Williams III,,,22,13,LAL,22,POR,35,48,2026-11-07T04:03:23Z
+401909294,2027,2,2026-11-06,297,2,5,58,Step Back Jump Shot,Luka Doncic misses 24-foot three point step back jumpshot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,35,48,2026-11-07T04:03:36Z
+401909294,2027,2,2026-11-06,298,2,5,58,Defensive Rebound,Deni Avdija defensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,35,48,2026-11-07T04:03:36Z
+401909294,2027,2,2026-11-06,299,2,5,48,Cutting Dunk Shot,Robert Williams III makes 3-foot dunk (Jrue Holiday assists),2,True,True,4066211,Robert Williams III,3995,Jrue Holiday,,,22,13,LAL,22,POR,35,50,2026-11-07T04:03:50Z
+401909294,2027,2,2026-11-06,301,2,5,48,Shooting Foul,Austin Reaves shooting foul,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,35,50,2026-11-07T04:03:50Z
+401909294,2027,2,2026-11-06,304,2,5,48,Substitution,Ziaire Williams enters the game for Austin Reaves,0,False,False,4433137,Ziaire Williams,4066457,Austin Reaves,,,13,13,LAL,22,POR,35,50,2026-11-07T04:03:50Z
+401909294,2027,2,2026-11-06,306,2,5,48,Substitution,Sidy Cissoko enters the game for Deni Avdija,0,False,False,5081727,Sidy Cissoko,4683021,Deni Avdija,,,22,13,LAL,22,POR,35,50,2026-11-07T04:03:50Z
+401909294,2027,2,2026-11-06,307,2,5,48,Free Throw - 1 of 1,Robert Williams III makes free throw 1 of 1,1,True,True,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,35,51,2026-11-07T04:03:50Z
+401909294,2027,2,2026-11-06,308,2,5,36,Personal Foul,Sidy Cissoko personal foul,0,False,False,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,35,51,2026-11-07T04:04:43Z
+401909294,2027,2,2026-11-06,310,2,5,34,Shooting Foul,Robert Williams III shooting foul,0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,35,51,2026-11-07T04:05:10Z
+401909294,2027,2,2026-11-06,312,2,5,34,Free Throw - 1 of 2,Jake LaRavia misses free throw 1 of 2,0,False,True,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,35,51,2026-11-07T04:05:10Z
+401909294,2027,2,2026-11-06,313,2,5,34,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,35,51,2026-11-07T04:05:10Z
+401909294,2027,2,2026-11-06,314,2,5,34,Free Throw - 2 of 2,Jake LaRavia makes free throw 2 of 2,1,True,True,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,36,51,2026-11-07T04:05:59Z
+401909294,2027,2,2026-11-06,315,2,5,16,Driving Layup Shot,Sandro Mamukelashvili blocks Sidy Cissoko 's 3-foot driving layup,0,False,True,5081727,Sidy Cissoko,4278580,Sandro Mamukelashvili,,,22,13,LAL,22,POR,36,51,2026-11-07T04:06:18Z
+401909294,2027,2,2026-11-06,316,2,5,16,Defensive Rebound,Sandro Mamukelashvili defensive rebound,0,False,False,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,36,51,2026-11-07T04:06:18Z
+401909294,2027,2,2026-11-06,318,2,5,6,Personal Foul,Scoot Henderson personal foul,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,36,51,2026-11-07T04:06:29Z
+401909294,2027,2,2026-11-06,320,2,5,6,Free Throw - 1 of 2,Luka Doncic makes free throw 1 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,37,51,2026-11-07T04:07:02Z
+401909294,2027,2,2026-11-06,321,2,5,6,Free Throw - 2 of 2,Luka Doncic makes free throw 2 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:07:23Z
+401909294,2027,2,2026-11-06,322,2,4,49,Lost Ball Turnover,Scoot Henderson lost ball turnover (Luka Doncic steals),0,False,False,4683678,Scoot Henderson,3945274,Luka Doncic,,,22,13,LAL,22,POR,38,51,2026-11-07T04:07:42Z
+401909294,2027,2,2026-11-06,324,2,4,29,Driving Floating Bank Jump Shot,Sandro Mamukelashvili misses two point shot,0,False,True,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:08:02Z
+401909294,2027,2,2026-11-06,325,2,4,29,Offensive Rebound,Jake LaRavia offensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:08:02Z
+401909294,2027,2,2026-11-06,326,2,4,26,Tip Shot,Jake LaRavia misses tip shot,0,False,True,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:08:05Z
+401909294,2027,2,2026-11-06,327,2,4,26,Offensive Rebound,Jake LaRavia offensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:08:05Z
+401909294,2027,2,2026-11-06,328,2,4,22,Defensive 3-Seconds Technical,Robert Williams III defensive 3-seconds (technical foul),0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,38,51,2026-11-07T04:08:09Z
+401909294,2027,2,2026-11-06,329,2,4,22,Free Throw - Technical,Luka Doncic misses technical free throw,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:08:09Z
+401909294,2027,2,2026-11-06,330,2,4,22,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:08:09Z
+401909294,2027,2,2026-11-06,332,2,4,22,Substitution,Damian Lillard enters the game for Robert Williams III,0,False,False,6606,Damian Lillard,4066211,Robert Williams III,,,22,13,LAL,22,POR,38,51,2026-11-07T04:08:09Z
+401909294,2027,2,2026-11-06,333,2,4,10,Jump Shot,Quentin Grimes misses 25-foot three point jumper,0,False,True,4397014,Quentin Grimes,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:09:09Z
+401909294,2027,2,2026-11-06,334,2,4,10,Defensive Rebound,Toumani Camara defensive rebound,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,38,51,2026-11-07T04:09:09Z
+401909294,2027,2,2026-11-06,336,2,3,56,Substitution,Austin Reaves enters the game for Ziaire Williams,0,False,False,4066457,Austin Reaves,4433137,Ziaire Williams,,,13,13,LAL,22,POR,38,51,2026-11-07T04:09:23Z
+401909294,2027,2,2026-11-06,341,2,3,51,Bad Pass Turnover,Scoot Henderson bad pass turnover (Quentin Grimes steals),0,False,False,4683678,Scoot Henderson,4397014,Quentin Grimes,,,22,13,LAL,22,POR,38,51,2026-11-07T04:09:52Z
+401909294,2027,2,2026-11-06,344,2,3,45,Jump Shot,Luka Doncic misses 27-foot three point jumper,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:10:21Z
+401909294,2027,2,2026-11-06,345,2,3,45,Defensive Rebound,Toumani Camara defensive rebound,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,38,51,2026-11-07T04:10:21Z
+401909294,2027,2,2026-11-06,347,2,3,39,Shooting Foul,Jake LaRavia shooting foul,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,38,51,2026-11-07T04:10:26Z
+401909294,2027,2,2026-11-06,349,2,3,39,Free Throw - 1 of 2,Damian Lillard makes free throw 1 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,38,52,2026-11-07T04:10:53Z
+401909294,2027,2,2026-11-06,350,2,3,39,Free Throw - 2 of 2,Damian Lillard makes free throw 2 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,38,53,2026-11-07T04:11:36Z
+401909294,2027,2,2026-11-06,352,2,3,39,Substitution,Walker Kessler enters the game for Jake LaRavia,0,False,False,4433136,Walker Kessler,4592691,Jake LaRavia,,,13,13,LAL,22,POR,38,53,2026-11-07T04:10:53Z
+401909294,2027,2,2026-11-06,354,2,3,39,Substitution,Deni Avdija enters the game for Scoot Henderson,0,False,False,4683021,Deni Avdija,4683678,Scoot Henderson,,,22,13,LAL,22,POR,38,53,2026-11-07T04:10:53Z
+401909294,2027,2,2026-11-06,356,2,3,39,Substitution,Yang Hansen enters the game for Sidy Cissoko,0,False,False,5217746,Yang Hansen,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,38,53,2026-11-07T04:10:53Z
+401909294,2027,2,2026-11-06,357,2,3,29,Personal Foul,Deni Avdija personal foul,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,38,53,2026-11-07T04:11:47Z
+401909294,2027,2,2026-11-06,359,2,3,29,Free Throw - 1 of 2,Sandro Mamukelashvili makes free throw 1 of 2,1,True,True,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,39,53,2026-11-07T04:12:14Z
+401909294,2027,2,2026-11-06,360,2,3,29,Free Throw - 2 of 2,Sandro Mamukelashvili makes free throw 2 of 2,1,True,True,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,40,53,2026-11-07T04:12:30Z
+401909294,2027,2,2026-11-06,361,2,3,17,Jump Shot,Damian Lillard misses 26-foot three point jumper,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,40,53,2026-11-07T04:12:43Z
+401909294,2027,2,2026-11-06,362,2,3,17,Defensive Rebound,Austin Reaves defensive rebound,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,40,53,2026-11-07T04:12:43Z
+401909294,2027,2,2026-11-06,363,2,2,59,Step Back Jump Shot,Luka Doncic makes 26-foot three point step back jumpshot,3,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,43,53,2026-11-07T04:13:02Z
+401909294,2027,2,2026-11-06,364,2,2,55,Full Timeout,Trail Blazers Full timeout,0,False,False,,,,,,,22,13,LAL,22,POR,43,53,2026-11-07T04:13:06Z
+401909294,2027,2,2026-11-06,367,2,2,55,Substitution,Matisse Thybulle enters the game for Quentin Grimes,0,False,False,3907498,Matisse Thybulle,4397014,Quentin Grimes,,,13,13,LAL,22,POR,43,53,2026-11-07T04:13:06Z
+401909294,2027,2,2026-11-06,368,2,2,44,Bad Pass Turnover,Damian Lillard bad pass turnover (Matisse Thybulle steals),0,False,False,6606,Damian Lillard,3907498,Matisse Thybulle,,,22,13,LAL,22,POR,43,53,2026-11-07T04:16:44Z
+401909294,2027,2,2026-11-06,370,2,2,41,Bad Pass Turnover,Matisse Thybulle bad pass turnover (Damian Lillard steals),0,False,False,3907498,Matisse Thybulle,6606,Damian Lillard,,,13,13,LAL,22,POR,43,53,2026-11-07T04:16:47Z
+401909294,2027,2,2026-11-06,372,2,2,40,Kicked Ball,Luka Doncic kicked ball violation,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,43,53,2026-11-07T04:16:48Z
+401909294,2027,2,2026-11-06,373,2,2,26,Shooting Foul,Walker Kessler shooting foul,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,43,53,2026-11-07T04:17:20Z
+401909294,2027,2,2026-11-06,375,2,2,26,Free Throw - 1 of 2,Yang Hansen makes free throw 1 of 2,1,True,True,5217746,Yang Hansen,,,,,22,13,LAL,22,POR,43,54,2026-11-07T04:17:47Z
+401909294,2027,2,2026-11-06,376,2,2,26,Free Throw - 2 of 2,Yang Hansen makes free throw 2 of 2,1,True,True,5217746,Yang Hansen,,,,,22,13,LAL,22,POR,43,55,2026-11-07T04:18:07Z
+401909294,2027,2,2026-11-06,377,2,2,4,Turnaround Fade Away Jump Shot,Luka Doncic makes 13-foot two point shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,45,55,2026-11-07T04:18:41Z
+401909294,2027,2,2026-11-06,378,2,1,42,Lost Ball Turnover,Yang Hansen lost ball turnover (Walker Kessler steals),0,False,False,5217746,Yang Hansen,4433136,Walker Kessler,,,22,13,LAL,22,POR,45,55,2026-11-07T04:19:03Z
+401909294,2027,2,2026-11-06,380,2,1,38,Out of Bounds - Lost Ball Turnover,Austin Reaves out of bounds lost ball turnover,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,45,55,2026-11-07T04:19:08Z
+401909294,2027,2,2026-11-06,381,2,1,14,Step Back Jump Shot,Damian Lillard makes 23-foot three point step back jumpshot,3,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,45,58,2026-11-07T04:19:42Z
+401909294,2027,2,2026-11-06,382,2,1,3,Driving Floating Jump Shot,Austin Reaves makes 9-foot driving floating jump shot,2,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,47,58,2026-11-07T04:19:53Z
+401909294,2027,2,2026-11-06,383,2,1,2,Personal Foul,Matisse Thybulle personal foul,0,False,False,3907498,Matisse Thybulle,,,,,13,13,LAL,22,POR,47,58,2026-11-07T04:19:55Z
+401909294,2027,2,2026-11-06,385,2,1,2,Free Throw - 1 of 2,Damian Lillard makes free throw 1 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,47,59,2026-11-07T04:20:30Z
+401909294,2027,2,2026-11-06,386,2,1,2,Free Throw - 2 of 2,Damian Lillard makes free throw 2 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,47,60,2026-11-07T04:20:52Z
+401909294,2027,2,2026-11-06,388,2,1,2,Substitution,Sidy Cissoko enters the game for Toumani Camara,0,False,False,5081727,Sidy Cissoko,4431736,Toumani Camara,,,22,13,LAL,22,POR,47,60,2026-11-07T04:20:30Z
+401909294,2027,2,2026-11-06,389,2,0,45.1,Jump Shot,Austin Reaves misses 25-foot three point jumper,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,47,60,2026-11-07T04:21:10Z
+401909294,2027,2,2026-11-06,390,2,0,45.1,Defensive Rebound,Deni Avdija defensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,47,60,2026-11-07T04:21:10Z
+401909294,2027,2,2026-11-06,391,2,0,38.8,Offensive Charge,Deni Avdija offensive charge,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,47,60,2026-11-07T04:21:16Z
+401909294,2027,2,2026-11-06,393,2,0,38.8,Offensive Foul Turnover,Deni Avdija offensive foul turnover,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,47,60,2026-11-07T04:21:16Z
+401909294,2027,2,2026-11-06,395,2,0,38.8,Substitution,Robert Williams III enters the game for Yang Hansen,0,False,False,4066211,Robert Williams III,5217746,Yang Hansen,,,22,13,LAL,22,POR,47,60,2026-11-07T04:21:16Z
+401909294,2027,2,2026-11-06,396,2,0,25.6,Jump Shot,Sandro Mamukelashvili makes 23-foot three point jumper (Walker Kessler assists),3,True,True,4278580,Sandro Mamukelashvili,4433136,Walker Kessler,,,13,13,LAL,22,POR,50,60,2026-11-07T04:22:12Z
+401909294,2027,2,2026-11-06,398,2,0,7.2,Jump Shot,Sidy Cissoko misses 23-foot three point jumper,0,False,True,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,50,60,2026-11-07T04:22:35Z
+401909294,2027,2,2026-11-06,399,2,0,7.2,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,50,60,2026-11-07T04:22:35Z
+401909294,2027,2,2026-11-06,400,2,0,0,Jump Shot Bank,Luka Doncic makes 62-foot jump bank shot,3,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,53,60,2026-11-07T04:22:42Z
+401909294,2027,2,2026-11-06,401,2,0,0,End Period,End of the 2nd Quarter,0,False,False,,,,,,,,13,LAL,22,POR,53,60,2026-11-07T04:22:42Z
+401909294,2027,2,2026-11-06,402,2,0,0,Ref-Initiated Review (Supported),(00:00) [Trail Blazers] REF-INITIATED REVIEW (REPLAY SUPPORTS CALL),0,False,False,,,,,,,,13,LAL,22,POR,53,60,2026-11-07T04:22:42Z
+401909294,2027,2,2026-11-06,406,3,12,0,Substitution,Donovan Clingan enters the game for Jrue Holiday,0,False,False,5105565,Donovan Clingan,3995,Jrue Holiday,,,22,13,LAL,22,POR,53,60,2026-11-07T04:39:37Z
+401909294,2027,2,2026-11-06,407,3,12,0,Substitution,Toumani Camara enters the game for Sidy Cissoko,0,False,False,4431736,Toumani Camara,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,53,60,2026-11-07T04:39:37Z
+401909294,2027,2,2026-11-06,408,3,12,0,Substitution,Scoot Henderson enters the game for Robert Williams III,0,False,False,4683678,Scoot Henderson,4066211,Robert Williams III,,,22,13,LAL,22,POR,53,60,2026-11-07T04:39:37Z
+401909294,2027,2,2026-11-06,410,3,12,0,Substitution,Jake LaRavia enters the game for Sandro Mamukelashvili,0,False,False,4592691,Jake LaRavia,4278580,Sandro Mamukelashvili,,,13,13,LAL,22,POR,53,60,2026-11-07T04:39:37Z
+401909294,2027,2,2026-11-06,412,1,3,32,Layup Shot Putback,Robert Williams III makes two point shot,2,True,True,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,11,19,2026-11-07T03:32:04Z
+401909294,2027,2,2026-11-06,413,3,11,44,Jump Shot,Damian Lillard misses 26-foot three point jumper,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,53,60,2026-11-07T04:39:53Z
+401909294,2027,2,2026-11-06,414,3,11,44,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,53,60,2026-11-07T04:39:53Z
+401909294,2027,2,2026-11-06,415,3,11,28,Pullup Jump Shot,Luka Doncic makes 11-foot pullup jump shot (Jake LaRavia assists),2,True,True,3945274,Luka Doncic,4592691,Jake LaRavia,,,13,13,LAL,22,POR,55,60,2026-11-07T04:40:11Z
+401909294,2027,2,2026-11-06,416,3,11,28,Shooting Foul,Toumani Camara shooting foul,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,55,60,2026-11-07T04:40:11Z
+401909294,2027,2,2026-11-06,418,3,11,28,Free Throw - 1 of 1,Luka Doncic misses free throw 1 of 1,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,55,60,2026-11-07T04:40:11Z
+401909294,2027,2,2026-11-06,419,3,11,28,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,55,60,2026-11-07T04:40:11Z
+401909294,2027,2,2026-11-06,421,3,11,5,Offensive Foul,Deni Avdija offensive foul,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,55,60,2026-11-07T04:41:05Z
+401909294,2027,2,2026-11-06,423,3,11,5,Offensive Foul Turnover,Deni Avdija offensive foul turnover,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,55,60,2026-11-07T04:41:05Z
+401909294,2027,2,2026-11-06,424,1,3,33,Putback Dunk Shot,Robert Williams III misses dunk,0,False,True,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:32:03Z
+401909294,2027,2,2026-11-06,425,1,3,33,Offensive Rebound,Robert Williams III offensive rebound,0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,11,17,2026-11-07T03:32:03Z
+401909294,2027,2,2026-11-06,426,3,10,43,Jump Shot,Luka Doncic misses 27-foot three point jumper,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,55,60,2026-11-07T04:41:39Z
+401909294,2027,2,2026-11-06,427,3,10,43,Offensive Rebound,Jake LaRavia offensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,55,60,2026-11-07T04:41:39Z
+401909294,2027,2,2026-11-06,428,3,10,28,Hook Shot,Walker Kessler makes 3-foot hook shot (Jake LaRavia assists),2,True,True,4433136,Walker Kessler,4592691,Jake LaRavia,,,13,13,LAL,22,POR,57,60,2026-11-07T04:41:54Z
+401909294,2027,2,2026-11-06,430,3,10,7,Pullup Jump Shot,Scoot Henderson misses 12-foot pullup jump shot,0,False,True,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:42:14Z
+401909294,2027,2,2026-11-06,431,3,10,7,Defensive Rebound,Austin Reaves defensive rebound,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,57,60,2026-11-07T04:42:14Z
+401909294,2027,2,2026-11-06,432,3,9,51,Driving Floating Jump Shot,Austin Reaves misses driving floating jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,57,60,2026-11-07T04:42:31Z
+401909294,2027,2,2026-11-06,433,3,9,51,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:42:31Z
+401909294,2027,2,2026-11-06,434,3,9,43,Lost Ball Turnover,Deni Avdija lost ball turnover (Austin Reaves steals),0,False,False,4683021,Deni Avdija,4066457,Austin Reaves,,,22,13,LAL,22,POR,57,60,2026-11-07T04:42:38Z
+401909294,2027,2,2026-11-06,436,3,9,36,Personal Foul,Scoot Henderson personal foul,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:42:46Z
+401909294,2027,2,2026-11-06,438,3,9,33,Personal Foul,Scoot Henderson personal foul,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:43:07Z
+401909294,2027,2,2026-11-06,440,3,9,33,Personal Foul,Scoot Henderson personal foul,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:43:07Z
+401909294,2027,2,2026-11-06,442,3,9,22,Pullup Jump Shot,Luka Doncic misses 35-foot three point pullup jump shot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,57,60,2026-11-07T04:43:58Z
+401909294,2027,2,2026-11-06,443,3,9,22,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:43:58Z
+401909294,2027,2,2026-11-06,444,3,9,16,Shooting Foul,Austin Reaves shooting foul,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,57,60,2026-11-07T04:44:05Z
+401909294,2027,2,2026-11-06,446,3,9,16,Free Throw - 1 of 2,Deni Avdija misses free throw 1 of 2,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:44:05Z
+401909294,2027,2,2026-11-06,447,3,9,16,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:44:05Z
+401909294,2027,2,2026-11-06,448,3,9,16,Free Throw - 2 of 2,Deni Avdija misses free throw 2 of 2,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:44:05Z
+401909294,2027,2,2026-11-06,449,3,9,16,Defensive Rebound,Luka Doncic defensive rebound,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,57,60,2026-11-07T04:44:05Z
+401909294,2027,2,2026-11-06,450,3,8,55,Fade Away Jump Shot,Luka Doncic misses 5-foot fade away jump shot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,57,60,2026-11-07T04:45:13Z
+401909294,2027,2,2026-11-06,451,3,8,55,Defensive Rebound,Toumani Camara defensive rebound,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,57,60,2026-11-07T04:45:13Z
+401909294,2027,2,2026-11-06,452,3,8,45,Alley Oop Layup Shot,Donovan Clingan makes alley oop layup (Deni Avdija assists),2,True,True,5105565,Donovan Clingan,4683021,Deni Avdija,,,22,13,LAL,22,POR,57,62,2026-11-07T04:45:23Z
+401909294,2027,2,2026-11-06,454,3,8,43,Delay of Game,delay of game violation,0,False,False,,,,,,,,13,LAL,22,POR,57,62,2026-11-07T04:45:25Z
+401909294,2027,2,2026-11-06,455,3,8,23,Pullup Jump Shot,Austin Reaves misses 25-foot three point pullup jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,57,62,2026-11-07T04:45:57Z
+401909294,2027,2,2026-11-06,456,3,8,23,Defensive Rebound,Scoot Henderson defensive rebound,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,57,62,2026-11-07T04:45:57Z
+401909294,2027,2,2026-11-06,457,3,8,12,Personal Foul,Matisse Thybulle personal foul,0,False,False,3907498,Matisse Thybulle,,,,,13,13,LAL,22,POR,57,62,2026-11-07T04:46:07Z
+401909294,2027,2,2026-11-06,459,3,8,1,Step Back Jump Shot,Donovan Clingan makes 24-foot three point step back jumpshot,3,True,True,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,57,65,2026-11-07T04:46:34Z
+401909294,2027,2,2026-11-06,460,3,7,39,Bad Pass Turnover,Luka Doncic bad pass turnover (Donovan Clingan steals),0,False,False,3945274,Luka Doncic,5105565,Donovan Clingan,,,13,13,LAL,22,POR,57,65,2026-11-07T04:46:57Z
+401909294,2027,2,2026-11-06,462,3,7,39,Personal Foul,Austin Reaves personal foul,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,57,65,2026-11-07T04:46:57Z
+401909294,2027,2,2026-11-06,464,3,7,33,Jump Shot,Deni Avdija misses 25-foot three point jumper,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,57,65,2026-11-07T04:47:28Z
+401909294,2027,2,2026-11-06,465,3,7,33,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,57,65,2026-11-07T04:47:28Z
+401909294,2027,2,2026-11-06,466,3,7,15,Driving Floating Jump Shot,Luka Doncic makes 12-foot driving floating jump shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,59,65,2026-11-07T04:47:47Z
+401909294,2027,2,2026-11-06,467,3,7,4,Driving Layup Shot,Damian Lillard misses driving layup,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,59,65,2026-11-07T04:47:58Z
+401909294,2027,2,2026-11-06,468,3,7,4,Defensive Rebound,Walker Kessler defensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,59,65,2026-11-07T04:47:58Z
+401909294,2027,2,2026-11-06,469,3,6,57,Step Back Jump Shot,Luka Doncic misses 26-foot three point step back jumpshot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,59,65,2026-11-07T04:48:05Z
+401909294,2027,2,2026-11-06,470,3,6,57,Offensive Rebound,Jake LaRavia offensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,59,65,2026-11-07T04:48:05Z
+401909294,2027,2,2026-11-06,471,3,6,44,Shooting Foul,Toumani Camara shooting foul,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,59,65,2026-11-07T04:48:17Z
+401909294,2027,2,2026-11-06,473,3,6,44,Full Timeout,Lakers Full timeout,0,False,False,,,,,,,13,13,LAL,22,POR,59,65,2026-11-07T04:48:17Z
+401909294,2027,2,2026-11-06,474,3,6,44,Free Throw - 1 of 2,Luka Doncic makes free throw 1 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,60,65,2026-11-07T04:52:10Z
+401909294,2027,2,2026-11-06,477,3,6,44,Substitution,Sandro Mamukelashvili enters the game for Jake LaRavia,0,False,False,4278580,Sandro Mamukelashvili,4592691,Jake LaRavia,,,13,13,LAL,22,POR,60,65,2026-11-07T04:48:17Z
+401909294,2027,2,2026-11-06,478,3,6,44,Substitution,Quentin Grimes enters the game for Matisse Thybulle,0,False,False,4397014,Quentin Grimes,3907498,Matisse Thybulle,,,13,13,LAL,22,POR,60,65,2026-11-07T04:48:17Z
+401909294,2027,2,2026-11-06,480,3,6,44,Substitution,Jrue Holiday enters the game for Scoot Henderson,0,False,False,3995,Jrue Holiday,4683678,Scoot Henderson,,,22,13,LAL,22,POR,60,65,2026-11-07T04:48:17Z
+401909294,2027,2,2026-11-06,481,3,6,44,Free Throw - 2 of 2,Luka Doncic makes free throw 2 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,61,65,2026-11-07T04:52:31Z
+401909294,2027,2,2026-11-06,483,3,6,21,Jump Shot,Toumani Camara makes 26-foot three point jumper (Damian Lillard assists),3,True,True,4431736,Toumani Camara,6606,Damian Lillard,,,22,13,LAL,22,POR,61,68,2026-11-07T04:53:24Z
+401909294,2027,2,2026-11-06,485,3,5,57,Fade Away Jump Shot,Austin Reaves misses 14-foot fade away jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,61,68,2026-11-07T04:53:48Z
+401909294,2027,2,2026-11-06,486,3,5,57,Offensive Rebound,Walker Kessler offensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,61,68,2026-11-07T04:53:48Z
+401909294,2027,2,2026-11-06,487,3,5,52,Reverse Layup Shot,Walker Kessler makes 3-foot reverse layup,2,True,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,63,68,2026-11-07T04:53:53Z
+401909294,2027,2,2026-11-06,488,3,5,35,Jump Shot,Toumani Camara misses 23-foot three point jumper,0,False,True,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,63,68,2026-11-07T04:54:10Z
+401909294,2027,2,2026-11-06,489,3,5,35,Defensive Rebound,Luka Doncic defensive rebound,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,63,68,2026-11-07T04:54:10Z
+401909294,2027,2,2026-11-06,490,3,5,27,Running Pullup Jump Shot,Austin Reaves makes 7-foot running pullup jump shot (Luka Doncic assists),2,True,True,4066457,Austin Reaves,3945274,Luka Doncic,,,13,13,LAL,22,POR,65,68,2026-11-07T04:54:18Z
+401909294,2027,2,2026-11-06,492,3,5,11,Jump Shot,Jrue Holiday misses 23-foot three point jumper,0,False,True,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,65,68,2026-11-07T04:54:34Z
+401909294,2027,2,2026-11-06,493,3,5,11,Defensive Rebound,Lakers defensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,65,68,2026-11-07T04:54:34Z
+401909294,2027,2,2026-11-06,497,3,5,9,Substitution,Sidy Cissoko enters the game for Damian Lillard,0,False,False,5081727,Sidy Cissoko,6606,Damian Lillard,,,22,13,LAL,22,POR,65,68,2026-11-07T04:54:36Z
+401909294,2027,2,2026-11-06,498,3,4,47,Step Back Jump Shot,Luka Doncic makes 27-foot three point step back jumpshot,3,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,68,68,2026-11-07T04:55:14Z
+401909294,2027,2,2026-11-06,499,3,4,46,Full Timeout,Trail Blazers Full timeout,0,False,False,,,,,,,22,13,LAL,22,POR,68,68,2026-11-07T04:55:15Z
+401909294,2027,2,2026-11-06,501,3,4,46,Substitution,Ziaire Williams enters the game for Austin Reaves,0,False,False,4433137,Ziaire Williams,4066457,Austin Reaves,,,13,13,LAL,22,POR,68,68,2026-11-07T04:55:15Z
+401909294,2027,2,2026-11-06,502,3,4,37,Bad Pass Turnover,Deni Avdija bad pass turnover (Quentin Grimes steals),0,False,False,4683021,Deni Avdija,4397014,Quentin Grimes,,,22,13,LAL,22,POR,68,68,2026-11-07T04:59:17Z
+401909294,2027,2,2026-11-06,505,3,4,23,Jump Shot,Ziaire Williams makes 23-foot three point jumper (Luka Doncic assists),3,True,True,4433137,Ziaire Williams,3945274,Luka Doncic,,,13,13,LAL,22,POR,71,68,2026-11-07T04:59:52Z
+401909294,2027,2,2026-11-06,507,3,4,11,Jump Shot,Donovan Clingan misses 24-foot three point jumper,0,False,True,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,71,68,2026-11-07T05:00:04Z
+401909294,2027,2,2026-11-06,508,3,4,11,Defensive Rebound,Sandro Mamukelashvili defensive rebound,0,False,False,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,71,68,2026-11-07T05:00:04Z
+401909294,2027,2,2026-11-06,509,3,3,58,Floating Jump Shot,Luka Doncic makes 9-foot floating jump shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,73,68,2026-11-07T05:00:17Z
+401909294,2027,2,2026-11-06,510,3,3,58,Full Timeout,Trail Blazers Full timeout,0,False,False,,,,,,,22,13,LAL,22,POR,73,68,2026-11-07T05:00:17Z
+401909294,2027,2,2026-11-06,513,3,3,58,Substitution,Scoot Henderson enters the game for Toumani Camara,0,False,False,4683678,Scoot Henderson,4431736,Toumani Camara,,,22,13,LAL,22,POR,73,68,2026-11-07T05:00:17Z
+401909294,2027,2,2026-11-06,514,3,3,58,Substitution,Damian Lillard enters the game for Deni Avdija,0,False,False,6606,Damian Lillard,4683021,Deni Avdija,,,22,13,LAL,22,POR,73,68,2026-11-07T05:00:17Z
+401909294,2027,2,2026-11-06,515,3,3,45,Out of Bounds - Lost Ball Turnover,Damian Lillard out of bounds lost ball turnover,0,False,False,6606,Damian Lillard,,,,,22,13,LAL,22,POR,73,68,2026-11-07T05:02:14Z
+401909294,2027,2,2026-11-06,516,3,3,37,Pullup Jump Shot,Luka Doncic makes 26-foot three pointer,3,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,76,68,2026-11-07T05:02:27Z
+401909294,2027,2,2026-11-06,517,3,3,25,Personal Take Foul,Luka Doncic personal take foul,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,76,68,2026-11-07T05:02:39Z
+401909294,2027,2,2026-11-06,520,3,3,25,Substitution,Robert Williams III enters the game for Donovan Clingan,0,False,False,4066211,Robert Williams III,5105565,Donovan Clingan,,,22,13,LAL,22,POR,76,68,2026-11-07T05:02:39Z
+401909294,2027,2,2026-11-06,521,3,3,19,Bad Pass Turnover,Robert Williams III bad pass turnover (Sandro Mamukelashvili steals),0,False,False,4066211,Robert Williams III,4278580,Sandro Mamukelashvili,,,22,13,LAL,22,POR,76,68,2026-11-07T05:03:09Z
+401909294,2027,2,2026-11-06,523,3,3,15,Running Alley Oop Layup Shot,Quentin Grimes makes 1-foot layup (Sandro Mamukelashvili assists),2,True,True,4397014,Quentin Grimes,4278580,Sandro Mamukelashvili,,,13,13,LAL,22,POR,78,68,2026-11-07T05:03:14Z
+401909294,2027,2,2026-11-06,525,3,3,5,Alley Oop Dunk Shot,Robert Williams III makes 2-foot alley oop dunk (Jrue Holiday assists),2,True,True,4066211,Robert Williams III,3995,Jrue Holiday,,,22,13,LAL,22,POR,78,70,2026-11-07T05:03:23Z
+401909294,2027,2,2026-11-06,530,3,2,51,Challenge,Lakers Coach's Challenge,0,False,False,,,,,,,13,13,LAL,22,POR,78,70,2026-11-07T05:03:37Z
+401909294,2027,2,2026-11-06,533,3,2,51,Coach's Challenge (Overturned),(02:51) [Lakers] COACH'S CHALLENGE (CALL OVERTURNED) [Lakers] retain their timeout,0,False,False,,,,,,,13,13,LAL,22,POR,78,70,2026-11-07T05:04:07Z
+401909294,2027,2,2026-11-06,534,3,2,51,Flopping Technical,Sidy Cissoko flopping technical foul,0,False,False,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,78,70,2026-11-07T05:04:07Z
+401909294,2027,2,2026-11-06,535,3,2,51,Free Throw - Technical,Luka Doncic makes technical free throw,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,79,70,2026-11-07T05:08:05Z
+401909294,2027,2,2026-11-06,537,3,2,51,Substitution,Adou Thiero enters the game for Walker Kessler,0,False,False,5060631,Adou Thiero,4433136,Walker Kessler,,,13,13,LAL,22,POR,79,70,2026-11-07T05:08:05Z
+401909294,2027,2,2026-11-06,538,3,2,37,Driving Layup Shot,Luka Doncic makes driving layup,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,81,70,2026-11-07T05:08:34Z
+401909294,2027,2,2026-11-06,539,3,2,31,Personal Foul,Luka Doncic personal foul,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,81,70,2026-11-07T05:08:40Z
+401909294,2027,2,2026-11-06,541,3,2,31,Free Throw - 1 of 2,Damian Lillard makes free throw 1 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,81,71,2026-11-07T05:09:14Z
+401909294,2027,2,2026-11-06,542,3,2,31,Free Throw - 2 of 2,Damian Lillard makes free throw 2 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,81,72,2026-11-07T05:09:34Z
+401909294,2027,2,2026-11-06,543,3,2,19,Step Back Jump Shot,Luka Doncic misses 26-foot three point step back jumpshot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,81,72,2026-11-07T05:09:49Z
+401909294,2027,2,2026-11-06,544,3,2,19,Offensive Rebound,Ziaire Williams offensive rebound,0,False,False,4433137,Ziaire Williams,,,,,13,13,LAL,22,POR,81,72,2026-11-07T05:09:49Z
+401909294,2027,2,2026-11-06,545,3,2,11,Cutting Finger Roll Layup Shot,Sandro Mamukelashvili misses layup,0,False,True,4278580,Sandro Mamukelashvili,,,,,13,13,LAL,22,POR,81,72,2026-11-07T05:09:57Z
+401909294,2027,2,2026-11-06,546,3,2,11,Offensive Rebound,Adou Thiero offensive rebound,0,False,False,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,81,72,2026-11-07T05:09:57Z
+401909294,2027,2,2026-11-06,547,3,2,9,Tip Dunk Shot,Adou Thiero misses tip in dunk,0,False,True,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,81,72,2026-11-07T05:09:59Z
+401909294,2027,2,2026-11-06,548,3,2,9,Defensive Rebound,Robert Williams III defensive rebound,0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,81,72,2026-11-07T05:09:59Z
+401909294,2027,2,2026-11-06,550,3,1,46,Jump Shot,Sidy Cissoko makes 26-foot three point jumper (Damian Lillard assists),3,True,True,5081727,Sidy Cissoko,6606,Damian Lillard,,,22,13,LAL,22,POR,81,75,2026-11-07T05:10:41Z
+401909294,2027,2,2026-11-06,552,3,1,20,Jump Shot,Luka Doncic misses 30-foot three point jumper,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,81,75,2026-11-07T05:11:07Z
+401909294,2027,2,2026-11-06,553,3,1,20,Offensive Rebound,Adou Thiero offensive rebound,0,False,False,5060631,Adou Thiero,,,,,13,13,LAL,22,POR,81,75,2026-11-07T05:11:07Z
+401909294,2027,2,2026-11-06,554,3,1,14,Jump Shot,Ziaire Williams makes 27-foot three point jumper (Adou Thiero assists),3,True,True,4433137,Ziaire Williams,5060631,Adou Thiero,,,13,13,LAL,22,POR,84,75,2026-11-07T05:11:14Z
+401909294,2027,2,2026-11-06,556,3,0,54.3,Jump Shot,Sidy Cissoko misses 26-foot three point jumper,0,False,True,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,84,75,2026-11-07T05:11:33Z
+401909294,2027,2,2026-11-06,557,3,0,54.3,Defensive Rebound,Luka Doncic defensive rebound,0,False,False,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,84,75,2026-11-07T05:11:33Z
+401909294,2027,2,2026-11-06,558,3,0,51,Personal Foul,Scoot Henderson personal foul,0,False,False,4683678,Scoot Henderson,,,,,22,13,LAL,22,POR,84,75,2026-11-07T05:11:37Z
+401909294,2027,2,2026-11-06,560,3,0,51,Free Throw - 1 of 2,Luka Doncic makes free throw 1 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,85,75,2026-11-07T05:12:12Z
+401909294,2027,2,2026-11-06,561,3,0,51,Free Throw - 2 of 2,Luka Doncic makes free throw 2 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,86,75,2026-11-07T05:12:37Z
+401909294,2027,2,2026-11-06,563,3,0,51,Substitution,Deni Avdija enters the game for Scoot Henderson,0,False,False,4683021,Deni Avdija,4683678,Scoot Henderson,,,22,13,LAL,22,POR,86,75,2026-11-07T05:12:13Z
+401909294,2027,2,2026-11-06,564,3,0,32,Jump Shot,Deni Avdija misses 25-foot three point jumper,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,86,75,2026-11-07T05:12:58Z
+401909294,2027,2,2026-11-06,565,3,0,32,Defensive Rebound,Ziaire Williams defensive rebound,0,False,False,4433137,Ziaire Williams,,,,,13,13,LAL,22,POR,86,75,2026-11-07T05:12:58Z
+401909294,2027,2,2026-11-06,566,3,0,23.9,Personal Foul,Jrue Holiday personal foul,0,False,False,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,86,75,2026-11-07T05:13:06Z
+401909294,2027,2,2026-11-06,568,3,0,23.9,Free Throw - 1 of 2,Luka Doncic makes free throw 1 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,87,75,2026-11-07T05:13:46Z
+401909294,2027,2,2026-11-06,569,3,0,23.9,Free Throw - 2 of 2,Luka Doncic misses free throw 2 of 2,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,87,75,2026-11-07T05:13:46Z
+401909294,2027,2,2026-11-06,571,3,0,23.9,Substitution,Matisse Thybulle enters the game for Sandro Mamukelashvili,0,False,False,3907498,Matisse Thybulle,4278580,Sandro Mamukelashvili,,,13,13,LAL,22,POR,87,75,2026-11-07T05:13:46Z
+401909294,2027,2,2026-11-06,572,3,0,23.9,Defensive Rebound,Deni Avdija defensive rebound,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,87,75,2026-11-07T05:13:46Z
+401909294,2027,2,2026-11-06,573,3,0,2.6,Out of Bounds - Bad Pass Turnover,Deni Avdija out of bounds bad pass turnover,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,87,75,2026-11-07T05:14:33Z
+401909294,2027,2,2026-11-06,574,3,0,2.3,Heave Jump Shot,Luka Doncic misses heave jump shot,0,False,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,87,75,2026-11-07T05:14:49Z
+401909294,2027,2,2026-11-06,575,3,0,2.3,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,87,75,2026-11-07T05:14:49Z
+401909294,2027,2,2026-11-06,576,3,0,0,End Period,End of the 3rd Quarter,0,False,False,,,,,,,,13,LAL,22,POR,87,75,2026-11-07T05:14:51Z
+401909294,2027,2,2026-11-06,580,4,12,0,Substitution,Walker Kessler enters the game for Adou Thiero,0,False,False,4433136,Walker Kessler,5060631,Adou Thiero,,,13,13,LAL,22,POR,87,75,2026-11-07T05:18:28Z
+401909294,2027,2,2026-11-06,581,4,12,0,Substitution,Collin Sexton enters the game for Quentin Grimes,0,False,False,4277811,Collin Sexton,4397014,Quentin Grimes,,,13,13,LAL,22,POR,87,75,2026-11-07T05:18:28Z
+401909294,2027,2,2026-11-06,582,4,12,0,Substitution,Austin Reaves enters the game for Luka Doncic,0,False,False,4066457,Austin Reaves,3945274,Luka Doncic,,,13,13,LAL,22,POR,87,75,2026-11-07T05:18:28Z
+401909294,2027,2,2026-11-06,584,4,12,0,Substitution,Donovan Clingan enters the game for Robert Williams III,0,False,False,5105565,Donovan Clingan,4066211,Robert Williams III,,,22,13,LAL,22,POR,87,75,2026-11-07T05:18:28Z
+401909294,2027,2,2026-11-06,587,4,11,37,Step Back Jump Shot,Austin Reaves makes 14-foot step back jumpshot (Walker Kessler assists),2,True,True,4066457,Austin Reaves,4433136,Walker Kessler,,,13,13,LAL,22,POR,89,75,2026-11-07T05:19:09Z
+401909294,2027,2,2026-11-06,589,4,11,18,Jump Shot,Damian Lillard misses 25-foot three point jumper,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,89,75,2026-11-07T05:19:28Z
+401909294,2027,2,2026-11-06,590,4,11,18,Defensive Rebound,Ziaire Williams defensive rebound,0,False,False,4433137,Ziaire Williams,,,,,13,13,LAL,22,POR,89,75,2026-11-07T05:19:28Z
+401909294,2027,2,2026-11-06,591,4,10,59,Turnaround Hook Shot,Collin Sexton misses 5-foot two point shot,0,False,True,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,89,75,2026-11-07T05:19:47Z
+401909294,2027,2,2026-11-06,592,4,10,59,Defensive Rebound,Donovan Clingan defensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,89,75,2026-11-07T05:19:47Z
+401909294,2027,2,2026-11-06,593,4,10,54,Shooting Foul,Collin Sexton shooting foul,0,False,False,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,89,75,2026-11-07T05:19:52Z
+401909294,2027,2,2026-11-06,595,4,10,54,Free Throw - 1 of 2,Deni Avdija makes free throw 1 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,89,76,2026-11-07T05:20:26Z
+401909294,2027,2,2026-11-06,596,4,10,54,Free Throw - 2 of 2,Deni Avdija makes free throw 2 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,89,77,2026-11-07T05:20:44Z
+401909294,2027,2,2026-11-06,597,4,10,40,Cutting Layup Shot,Walker Kessler misses layup,0,False,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,89,77,2026-11-07T05:21:02Z
+401909294,2027,2,2026-11-06,598,4,10,40,Offensive Rebound,Walker Kessler offensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,89,77,2026-11-07T05:21:02Z
+401909294,2027,2,2026-11-06,599,4,10,35,Tip Dunk Shot,Walker Kessler makes tip in dunk,2,True,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,91,77,2026-11-07T05:21:07Z
+401909294,2027,2,2026-11-06,600,4,10,23,Bad Pass Turnover,Deni Avdija bad pass turnover (Matisse Thybulle steals),0,False,False,4683021,Deni Avdija,3907498,Matisse Thybulle,,,22,13,LAL,22,POR,91,77,2026-11-07T05:21:19Z
+401909294,2027,2,2026-11-06,602,4,10,21,Shooting Foul,Deni Avdija shooting foul,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,91,77,2026-11-07T05:21:21Z
+401909294,2027,2,2026-11-06,604,4,10,21,Free Throw - 1 of 2,Matisse Thybulle makes free throw 1 of 2,1,True,True,3907498,Matisse Thybulle,,,,,13,13,LAL,22,POR,92,77,2026-11-07T05:21:53Z
+401909294,2027,2,2026-11-06,605,4,10,21,Free Throw - 2 of 2,Matisse Thybulle makes free throw 2 of 2,1,True,True,3907498,Matisse Thybulle,,,,,13,13,LAL,22,POR,93,77,2026-11-07T05:22:08Z
+401909294,2027,2,2026-11-06,606,4,10,5,Personal Foul,Collin Sexton personal foul,0,False,False,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,93,77,2026-11-07T05:22:25Z
+401909294,2027,2,2026-11-06,608,4,9,58,Alley Oop Dunk Shot,Donovan Clingan makes 1-foot alley oop dunk (Jrue Holiday assists),2,True,True,5105565,Donovan Clingan,3995,Jrue Holiday,,,22,13,LAL,22,POR,93,79,2026-11-07T05:22:53Z
+401909294,2027,2,2026-11-06,610,4,9,41,Fade Away Jump Shot,Austin Reaves makes 12-foot fade away jump shot,2,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,95,79,2026-11-07T05:23:11Z
+401909294,2027,2,2026-11-06,611,4,9,24,Pullup Jump Shot,Damian Lillard misses 25-foot three point pullup jump shot,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,95,79,2026-11-07T05:23:28Z
+401909294,2027,2,2026-11-06,612,4,9,24,Offensive Rebound,Sidy Cissoko offensive rebound,0,False,False,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,95,79,2026-11-07T05:23:28Z
+401909294,2027,2,2026-11-06,613,4,9,18,Layup Shot,Jrue Holiday makes layup (Sidy Cissoko assists),2,True,True,3995,Jrue Holiday,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,95,81,2026-11-07T05:23:34Z
+401909294,2027,2,2026-11-06,615,4,9,8,Personal Foul,Jrue Holiday personal foul,0,False,False,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,95,81,2026-11-07T05:23:44Z
+401909294,2027,2,2026-11-06,618,4,9,8,Substitution,Jake LaRavia enters the game for Ziaire Williams,0,False,False,4592691,Jake LaRavia,4433137,Ziaire Williams,,,13,13,LAL,22,POR,95,81,2026-11-07T05:23:44Z
+401909294,2027,2,2026-11-06,619,4,8,58,Driving Floating Jump Shot,Austin Reaves misses driving floating jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,95,81,2026-11-07T05:24:23Z
+401909294,2027,2,2026-11-06,620,4,8,58,Defensive Rebound,Trail Blazers defensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,95,81,2026-11-07T05:24:23Z
+401909294,2027,2,2026-11-06,623,4,8,43,Cutting Layup Shot,Deni Avdija makes 2-foot layup (Donovan Clingan assists),2,True,True,4683021,Deni Avdija,5105565,Donovan Clingan,,,22,13,LAL,22,POR,95,83,2026-11-07T05:25:05Z
+401909294,2027,2,2026-11-06,625,4,8,43,Shooting Foul,Collin Sexton shooting foul,0,False,False,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,95,83,2026-11-07T05:25:05Z
+401909294,2027,2,2026-11-06,627,4,8,43,Free Throw - 1 of 1,Deni Avdija makes free throw 1 of 1,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,95,84,2026-11-07T05:25:05Z
+401909294,2027,2,2026-11-06,628,4,8,39,Personal Foul,Sidy Cissoko personal foul,0,False,False,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,95,84,2026-11-07T05:25:34Z
+401909294,2027,2,2026-11-06,631,4,8,39,Substitution,Toumani Camara enters the game for Sidy Cissoko,0,False,False,4431736,Toumani Camara,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,95,84,2026-11-07T05:25:34Z
+401909294,2027,2,2026-11-06,632,4,8,25,Driving Layup Shot,Collin Sexton misses driving layup,0,False,True,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,95,84,2026-11-07T05:26:11Z
+401909294,2027,2,2026-11-06,633,4,8,25,Offensive Rebound,Walker Kessler offensive rebound,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,95,84,2026-11-07T05:26:11Z
+401909294,2027,2,2026-11-06,634,4,8,23,Tip Shot,Walker Kessler misses tip shot,0,False,True,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,95,84,2026-11-07T05:26:13Z
+401909294,2027,2,2026-11-06,635,4,8,23,Defensive Rebound,Toumani Camara defensive rebound,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,95,84,2026-11-07T05:26:13Z
+401909294,2027,2,2026-11-06,636,4,8,11,Jump Shot,Toumani Camara misses 23-foot three point jumper,0,False,True,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,95,84,2026-11-07T05:26:25Z
+401909294,2027,2,2026-11-06,637,4,8,11,Offensive Rebound,Donovan Clingan offensive rebound,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,95,84,2026-11-07T05:26:25Z
+401909294,2027,2,2026-11-06,638,4,8,7,Shooting Foul,Walker Kessler shooting foul,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,95,84,2026-11-07T05:26:29Z
+401909294,2027,2,2026-11-06,640,4,8,7,Free Throw - 1 of 2,Donovan Clingan makes free throw 1 of 2,1,True,True,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,95,85,2026-11-07T05:27:00Z
+401909294,2027,2,2026-11-06,641,4,8,7,Free Throw - 2 of 2,Donovan Clingan makes free throw 2 of 2,1,True,True,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,95,86,2026-11-07T05:27:15Z
+401909294,2027,2,2026-11-06,642,4,7,44,Step Back Jump Shot,Austin Reaves misses 25-foot three point step back jumpshot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,95,86,2026-11-07T05:27:39Z
+401909294,2027,2,2026-11-06,643,4,7,44,Offensive Rebound,Jake LaRavia offensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,95,86,2026-11-07T05:27:39Z
+401909294,2027,2,2026-11-06,644,4,7,32,Shooting Foul,Toumani Camara shooting foul,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,95,86,2026-11-07T05:27:51Z
+401909294,2027,2,2026-11-06,646,4,7,32,Free Throw - 1 of 2,Jake LaRavia misses free throw 1 of 2,0,False,True,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,95,86,2026-11-07T05:27:51Z
+401909294,2027,2,2026-11-06,647,4,7,32,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,95,86,2026-11-07T05:27:51Z
+401909294,2027,2,2026-11-06,648,4,7,32,Free Throw - 2 of 2,Jake LaRavia misses free throw 2 of 2,0,False,True,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,95,86,2026-11-07T05:27:51Z
+401909294,2027,2,2026-11-06,650,4,7,32,Substitution,Chris Youngblood enters the game for Jrue Holiday,0,False,False,4706557,Chris Youngblood,3995,Jrue Holiday,,,22,13,LAL,22,POR,95,86,2026-11-07T05:27:51Z
+401909294,2027,2,2026-11-06,651,4,7,32,Defensive Rebound,Toumani Camara defensive rebound,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,95,86,2026-11-07T05:27:51Z
+401909294,2027,2,2026-11-06,652,4,7,20,Jump Shot,Damian Lillard makes 24-foot three point jumper (Deni Avdija assists),3,True,True,6606,Damian Lillard,4683021,Deni Avdija,,,22,13,LAL,22,POR,95,89,2026-11-07T05:28:53Z
+401909294,2027,2,2026-11-06,654,4,7,18,Full Timeout,Lakers Full timeout,0,False,False,,,,,,,13,13,LAL,22,POR,95,89,2026-11-07T05:28:55Z
+401909294,2027,2,2026-11-06,656,4,7,18,Substitution,Luka Doncic enters the game for Matisse Thybulle,0,False,False,3945274,Luka Doncic,3907498,Matisse Thybulle,,,13,13,LAL,22,POR,95,89,2026-11-07T05:28:55Z
+401909294,2027,2,2026-11-06,657,4,6,57,Pullup Jump Shot,Luka Doncic makes 11-foot pullup jump shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,97,89,2026-11-07T05:32:45Z
+401909294,2027,2,2026-11-06,658,4,6,49,Pullup Jump Shot,Damian Lillard misses 24-foot three point pullup jump shot,0,False,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,97,89,2026-11-07T05:32:53Z
+401909294,2027,2,2026-11-06,659,4,6,49,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,97,89,2026-11-07T05:32:53Z
+401909294,2027,2,2026-11-06,660,4,6,48,Shooting Foul,Jake LaRavia shooting foul,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,97,89,2026-11-07T05:32:53Z
+401909294,2027,2,2026-11-06,662,4,6,48,Free Throw - 1 of 2,Chris Youngblood misses free throw 1 of 2,0,False,True,4706557,Chris Youngblood,,,,,22,13,LAL,22,POR,97,89,2026-11-07T05:32:53Z
+401909294,2027,2,2026-11-06,663,4,6,48,Free Throw - 2 of 2,Chris Youngblood makes free throw 2 of 2,1,True,True,4706557,Chris Youngblood,,,,,22,13,LAL,22,POR,97,90,2026-11-07T05:33:46Z
+401909294,2027,2,2026-11-06,664,4,6,48,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,97,90,2026-11-07T05:32:53Z
+401909294,2027,2,2026-11-06,666,4,6,48,Substitution,Jrue Holiday enters the game for Damian Lillard,0,False,False,3995,Jrue Holiday,6606,Damian Lillard,,,22,13,LAL,22,POR,97,90,2026-11-07T05:32:53Z
+401909294,2027,2,2026-11-06,668,4,6,18,Personal Foul,Collin Sexton personal foul,0,False,False,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,97,90,2026-11-07T05:34:38Z
+401909294,2027,2,2026-11-06,670,4,6,18,Free Throw - 1 of 2,Deni Avdija misses free throw 1 of 2,0,False,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,97,90,2026-11-07T05:34:38Z
+401909294,2027,2,2026-11-06,671,4,6,18,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,97,90,2026-11-07T05:34:38Z
+401909294,2027,2,2026-11-06,672,4,6,18,Free Throw - 2 of 2,Deni Avdija makes free throw 2 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,97,91,2026-11-07T05:35:19Z
+401909294,2027,2,2026-11-06,674,4,6,18,Substitution,Quentin Grimes enters the game for Collin Sexton,0,False,False,4397014,Quentin Grimes,4277811,Collin Sexton,,,13,13,LAL,22,POR,97,91,2026-11-07T05:34:38Z
+401909294,2027,2,2026-11-06,675,4,6,27,Alley Oop Dunk Shot,Collin Sexton misses alley oop dunk,0,False,True,4277811,Collin Sexton,,,,,13,13,LAL,22,POR,97,90,2026-11-07T05:34:10Z
+401909294,2027,2,2026-11-06,676,4,6,27,Defensive Rebound,Trail Blazers defensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,97,90,2026-11-07T05:34:10Z
+401909294,2027,2,2026-11-06,677,4,6,0,Jump Shot,Jake LaRavia makes 23-foot three point jumper (Austin Reaves assists),3,True,True,4592691,Jake LaRavia,4066457,Austin Reaves,,,13,13,LAL,22,POR,100,91,2026-11-07T05:35:40Z
+401909294,2027,2,2026-11-06,680,4,5,37,Step Back Jump Shot,Toumani Camara misses 26-foot three point step back jumpshot,0,False,True,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,100,91,2026-11-07T05:36:03Z
+401909294,2027,2,2026-11-06,681,4,5,37,Defensive Rebound,Jake LaRavia defensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,100,91,2026-11-07T05:36:03Z
+401909294,2027,2,2026-11-06,682,4,5,25,Running Jump Shot,Austin Reaves makes 26-foot running jump shot (Jake LaRavia assists),3,True,True,4066457,Austin Reaves,4592691,Jake LaRavia,,,13,13,LAL,22,POR,103,91,2026-11-07T05:36:14Z
+401909294,2027,2,2026-11-06,684,4,5,25,Full Timeout,Trail Blazers Full timeout,0,False,False,,,,,,,22,13,LAL,22,POR,103,91,2026-11-07T05:36:14Z
+401909294,2027,2,2026-11-06,686,4,5,25,Substitution,Damian Lillard enters the game for Chris Youngblood,0,False,False,6606,Damian Lillard,4706557,Chris Youngblood,,,22,13,LAL,22,POR,103,91,2026-11-07T05:36:14Z
+401909294,2027,2,2026-11-06,687,4,5,15,Reverse Layup Shot,Donovan Clingan makes 3-foot reverse layup (Deni Avdija assists),2,True,True,5105565,Donovan Clingan,4683021,Deni Avdija,,,22,13,LAL,22,POR,103,93,2026-11-07T05:39:58Z
+401909294,2027,2,2026-11-06,689,4,5,15,Shooting Foul,Walker Kessler shooting foul,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,103,93,2026-11-07T05:39:58Z
+401909294,2027,2,2026-11-06,691,4,5,15,Free Throw - 1 of 1,Donovan Clingan misses free throw 1 of 1,0,False,True,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,103,93,2026-11-07T05:39:58Z
+401909294,2027,2,2026-11-06,692,4,5,15,Defensive Rebound,Jake LaRavia defensive rebound,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,103,93,2026-11-07T05:39:58Z
+401909294,2027,2,2026-11-06,693,4,4,58,Driving Floating Jump Shot,Luka Doncic makes 11-foot driving floating jump shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,105,93,2026-11-07T05:40:46Z
+401909294,2027,2,2026-11-06,694,4,4,37,Driving Floating Bank Jump Shot,Toumani Camara makes 4-foot two point shot (Jrue Holiday assists),2,True,True,4431736,Toumani Camara,3995,Jrue Holiday,,,22,13,LAL,22,POR,105,95,2026-11-07T05:41:07Z
+401909294,2027,2,2026-11-06,696,4,4,21,Pullup Jump Shot,Luka Doncic makes 25-foot three pointer,3,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,108,95,2026-11-07T05:41:22Z
+401909294,2027,2,2026-11-06,697,4,4,4,Jump Shot,Jrue Holiday makes 25-foot three point jumper (Deni Avdija assists),3,True,True,3995,Jrue Holiday,4683021,Deni Avdija,,,22,13,LAL,22,POR,108,98,2026-11-07T05:41:39Z
+401909294,2027,2,2026-11-06,699,4,3,41,Fade Away Jump Shot,Austin Reaves misses 11-foot fade away jump shot,0,False,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,108,98,2026-11-07T05:42:03Z
+401909294,2027,2,2026-11-06,700,4,3,41,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,108,98,2026-11-07T05:42:03Z
+401909294,2027,2,2026-11-06,703,4,3,41,Substitution,Ziaire Williams enters the game for Quentin Grimes,0,False,False,4433137,Ziaire Williams,4397014,Quentin Grimes,,,13,13,LAL,22,POR,108,98,2026-11-07T05:42:03Z
+401909294,2027,2,2026-11-06,704,4,3,32,Shooting Foul,Donovan Clingan shooting foul,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,108,98,2026-11-07T05:42:39Z
+401909294,2027,2,2026-11-06,706,4,3,32,Free Throw - 1 of 2,Luka Doncic makes free throw 1 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,109,98,2026-11-07T05:43:12Z
+401909294,2027,2,2026-11-06,707,4,3,32,Free Throw - 2 of 2,Luka Doncic makes free throw 2 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,110,98,2026-11-07T05:43:36Z
+401909294,2027,2,2026-11-06,708,4,3,13,Jump Shot,Jrue Holiday misses 24-foot three point jumper,0,False,True,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,110,98,2026-11-07T05:43:57Z
+401909294,2027,2,2026-11-06,709,4,3,13,Defensive Rebound,Austin Reaves defensive rebound,0,False,False,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,110,98,2026-11-07T05:43:57Z
+401909294,2027,2,2026-11-06,710,4,3,11,Full Timeout,Lakers Full timeout,0,False,False,,,,,,,13,13,LAL,22,POR,110,98,2026-11-07T05:43:59Z
+401909294,2027,2,2026-11-06,712,4,3,11,Substitution,Robert Williams III enters the game for Donovan Clingan,0,False,False,4066211,Robert Williams III,5105565,Donovan Clingan,,,22,13,LAL,22,POR,110,98,2026-11-07T05:43:59Z
+401909294,2027,2,2026-11-06,713,4,2,57,Bad Pass Turnover,Luka Doncic bad pass turnover (Robert Williams III steals),0,False,False,3945274,Luka Doncic,4066211,Robert Williams III,,,13,13,LAL,22,POR,110,98,2026-11-07T05:45:59Z
+401909294,2027,2,2026-11-06,715,4,2,50,Running Jump Shot,Jrue Holiday makes 23-foot running jump shot (Damian Lillard assists),3,True,True,3995,Jrue Holiday,6606,Damian Lillard,,,22,13,LAL,22,POR,110,101,2026-11-07T05:46:06Z
+401909294,2027,2,2026-11-06,717,4,2,35,Bad Pass Turnover,Luka Doncic bad pass turnover (Deni Avdija steals),0,False,False,3945274,Luka Doncic,4683021,Deni Avdija,,,13,13,LAL,22,POR,110,101,2026-11-07T05:46:21Z
+401909294,2027,2,2026-11-06,719,4,2,30,Running Layup Shot,Toumani Camara makes running layup (Deni Avdija assists),2,True,True,4431736,Toumani Camara,4683021,Deni Avdija,,,22,13,LAL,22,POR,110,103,2026-11-07T05:46:26Z
+401909294,2027,2,2026-11-06,721,4,2,16,Offensive Foul,Walker Kessler offensive foul,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,110,103,2026-11-07T05:46:40Z
+401909294,2027,2,2026-11-06,723,4,2,16,Offensive Foul Turnover,Walker Kessler offensive foul turnover,0,False,False,4433136,Walker Kessler,,,,,13,13,LAL,22,POR,110,103,2026-11-07T05:46:40Z
+401909294,2027,2,2026-11-06,724,4,2,5,Jump Shot,Jrue Holiday misses 23-foot three point jumper,0,False,True,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,110,103,2026-11-07T05:47:10Z
+401909294,2027,2,2026-11-06,725,4,2,5,Offensive Rebound,Trail Blazers offensive team rebound,0,False,False,,,,,,,22,13,LAL,22,POR,110,103,2026-11-07T05:47:10Z
+401909294,2027,2,2026-11-06,727,4,2,3,Challenge,Trail Blazers Coach's Challenge,0,False,False,,,,,,,22,13,LAL,22,POR,110,103,2026-11-07T05:47:11Z
+401909294,2027,2,2026-11-06,728,4,2,3,Coach's Challenge (Overturned),(02:03) [Trail Blazers] COACH'S CHALLENGE (CALL OVERTURNED) [Trail Blazers] retain their timeout,0,False,False,,,,,,,22,13,LAL,22,POR,110,103,2026-11-07T05:47:26Z
+401909294,2027,2,2026-11-06,729,4,1,59,Shooting Foul,Jake LaRavia shooting foul,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,110,103,2026-11-07T05:49:55Z
+401909294,2027,2,2026-11-06,731,4,1,59,Free Throw - 1 of 2,Deni Avdija makes free throw 1 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,110,104,2026-11-07T05:52:09Z
+401909294,2027,2,2026-11-06,732,4,1,59,Full Timeout,Lakers Full timeout,0,False,False,,,,,,,13,13,LAL,22,POR,110,104,2026-11-07T05:49:55Z
+401909294,2027,2,2026-11-06,733,4,1,59,Coach's Challenge (Stands),(01:59) [Lakers] COACH'S CHALLENGE (CALL STANDS) [Lakers] charged with a timeout,0,False,False,,,,,,,13,13,LAL,22,POR,110,104,2026-11-07T05:50:27Z
+401909294,2027,2,2026-11-06,734,4,1,59,Free Throw - 2 of 2,Deni Avdija makes free throw 2 of 2,1,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,110,105,2026-11-07T05:52:22Z
+401909294,2027,2,2026-11-06,735,4,1,37,Driving Finger Roll Layup,Robert Williams III blocks Jake LaRavia 's 4-foot two point shot,0,False,True,4592691,Jake LaRavia,4066211,Robert Williams III,,,13,13,LAL,22,POR,110,105,2026-11-07T05:52:46Z
+401909294,2027,2,2026-11-06,736,4,1,37,Defensive Rebound,Toumani Camara defensive rebound,0,False,False,4431736,Toumani Camara,,,,,22,13,LAL,22,POR,110,105,2026-11-07T05:52:46Z
+401909294,2027,2,2026-11-06,737,4,1,25,Bad Pass Turnover,Deni Avdija bad pass turnover (Austin Reaves steals),0,False,False,4683021,Deni Avdija,4066457,Austin Reaves,,,22,13,LAL,22,POR,110,105,2026-11-07T05:52:59Z
+401909294,2027,2,2026-11-06,739,4,1,25,Personal Foul,Robert Williams III personal foul,0,False,False,4066211,Robert Williams III,,,,,22,13,LAL,22,POR,110,105,2026-11-07T05:52:59Z
+401909294,2027,2,2026-11-06,741,4,1,25,Free Throw - 1 of 2,Austin Reaves makes free throw 1 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,111,105,2026-11-07T05:53:32Z
+401909294,2027,2,2026-11-06,742,4,1,25,Free Throw - 2 of 2,Austin Reaves makes free throw 2 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,112,105,2026-11-07T05:53:48Z
+401909294,2027,2,2026-11-06,743,4,1,7,Jump Shot,Toumani Camara makes 24-foot three point jumper (Damian Lillard assists),3,True,True,4431736,Toumani Camara,6606,Damian Lillard,,,22,13,LAL,22,POR,112,108,2026-11-07T05:54:09Z
+401909294,2027,2,2026-11-06,745,4,0,55.4,Driving Layup Shot,Robert Williams III blocks Luka Doncic 's 3-foot driving layup,0,False,True,3945274,Luka Doncic,4066211,Robert Williams III,,,13,13,LAL,22,POR,112,108,2026-11-07T05:54:22Z
+401909294,2027,2,2026-11-06,746,4,0,55.4,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,112,108,2026-11-07T05:54:22Z
+401909294,2027,2,2026-11-06,750,4,0,54.9,Alley Oop Dunk Shot,Walker Kessler makes 3-foot alley oop dunk (Luka Doncic assists),2,True,True,4433136,Walker Kessler,3945274,Luka Doncic,,,13,13,LAL,22,POR,114,108,2026-11-07T05:54:43Z
+401909294,2027,2,2026-11-06,752,4,0,50.8,Personal Foul,Jake LaRavia personal foul,0,False,False,4592691,Jake LaRavia,,,,,13,13,LAL,22,POR,114,108,2026-11-07T05:54:52Z
+401909294,2027,2,2026-11-06,754,4,0,50.8,Free Throw - 1 of 2,Damian Lillard makes free throw 1 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,114,109,2026-11-07T05:56:05Z
+401909294,2027,2,2026-11-06,756,4,0,50.8,Substitution,Matisse Thybulle enters the game for Jake LaRavia,0,False,False,3907498,Matisse Thybulle,4592691,Jake LaRavia,,,13,13,LAL,22,POR,114,109,2026-11-07T05:54:52Z
+401909294,2027,2,2026-11-06,757,4,0,50.8,Free Throw - 2 of 2,Damian Lillard makes free throw 2 of 2,1,True,True,6606,Damian Lillard,,,,,22,13,LAL,22,POR,114,110,2026-11-07T05:56:30Z
+401909294,2027,2,2026-11-06,759,4,0,50.8,Substitution,Sidy Cissoko enters the game for Deni Avdija,0,False,False,5081727,Sidy Cissoko,4683021,Deni Avdija,,,22,13,LAL,22,POR,114,110,2026-11-07T05:56:05Z
+401909294,2027,2,2026-11-06,760,4,0,37.2,Kicked Ball,Sidy Cissoko kicked ball violation,0,False,False,5081727,Sidy Cissoko,,,,,22,13,LAL,22,POR,114,110,2026-11-07T05:56:50Z
+401909294,2027,2,2026-11-06,761,4,0,27.7,Floating Jump Shot,Luka Doncic makes 7-foot floating jump shot,2,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,116,110,2026-11-07T05:57:25Z
+401909294,2027,2,2026-11-06,762,4,0,27.7,Full Timeout,Trail Blazers Full timeout,0,False,False,,,,,,,22,13,LAL,22,POR,116,110,2026-11-07T05:57:25Z
+401909294,2027,2,2026-11-06,765,4,0,27.7,Substitution,Donovan Clingan enters the game for Robert Williams III,0,False,False,5105565,Donovan Clingan,4066211,Robert Williams III,,,22,13,LAL,22,POR,116,110,2026-11-07T05:57:25Z
+401909294,2027,2,2026-11-06,766,4,0,27.7,Substitution,Deni Avdija enters the game for Sidy Cissoko,0,False,False,4683021,Deni Avdija,5081727,Sidy Cissoko,,,22,13,LAL,22,POR,116,110,2026-11-07T05:57:25Z
+401909294,2027,2,2026-11-06,767,4,0,25.7,Bad Pass Turnover,Donovan Clingan bad pass turnover (Austin Reaves steals),0,False,False,5105565,Donovan Clingan,4066457,Austin Reaves,,,22,13,LAL,22,POR,116,110,2026-11-07T05:59:19Z
+401909294,2027,2,2026-11-06,769,4,0,23.6,Driving Dunk Shot,Austin Reaves makes driving dunk,2,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,118,110,2026-11-07T05:59:23Z
+401909294,2027,2,2026-11-06,770,4,0,17.8,Pullup Jump Shot,Toumani Camara makes 25-foot three pointer (Jrue Holiday assists),3,True,True,4431736,Toumani Camara,3995,Jrue Holiday,,,22,13,LAL,22,POR,118,113,2026-11-07T05:59:32Z
+401909294,2027,2,2026-11-06,772,4,0,14.9,Personal Foul,Jrue Holiday personal foul,0,False,False,3995,Jrue Holiday,,,,,22,13,LAL,22,POR,118,113,2026-11-07T05:59:43Z
+401909294,2027,2,2026-11-06,774,4,0,14.9,Free Throw - 1 of 2,Austin Reaves makes free throw 1 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,119,113,2026-11-07T06:00:20Z
+401909294,2027,2,2026-11-06,775,4,0,14.9,Free Throw - 2 of 2,Austin Reaves makes free throw 2 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,120,113,2026-11-07T06:00:42Z
+401909294,2027,2,2026-11-06,777,4,0,14.9,Substitution,Quentin Grimes enters the game for Walker Kessler,0,False,False,4397014,Quentin Grimes,4433136,Walker Kessler,,,13,13,LAL,22,POR,120,113,2026-11-07T06:00:20Z
+401909294,2027,2,2026-11-06,778,4,0,14.9,Full Timeout,Trail Blazers Full timeout,0,False,False,,,,,,,22,13,LAL,22,POR,120,113,2026-11-07T06:00:42Z
+401909294,2027,2,2026-11-06,779,4,0,12.3,Jump Shot,Donovan Clingan makes 26-foot three point jumper (Jrue Holiday assists),3,True,True,5105565,Donovan Clingan,3995,Jrue Holiday,,,22,13,LAL,22,POR,120,116,2026-11-07T06:02:23Z
+401909294,2027,2,2026-11-06,781,4,0,10.8,Personal Take Foul,Deni Avdija personal take foul,0,False,False,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,120,116,2026-11-07T06:02:26Z
+401909294,2027,2,2026-11-06,783,4,0,10.8,Free Throw - 1 of 2,Luka Doncic makes free throw 1 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,121,116,2026-11-07T06:03:04Z
+401909294,2027,2,2026-11-06,784,4,0,10.8,Free Throw - 2 of 2,Luka Doncic makes free throw 2 of 2,1,True,True,3945274,Luka Doncic,,,,,13,13,LAL,22,POR,122,116,2026-11-07T06:03:31Z
+401909294,2027,2,2026-11-06,785,4,0,4.8,Driving Layup Shot,Deni Avdija makes driving layup,2,True,True,4683021,Deni Avdija,,,,,22,13,LAL,22,POR,122,118,2026-11-07T06:03:40Z
+401909294,2027,2,2026-11-06,786,4,0,2.9,Personal Take Foul,Donovan Clingan personal take foul,0,False,False,5105565,Donovan Clingan,,,,,22,13,LAL,22,POR,122,118,2026-11-07T06:03:43Z
+401909294,2027,2,2026-11-06,788,4,0,2.9,Free Throw - 1 of 2,Austin Reaves makes free throw 1 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,123,118,2026-11-07T06:04:22Z
+401909294,2027,2,2026-11-06,789,4,0,2.9,Free Throw - 2 of 2,Austin Reaves makes free throw 2 of 2,1,True,True,4066457,Austin Reaves,,,,,13,13,LAL,22,POR,124,118,2026-11-07T06:04:27Z
+401909294,2027,2,2026-11-06,791,4,0,2.9,Substitution,Adou Thiero enters the game for Luka Doncic,0,False,False,5060631,Adou Thiero,3945274,Luka Doncic,,,13,13,LAL,22,POR,124,118,2026-11-07T06:04:22Z
+401909294,2027,2,2026-11-06,792,4,0,2,Bad Pass Turnover,Toumani Camara bad pass turnover (Ziaire Williams steals),0,False,False,4431736,Toumani Camara,4433137,Ziaire Williams,,,22,13,LAL,22,POR,124,118,2026-11-07T06:04:50Z
+401909294,2027,2,2026-11-06,794,4,0,0.7,Heave Jump Shot,Ziaire Williams misses heave jump shot,0,False,True,4433137,Ziaire Williams,,,,,13,13,LAL,22,POR,124,118,2026-11-07T06:04:52Z
+401909294,2027,2,2026-11-06,795,4,0,0.7,Offensive Rebound,Lakers offensive team rebound,0,False,False,,,,,,,13,13,LAL,22,POR,124,118,2026-11-07T06:04:52Z
+401909294,2027,2,2026-11-06,796,4,0,0,End Period,End of the 4th Quarter,0,False,False,,,,,,,,13,LAL,22,POR,124,118,2026-11-07T06:04:52Z
+401909294,2027,2,2026-11-06,797,4,0,0,End Game,End of Game,0,False,False,,,,,,,,13,LAL,22,POR,124,118,2026-11-07T06:04:52Z

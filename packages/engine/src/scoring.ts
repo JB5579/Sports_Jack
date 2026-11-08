@@ -14,6 +14,7 @@ export const STANDARD_PPR: ScoringRules = {
     rushYds: 0.1, rushTd: 6, rec: 1, recYds: 0.1, recTd: 6,
     fumLost: -2, twoPt: 2, retTd: 6,
     soloTkl: 0, astTkl: 0, sack: 0, defInt: 0, ff: 0, pd: 0, defTd: 0,
+    pts: 0, fg3m: 0, reb: 0, ast: 0, stl: 0, blk: 0, tov: 0,
   },
 };
 
@@ -21,6 +22,15 @@ export const STANDARD_PPR: ScoringRules = {
 export const SPORTSJACK_V0: ScoringRules = {
   id: "sportsjack-v0",
   points: { ...STANDARD_PPR.points, sacked: -1 },
+};
+
+/** DraftKings' classic NBA scoring without the double-double bonuses, which need a whole game. */
+export const NBA_V1: ScoringRules = {
+  id: "nba-v1",
+  points: {
+    ...Object.fromEntries(Object.keys(STANDARD_PPR.points).map((k) => [k, 0])) as Record<StatKey, number>,
+    pts: 1, fg3m: 0.5, reb: 1.25, ast: 1.5, stl: 2, blk: 2, tov: -0.5,
+  },
 };
 
 /** v0 plus common IDP points, so defenders on the roster deck can surprise (MISSION.md Q10). */

@@ -1,6 +1,6 @@
-export { QuarterScorer, SPORTSJACK_V0, SPORTSJACK_V1, STANDARD_PPR, round, scoreStats } from "./scoring.ts";
+export { NBA_V1, QuarterScorer, SPORTSJACK_V0, SPORTSJACK_V1, STANDARD_PPR, round, scoreStats } from "./scoring.ts";
 export type { ScoringRules } from "./scoring.ts";
-export { ALPHA_RULES, faceValue, roundValue } from "./rules.ts";
+export { ALPHA_RULES, NBA_ALPHA_RULES, faceValue, roundValue, rulesFor } from "./rules.ts";
 export type { GameRules } from "./rules.ts";
 export { buildDeck } from "./deck.ts";
 export type { Card } from "./deck.ts";

@@ -19,6 +19,13 @@ describe("the deck and the deal", () => {
     expect(deck.filter((c) => c.face === 2).length).toBeGreaterThan(20);
   });
 
+  it("never deals the same player twice in an opening hand, across many seeds", () => {
+    for (let seed = 1; seed <= 300; seed++) {
+      const { hand } = dealerHand("2025_22_SEA_NE", 1, { seed });
+      for (const seat of ["you", "dealer"]) expect(new Set(hand.cards(seat)).size, `seed ${seed}`).toBe(2);
+    }
+  });
+
   it("deals two different cards per seat, the same for the same seed", () => {
     const a = dealerHand("2025_22_SEA_NE", 1, { seed: 42 }).hand;
     const b = dealerHand("2025_22_SEA_NE", 1, { seed: 42 }).hand;

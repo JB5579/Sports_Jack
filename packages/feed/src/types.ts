@@ -23,7 +23,18 @@ export interface StatDelta {
   pd?: number;
   /** Interception or fumble returned for a touchdown. */
   defTd?: number;
+  // Basketball.
+  pts?: number;
+  /** Three-pointers made. */
+  fg3m?: number;
+  reb?: number;
+  ast?: number;
+  stl?: number;
+  blk?: number;
+  tov?: number;
 }
+
+export type Sport = "nfl" | "nba";
 
 export type StatKey = keyof StatDelta;
 
@@ -71,12 +82,15 @@ export interface GameEndEvent extends BaseEvent {
 export type FeedEvent = PlayEvent | QuarterEndEvent | GameEndEvent;
 
 export interface GameInfo {
+  sport: Sport;
   gameId: string;
   season: number;
   week: number;
   date: string;
   home: string;
   away: string;
+  /** Regular season or playoffs: overtime length depends on it in the NFL. */
+  playoffs: boolean;
 }
 
 export interface Player {

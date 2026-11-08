@@ -20,6 +20,7 @@ export interface ServerConfig {
   candidate: string | undefined;
   /** Unlocks /api/admin/* (feedback, events, summary). Unset means the admin routes do not exist. */
   adminToken: string | undefined;
+  /** Holds nflverse/ (NFL games, ids like 2025_22_SEA_NE) and nba/ (NBA games, numeric ESPN ids). */
   fixtures: string;
   webRoot: string;
 }
@@ -30,7 +31,7 @@ export function configFromEnv(env: NodeJS.ProcessEnv = process.env): ServerConfi
   return {
     port: Number(env.PORT ?? 8787),
     db: env.SPORTSJACK_DB ?? `${ROOT}.cache/sportsjack.sqlite`,
-    games: (env.SPORTSJACK_REPLAY ?? "2025_22_SEA_NE,2025_21_LA_SEA,2025_16_LA_SEA").split(",").map((g) => g.trim()).filter(Boolean),
+    games: (env.SPORTSJACK_REPLAY ?? "2025_22_SEA_NE,2025_21_LA_SEA,2025_16_LA_SEA,401859967,401873197,401909294").split(",").map((g) => g.trim()).filter(Boolean),
     speed: Number(env.SPORTSJACK_REPLAY_SPEED ?? 6),
     fromQuarter: Number(env.SPORTSJACK_REPLAY_FROM_QUARTER ?? 1),
     breakSeconds: Number(env.SPORTSJACK_BREAK_SECONDS ?? 20),
@@ -39,7 +40,7 @@ export function configFromEnv(env: NodeJS.ProcessEnv = process.env): ServerConfi
     clock: "real",
     candidate: env.FACTORY_RUNTIME_CANDIDATE || env.RENDER_GIT_COMMIT || undefined,
     adminToken: env.SPORTSJACK_ADMIN_TOKEN || undefined,
-    fixtures: `${ROOT}fixtures/nflverse/`,
+    fixtures: `${ROOT}fixtures/`,
     webRoot: `${ROOT}apps/web/dist/`,
   };
 }

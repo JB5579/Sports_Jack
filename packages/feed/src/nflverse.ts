@@ -115,12 +115,14 @@ export function gameFromRows(rows: Row[]): RecordedGame {
   const first = rows[0];
   if (!first) throw new Error("no plays");
   const game: GameInfo = {
+    sport: "nfl",
     gameId: first.game_id ?? "",
     season: num(first.season),
     week: num(first.week),
     date: first.game_date ?? "",
     home: first.home_team ?? "",
     away: first.away_team ?? "",
+    playoffs: num(first.week) > 18,
   };
   const events: FeedEvent[] = [];
   const quartersEnded = new Set<number>();

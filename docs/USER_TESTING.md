@@ -5,12 +5,13 @@ collect what they think and how they play.
 
 ## What to send testers
 
-> Hi! I'm testing a new game: blackjack where the cards are real NFL players and
-> their values move with real plays. It takes 5 minutes.
+> Hi! I'm testing a new game: blackjack where the cards are real NFL and NBA players
+> and their values move with real plays. It takes 5 minutes.
 >
 > 1. Open **<your Render URL>** in Safari on your iPhone.
 > 2. Tap the Share button, then **Add to Home Screen**, and open SportsJack from there.
 > 3. Play the free practice hand, then sit at a table for a couple of quarters.
+>    Try both the NFL and NBA tabs at the top of the lobby.
 > 4. Rate a hand or two, and tap **Send feedback** to tell me what you think.
 >
 > It's play money only. Nothing real is at stake.
@@ -22,7 +23,7 @@ tester adds their name in the feedback form, it's saved with their feedback.
 
 - **Feedback:** a 1–5 rating and/or a note, from the feedback form or the one-tap
   rating on each result sheet, with the screen it came from.
-- **Events:** app opens (and whether it ran from the home screen), each practice
+- **Events:** app opens (and whether it ran from the home screen), switching between NFL and NBA, each practice
   coach step and whether the tester did it or skipped it, sitting, Hit, Burn, Freeze,
   each settled hand, leaving (and whether it was mid-hand), and opening the card
   grid, rules or wallet.

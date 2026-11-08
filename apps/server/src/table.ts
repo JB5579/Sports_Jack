@@ -2,7 +2,7 @@ import { createHash, randomInt } from "node:crypto";
 import type { FeedEvent, StatDelta, StatKey } from "@sportsjack/feed";
 import {
   ActionRefused, decide, Hand, seededRandom,
-  type Card, type DealerLevel, type Settlement, type TableMode,
+  type Card, type DealerLevel, type GameRules, type Settlement, type TableMode,
 } from "@sportsjack/engine";
 import type { GameRunner } from "./runner.ts";
 import type { Store } from "./store.ts";
@@ -48,6 +48,7 @@ export class Table {
   readonly #runner: GameRunner;
   readonly #store: Store;
   readonly #deck: Card[];
+  readonly #rules: GameRules;
   readonly #onChange: () => void;
   readonly seated = new Set<string>();
   readonly pending = new Set<string>();
@@ -65,11 +66,12 @@ export class Table {
   #stats = new Map<string, StatDelta>();
   result: { handId: string; qtr: number; seed: number; settlement: Settlement; names: Record<string, string> } | null = null;
 
-  constructor(spec: TableSpec, runner: GameRunner, store: Store, deck: Card[], onChange: () => void) {
+  constructor(spec: TableSpec, runner: GameRunner, store: Store, deck: Card[], rules: GameRules, onChange: () => void) {
     this.spec = spec;
     this.#runner = runner;
     this.#store = store;
     this.#deck = deck;
+    this.#rules = rules;
     this.#onChange = onChange;
     runner.on("quarter_start", (q: number) => this.#deal(q));
     runner.on("event", (e: FeedEvent) => this.#apply(e));
@@ -133,7 +135,7 @@ export class Table {
     this.hand = new Hand({
       gameId: this.spec.gameId, qtr, periodStart: period.start, lockout: this.spec.lockout, ante: this.spec.ante,
       mode: this.spec.mode, deck: this.#deck, seats: [...humans, ...this.#ai.map((s) => s.id)],
-      ...(this.spec.mode === "dealer" ? { dealerSeat: "dealer" } : {}), seed: this.#seed,
+      ...(this.spec.mode === "dealer" ? { dealerSeat: "dealer" } : {}), seed: this.#seed, rules: this.#rules,
     });
     this.#onChange();
   }
@@ -230,6 +232,7 @@ export class Table {
       },
       hand: hand ? {
         id: this.handId, qtr: hand.options.qtr, clock: hand.clock, lockout: hand.options.lockout, locked: hand.locked,
+        liveWeight: hand.rules.liveWeight, rules: hand.rules.id,
         over: hand.over, commitment: this.commitment, paused: status.paused,
         mine: mine ? {
           cards: hand.cards(mine).map(card), total: hand.total(mine), frozen: hand.frozen(mine),

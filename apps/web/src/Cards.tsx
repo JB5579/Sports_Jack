@@ -1,5 +1,5 @@
 import type { CardView } from "./api.ts";
-import { clockText, fmt1, playText, posColor, shortName, statLine } from "./format.ts";
+import { clockText, fmt1, playText, posColor, shortName, statLine, weightText } from "./format.ts";
 
 /** The 21-dial: a gauge to 21 with ticks at 17, 19 and 21. */
 export function Dial({ total, frozen }: { total: number; frozen: boolean }) {
@@ -54,12 +54,12 @@ export function PlayingCard({ card, flash, fresh, burnable, onClick }: {
   );
 }
 
-export function GridCard({ card }: { card: CardView }) {
+export function GridCard({ card, liveWeight }: { card: CardView; liveWeight: number }) {
   return (
     <div className="gcard">
       <span className="band" style={{ background: posColor(card.position) }} />
       <div className="top"><span className="nm">{card.name}</span><span className="val num">{fmt1(card.value)}</span></div>
-      <div className="math num">{card.position} · {card.team} · face {card.face} + ½ × {fmt1(card.points)} pts</div>
+      <div className="math num">{card.position} · {card.team} · face {card.face} + {weightText(liveWeight)} × {fmt1(card.points)} pts</div>
       <div className="line">{statLine(card.stats)}</div>
       <div className="why">{card.why ? `${clockText(card.why.clock)}: ${playText(card.why.description)}` : `Projected ${card.projection.toFixed(1)} pts a quarter before this game.`}</div>
     </div>

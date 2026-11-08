@@ -1,6 +1,6 @@
 # SportsJack
 
-Live blackjack where the cards are NFL players and their values move with real
+Live blackjack where the cards are NFL and NBA players and their values move with real
 plays. Read `MISSION.md` (scope, invariants, open questions), then
 `engineering.md` (stack and conventions). The release being built is
 `prd/PHASE1-ALPHA.md`; the full product is `prd/SportsJack-PRD.html`.

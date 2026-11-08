@@ -308,4 +308,59 @@ describe("SportsJack server", () => {
     const players = [...lobby.tables.values()].find((t) => t.spec.mode === "players")!;
     expect(players.view(id).hand).toBeNull();
   });
+
+  it("sitting at a player table deals your own table at once, with hole cards hidden and shared cards counted", async () => {
+    const { port, lobby } = await start();
+    const p = await phone(port, tokenA);
+    const id = (p.welcome.account as { id: string }).id;
+    quarter(lobby, 8); // the shared game is mid-quarter: a listed table would have made you wait
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "players" && !t.spec.personal)!;
+    p.send({ type: "sit", tableId: listed.spec.id });
+    const sat = await p.next((m) => m.type === "sat") as { tableId: string; status: string };
+    expect(sat.status).toBe("seated");
+    const mine = lobby.tables.get(sat.tableId)!;
+    expect(mine.spec).toMatchObject({ personal: true, mode: "players", ante: listed.spec.ante, lockout: listed.spec.lockout });
+    expect(lobby.summary().tables.some((t) => t.id === mine.spec.id)).toBe(false);
+    lobby.advance(1.5);
+    expect(mine.hand!.options.qtr).toBe(2); // the quarter after the live one
+    expect(lobby.store.balance(id)).toBe(1000 - listed.spec.ante);
+
+    const view = mine.view(id).hand!;
+    expect(view.others).toHaveLength(3);
+    for (const o of view.others) {
+      expect(o.bot).toBe(true);
+      expect(o.hidden).toBe(1); // the second card, face down until Freeze or the whistle
+      expect(o.total).toBeNull();
+      expect(o.shown).toHaveLength(o.cards - 1);
+    }
+    for (const c of view.mine!.cards) {
+      expect(c.sharedWith).toBe(view.others.filter((o) => o.shown.some((s) => s.playerId === c.playerId)).length);
+    }
+
+    untilSettled(lobby, mine);
+    const done = mine.view(id).hand!;
+    for (const o of done.others) { expect(o.hidden).toBe(0); expect(o.total).not.toBeNull(); }
+
+    p.send({ type: "leave" });
+    await p.next((m) => m.type === "lobby");
+    expect(lobby.tables.has(mine.spec.id)).toBe(false);
+  });
+
+  it("a personal table left mid-hand plays on to the whistle, settles the ante, then closes", async () => {
+    const { port, lobby } = await start();
+    const p = await phone(port, tokenA);
+    const id = (p.welcome.account as { id: string }).id;
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "players")!;
+    p.send({ type: "sit", tableId: listed.spec.id });
+    const sat = await p.next((m) => m.type === "sat") as { tableId: string };
+    const mine = lobby.tables.get(sat.tableId)!;
+    lobby.advance(1.5);
+    p.send({ type: "leave" });
+    await p.next((m) => m.type === "lobby");
+    expect(lobby.tables.has(mine.spec.id)).toBe(true);
+    untilSettled(lobby, mine);
+    expect(lobby.tables.has(mine.spec.id)).toBe(false);
+    expect(lobby.store.history(id)).toHaveLength(1);
+    expect(lobby.store.ledgerTotal(id)).toBe(lobby.store.balance(id));
+  });
 });

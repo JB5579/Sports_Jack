@@ -9,7 +9,7 @@ over both.
 Prove the mechanic on real football before any real money is involved (PRD §17,
 "de-risk with a play-money alpha"): does a quarter of live-moving NFL cards make
 Hit or Freeze feel tense? Every hand in this release is played on a **real recorded
-NFL game** replayed through the feed, with **play-money yards**.
+NFL game** replayed through the feed, with **play-money chips** (named yards until 2026-11-08).
 
 ## What already exists
 
@@ -64,7 +64,7 @@ real game.
 
 1. **Lobby from the replay schedule, and opening a table.** The lobby lists the
    configured replay game(s) with teams, score and quarter. Each game offers
-   vs-Dealer and PvP tables at the stakes 25, 100 and 1,000 yards. A player can also open a table, choosing its mode, stake and action lockout
+   vs-Dealer and PvP tables at the stakes 25, 100 and 1,000 chips. A player can also open a table, choosing its mode, stake and action lockout
    (none, 0:30, 1:00 or 2:00 left in the quarter; default 2:00). The lobby shows
    each table's lockout before anyone sits, and it never changes for that table.
    Add a simulation to `tools/analysis/` comparing the lockout settings on real
@@ -74,7 +74,7 @@ real game.
    (or before overtime), never during one. A player already seated is dealt in
    automatically each quarter unless they leave.
 3. **Play-money account.** A visitor gets a play-money account with a starting
-   yards balance, with no sign-up wall (D9). The sign-up and login design is a
+   chip balance, with no sign-up wall (D9). The sign-up and login design is a
    human decision (MISSION.md). Until it is made, use an anonymous
    device-scoped account and flag the assumption.
 4. **The deck and the deal (Q1, Q2).** The deck is both teams' game-day active

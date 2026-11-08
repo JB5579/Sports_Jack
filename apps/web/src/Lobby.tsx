@@ -33,7 +33,7 @@ export function Lobby({ lobby, balance, sport, onSport, onSit, onOpen, onWallet,
       <header className="brand">
         <h1>Sports<em>Jack</em></h1>
         <button className="wallet-pill" type="button" onClick={onWallet}>
-          <span className="label">Play-money yards</span>
+          <span className="label">Play-money chips</span>
           <strong className="num">{balance?.toLocaleString() ?? "—"}</strong>
         </button>
       </header>
@@ -62,7 +62,7 @@ export function Lobby({ lobby, balance, sport, onSport, onSit, onOpen, onWallet,
                 <div key={t.id} className="trow">
                   <div>
                     <div className="what">{t.mode === "dealer" ? `House dealer · ${t.level === "sharp" ? "Sharp" : "Easy"}` : "Player table"}</div>
-                    <div className="meta">{t.ante} yd ante · {lockoutText(t.lockout)} · {t.seated} seated</div>
+                    <div className="meta">{t.ante}-chip ante · {lockoutText(t.lockout)} · {t.seated} seated</div>
                   </div>
                   <button type="button" onClick={() => onSit(t.id)}>Sit</button>
                 </div>
@@ -80,7 +80,7 @@ export function Lobby({ lobby, balance, sport, onSport, onSit, onOpen, onWallet,
             </select></div>
           <div className="field"><span className="label">Play against</span>{seg("mode", [["dealer", "House dealer"], ["players", "Players"]])}</div>
           <div className="field"><span className="label">{draft.mode === "dealer" ? "Dealer level" : "Bot level"}</span>{seg("level", [["easy", "Easy"], ["sharp", "Sharp"]])}</div>
-          <div className="field"><span className="label">Ante (yards)</span>{seg("ante", [[25, "25"], [100, "100"], [1000, "1,000"]])}</div>
+          <div className="field"><span className="label">Ante (chips)</span>{seg("ante", [[25, "25"], [100, "100"], [1000, "1,000"]])}</div>
           <div className="field"><span className="label">Action lockout</span>{seg("lockout", [[0, "None"], [30, "0:30"], [60, "1:00"], [120, "2:00"]])}
             <p className="help">Hit, Burn and Freeze close with this much left in the quarter. Cards keep moving to the whistle. Fixed for the table's life.</p></div>
           <button className="primary" type="button" disabled={!draftGame} onClick={() => onOpen({ ...draft, gameId: draftGame })}>Open table and sit</button>

@@ -100,7 +100,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
   if (view.table.practice) {
     return (
       <Sheet label="Practice hand result" onClose={onLobby}>
-        <div className="sheet-head"><div><div className="label">Practice hand · no yards at stake</div><h2>{outcome}</h2></div></div>
+        <div className="sheet-head"><div><div className="label">Practice hand · no chips at stake</div><h2>{outcome}</h2></div></div>
         <div className="results">
           {result.standings.map((s, i) => (
             <div key={i} className={`res${s.you ? " me" : ""}`}>
@@ -111,7 +111,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
           ))}
         </div>
         <QuickRating handId={result.handId} gameId={view.table.gameId} screen="practice_result" />
-        <p className="help">That's the whole game: one quarter, one hand. Real tables use play-money yards; you start with 1,000.</p>
+        <p className="help">That's the whole game: one quarter, one hand. Real tables use play-money chips; you start with 1,000.</p>
         <button className="primary" type="button" onClick={onLobby}>Go to the tables</button>
         <button className="secondary" type="button" onClick={onPracticeAgain}>Practice again</button>
       </Sheet>
@@ -121,7 +121,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
     <Sheet label="Hand result" onClose={onNext}>
       <div className="sheet-head"><div><div className="label">{qName(result.qtr)} whistle · score {game.score.away}–{game.score.home}</div><h2>{outcome}</h2></div></div>
       <div className="payout">
-        <div className={`big num ${net > 0 ? "win" : net < 0 ? "loss" : ""}`}>{net > 0 ? "+" : net < 0 ? "−" : ""}{Math.abs(net)} yds</div>
+        <div className={`big num ${net > 0 ? "win" : net < 0 ? "loss" : ""}`}>{net > 0 ? "+" : net < 0 ? "−" : ""}{Math.abs(net)} chips</div>
         <div className="label">
           {view.table.mode === "dealer" ? "Even money against the dealer" : `Pot ${result.pot} · house ${result.house}`}
           {balance !== null && ` · balance ${balance.toLocaleString()}`}
@@ -153,7 +153,7 @@ export function WalletSheet({ token, balance, onClose }: { token: string; balanc
   useEffect(() => { fetchHistory(token).then((h) => setHands(h.hands), () => setFailed(true)); }, [token]);
   return (
     <Sheet label="Wallet" onClose={onClose}>
-      <div className="sheet-head"><div><div className="label">Play-money wallet</div><h2>{balance?.toLocaleString() ?? "—"} yards</h2></div><Close onClose={onClose} /></div>
+      <div className="sheet-head"><div><div className="label">Play-money wallet</div><h2>{balance?.toLocaleString() ?? "—"} chips</h2></div><Close onClose={onClose} /></div>
       <div className="hist">
         {failed && <p className="help">Couldn't load your hands. Check your connection and open the wallet again.</p>}
         {hands && hands.length === 0 && <p className="help">No hands yet. Your settled hands show up here.</p>}
@@ -192,6 +192,8 @@ export function RulesSheet({ rules, sport, onClose }: { rules: GameRules | null;
         <p><b>Hit</b> as often as you like. <b>Burn</b> once to swap a card for a new draw. <b>Freeze</b> once to lock your total. There is no Stand: an unfrozen hand keeps moving until the whistle. Moves close at the table's lockout time.</p>
         <h3>Points per play</h3>
         <table><tbody>{(sport === "nba" ? nbaRows : nflRows).map(([k, v]) => <tr key={k}><td>{k}</td><td>{v}</td></tr>)}</tbody></table>
+        <h3>Player tables</h3>
+        <p>Sitting at a player table starts your own table with labeled bot opponents, dealt at once at the top of the next quarter. Each player's second card is face down to everyone else until they Freeze or the whistle. A frozen hand flips face up. The same NFL or NBA player can be in several hands at once; a ×2 or ×3 on your card means that many hands are showing him, so a big play moves all of them.</p>
         <h3>The house dealer</h3>
         <p>The dealer plays face up, by a fixed rule, and looks at its hand every {DEALER_CHECK_SECONDS} seconds of game clock.</p>
         <table><tbody>

@@ -37,7 +37,7 @@ export interface HistoryRow {
 }
 
 /**
- * Play-money accounts, the ledger and settled hands. Balances are integer yards and
+ * Play-money accounts, the ledger and settled hands. Balances are integer chips and
  * change only together with a ledger row.
  */
 export class Store {
@@ -72,7 +72,7 @@ export class Store {
     if (row) return { id: row.id, balance: Number(row.balance) };
     this.#tx(() => {
       this.#db.prepare("INSERT INTO accounts (id, balance, created_at) VALUES (?, 0, ?)").run(id, now());
-      this.#move(id, START_BALANCE, "starting play-money yards", null);
+      this.#move(id, START_BALANCE, "starting play-money chips", null);
     });
     return { id, balance: START_BALANCE };
   }

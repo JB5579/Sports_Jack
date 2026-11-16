@@ -2,6 +2,8 @@ import { createHash } from "node:crypto";
 import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { DatabaseSync } from "node:sqlite";
+import { Ledger, LedgerError, SYSTEM, pot } from "@sportsjack/ledger";
+import type { AuditReport, LedgerRow } from "@sportsjack/ledger";
 
 export const START_BALANCE = 1000;
 
@@ -37,11 +39,14 @@ export interface HistoryRow {
 }
 
 /**
- * Play-money accounts, the ledger and settled hands. Balances are integer chips and
- * change only together with a ledger row.
+ * Play-money accounts and settled hands. Every chip movement is a transaction in the
+ * double-entry ledger (`@sportsjack/ledger`): starting chips come from `house:issuance`,
+ * antes go into the hand's pot, and settlement pays the pot out, with the difference
+ * going to or coming from `house:table`.
  */
 export class Store {
   readonly #db: DatabaseSync;
+  readonly ledger: Ledger;
 
   constructor(path: string) {
     if (path !== ":memory:") mkdirSync(dirname(path), { recursive: true });
@@ -49,8 +54,6 @@ export class Store {
     this.#db.exec(`
       PRAGMA journal_mode = WAL;
       CREATE TABLE IF NOT EXISTS accounts (id TEXT PRIMARY KEY, balance INTEGER NOT NULL, created_at TEXT NOT NULL);
-      CREATE TABLE IF NOT EXISTS ledger (id INTEGER PRIMARY KEY, account_id TEXT NOT NULL, amount INTEGER NOT NULL,
-        reason TEXT NOT NULL, hand_id TEXT, at TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS hands (id TEXT PRIMARY KEY, table_id TEXT NOT NULL, game_id TEXT NOT NULL, qtr INTEGER NOT NULL,
         seed INTEGER NOT NULL, commitment TEXT NOT NULL, ruleset TEXT NOT NULL, settlement TEXT NOT NULL, log TEXT NOT NULL, at TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS hand_seats (hand_id TEXT NOT NULL, account_id TEXT NOT NULL, cards TEXT NOT NULL,
@@ -60,6 +63,27 @@ export class Store {
       CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, account_id TEXT NOT NULL, name TEXT NOT NULL,
         props TEXT NOT NULL, at TEXT NOT NULL);
     `);
+    this.ledger = new Ledger(this.#db);
+    this.#migrate();
+  }
+
+  /**
+   * Bring accounts from before the double-entry ledger onto it: each one's balance at the
+   * time becomes an opening transaction. Runs once per account; `accounts.balance` is not
+   * read or written after that.
+   */
+  #migrate(): void {
+    const old = this.#db.prepare("SELECT id, balance FROM accounts").all() as unknown as Account[];
+    this.ledger.atomic(() => {
+      for (const a of old) {
+        if (this.ledger.has(a.id)) continue;
+        this.ledger.open(a.id, "player");
+        if (Number(a.balance) > 0) {
+          this.ledger.transfer({ key: `opening:${a.id}`, kind: "opening", from: SYSTEM.issuance, to: a.id, amount: Number(a.balance),
+            meta: { note: "balance carried over from the single-entry ledger" } });
+        }
+      }
+    });
   }
 
   /**
@@ -68,30 +92,37 @@ export class Store {
    */
   account(token: string): Account {
     const id = createHash("sha256").update(`sportsjack:${token}`).digest("hex").slice(0, 16);
-    const row = this.#db.prepare("SELECT id, balance FROM accounts WHERE id = ?").get(id) as Account | undefined;
-    if (row) return { id: row.id, balance: Number(row.balance) };
-    this.#tx(() => {
-      this.#db.prepare("INSERT INTO accounts (id, balance, created_at) VALUES (?, 0, ?)").run(id, now());
-      this.#move(id, START_BALANCE, "starting play-money chips", null);
-    });
-    return { id, balance: START_BALANCE };
+    if (!this.ledger.has(id)) {
+      this.#tx(() => {
+        this.#db.prepare("INSERT INTO accounts (id, balance, created_at) VALUES (?, 0, ?)").run(id, now());
+        this.ledger.open(id, "player");
+        this.ledger.transfer({ key: `start:${id}`, kind: "issue", from: SYSTEM.issuance, to: id, amount: START_BALANCE,
+          meta: { note: "starting play-money chips" } });
+      });
+    }
+    return { id, balance: this.ledger.balance(id) };
   }
 
   balance(accountId: string): number {
-    const row = this.#db.prepare("SELECT balance FROM accounts WHERE id = ?").get(accountId) as { balance: number } | undefined;
-    if (!row) throw new Error(`no account ${accountId}`);
-    return Number(row.balance);
+    if (!this.ledger.has(accountId)) throw new Error(`no account ${accountId}`);
+    return this.ledger.balance(accountId);
   }
 
-  /** Take an ante. Returns false, changing nothing, when the balance is too low. */
+  /**
+   * Take an ante into the hand's pot. Returns false, changing nothing, when the balance is
+   * too low. Asking twice for the same hand and account takes it once.
+   */
   debit(accountId: string, amount: number, reason: string, handId: string): boolean {
-    let ok = false;
-    this.#tx(() => {
-      if (this.balance(accountId) < amount) return;
-      this.#move(accountId, -amount, reason, handId);
-      ok = true;
-    });
-    return ok;
+    try {
+      this.#tx(() => {
+        this.ledger.open(pot(handId), "system");
+        this.ledger.transfer({ key: `${reason}:${handId}:${accountId}`, kind: reason, ref: handId, from: accountId, to: pot(handId), amount });
+      });
+      return true;
+    } catch (error) {
+      if (error instanceof LedgerError && error.code === "insufficient") return false;
+      throw error;
+    }
   }
 
   recordHand(hand: HandRecord): void {
@@ -102,7 +133,17 @@ export class Store {
       for (const s of hand.seats) {
         this.#db.prepare("INSERT INTO hand_seats (hand_id, account_id, cards, total, ante, payout) VALUES (?,?,?,?,?,?)")
           .run(hand.id, s.accountId, JSON.stringify(s.cards), s.total, s.ante, s.payout);
-        if (s.payout > 0) this.#move(s.accountId, s.payout, "hand payout", hand.id);
+      }
+      // Pay the pot out. Bots and the dealer hold no accounts, so their side of the hand,
+      // and the rake, is the difference between the pot and the payouts: `house:table`.
+      const inPot = this.ledger.balance(pot(hand.id));
+      const entries = hand.seats.filter((s) => s.payout > 0).map((s) => ({ account: s.accountId, amount: s.payout }));
+      const paid = entries.reduce((sum, e) => sum + e.amount, 0);
+      if (inPot !== 0) entries.push({ account: pot(hand.id), amount: -inPot });
+      if (inPot !== paid) entries.push({ account: SYSTEM.table, amount: inPot - paid });
+      if (entries.length > 0) {
+        this.ledger.open(pot(hand.id), "system");
+        this.ledger.post({ key: `settle:${hand.id}`, kind: "settle", ref: hand.id, entries });
       }
     });
   }
@@ -114,10 +155,19 @@ export class Store {
       .all(accountId, limit) as Omit<HistoryRow, "net">[]).map((r) => ({ ...r, net: r.payout - r.ante }));
   }
 
-  /** Sum of every ledger row for an account; equals its balance. */
+  /** Sum of every ledger entry for an account; equals its balance. */
   ledgerTotal(accountId: string): number {
-    const row = this.#db.prepare("SELECT COALESCE(SUM(amount), 0) AS total FROM ledger WHERE account_id = ?").get(accountId) as { total: number };
-    return Number(row.total);
+    return this.ledger.entriesTotal(accountId);
+  }
+
+  /** An account's chip movements, newest first. */
+  statement(accountId: string, limit = 100): LedgerRow[] {
+    return this.ledger.statement(accountId, limit);
+  }
+
+  /** Check the books: every transaction sums to zero and every balance matches its entries. */
+  audit(): AuditReport {
+    return this.ledger.audit();
   }
 
   /** A tester's feedback: a 1–5 rating and/or a note, with where they were in the app. */
@@ -172,17 +222,8 @@ export class Store {
 
   close(): void { this.#db.close(); }
 
-  #move(accountId: string, amount: number, reason: string, handId: string | null): void {
-    this.#db.prepare("UPDATE accounts SET balance = balance + ? WHERE id = ?").run(amount, accountId);
-    this.#db.prepare("INSERT INTO ledger (account_id, amount, reason, hand_id, at) VALUES (?,?,?,?,?)").run(accountId, amount, reason, handId, now());
-  }
-
-  #depth = 0;
   #tx(work: () => void): void {
-    if (this.#depth > 0) { work(); return; }
-    this.#depth++;
-    this.#db.exec("BEGIN");
-    try { work(); this.#db.exec("COMMIT"); } catch (error) { this.#db.exec("ROLLBACK"); throw error; } finally { this.#depth--; }
+    this.ledger.atomic(work);
   }
 }
 

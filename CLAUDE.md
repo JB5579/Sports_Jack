@@ -4,6 +4,8 @@ Live blackjack where the cards are NFL and NBA players and their values move wit
 plays. Read `MISSION.md` (scope, invariants, open questions), then
 `engineering.md` (stack and conventions). The release being built is
 `prd/PHASE1-ALPHA.md`; the full product is `prd/SportsJack-PRD.html`.
+Foundation work that every game design needs (ledger, accounts, contests) is specified in
+`prd/FOUNDATION.md`.
 
 - Checks: `python harness/ci.py` (typecheck + tests). Run before every commit.
 - Real-game data: `fixtures/nflverse/` (NFL; add games with `npm run fixtures -- --games <id>`) and

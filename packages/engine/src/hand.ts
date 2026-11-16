@@ -45,8 +45,27 @@ export class ActionRefused extends Error {
 interface SeatState {
   cards: string[];
   frozenAt: number | null;
-  burned: boolean;
+  /** Burns left: one per hand, plus one for each injured player the seat holds. */
+  burns: number;
   draw: () => number;
+}
+
+/** A player the play-by-play says was hurt (MVP edge-case rules, 2026-11-16). */
+export interface Injury {
+  seq: number;
+  playerId: string;
+  clock: number;
+  /** His quarter points when he went down. His card keeps this value for the rest of the hand. */
+  points: number;
+}
+
+const SUFFIXES = new Set(["Jr.", "Sr.", "II", "III", "IV", "V"]);
+
+/** "Kenneth Walker III" → "K.Walker": the way play-by-play names a player. */
+export function shortName(fullName: string): string {
+  const parts = fullName.trim().split(/\s+/).filter((p) => !SUFFIXES.has(p));
+  if (parts.length < 2) return fullName.trim();
+  return `${parts[0]![0]}.${parts.slice(1).join(" ")}`;
 }
 
 /** One card-value change, with the feed event behind it (MISSION.md invariant 2). */
@@ -64,6 +83,8 @@ export interface SeatView {
   total: number;
   frozen: boolean;
   burned: boolean;
+  /** Burns still available: normally 0 or 1, more after an injury. */
+  burnsLeft: number;
   canAct: boolean;
   /** Share of the period left before actions close, 0–1. */
   timeLeft: number;
@@ -83,8 +104,10 @@ export class Hand {
   readonly options: HandOptions;
   readonly rules: GameRules;
   readonly log: ValueChange[] = [];
+  readonly injuries: Injury[] = [];
   #clock: number;
   #over = false;
+  #voided: string | null = null;
   readonly #scorer: QuarterScorer;
   readonly #cards: Map<string, Card>;
   readonly #seats = new Map<string, SeatState>();
@@ -102,7 +125,7 @@ export class Hand {
     }
     for (const id of options.seats) {
       const draw = options.deal === "shared" ? seededRandom(options.seed) : this.#draw;
-      const seat: SeatState = { cards: [], frozenAt: null, burned: false, draw };
+      const seat: SeatState = { cards: [], frozenAt: null, burns: 1, draw };
       this.#seats.set(id, seat);
       // One at a time: each draw has to see the cards already in the hand.
       seat.cards.push(this.#drawFor(seat));
@@ -112,6 +135,15 @@ export class Hand {
 
   get clock(): number { return this.#clock; }
   get over(): boolean { return this.#over; }
+  /** Set when the game was suspended or cancelled: the hand ended without a result. */
+  get voided(): string | null { return this.#voided; }
+
+  /** End the hand without a result. Nothing settles; the table refunds every ante. */
+  void(reason: string): void {
+    if (this.#over) return;
+    this.#over = true;
+    this.#voided = reason;
+  }
   get locked(): boolean { return this.options.lockout > 0 && this.#clock <= this.options.lockout; }
 
   /** Feed one event. Events for other games or earlier quarters are ignored. */
@@ -120,13 +152,42 @@ export class Hand {
     if (this.#over || event.gameId !== this.options.gameId || event.clock.qtr < qtr) return;
     if (event.clock.qtr > qtr) { this.#over = true; return; }
     this.advanceClock(event.clock.quarterSecondsRemaining);
+    // A suspended or cancelled game is the table's to handle: it voids the hand.
+    if (event.kind === "game_status") return;
     if (event.kind !== "play") { this.#over = true; return; }
     const before = new Map(event.deltas.map((d) => [d.playerId, this.#scorer.points(qtr, d.playerId)]));
     this.#scorer.apply(event);
     for (const d of event.deltas) {
+      if (this.#injured(d.playerId)) continue; // his card's value was fixed when he went down
       const points = roundValue(this.#scorer.points(qtr, d.playerId) - (before.get(d.playerId) ?? 0));
       if (points !== 0) this.log.push({ seq: event.seq, playId: event.playId, playerId: d.playerId, points, clock: this.#clock });
     }
+    for (const hurt of event.injured ?? []) this.#injure(event.seq, hurt.team, hurt.name);
+  }
+
+  /**
+   * A player went down. His card keeps its value as of this play, every hand still able to
+   * act that holds him gets one more Burn, and he is not drawn again this hand. A name
+   * that matches no card, or more than one, changes nothing.
+   */
+  #injure(seq: number, team: string, name: string): void {
+    const matches = [...this.#cards.values()].filter((c) => c.team === team && shortName(c.name) === name);
+    if (matches.length !== 1) return;
+    const playerId = matches[0]!.playerId;
+    if (this.#injured(playerId)) return;
+    this.injuries.push({ seq, playerId, clock: this.#clock, points: this.#scorer.points(this.options.qtr, playerId) });
+    for (const seat of this.#seats.values()) {
+      if (seat.cards.includes(playerId) && this.#refusal(seat) === null) seat.burns++;
+    }
+  }
+
+  #injured(playerId: string): Injury | undefined {
+    return this.injuries.find((i) => i.playerId === playerId);
+  }
+
+  /** Whether a player was hurt during this hand. */
+  injured(playerId: string): boolean {
+    return !!this.#injured(playerId);
   }
 
   /** Move the game clock down between plays. It never runs backwards. */
@@ -136,7 +197,7 @@ export class Hand {
 
   /** Live quarter points for any player in the game. */
   points(playerId: string): number {
-    return this.#scorer.points(this.options.qtr, playerId);
+    return this.#injured(playerId)?.points ?? this.#scorer.points(this.options.qtr, playerId);
   }
 
   card(playerId: string): Card {
@@ -152,7 +213,8 @@ export class Hand {
 
   cards(seatId: string): readonly string[] { return this.#seat(seatId).cards; }
   frozen(seatId: string): boolean { return this.#seat(seatId).frozenAt !== null; }
-  burned(seatId: string): boolean { return this.#seat(seatId).burned; }
+  burned(seatId: string): boolean { return this.#seat(seatId).burns === 0; }
+  burnsLeft(seatId: string): number { return this.#seat(seatId).burns; }
 
   total(seatId: string): number {
     const seat = this.#seat(seatId);
@@ -174,12 +236,12 @@ export class Hand {
   /** Swap one card for a new draw, once per hand, before Freeze (MISSION.md Q5). */
   burn(seatId: string, playerId: string): string {
     const seat = this.#acting(seatId);
-    if (seat.burned) throw new ActionRefused("burn_used");
+    if (seat.burns === 0) throw new ActionRefused("burn_used");
     const at = seat.cards.indexOf(playerId);
     if (at < 0) throw new ActionRefused("not_in_hand");
     const card = this.#drawFor(seat, playerId);
     seat.cards[at] = card;
-    seat.burned = true;
+    seat.burns--;
     return card;
   }
 
@@ -199,7 +261,8 @@ export class Hand {
       cards: seat.cards.map((c) => ({ playerId: c, value: this.value(c), projection: this.card(c).projection })),
       total: this.total(seatId),
       frozen: seat.frozenAt !== null,
-      burned: seat.burned,
+      burned: seat.burns === 0,
+      burnsLeft: seat.burns,
       canAct: this.#refusal(seat) === null,
       timeLeft: Math.max(0, (this.#clock - closes) / (periodStart - closes)),
       clock: this.#clock,
@@ -214,6 +277,7 @@ export class Hand {
 
   settle(): Settlement {
     if (!this.#over) throw new Error("the hand is still live");
+    if (this.#voided) throw new Error("a void hand does not settle");
     const { mode, dealerSeat, ante } = this.options;
     const finishes = [...this.#seats.keys()].map((seatId) => ({ seatId, total: this.total(seatId) }));
     if (mode === "players") return settlePlayers(finishes, ante, this.rules.rake);
@@ -246,7 +310,7 @@ export class Hand {
     const deck = this.options.deck;
     for (;;) {
       const card = deck[Math.floor(seat.draw() * deck.length)]!.playerId;
-      if (!seat.cards.includes(card) && card !== excluding) return card;
+      if (!seat.cards.includes(card) && card !== excluding && !this.#injured(card)) return card;
     }
   }
 }

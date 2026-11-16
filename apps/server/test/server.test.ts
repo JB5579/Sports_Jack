@@ -159,12 +159,17 @@ describe("SportsJack server", () => {
     const table = [...first.lobby.tables.values()][0]!;
     p.send({ type: "sit", tableId: table.spec.id });
     await p.next((m) => m.type === "sat");
-    quarter(first.lobby, 30);
+    quarter(first.lobby, 30); // Q1 settles and Q2 is dealt, so Q2's ante is in its pot when the server stops
     const balance = first.lobby.store.balance(id);
+    const liveHand = table.handId!;
+    expect(first.lobby.store.ledger.balance(`pot:${liveHand}`)).toBe(25);
     await first.server.close();
     running.splice(running.findIndex((r) => r.server === first.server), 1);
     const second = await start({}, dir);
-    expect(second.lobby.store.balance(id)).toBe(balance);
+    // The hand that never settled gives its ante back on start.
+    expect(second.lobby.store.balance(id)).toBe(balance + 25);
+    expect(second.lobby.store.ledger.balance(`pot:${liveHand}`)).toBe(0);
+    expect(second.lobby.store.statement(id)[0]).toMatchObject({ kind: "refund", amount: 25, ref: liveHand });
     expect(second.lobby.store.history(id)).toHaveLength(1);
     // The books balance after a settled hand: nothing was made or lost, and the pot is empty.
     expect(second.lobby.store.audit()).toMatchObject({ ok: true, totals: { chips: 0 } });
@@ -503,5 +508,43 @@ describe("SportsJack server", () => {
     const codes = `http://localhost:${port}/api/admin/codes?key=s3cret`;
     expect(await (await fetch(codes, { method: "POST", body: JSON.stringify({ code: "gianni", creator: "Gianni" }) })).json()).toEqual({ ok: true, code: "GIANNI" });
     expect(await (await fetch(codes)).json()).toEqual({ codes: [{ code: "GIANNI", creator: "Gianni", joined: 0, played: 0 }] });
+  });
+
+  it("voids live hands when the owner says the game was suspended, and refunds the antes", async () => {
+    const { port, lobby } = await start({ adminToken: "s3cret" });
+    const p = await phone(port, tokenA);
+    const id = (p.welcome.account as { id: string }).id;
+    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 100)!;
+    p.send({ type: "sit", tableId: table.spec.id });
+    await p.next((m) => m.type === "sat");
+    quarter(lobby, 8);
+    expect(lobby.store.balance(id)).toBe(900);
+    const res = await fetch(`http://localhost:${port}/api/admin/void?key=s3cret`, { method: "POST", body: JSON.stringify({ game: table.spec.gameId, reason: "Lightning delay" }) });
+    expect((await res.json() as { voided: string[] }).voided).toContain(table.spec.id);
+    expect(lobby.store.balance(id)).toBe(1000);
+    const view = table.view(id);
+    expect(view.hand!.over).toBe(true);
+    expect(view.result).toMatchObject({ void: "Lightning delay", inHand: true });
+    expect(lobby.store.history(id)).toHaveLength(0);
+    expect(lobby.store.audit().ok).toBe(true);
+    expect(lobby.store.eventRows().some((e) => e.name === "hand_void")).toBe(true);
+    // Voiding again does nothing, and the next quarter deals as usual.
+    expect(table.void("again")).toBe(false);
+    quarter(lobby, 200);
+    expect(table.handId).not.toBe(view.hand!.id);
+  });
+
+  it("voids the hand when the feed says the game is suspended", async () => {
+    const { lobby } = await start();
+    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    const { id } = lobby.store.account(tokenA);
+    table.sit(id);
+    quarter(lobby, 6);
+    const hand = table.hand!;
+    const runner = lobby.runners.get(table.spec.gameId)!;
+    runner.emit("event", { kind: "game_status", status: "suspended", gameId: table.spec.gameId, seq: 99999,
+      clock: { qtr: hand.options.qtr, quarterSecondsRemaining: hand.clock, display: "" }, score: { home: 0, away: 0 } });
+    expect(table.view(id).result!.void).toBe("The game was suspended");
+    expect(lobby.store.balance(id)).toBe(1000);
   });
 });

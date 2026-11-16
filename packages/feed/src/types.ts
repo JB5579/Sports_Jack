@@ -69,6 +69,11 @@ export interface PlayEvent extends BaseEvent {
   possession: string;
   description: string;
   deltas: PlayerDelta[];
+  /**
+   * Players the play-by-play says were hurt on this play, as it names them: a team and a
+   * short name like "C.Bryant". The engine matches them to cards.
+   */
+  injured?: { team: string; name: string }[];
 }
 
 export interface QuarterEndEvent extends BaseEvent {
@@ -79,7 +84,16 @@ export interface GameEndEvent extends BaseEvent {
   kind: "game_end";
 }
 
-export type FeedEvent = PlayEvent | QuarterEndEvent | GameEndEvent;
+/**
+ * The game stopped and will not finish on schedule: suspended or cancelled. Hands still
+ * live are void and every ante comes back. A replay never has one; a live source sends it.
+ */
+export interface GameStatusEvent extends BaseEvent {
+  kind: "game_status";
+  status: "suspended" | "cancelled";
+}
+
+export type FeedEvent = PlayEvent | QuarterEndEvent | GameEndEvent | GameStatusEvent;
 
 export interface GameInfo {
   sport: Sport;

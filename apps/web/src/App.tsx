@@ -31,7 +31,7 @@ export function App() {
   }, [state.error]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const view = state.table;
-  const result = view?.result && view.result.standings.some((s) => s.you) && view.result.handId !== dismissed ? view.result : null;
+  const result = view?.result && view.result.inHand && view.result.handId !== dismissed ? view.result : null;
   const gridOpen = sheet === "grid" && !!view?.hand?.mine;
 
   return (

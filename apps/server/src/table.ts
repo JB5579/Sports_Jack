@@ -69,7 +69,11 @@ export class Table {
   #descriptions = new Map<string, string>();
   /** Each player's stats this quarter, for the card grid's stat lines. */
   #stats = new Map<string, StatDelta>();
-  result: { handId: string; qtr: number; seed: number; settlement: Settlement; names: Record<string, string>; rewards: Record<string, Reward[]> } | null = null;
+  result: {
+    handId: string; qtr: number; seed: number; settlement: Settlement; names: Record<string, string>; rewards: Record<string, Reward[]>;
+    /** Why the hand was void, when the game was suspended or cancelled; antes were refunded. */
+    void: string | null;
+  } | null = null;
 
   constructor(spec: TableSpec, runner: GameRunner, store: Store, deck: Card[], rules: GameRules, onChange: () => void) {
     this.spec = spec;
@@ -151,7 +155,27 @@ export class Table {
     this.#onChange();
   }
 
+  /**
+   * Void the live hand: the game was suspended or cancelled (MVP edge-case rules). It ends
+   * without a result and every ante is refunded. Returns false when there was no live hand.
+   */
+  void(reason: string): boolean {
+    const hand = this.hand;
+    if (!hand || hand.over) return false;
+    hand.void(reason);
+    const refunds = entryAmount(this.spec.contest) > 0 ? this.#store.refundPot(this.handId!, reason) : {};
+    for (const id of this.#humans) this.#store.addEvents(id, [{ name: "hand_void", props: { handId: this.handId, gameId: this.spec.gameId, qtr: hand.options.qtr, reason, refund: refunds[id] ?? 0 } }]);
+    const names: Record<string, string> = {};
+    for (const s of this.#ai) names[s.id] = s.name;
+    this.result = { handId: this.handId!, qtr: hand.options.qtr, seed: this.#seed, settlement: { standings: [], pot: 0, house: 0 }, names, rewards: {}, void: reason };
+    for (const id of this.#leaving) this.seated.delete(id);
+    this.#leaving.clear();
+    this.#onChange();
+    return true;
+  }
+
   #apply(e: FeedEvent): void {
+    if (e.kind === "game_status") { this.void(e.status === "cancelled" ? "The game was cancelled" : "The game was suspended"); return; }
     if (e.kind === "play") {
       this.#descriptions.set(e.playId, e.description);
       for (const d of e.deltas) {
@@ -222,7 +246,7 @@ export class Table {
     }
     const names: Record<string, string> = {};
     for (const s of this.#ai) names[s.id] = s.name;
-    this.result = { handId: this.handId!, qtr: hand.options.qtr, seed: this.#seed, settlement, names, rewards };
+    this.result = { handId: this.handId!, qtr: hand.options.qtr, seed: this.#seed, settlement, names, rewards, void: null };
     for (const id of this.#leaving) this.seated.delete(id);
     this.#leaving.clear();
   }
@@ -235,7 +259,7 @@ export class Table {
       const c = hand!.card(playerId);
       const last = hand!.log.findLast((l) => l.playerId === playerId);
       return {
-        playerId, name: c.name, position: c.position, team: c.team, face: c.face, projection: c.projection,
+        playerId, name: c.name, position: c.position, team: c.team, face: c.face, projection: c.projection, injured: hand!.injured(playerId),
         points: hand!.points(playerId), value: hand!.value(playerId), stats: this.#stats.get(playerId) ?? {},
         why: last ? { clock: last.clock, points: last.points, description: this.#descriptions.get(last.playId) ?? "" } : null,
       };
@@ -268,7 +292,7 @@ export class Table {
             // How many other hands show this player face up: the same player can be in several hands.
             sharedWith: others.filter((o) => o.shown.includes(id)).length,
           })),
-          total: hand.total(mine), frozen: hand.frozen(mine), burned: hand.burned(mine), canAct: hand.canAct(mine),
+          total: hand.total(mine), frozen: hand.frozen(mine), burned: hand.burned(mine), burnsLeft: hand.burnsLeft(mine), canAct: hand.canAct(mine),
         } : null,
         others: others.map((o) => ({
           name: o.name, bot: o.bot, dealer: o.dealer, frozen: hand.frozen(o.seat), lastAct: o.lastAct,
@@ -294,6 +318,9 @@ export class Table {
       result: this.result ? {
         handId: this.result.handId, qtr: this.result.qtr, seed: this.result.seed, pot: this.result.settlement.pot, house: this.result.settlement.house,
         rewards: (accountId && this.result.rewards[accountId]) || [],
+        void: this.result.void,
+        // Whether this phone was in the hand: a void hand has no standings to say so.
+        inHand: !!accountId && (this.result.settlement.standings.some((s) => s.seatId === accountId) || (this.result.void !== null && this.#humans.includes(accountId))),
         standings: this.result.settlement.standings.map((s) => ({
           name: s.seatId === accountId ? "You" : this.result!.names[s.seatId] ?? "Player",
           you: s.seatId === accountId, bot: s.seatId.startsWith("bot-"), dealer: s.seatId === "dealer", total: s.total, bust: s.bust, rank: s.rank, payout: s.payout,

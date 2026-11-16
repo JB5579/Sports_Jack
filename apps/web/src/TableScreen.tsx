@@ -177,7 +177,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
       </div>
       <div className="notice">{burnPick ? "Tap the card you want to burn" : hand.locked && !mine.frozen && !hand.over ? `Moves locked with ${clockText(hand.lockout)} left` : ""}</div>
       <div className="rail">
-        <button className={`burn${table.practice && coach === "burn" ? " coached" : ""}`} type="button" disabled={!canAct || mine.burned} onClick={() => setBurnPick(!burnPick)}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : "1 left"}</small></button>
+        <button className={`burn${table.practice && coach === "burn" ? " coached" : ""}`} type="button" disabled={!canAct || mine.burned} onClick={() => setBurnPick(!burnPick)}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : `${mine.burnsLeft} left`}</small></button>
         <button className={`freeze${table.practice && coach === "freeze" ? " coached" : ""}`} type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onFreeze(); }}>Freeze<small>{mine.frozen ? "used" : "lock total"}</small></button>
         <button className={`hit${table.practice && coach === "hit" ? " coached" : ""}`} type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onHit(); }}>Hit<small>draw a player</small></button>
       </div>

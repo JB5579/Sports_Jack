@@ -395,4 +395,52 @@ describe("SportsJack server", () => {
     expect(lobby.store.history(id)).toHaveLength(1);
     expect(lobby.store.ledgerTotal(id)).toBe(lobby.store.balance(id));
   });
+
+  it("runs a free quarter contest: same cards for everyone, prizes from the sponsor", async () => {
+    const { port, lobby } = await start();
+    const a = await phone(port, tokenA);
+    const b = await phone(port, tokenB);
+    const ids = [a, b].map((p) => (p.welcome.account as { id: string }).id);
+    const listed = (a.welcome.tables as { id: string; contest: { name: string; entry: { kind: string } } }[]).find((t) => t.contest.name === "Free quarter contest")!;
+    expect(listed.contest.entry.kind).toBe("free");
+    const table = lobby.tables.get(listed.id)!;
+    for (const p of [a, b]) {
+      p.send({ type: "sit", tableId: listed.id });
+      expect(await p.next((m) => m.type === "sat")).toMatchObject({ tableId: listed.id, status: "seated" });
+    }
+
+    quarter(lobby, 6);
+    expect(table.humans).toEqual(ids);
+    for (const id of ids) expect(lobby.store.balance(id)).toBe(1000); // free: no ante
+    const mine = (id: string) => table.view(id).hand!.mine!.cards.map((c) => c.playerId);
+    expect(mine(ids[1]!)).toEqual(mine(ids[0]!));
+    expect(table.view(ids[0]!).hand!.others.every((o) => !o.bot && !o.dealer)).toBe(true);
+
+    a.send({ type: "hit" });
+    await a.next((m) => m.type === "table" && (m.hand as { mine?: { cards: unknown[] } } | null)?.mine?.cards.length === 3);
+    untilSettled(lobby, table);
+
+    const result = table.view(ids[0]!).result!;
+    const paid = ids.map((id) => lobby.store.balance(id) - 1000);
+    expect(paid.reduce((x, y) => x + y, 0)).toBe(-lobby.store.ledger.balance("sponsor:sportsjack"));
+    for (const [i, id] of ids.entries()) {
+      expect(result.standings.find((s) => s.you === (i === 0))!.payout).toBe(paid[i]);
+      expect(lobby.store.history(id)).toHaveLength(1);
+    }
+    expect(paid.every((x) => [0, 500, 250, 375, 100].includes(x))).toBe(true);
+    expect(lobby.store.audit()).toMatchObject({ ok: true, totals: { chips: 0 } });
+  });
+
+  it("refuses a seat at a full table", async () => {
+    const { port, lobby } = await start();
+    const listed = [...lobby.tables.values()].find((t) => t.spec.contest.name === "Free quarter contest")!;
+    listed.spec.contest = { ...listed.spec.contest, seats: 1 };
+    const a = await phone(port, tokenA);
+    const b = await phone(port, tokenB);
+    a.send({ type: "sit", tableId: listed.spec.id });
+    await a.next((m) => m.type === "sat");
+    b.send({ type: "sit", tableId: listed.spec.id });
+    expect(await b.next((m) => m.type === "error")).toMatchObject({ reason: "table_full" });
+    expect(listed.seated.size).toBe(1);
+  });
 });

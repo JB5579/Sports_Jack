@@ -1,4 +1,4 @@
-import { buildDeck, rulesFor, type DealerLevel, type GameRules, type TableMode } from "@sportsjack/engine";
+import { buildDeck, contestProblem, entryAmount, rulesFor, type ContestRules, type DealerLevel, type GameRules, type TableMode } from "@sportsjack/engine";
 import { loadNbaGame, loadNbaRoster, loadNflverseGame, loadNflversePlayers, loadProjections, type GameInfo, type RecordedGame, type Sport } from "@sportsjack/feed";
 import type { ServerConfig } from "./config.ts";
 import { GameRunner } from "./runner.ts";
@@ -20,6 +20,27 @@ const LABELS: Record<string, string> = {
 const isNba = (gameId: string) => /^\d+$/.test(gameId);
 
 export interface OpenTable { gameId: string; mode: TableMode; ante: number; lockout: number; level: DealerLevel }
+
+/** The sponsor behind the free pooled contests: play-money prizes from SportsJack itself. */
+export const HOUSE_SPONSOR = { sponsor: "sponsor:sportsjack", sponsorName: "SportsJack" } as const;
+export const POOL_PRIZES = [500, 250, 100];
+
+/** The contest behind each kind of table. */
+export const CONTESTS = {
+  dealer: (ante: number): ContestRules => ({
+    name: "House dealer", entry: { kind: "chips", amount: ante }, prize: { kind: "table" }, deal: "own", seats: null, fillWithBots: 0,
+  }),
+  players: (ante: number): ContestRules => ({
+    name: "Player table", entry: { kind: "chips", amount: ante }, prize: { kind: "table" }, deal: "own", seats: 4, fillWithBots: 4,
+  }),
+  practice: (): ContestRules => ({
+    name: "Practice", entry: { kind: "free" }, prize: { kind: "none" }, deal: "own", seats: 1, fillWithBots: 0,
+  }),
+  /** Free to enter, everyone dealt the same cards, fixed prizes from a sponsor. */
+  pool: (amounts: number[] = POOL_PRIZES): ContestRules => ({
+    name: "Free quarter contest", entry: { kind: "free" }, prize: { kind: "pool", amounts, ...HOUSE_SPONSOR }, deal: "shared", seats: null, fillWithBots: 0,
+  }),
+};
 
 /** Every replayed game, its runner and its tables. */
 export class Lobby {
@@ -56,6 +77,7 @@ export class Lobby {
       this.open({ gameId, mode: "dealer", ante: 25, lockout: 120, level: "easy" }, null);
       this.open({ gameId, mode: "dealer", ante: 100, lockout: 60, level: "sharp" }, null);
       this.open({ gameId, mode: "players", ante: 25, lockout: 120, level: "easy" }, null);
+      this.#create({ id: `t${this.#nextId++}`, gameId, mode: "players", contest: CONTESTS.pool(), ante: 0, lockout: 120, level: "easy", openedBy: null });
     }
   }
 
@@ -67,9 +89,17 @@ export class Lobby {
     if (!LOCKOUTS.includes(spec.lockout)) throw new Error("bad_lockout");
     if (spec.mode !== "dealer" && spec.mode !== "players") throw new Error("bad_mode");
     if (spec.level !== "easy" && spec.level !== "sharp") throw new Error("bad_level");
-    const full: TableSpec = { ...spec, id: `t${this.#nextId++}`, openedBy };
-    const table = new Table(full, runner, this.store, this.#decks.get(spec.gameId)!, this.#rules.get(spec.gameId)!, () => this.#onChange(table));
-    this.tables.set(full.id, table);
+    const contest = spec.mode === "dealer" ? CONTESTS.dealer(spec.ante) : CONTESTS.players(spec.ante);
+    return this.#create({ ...spec, contest, id: `t${this.#nextId++}`, openedBy });
+  }
+
+  /** Make a table for a contest. Every table, listed or private, starts here. */
+  #create(spec: TableSpec, runner = this.runners.get(spec.gameId)!): Table {
+    const problem = contestProblem(spec.contest);
+    if (problem) throw new Error(`bad_contest: ${problem}`);
+    if (spec.ante !== entryAmount(spec.contest)) throw new Error("bad_contest: ante must equal the entry");
+    const table = new Table(spec, runner, this.store, this.#decks.get(spec.gameId)!, this.#rules.get(spec.gameId)!, () => this.#onChange(table));
+    this.tables.set(spec.id, table);
     return table;
   }
 
@@ -83,9 +113,8 @@ export class Lobby {
     const ofSport = [...this.#recorded.keys()].filter((id) => this.#recorded.get(id)!.game.sport === sport);
     const gameId = this.#recorded.has(preferred) ? preferred : ofSport[0] ?? [...this.#recorded.keys()][0]!;
     const runner = new GameRunner(this.#recorded.get(gameId)!, { speed: this.#config.speed, fromQuarter: 4, breakSeconds: 1, loop: false });
-    const spec: TableSpec = { id: `p${this.#nextId++}`, gameId, mode: "dealer", ante: 0, lockout: 30, level: "easy", openedBy: accountId, practice: true };
-    const table = new Table(spec, runner, this.store, this.#decks.get(gameId)!, this.#rules.get(gameId)!, () => this.#onChange(table));
-    this.tables.set(spec.id, table);
+    const spec: TableSpec = { id: `p${this.#nextId++}`, gameId, mode: "dealer", contest: CONTESTS.practice(), ante: 0, lockout: 30, level: "easy", openedBy: accountId, practice: true };
+    const table = this.#create(spec, runner);
     this.#practices.set(spec.id, runner);
     table.sit(accountId);
     return table;
@@ -106,8 +135,7 @@ export class Lobby {
       speed: this.#config.speed, fromQuarter, breakSeconds: this.#config.breakSeconds, firstBreakSeconds: 1, loop: false,
     });
     const spec: TableSpec = { ...listed.spec, id: `m${this.#nextId++}`, openedBy: accountId, personal: true };
-    const table = new Table(spec, runner, this.store, this.#decks.get(spec.gameId)!, this.#rules.get(spec.gameId)!, () => this.#onChange(table));
-    this.tables.set(spec.id, table);
+    const table = this.#create(spec, runner);
     this.#practices.set(spec.id, runner);
     // Close it once nobody is left after a whistle, or when the game is over.
     runner.on("quarter_end", () => { if (table.seated.size === 0 || runner.phase === "final") this.dispose(spec.id); });

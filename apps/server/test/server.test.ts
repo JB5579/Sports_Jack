@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { DatabaseSync } from "node:sqlite";
 import { afterEach, describe, expect, it } from "vitest";
 import WebSocket from "ws";
 import { configFromEnv, type ServerConfig } from "../src/config.ts";
@@ -164,6 +165,37 @@ describe("SportsJack server", () => {
     const second = await start({}, dir);
     expect(second.lobby.store.balance(id)).toBe(balance);
     expect(second.lobby.store.history(id)).toHaveLength(1);
+    // The books balance after a settled hand: nothing was made or lost, and the pot is empty.
+    expect(second.lobby.store.audit()).toMatchObject({ ok: true, totals: { chips: 0 } });
+    const moves = second.lobby.store.statement(id).map((r) => r.kind);
+    expect(moves.slice(-2)).toEqual(["ante", "issue"]);
+    const handId = second.lobby.store.history(id)[0]!.id;
+    expect(second.lobby.store.ledger.balance(`pot:${handId}`)).toBe(0);
+  });
+
+  it("carries balances from before the double-entry ledger onto it, once", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "sj-"));
+    const old = new DatabaseSync(join(dir, "sj.sqlite"));
+    old.exec(`CREATE TABLE accounts (id TEXT PRIMARY KEY, balance INTEGER NOT NULL, created_at TEXT NOT NULL);
+      CREATE TABLE ledger (id INTEGER PRIMARY KEY, account_id TEXT NOT NULL, amount INTEGER NOT NULL, reason TEXT NOT NULL, hand_id TEXT, at TEXT NOT NULL);
+      INSERT INTO accounts VALUES ('veteran', 1375, '2026-11-01T00:00:00.000Z'), ('broke', 0, '2026-11-01T00:00:00.000Z');`);
+    old.close();
+    const first = await start({}, dir);
+    expect(first.lobby.store.balance("veteran")).toBe(1375);
+    expect(first.lobby.store.balance("broke")).toBe(0);
+    expect(first.lobby.store.statement("veteran").map((r) => [r.kind, r.amount])).toEqual([["opening", 1375]]);
+    await first.server.close();
+    running.splice(running.findIndex((r) => r.server === first.server), 1);
+    const second = await start({}, dir);
+    expect(second.lobby.store.balance("veteran")).toBe(1375);
+    expect(second.lobby.store.audit().ok).toBe(true);
+  });
+
+  it("serves the ledger audit to the owner only", async () => {
+    const { port } = await start({ adminToken: "s3cret" });
+    expect((await fetch(`http://localhost:${port}/api/admin/audit`)).status).toBe(404);
+    const report = await (await fetch(`http://localhost:${port}/api/admin/audit?key=s3cret`)).json() as { ok: boolean };
+    expect(report.ok).toBe(true);
   });
 
   it("deals two players and labeled bots at a player table, and the yards add up", async () => {

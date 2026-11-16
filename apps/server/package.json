@@ -5,6 +5,7 @@
   "dependencies": {
     "@sportsjack/engine": "*",
     "@sportsjack/feed": "*",
+    "@sportsjack/ledger": "*",
     "ws": "^8.18.0"
   },
   "devDependencies": {

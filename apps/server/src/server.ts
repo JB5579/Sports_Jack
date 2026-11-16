@@ -98,6 +98,7 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
     if (url.pathname.startsWith("/api/admin/")) {
       if (!isAdmin(req, url)) return json(res, 404, { error: "not found" });
       if (url.pathname === "/api/admin/summary") return json(res, 200, lobby.store.testSummary());
+      if (url.pathname === "/api/admin/audit") return json(res, 200, lobby.store.audit());
       const rows = url.pathname === "/api/admin/feedback.csv" ? lobby.store.feedbackRows() : url.pathname === "/api/admin/events.csv" ? lobby.store.eventRows() : null;
       if (!rows) return json(res, 404, { error: "not found" });
       return void res.writeHead(200, { "content-type": "text/csv; charset=utf-8", "cache-control": "no-store" }).end(csv(rows));

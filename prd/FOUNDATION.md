@@ -1,6 +1,6 @@
 # SportsJack foundation: what we need whatever the game becomes
 
-**Status:** approved by the owner 2026-11-16. §1 (the ledger) and §3 (contests) are built.
+**Status:** approved by the owner 2026-11-16. §1 (the ledger), §3 (contests) and §4 (variant switches) are built.
 **Parents:** `MISSION.md` governs. `prd/PHASE1-ALPHA.md` scopes the play-money alpha. This
 document adds the parts of the product that every game design and every business model
 under discussion will need, so they can be built while the MVP shape is still being decided.
@@ -23,7 +23,7 @@ decision to the owner.
 | 1 | Ledger | **Built** (`packages/ledger`) | No |
 | 2 | Accounts | Device-scoped accounts only | Yes: the sign-up method |
 | 3 | Contest layer | **Built** (`packages/engine/src/contest.ts`) | No |
-| 4 | Variant switches | Not built | No |
+| 4 | Variant switches | **Built** (`apps/server/src/variants.ts`) | No |
 | 5 | Live feed | Replay only; ESPN adapter is Phase 1 feature 16 | No |
 | 6 | Retention dashboard | A summary endpoint exists | No |
 | 7 | Simulation harness | One-off scripts in `tools/analysis` | No |
@@ -137,14 +137,33 @@ records its contest in the `hands` table.
 **Next:** friends' tables and the daily hand on a classic game are new contest settings, not
 new code paths.
 
-## 4. Variant switches
+## 4. Variant switches (built)
 
-Named switches, set per table or per player, recorded on every hand and every usage event.
+Named switches that let versions of the game run side by side and be compared on the same
+numbers. A switch may change a contest setting, a ruleset choice or a screen. It may never
+change a MISSION.md invariant.
 
-- Two or three versions of the game can run side by side and be compared on the same
-  numbers. This is how the MVP variations get tested with real players.
-- A switch may change a rule set, a contest setting or a screen. It may never change a
-  MISSION.md invariant.
+| Switch | Scope | Values | Default | What it changes |
+|---|---|---|---|---|
+| `variation` | player | A, B, C | A | Which MVP prototype variation a player sees. B and C play as A until they are built. |
+| `free_contest_deal` | table | shared, own | shared | Whether the free quarter contest deals everyone the same cards. |
+
+**Setting them.** The owner sets weights in `SPORTSJACK_VARIANTS`, for example
+`variation=A:50,B:50;free_contest_deal=own`. A mistyped switch or value stops the server from
+starting, so a typo can't silently put everyone on the default.
+
+- **Player switches** are assigned once per account by a stable hash, then kept. Changing the
+  weights later moves only new players. The owner can move one player by hand with
+  `POST /api/admin/variants`.
+- **Table switches** take the heaviest-weighted value for the whole server.
+
+**Recording.** Every usage event and every settled hand records the player's switches.
+`GET /api/admin/summary` reports players, hands and quarter-to-quarter continuation for each
+value (`byVariant`). `GET /api/admin/variants` lists the switches, the weights and how many
+players are on each value. Both need the owner key.
+
+**Not yet:** the phone receives its switches on connect but shows nothing different, because
+variations B and C are not built.
 
 ## 5. Live feed
 

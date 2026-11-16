@@ -40,6 +40,8 @@ All three need the admin key (`SPORTSJACK_ADMIN_TOKEN`, under the Render service
   for the next quarter. The PRD's target is above 80%.
 - `<your URL>/api/admin/feedback.csv?key=<key>`: every rating and note.
 - `<your URL>/api/admin/events.csv?key=<key>`: every event, for a spreadsheet.
+- `<your URL>/api/admin/variants?key=<key>`: which variant switches exist, the weights in use and how
+  many players are on each value. The summary's `byVariant` gives continuation for each value.
 - `<your URL>/api/admin/audit?key=<key>`: a check of the chip ledger. `ok: true` means every
   chip is accounted for (see `prd/FOUNDATION.md` §1).
 

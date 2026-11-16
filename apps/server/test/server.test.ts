@@ -443,4 +443,38 @@ describe("SportsJack server", () => {
     expect(await b.next((m) => m.type === "error")).toMatchObject({ reason: "table_full" });
     expect(listed.seated.size).toBe(1);
   });
+
+  it("assigns variant switches, records them on hands and reports retention by variant", async () => {
+    const { port, lobby } = await start({ variants: "variation=B", adminToken: "s3cret" });
+    const p = await phone(port, tokenA);
+    expect(p.welcome.variants).toEqual({ variation: "B" });
+    const id = (p.welcome.account as { id: string }).id;
+    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    p.send({ type: "sit", tableId: table.spec.id });
+    await p.next((m) => m.type === "sat");
+    quarter(lobby, 6);
+    untilSettled(lobby, table);
+    const summary = lobby.store.testSummary();
+    expect(summary.byVariant.variation!.B).toMatchObject({ players: 1, realHands: 1 });
+    expect(summary.byVariant.variation!.A).toMatchObject({ players: 0, realHands: 0 });
+    const sit = lobby.store.eventRows().find((e) => e.name === "sit")!;
+    expect(JSON.parse(String(sit.props)).variants).toEqual({ variation: "B" });
+
+    const admin = `http://localhost:${port}/api/admin/variants?key=s3cret`;
+    expect(await (await fetch(admin)).json()).toMatchObject({ weights: { variation: { B: 1 } }, players: { variation: { B: 1 } }, tables: { free_contest_deal: "shared" } });
+    const moved = await fetch(admin, { method: "POST", body: JSON.stringify({ accountId: id, switch: "variation", value: "C" }) });
+    expect(await moved.json()).toEqual({ ok: true, variants: { variation: "C" } });
+    expect((await fetch(admin, { method: "POST", body: JSON.stringify({ accountId: id, switch: "variation", value: "Q" }) })).status).toBe(400);
+    expect((await fetch(`http://localhost:${port}/api/admin/variants`)).status).toBe(404);
+  });
+
+  it("deals the free contest by the free_contest_deal switch", async () => {
+    const { lobby } = await start({ variants: "free_contest_deal=own" });
+    const pool = [...lobby.tables.values()].find((t) => t.spec.contest.name === "Free quarter contest")!;
+    expect(pool.spec.contest.deal).toBe("own");
+  });
+
+  it("refuses to start with a mistyped switch", async () => {
+    await expect(start({ variants: "variaton=B" })).rejects.toThrow(/unknown switch/);
+  });
 });

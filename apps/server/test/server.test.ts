@@ -16,7 +16,8 @@ afterEach(async () => {
 async function start(overrides: Partial<ServerConfig> = {}, dir = mkdtempSync(join(tmpdir(), "sj-"))) {
   const config: ServerConfig = {
     ...configFromEnv({}), port: 0, db: join(dir, "sj.sqlite"), games: ["2025_22_SEA_NE"],
-    speed: 60, breakSeconds: 5, loop: false, clock: "manual", testControls: true, candidate: "candidate-abc", ...overrides,
+    // Rewards off by default, so settlement tests see only the hand's own payouts; the rewards tests turn them on.
+    speed: 60, breakSeconds: 5, loop: false, clock: "manual", testControls: true, candidate: "candidate-abc", variants: "rewards=off", ...overrides,
   };
   const server = createSportsJackServer(config);
   const port = await server.listen();
@@ -445,9 +446,9 @@ describe("SportsJack server", () => {
   });
 
   it("assigns variant switches, records them on hands and reports retention by variant", async () => {
-    const { port, lobby } = await start({ variants: "variation=B", adminToken: "s3cret" });
+    const { port, lobby } = await start({ variants: "variation=B;rewards=off", adminToken: "s3cret" });
     const p = await phone(port, tokenA);
-    expect(p.welcome.variants).toEqual({ variation: "B" });
+    expect(p.welcome.variants).toEqual({ variation: "B", rewards: "off" });
     const id = (p.welcome.account as { id: string }).id;
     const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
     p.send({ type: "sit", tableId: table.spec.id });
@@ -458,23 +459,49 @@ describe("SportsJack server", () => {
     expect(summary.byVariant.variation!.B).toMatchObject({ players: 1, realHands: 1 });
     expect(summary.byVariant.variation!.A).toMatchObject({ players: 0, realHands: 0 });
     const sit = lobby.store.eventRows().find((e) => e.name === "sit")!;
-    expect(JSON.parse(String(sit.props)).variants).toEqual({ variation: "B" });
+    expect(JSON.parse(String(sit.props)).variants).toEqual({ variation: "B", rewards: "off" });
 
     const admin = `http://localhost:${port}/api/admin/variants?key=s3cret`;
-    expect(await (await fetch(admin)).json()).toMatchObject({ weights: { variation: { B: 1 } }, players: { variation: { B: 1 } }, tables: { free_contest_deal: "shared" } });
+    expect(await (await fetch(admin)).json()).toMatchObject({ weights: { variation: { B: 1 }, rewards: { off: 1 } }, players: { variation: { B: 1 }, rewards: { off: 1 } }, tables: { free_contest_deal: "shared" } });
     const moved = await fetch(admin, { method: "POST", body: JSON.stringify({ accountId: id, switch: "variation", value: "C" }) });
-    expect(await moved.json()).toEqual({ ok: true, variants: { variation: "C" } });
+    expect(await moved.json()).toEqual({ ok: true, variants: { variation: "C", rewards: "off" } });
     expect((await fetch(admin, { method: "POST", body: JSON.stringify({ accountId: id, switch: "variation", value: "Q" }) })).status).toBe(400);
     expect((await fetch(`http://localhost:${port}/api/admin/variants`)).status).toBe(404);
   });
 
   it("deals the free contest by the free_contest_deal switch", async () => {
-    const { lobby } = await start({ variants: "free_contest_deal=own" });
+    const { lobby } = await start({ variants: "free_contest_deal=own;rewards=off" });
     const pool = [...lobby.tables.values()].find((t) => t.spec.contest.name === "Free quarter contest")!;
     expect(pool.spec.contest.deal).toBe("own");
   });
 
   it("refuses to start with a mistyped switch", async () => {
     await expect(start({ variants: "variaton=B" })).rejects.toThrow(/unknown switch/);
+  });
+
+  it("follows an invite link: the friend's code on connect, both paid after the first hand", async () => {
+    const { port, lobby } = await start({ variants: "", adminToken: "s3cret" });
+    const inviter = await phone(port, tokenA);
+    const code = (inviter.welcome.perks as { referral: { code: string } }).referral.code;
+    const socket = new WebSocket(`ws://localhost:${port}/ws`);
+    await new Promise((r) => socket.once("open", r));
+    const welcome = new Promise<Record<string, unknown>>((r) => socket.on("message", (raw) => { const m = JSON.parse(String(raw)); if (m.type === "welcome") r(m); }));
+    socket.send(JSON.stringify({ type: "hello", token: tokenB, ref: code }));
+    const friendId = ((await welcome).account as { id: string }).id;
+    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    socket.send(JSON.stringify({ type: "sit", tableId: table.spec.id }));
+    for (let i = 0; i < 20 && !table.seated.has(friendId); i++) await new Promise((r) => setTimeout(r, 10));
+    quarter(lobby, 6);
+    untilSettled(lobby, table);
+    const result = table.view(friendId).result!;
+    expect(result.rewards.map((r) => [r.kind, r.chips])).toEqual([["referral", 500], ["milestone", 100]]);
+    const inviterId = (inviter.welcome.account as { id: string }).id;
+    expect(lobby.store.balance(inviterId)).toBe(1500);
+    expect(lobby.store.audit().ok).toBe(true);
+    socket.close();
+
+    const codes = `http://localhost:${port}/api/admin/codes?key=s3cret`;
+    expect(await (await fetch(codes, { method: "POST", body: JSON.stringify({ code: "gianni", creator: "Gianni" }) })).json()).toEqual({ ok: true, code: "GIANNI" });
+    expect(await (await fetch(codes)).json()).toEqual({ codes: [{ code: "GIANNI", creator: "Gianni", joined: 0, played: 0 }] });
   });
 });

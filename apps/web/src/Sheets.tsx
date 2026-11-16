@@ -123,10 +123,16 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
       <div className="payout">
         <div className={`big num ${net > 0 ? "win" : net < 0 ? "loss" : ""}`}>{net > 0 ? "+" : net < 0 ? "−" : ""}{Math.abs(net)} chips</div>
         <div className="label">
-          {view.table.mode === "dealer" ? "Even money against the dealer" : `Pot ${result.pot} · house ${result.house}`}
+          {view.table.contest.prize.kind === "pool" ? `Prizes from ${view.table.contest.prize.sponsorName}` : view.table.mode === "dealer" ? "Even money against the dealer" : `Pot ${result.pot} · house ${result.house}`}
           {balance !== null && ` · balance ${balance.toLocaleString()}`}
         </div>
       </div>
+      {result.rewards.length > 0 && (
+        <div className="rewards-earned">
+          <div className="label">Rewards earned</div>
+          {result.rewards.map((r, i) => <div key={i}><span>{r.label}</span><strong className="num">+{r.chips.toLocaleString()}</strong></div>)}
+        </div>
+      )}
       <div className="results">
         {result.standings.map((s, i) => (
           <div key={i} className={`res${s.you ? " me" : ""}`}>
@@ -139,7 +145,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
       </div>
       <QuickRating handId={result.handId} gameId={view.table.gameId} screen="result" />
       <p className="help">Closest to 21 without going over wins. If everyone busts, the hand closest from above wins. Ties split. Seed {result.seed}, committed before the deal.</p>
-      {game.nextQtr ? <button className="primary" type="button" onClick={onNext}>Stay for {qName(game.nextQtr)} · ante {view.table.ante}</button>
+      {game.nextQtr ? <button className="primary" type="button" onClick={onNext}>Stay for {qName(game.nextQtr)}{view.table.ante ? ` · ante ${view.table.ante}` : ""}</button>
         : <p className="help">That was the last hand of this game.</p>}
       <button className="secondary" type="button" onClick={onLobby}>Back to lobby</button>
     </Sheet>

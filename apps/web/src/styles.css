@@ -246,3 +246,24 @@ button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); out
 .versus { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--on-felt-dim); }
 details.open-table summary { cursor: pointer; list-style: none; color: var(--gold); font-weight: 600; padding: 4px 0; }
 details.open-table summary::-webkit-details-marker { display: none; }
+
+/* Invite friends and the rewards track, in the lobby. */
+.perks-card { border: 1px solid rgba(226,182,90,0.28); background: linear-gradient(180deg, rgba(226,182,90,0.08), rgba(255,255,255,0.02)); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.perks-card .what { font-weight: 600; font-size: 14px; }
+.perks-card .meta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--on-felt-faint); text-transform: uppercase; line-height: 1.5; }
+.perk { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+.perk button { min-height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--gold); background: rgba(226,182,90,0.14); color: var(--gold-shine); font-weight: 700; }
+.code-line { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 8px 12px; border-radius: 10px; background: rgba(0,0,0,0.2); }
+.code-line strong { color: var(--gold-shine); letter-spacing: 0.18em; font-size: 15px; }
+.track { display: flex; flex-direction: column; gap: 8px; }
+.track-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.bar { height: 6px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
+.bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-shine)); border-radius: inherit; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.steps li { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; border-radius: 10px; background: rgba(0,0,0,0.2); color: var(--on-felt-faint); }
+.steps li .num { font-weight: 700; font-size: 13px; }
+.steps li small { font-family: var(--mono); font-size: 9px; }
+.steps li.done { background: rgba(226,182,90,0.16); color: var(--gold-shine); }
+.rewards-earned { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: rgba(226,182,90,0.12); }
+.rewards-earned div { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; }
+.rewards-earned strong { color: var(--gold-shine); }

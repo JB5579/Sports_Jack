@@ -2,12 +2,33 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { GameRules } from "@sportsjack/engine";
 import type { LobbySummary } from "../../server/src/lobby.ts";
 import type { TableView } from "../../server/src/table.ts";
+import type { Store } from "../../server/src/store.ts";
+
+/** Referral code and rewards track, as the server sends them. */
+export type Perks = ReturnType<Store["perks"]>;
 
 export type { CardView, TableView } from "../../server/src/table.ts";
 export type { LobbySummary } from "../../server/src/lobby.ts";
 export type HistoryRow = { id: string; gameId: string; qtr: number; seed: number; commitment: string; total: number; ante: number; payout: number; net: number; at: string };
 
 export interface OpenTableRequest { gameId: string; mode: "dealer" | "players"; ante: number; lockout: number; level: "easy" | "sharp" }
+
+/**
+ * A friend's referral code from the link this phone opened (`?ref=CODE`). Kept until the
+ * server has seen it, so a reload before the first connection does not lose it.
+ */
+export function referralFromLink(): string | null {
+  try {
+    const fromUrl = new URLSearchParams(location.search).get("ref");
+    if (fromUrl) localStorage.setItem("sj-ref", fromUrl);
+    return fromUrl ?? localStorage.getItem("sj-ref");
+  } catch {
+    return null;
+  }
+}
+
+/** This phone's own invite link. */
+export const inviteLink = (code: string) => `${location.origin}/?ref=${encodeURIComponent(code)}`;
 
 /**
  * This phone's play-money identity. Sign-up is still undecided (MISSION.md), so the
@@ -30,6 +51,7 @@ export interface Connection {
   status: "connecting" | "live" | "offline";
   accountId: string | null;
   balance: number | null;
+  perks: Perks | null;
   rules: GameRules | null;
   lobby: LobbySummary | null;
   table: (TableView & { balance: number | null }) | null;
@@ -38,7 +60,7 @@ export interface Connection {
 
 /** One WebSocket to the game server, reconnecting with backoff. The server holds all state. */
 export function useSportsJack() {
-  const [state, setState] = useState<Connection>({ status: "connecting", accountId: null, balance: null, rules: null, lobby: null, table: null, error: null });
+  const [state, setState] = useState<Connection>({ status: "connecting", accountId: null, balance: null, perks: null, rules: null, lobby: null, table: null, error: null });
   const socket = useRef<WebSocket | null>(null);
   const token = useRef(deviceToken());
 
@@ -49,13 +71,13 @@ export function useSportsJack() {
     const connect = () => {
       const ws = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/ws`);
       socket.current = ws;
-      ws.onopen = () => { retry = 500; ws.send(JSON.stringify({ type: "hello", token: token.current })); };
+      ws.onopen = () => { retry = 500; ws.send(JSON.stringify({ type: "hello", token: token.current, ref: referralFromLink() })); };
       ws.onmessage = (event) => {
         const m = JSON.parse(String(event.data));
         setState((s) => {
           switch (m.type) {
-            case "welcome": return { ...s, status: "live", accountId: m.account.id, balance: m.account.balance, rules: m.rules, lobby: { games: m.games, tables: m.tables }, table: null };
-            case "lobby": return { ...s, lobby: { games: m.games, tables: m.tables }, table: null, balance: m.balance ?? s.balance };
+            case "welcome": return { ...s, status: "live", accountId: m.account.id, balance: m.account.balance, perks: m.perks ?? null, rules: m.rules, lobby: { games: m.games, tables: m.tables }, table: null };
+            case "lobby": return { ...s, lobby: { games: m.games, tables: m.tables }, table: null, balance: m.balance ?? s.balance, perks: m.perks ?? s.perks };
             case "table": return { ...s, table: m, balance: m.balance ?? s.balance };
             case "error": return { ...s, error: { reason: m.reason, at: Date.now() } };
             default: return s;

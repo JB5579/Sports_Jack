@@ -25,6 +25,10 @@ export const SWITCHES: readonly SwitchDef[] = [
     description: "The MVP prototype variation a player sees: A core + rewards, B safer cards, C collect. B and C play as A until they are built.",
   },
   {
+    name: "rewards", scope: "player", values: ["on", "off"], default: "on",
+    description: "Whether the player has the rewards track (milestone and full-game chips). Referral bonuses apply either way.",
+  },
+  {
     name: "free_contest_deal", scope: "table", values: ["shared", "own"], default: "shared",
     description: "Whether the free quarter contest deals everyone the same cards, or each player their own.",
   },

@@ -100,6 +100,16 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       if (!isAdmin(req, url)) return json(res, 404, { error: "not found" });
       if (url.pathname === "/api/admin/summary") return json(res, 200, lobby.store.testSummary());
       if (url.pathname === "/api/admin/audit") return json(res, 200, lobby.store.audit());
+      if (url.pathname === "/api/admin/codes") {
+        if (req.method === "POST") {
+          // A creator code for an influencer: {"code": "GIANNI", "creator": "Gianni"}.
+          const b = await body(req).catch(() => null);
+          try { return json(res, 200, { ok: true, code: lobby.store.createCreatorCode(String(b?.code ?? ""), String(b?.creator ?? "")) }); } catch (error) {
+            return json(res, 400, { error: error instanceof Error ? error.message : "bad request" });
+          }
+        }
+        return json(res, 200, { codes: lobby.store.creatorCodes() });
+      }
       if (url.pathname === "/api/admin/variants") {
         if (req.method === "POST") {
           // Put one player on a value by hand: {"accountId": "...", "switch": "variation", "value": "B"}.
@@ -173,12 +183,13 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
     if (msg.type === "hello") {
       const token = String(msg.token ?? "");
       if (token.length < 16) throw new Error("token_too_short");
-      const account = lobby.store.account(token);
+      // A friend's referral code, from the link they opened; it only counts for a new account.
+      const account = lobby.store.account(token, typeof msg.ref === "string" ? msg.ref.slice(0, 40) : null);
       c.accountId = account.id;
       // Reconnect: return to the table where this account is seated or in a hand.
       const table = [...lobby.tables.values()].find((t) => !t.spec.practice && (t.seated.has(account.id) || t.pending.has(account.id) || t.humans.includes(account.id)));
       c.tableId = table?.spec.id ?? null;
-      send(c.socket, { type: "welcome", account: { id: account.id, balance: lobby.store.balance(account.id) }, variants: lobby.store.variants(account.id), rules: ALPHA_RULES, ...lobby.summary() });
+      send(c.socket, { type: "welcome", account: { id: account.id, balance: lobby.store.balance(account.id) }, variants: lobby.store.variants(account.id), perks: lobby.store.perks(account.id), rules: ALPHA_RULES, ...lobby.summary() });
       if (table) sendTable(c);
       return;
     }
@@ -228,7 +239,7 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
         // A personal table mid-hand plays on to the whistle (the ante is in), then closes itself.
         if (leaving?.spec.practice || (leaving?.spec.personal && !midHand)) lobby.dispose(leaving.spec.id);
         c.tableId = null;
-        send(c.socket, { type: "lobby", ...lobby.summary(), balance: lobby.store.balance(c.accountId) });
+        send(c.socket, { type: "lobby", ...lobby.summary(), balance: lobby.store.balance(c.accountId), perks: lobby.store.perks(c.accountId) });
         return;
       }
       case "hit": case "freeze": case "burn": {

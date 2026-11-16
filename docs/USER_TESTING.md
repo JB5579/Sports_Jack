@@ -42,6 +42,8 @@ All three need the admin key (`SPORTSJACK_ADMIN_TOKEN`, under the Render service
 - `<your URL>/api/admin/events.csv?key=<key>`: every event, for a spreadsheet.
 - `<your URL>/api/admin/variants?key=<key>`: which variant switches exist, the weights in use and how
   many players are on each value. The summary's `byVariant` gives continuation for each value.
+- `<your URL>/api/admin/codes?key=<key>`: creator codes and how many friends joined and played through
+  each. Make one by sending `{"code": "GIANNI", "creator": "Gianni"}` to the same address as a POST.
 - `<your URL>/api/admin/audit?key=<key>`: a check of the chip ledger. `ok: true` means every
   chip is accounted for (see `prd/FOUNDATION.md` §1).
 

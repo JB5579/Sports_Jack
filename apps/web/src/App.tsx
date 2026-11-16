@@ -39,7 +39,7 @@ export function App() {
       {state.status === "offline" && <div className="banner" style={{ marginTop: 8 }}>Reconnecting to the table…</div>}
       {!state.lobby && !view && <section className="screen"><div className="waiting"><div className="big">Connecting…</div></div></section>}
       {view ? (
-        <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn}
+        <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn} onSafer={sj.safer}
           onGrid={() => setSheet("grid")} onFeedback={() => setSheet("feedback")} />
       ) : state.lobby && (
         <Lobby lobby={state.lobby} balance={state.balance} perks={state.perks} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={() => startPractice(sport)} onFeedback={() => setSheet("feedback")} />

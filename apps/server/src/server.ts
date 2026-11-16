@@ -37,7 +37,9 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
   const send = (socket: WebSocket, message: unknown) => { if (socket.readyState === 1) socket.send(JSON.stringify(message)); };
   const sendTable = (c: Client) => {
     const table = c.tableId ? lobby.tables.get(c.tableId) : undefined;
-    if (table) send(c.socket, { type: "table", ...table.view(c.accountId), balance: c.accountId ? lobby.store.balance(c.accountId) : null });
+    // Safer cards are variation B's: only players on it are offered them.
+    const saferOffered = !!c.accountId && lobby.store.variants(c.accountId).variation === "B";
+    if (table) send(c.socket, { type: "table", ...table.view(c.accountId), saferOffered, balance: c.accountId ? lobby.store.balance(c.accountId) : null });
   };
   /** Push changed tables to the players watching them, at most every 200 ms. */
   const flush = () => {
@@ -254,9 +256,10 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
         send(c.socket, { type: "lobby", ...lobby.summary(), balance: lobby.store.balance(c.accountId), perks: lobby.store.perks(c.accountId) });
         return;
       }
-      case "hit": case "freeze": case "burn": {
+      case "hit": case "freeze": case "burn": case "safer": {
         const t = table(c.tableId);
-        t.act(c.accountId, msg.type === "burn" ? { type: "burn", playerId: String(msg.playerId) } : { type: msg.type });
+        if (msg.type === "safer" && lobby.store.variants(c.accountId).variation !== "B") throw new ActionError("not_offered");
+        t.act(c.accountId, msg.type === "burn" || msg.type === "safer" ? { type: msg.type, playerId: String(msg.playerId) } : { type: msg.type });
         log(c, msg.type, { tableId: t.spec.id, practice: !!t.spec.practice, clock: t.hand?.clock, total: t.hand?.total(c.accountId) });
         sendTable(c);
         return;

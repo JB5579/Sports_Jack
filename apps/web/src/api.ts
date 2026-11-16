@@ -54,7 +54,7 @@ export interface Connection {
   perks: Perks | null;
   rules: GameRules | null;
   lobby: LobbySummary | null;
-  table: (TableView & { balance: number | null }) | null;
+  table: (TableView & { balance: number | null; saferOffered?: boolean }) | null;
   error: { reason: string; at: number } | null;
 }
 
@@ -109,6 +109,7 @@ export function useSportsJack() {
     hit: () => send({ type: "hit" }),
     freeze: () => send({ type: "freeze" }),
     burn: (playerId: string) => send({ type: "burn", playerId }),
+    safer: (playerId: string) => send({ type: "safer", playerId }),
     clearError: () => setState((s) => ({ ...s, error: null })),
   };
 }

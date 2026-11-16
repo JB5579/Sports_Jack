@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compareFinish, settleDealer, settlePlayers } from "../src/index.ts";
+import { afterSaferCut, compareFinish, settleDealer, settlePlayers } from "../src/index.ts";
 
 describe("settlement rules (MISSION.md Q7)", () => {
   it("ranks any non-bust above any bust, closest to 21 first", () => {
@@ -25,5 +25,18 @@ describe("settlement rules (MISSION.md Q7)", () => {
     const payout = Object.fromEntries(s.standings.map((x) => [x.seatId, x.payout]));
     expect(payout).toEqual({ w: 50, p: 25, l: 0, dealer: 0 });
     expect(s.house).toBe(0);
+  });
+
+  it("cuts a winner's profit by 10% per safer card, rounded down, never below the stake", () => {
+    expect(afterSaferCut(25, 50, 1, 0.1)).toBe(47); // 25 back + 22.5 → 22
+    expect(afterSaferCut(100, 200, 3, 0.1)).toBe(170);
+    expect(afterSaferCut(100, 200, 12, 0.1)).toBe(100);
+    expect(afterSaferCut(25, 25, 2, 0.1)).toBe(25); // a push is not winnings
+    const dealer = settleDealer([{ seatId: "a", total: 20, safer: 2 }, { seatId: "b", total: 20 }], { seatId: "dealer", total: 18 }, 100, 0.1);
+    expect(Object.fromEntries(dealer.standings.map((x) => [x.seatId, x.payout]))).toEqual({ a: 180, b: 200, dealer: 0 });
+    expect(dealer.house).toBe(-180);
+    const table = settlePlayers([{ seatId: "a", total: 21, safer: 1 }, { seatId: "b", total: 19 }], 100, 0.1, 0.1);
+    expect(table.standings[0]!.payout).toBe(172); // share 180: 100 back + 80 × 0.9
+    expect(table.house).toBe(28);
   });
 });

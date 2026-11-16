@@ -1,11 +1,11 @@
 export { NBA_V1, NBA_V2, QuarterScorer, SPORTSJACK_V0, SPORTSJACK_V1, STANDARD_PPR, round, scoreStats } from "./scoring.ts";
 export type { ScoringRules } from "./scoring.ts";
-export { ALPHA_RULES, NBA_ALPHA_RULES, NBA_ALPHA_RULES_1, faceValue, roundValue, rulesFor } from "./rules.ts";
+export { ALPHA_RULES, ALPHA_RULES_1, NBA_ALPHA_RULES, NBA_ALPHA_RULES_1, NBA_ALPHA_RULES_2, SAFER_CARDS, faceValue, roundValue, rulesFor } from "./rules.ts";
 export type { GameRules } from "./rules.ts";
 export { buildDeck } from "./deck.ts";
 export type { Card } from "./deck.ts";
 export { seededRandom } from "./random.ts";
-export { compareFinish, settleDealer, settlePlayers } from "./settlement.ts";
+export { afterSaferCut, compareFinish, settleDealer, settlePlayers } from "./settlement.ts";
 export type { Finish, Settlement, Standing } from "./settlement.ts";
 export { ActionRefused, Hand, shortName } from "./hand.ts";
 export type { HandOptions, Injury, RefusalReason, SeatView, TableMode, ValueChange } from "./hand.ts";

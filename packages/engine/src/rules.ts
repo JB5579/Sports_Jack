@@ -1,5 +1,5 @@
 import type { Sport } from "@sportsjack/feed";
-import { NBA_V1, SPORTSJACK_V1, type ScoringRules } from "./scoring.ts";
+import { NBA_V1, NBA_V2, SPORTSJACK_V1, type ScoringRules } from "./scoring.ts";
 
 /** Everything a hand's outcome depends on, shown to players on the rules screen. */
 export interface GameRules {
@@ -25,10 +25,25 @@ export const ALPHA_RULES: GameRules = {
   rake: 0.1,
 };
 
-/** NBA: basketball scores constantly, so faces scale less and live points weigh less (docs/analysis/NBA-tuning.md). */
-export const NBA_ALPHA_RULES: GameRules = {
+/**
+ * NBA: basketball scores constantly, so faces scale less and live points weigh less
+ * (docs/analysis/NBA-tuning.md). `alpha-nba-1` scored under nba-v1; kept so hands played
+ * under it can still be replayed and audited (MISSION.md invariant 4).
+ */
+export const NBA_ALPHA_RULES_1: GameRules = {
   id: "alpha-nba-1",
   scoring: NBA_V1,
+  liveWeight: 0.2,
+  faceMin: 2,
+  faceMax: 10,
+  facePerProjectedPoint: 0.25,
+  rake: 0.1,
+};
+
+/** The current NBA rules: nba-v2 scoring (turnover −1.5), same face scale and live weight, retuned 2026-11-16. */
+export const NBA_ALPHA_RULES: GameRules = {
+  id: "alpha-nba-2",
+  scoring: NBA_V2,
   liveWeight: 0.2,
   faceMin: 2,
   faceMax: 10,

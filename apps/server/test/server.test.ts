@@ -281,7 +281,7 @@ describe("SportsJack server", () => {
     const runner = lobby.runners.get("401873197")!;
     expect(runner.periods.map((p) => [p.q, p.start])).toEqual([[1, 720], [2, 720], [3, 720], [4, 720], [5, 300], [6, 300]]);
     const summary = lobby.summary();
-    expect(summary.games[0]).toMatchObject({ sport: "nba", home: "OKC", away: "SA", rules: { id: "alpha-nba-1", liveWeight: 0.2 } });
+    expect(summary.games[0]).toMatchObject({ sport: "nba", home: "OKC", away: "SA", rules: { id: "alpha-nba-2", liveWeight: 0.2 } });
     const p = await phone(port, tokenA);
     const id = (p.welcome.account as { id: string }).id;
     const table = [...lobby.tables.values()][0]!;
@@ -289,7 +289,7 @@ describe("SportsJack server", () => {
     await p.next((m) => m.type === "sat");
     quarter(lobby, 6);
     const view = table.view(id);
-    expect(view.hand).toMatchObject({ rules: "alpha-nba-1", liveWeight: 0.2 });
+    expect(view.hand).toMatchObject({ rules: "alpha-nba-2", liveWeight: 0.2 });
     for (const c of view.hand!.mine!.cards) expect(["OKC", "SA"]).toContain(c.team);
     untilSettled(lobby, table);
     expect(table.result!.qtr).toBe(1);
@@ -306,7 +306,7 @@ describe("SportsJack server", () => {
     expect(table.spec).toMatchObject({ gameId: "401859967", practice: true });
     lobby.advance(1.5);
     const view = table.view(id);
-    expect(view.hand).toMatchObject({ qtr: 4, rules: "alpha-nba-1", clock: 720 });
+    expect(view.hand).toMatchObject({ qtr: 4, rules: "alpha-nba-2", clock: 720 });
     for (const c of view.hand!.mine!.cards) expect(["NY", "SA"]).toContain(c.team);
     p.send({ type: "practice" });
     const nfl = await p.next((m) => m.type === "sat") as { tableId: string };

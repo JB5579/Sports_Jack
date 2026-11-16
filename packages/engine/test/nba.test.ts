@@ -23,7 +23,7 @@ describe("NBA hands on real games", () => {
     expect(hand.cards("you")).toHaveLength(2);
   });
 
-  it("moves Wembanyama's card by a fifth of his nba-v1 points through the Finals' first quarter", () => {
+  it("moves Wembanyama's card by a fifth of his nba-v2 points through the Finals' first quarter", () => {
     const { hand, events } = nbaHand("401859967", 1);
     for (const e of events) hand.apply(e);
     expect(hand.over).toBe(true);

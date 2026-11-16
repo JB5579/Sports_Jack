@@ -33,6 +33,15 @@ export const NBA_V1: ScoringRules = {
   },
 };
 
+/**
+ * nba-v1 with a turnover at −1.5: a mistake should cost a card about as much as a steal
+ * earns (MVP decisions 2026-11-16; PrizePicks uses −1). Everything else is unchanged.
+ */
+export const NBA_V2: ScoringRules = {
+  id: "nba-v2",
+  points: { ...NBA_V1.points, tov: -1.5 },
+};
+
 /** v0 plus common IDP points, so defenders on the roster deck can surprise (MISSION.md Q10). */
 export const SPORTSJACK_V1: ScoringRules = {
   id: "sportsjack-v1",

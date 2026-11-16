@@ -41,3 +41,26 @@ that share near a quarter of the total.
 points × 0.2.** Hitting to a face total of 13 lands 56% of hands in 17–21 with 15%
 busts, the same bust rate as the NFL tuning. Hitting to 15 busts 48%, so NBA hands
 reward stopping earlier than NFL ones.
+
+## 2026-11-16: turnovers at −1.5 (`nba-v2`, `alpha-nba-2`)
+
+The MVP review set an NBA turnover at −1.5 points (it was −0.5; PrizePicks uses −1).
+Everything else in the scoring is unchanged. The same season, re-run with
+`tools/analysis/nba_tuning.ts 2026 0.25 0.15,0.2,0.25 13,15 nba-v2`:
+
+| Scoring | Per card median | p90 | Hit to 13: median | In 17–21 | Over 21 | Live share |
+|---|---|---|---|---|---|---|
+| nba-v1 (k 0.25, w 0.20) | 3.25 | 12 | 18.3 | 55% | 15% | 23% |
+| **nba-v2 (k 0.25, w 0.20)** | **3** | **11.5** | **18.1** | **54%** | **14%** | **23%** |
+| nba-v2 (k 0.25, w 0.15) | 3 | 11.5 | 17.1 | 48% | 4% | 18% |
+| nba-v2 (k 0.25, w 0.25) | 3 | 11.5 | 19.1 | 52% | 26% | 27% |
+
+A turnover is rare enough per quarter that the bigger penalty barely moves where hands
+land, so the face scale (0.25) and live weight (0.2) stay. What changes is the swing: a
+player who turns it over twice now loses 0.6 of card value instead of 0.2.
+
+The fixture games' projections (`fixtures/nba/projections/`) were computed under nba-v1.
+Under nba-v2 a player's projection falls by his turnovers per quarter (about 0.3 for a
+typical starter), which moves a face by under 0.1 before rounding, so the fixtures are
+left as they are. Regenerate them with `tools/nba/projections.ts` when the next NBA games
+are added.

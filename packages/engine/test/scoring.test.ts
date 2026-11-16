@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadNflverseGame } from "@sportsjack/feed";
-import { QuarterScorer, SPORTSJACK_V0, SPORTSJACK_V1, STANDARD_PPR } from "../src/index.ts";
+import { NBA_V1, NBA_V2, QuarterScorer, SPORTSJACK_V0, SPORTSJACK_V1, STANDARD_PPR, scoreStats } from "../src/index.ts";
 import { boxscore, GAMES, gamePath } from "../../feed/test/fixtures.ts";
 
 describe("fantasy scoring on real games", () => {
@@ -51,5 +51,14 @@ describe("fantasy scoring on real games", () => {
     expect(hall?.team).toBe("SEA");
     expect(v0.points(3, hall!.playerId)).toBe(0);
     expect(v1.points(3, hall!.playerId)).toBeGreaterThanOrEqual(2 + 3);
+  });
+
+  it("nba-v2 changes only the turnover, to −1.5, and leaves nba-v1 as it was", () => {
+    for (const key of Object.keys(NBA_V1.points) as (keyof typeof NBA_V1.points)[]) {
+      if (key !== "tov") expect(NBA_V2.points[key]).toBe(NBA_V1.points[key]);
+    }
+    expect(NBA_V1.points.tov).toBe(-0.5);
+    expect(scoreStats({ tov: 2 }, NBA_V2)).toBe(-3);
+    expect(scoreStats({ pts: 2, stl: 1, tov: 1 }, NBA_V2)).toBe(2.5);
   });
 });

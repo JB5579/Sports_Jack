@@ -1,15 +1,17 @@
 // NBA scoring tuning: which face scale and live weight land hands near 21 on real games?
 //   uv run --with pyarrow tools/nba/fetch_fixtures.py --season-csv 2026
-//   node --experimental-strip-types --max-old-space-size=4096 tools/analysis/nba_tuning.ts 2026 [k,...] [w,...] [targets]
+//   node --experimental-strip-types --max-old-space-size=4096 tools/analysis/nba_tuning.ts 2026 [k,...] [w,...] [targets] [scoring id]
 // Results are in docs/analysis/NBA-tuning.md.
 import { createReadStream, readFileSync } from "node:fs";
 import { parse } from "csv-parse";
 import { parse as parseSync } from "csv-parse/sync";
 import { nbaGameFromRows } from "../../packages/feed/src/index.ts";
-import { NBA_V1, QuarterScorer, seededRandom } from "../../packages/engine/src/index.ts";
+import { NBA_V1, NBA_V2, QuarterScorer, seededRandom } from "../../packages/engine/src/index.ts";
 
 type Row = Record<string, string>;
 const season = process.argv[2] ?? "2026";
+const SCORING = process.argv[6] === "nba-v1" ? NBA_V1 : NBA_V2;
+console.log(`scoring ${SCORING.id}`);
 const games = new Map<string, Row[]>();
 for await (const row of createReadStream(`.cache/nba/play_by_play_${season}.csv`).pipe(parse({ columns: true })) as AsyncIterable<Row>) {
   const list = games.get(row.game_id!) ?? [];
@@ -33,7 +35,7 @@ for (const [gameId, rows] of games) {
   if (!deck || deck.length < 16) continue;
   rows.sort((a, b) => Number(a.sequence_number) - Number(b.sequence_number));
   const { game, events } = nbaGameFromRows(rows);
-  const scorer = new QuarterScorer(NBA_V1);
+  const scorer = new QuarterScorer(SCORING);
   for (const e of events) scorer.apply(e);
   for (const qtr of [1, 2, 3, 4]) quarters.push({ date: game.date, q: { cards: deck, points: new Map(deck.map((p) => [p, scorer.points(qtr, p)])) } });
   for (const p of deck) {

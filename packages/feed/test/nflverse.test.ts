@@ -91,4 +91,12 @@ describe("nflverse replay source on real games", () => {
       expect([...scorers].filter((id) => !inDeck.has(id))).toEqual([]);
     });
   }
+
+  it("reads who was hurt on a play from the play-by-play", () => {
+    const { events } = loadNflverseGame(gamePath("2026_07_NE_CHI"));
+    const hurt = events.flatMap((e) => (e.kind === "play" && e.injured ? e.injured.map((i) => `Q${e.clock.qtr} ${i.team} ${i.name}`) : []));
+    expect(hurt).toEqual(["Q2 NE K.Byard", "Q3 CHI M.Muhammad", "Q4 CHI C.Kmet", "Q4 NE C.Barmore"]);
+    const plays = events.filter((e) => e.kind === "play");
+    expect(plays.filter((e) => e.injured).length).toBe(4);
+  });
 });

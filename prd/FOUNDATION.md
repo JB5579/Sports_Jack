@@ -81,8 +81,6 @@ One auditable record of every movement of chips, and later of any other unit of 
 
 **Known gaps**
 
-- A hand that is dealt but never settles (the server stops mid-quarter) leaves its antes in
-  the pot. A refund transaction for abandoned pots is not built.
 - `house:table` does not yet separate the rake from the dealer's and bots' results.
 - The ledger is tied to SQLite. Piece 11 moves it to Postgres behind the same interface.
 
@@ -136,6 +134,21 @@ records its contest in the `hands` table.
 
 **Next:** friends' tables and the daily hand on a classic game are new contest settings, not
 new code paths.
+
+## Game situations (built 2026-11-16)
+
+The edge-case rules approved in the MVP requirements. They apply to every contest.
+
+| Situation | Rule | How it is detected |
+|---|---|---|
+| A player is injured | His card keeps its value as of that play. Every hand holding him that can still act gets one extra Burn. He is not dealt again that hand. | NFL: the play-by-play's "TEAM-##-F.Last was injured during the play", matched to the card by team and short name. NBA play-by-play does not report injuries, so this rule waits for a live source that does. |
+| A blowout | No change: the cards keep moving with every play. | — |
+| The game is suspended or cancelled | Every live hand on it is void: no result, every ante refunded. | A `game_status` event from a live feed, or the owner: `POST /api/admin/void` with `{"game": ...}` or `{"table": ...}`. |
+| The server stops mid-quarter | Same as a void hand: on start, every pot still holding antes is refunded. | Automatic on start. |
+
+Refunds are ledger transactions keyed `refund:<hand>`, so they are paid once. A void hand is
+not in the hand history and does not count toward the rewards track; it is logged as a
+`hand_void` event.
 
 ## 4. Variant switches (built)
 

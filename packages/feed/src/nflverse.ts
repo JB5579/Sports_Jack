@@ -110,6 +110,13 @@ export interface RecordedGame {
   events: FeedEvent[];
 }
 
+/** "SEA-8-C.Bryant was injured during the play." → the team and short name, for each one named. */
+function injuries(desc: string): { injured?: { team: string; name: string }[] } {
+  const found = [...desc.matchAll(/\b([A-Z]{2,3})-\d+-([A-Z][A-Za-z.'\-]*) was injured/g)].map((m) => ({ team: m[1]!, name: m[2]! }));
+  const unique = found.filter((f, i) => found.findIndex((g) => g.team === f.team && g.name === f.name) === i);
+  return unique.length ? { injured: unique } : {};
+}
+
 /** Turn one game's nflverse play-by-play rows into ordered feed events. */
 export function gameFromRows(rows: Row[]): RecordedGame {
   const first = rows[0];
@@ -159,6 +166,7 @@ export function gameFromRows(rows: Row[]): RecordedGame {
       possession: row.posteam ?? "",
       description: desc,
       deltas: playDeltas(row),
+      ...injuries(desc),
     });
   }
   return { game, events };

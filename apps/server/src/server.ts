@@ -100,6 +100,18 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       if (!isAdmin(req, url)) return json(res, 404, { error: "not found" });
       if (url.pathname === "/api/admin/summary") return json(res, 200, lobby.store.testSummary());
       if (url.pathname === "/api/admin/audit") return json(res, 200, lobby.store.audit());
+      if (url.pathname === "/api/admin/void" && req.method === "POST") {
+        // The game was suspended or cancelled: void every live hand on it, or at one table, and
+        // refund the antes. {"game": "2025_22_SEA_NE"} or {"table": "t3"}, with an optional "reason".
+        const b = await body(req).catch(() => null);
+        const game = typeof b?.game === "string" ? b.game : null;
+        const tableId = typeof b?.table === "string" ? b.table : null;
+        if (!game && !tableId) return json(res, 400, { error: "name a game or a table" });
+        const reason = text(b?.reason, 120) || "The game was suspended";
+        const voided = [...lobby.tables.values()].filter((t) => (game ? t.spec.gameId === game : t.spec.id === tableId) && t.void(reason)).map((t) => t.spec.id);
+        for (const id of voided) dirty.add(id);
+        return json(res, 200, { voided });
+      }
       if (url.pathname === "/api/admin/codes") {
         if (req.method === "POST") {
           // A creator code for an influencer: {"code": "GIANNI", "creator": "Gianni"}.

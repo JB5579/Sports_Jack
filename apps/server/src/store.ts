@@ -85,6 +85,11 @@ export class Store {
     if (!columns("hand_seats").includes("variants")) this.#db.exec("ALTER TABLE hand_seats ADD COLUMN variants TEXT NOT NULL DEFAULT '{}'");
     this.ledger = new Ledger(this.#db);
     this.#migrate();
+    // Nothing is live when the server starts, so a pot still holding antes belongs to a hand
+    // that was dealt and never settled (the server stopped mid-quarter). Give them back.
+    for (const r of this.#db.prepare("SELECT account_id FROM ledger_balances WHERE account_id LIKE 'pot:%' AND balance > 0").all() as { account_id: string }[]) {
+      this.refundPot(r.account_id.slice("pot:".length), "the server restarted before the hand settled");
+    }
     // Every player has a referral code from the start, so a friend's link always resolves.
     for (const r of this.#db.prepare("SELECT id FROM ledger_accounts WHERE kind = 'player' AND id NOT IN (SELECT account_id FROM referral_codes WHERE account_id IS NOT NULL)").all() as { id: string }[]) {
       this.referralCode(r.id);
@@ -271,6 +276,28 @@ export class Store {
       if (error instanceof LedgerError && error.code === "insufficient") return false;
       throw error;
     }
+  }
+
+  /**
+   * Give every ante in a hand's pot back to whoever paid it, for a void hand (the game was
+   * suspended or cancelled) or one that never settled. Returns what each player got back;
+   * calling it again pays nothing more.
+   */
+  refundPot(handId: string, reason: string): Record<string, number> {
+    const refunds: Record<string, number> = {};
+    this.#tx(() => {
+      const paid = this.#db.prepare(`SELECT e.account_id AS account, -SUM(e.amount) AS amount FROM ledger_entries e JOIN ledger_tx t ON t.id = e.tx_id
+        JOIN ledger_accounts a ON a.id = e.account_id WHERE t.ref = ? AND t.kind = 'ante' AND a.kind = 'player' GROUP BY e.account_id`).all(handId) as { account: string; amount: number }[];
+      const inPot = this.ledger.balance(pot(handId));
+      const entries = paid.filter((p) => Number(p.amount) > 0).map((p) => ({ account: p.account, amount: Number(p.amount) }));
+      const total = entries.reduce((sum, e) => sum + e.amount, 0);
+      if (total === 0 || inPot !== total) return; // nothing to give back, or the pot was already paid out
+      entries.push({ account: pot(handId), amount: -total });
+      if (this.ledger.post({ key: `refund:${handId}`, kind: "refund", ref: handId, entries, meta: { reason } })) {
+        for (const e of entries) if (e.amount > 0) refunds[e.account] = e.amount;
+      }
+    });
+    return refunds;
   }
 
   /** Record a settled hand and pay it out. Returns the rewards each player earned with it. */

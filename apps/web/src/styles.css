@@ -267,3 +267,7 @@ details.open-table summary::-webkit-details-marker { display: none; }
 .rewards-earned { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: rgba(226,182,90,0.12); }
 .rewards-earned div { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; }
 .rewards-earned strong { color: var(--gold-shine); }
+
+/* An injured player's card: value fixed, free Burn for the holder. */
+.pcard .injured { position: absolute; right: 6px; top: 22px; font-family: var(--mono); font-size: 9px; font-weight: 700; color: #fff; background: var(--down); padding: 1px 4px; border-radius: 4px; }
+.pcard.mini .injured { top: 6px; }

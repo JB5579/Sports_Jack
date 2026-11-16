@@ -3,7 +3,7 @@ import { dealerRuleText, decide, freezeWindow, Hand, type SeatView } from "../sr
 import { realGame } from "./game.ts";
 
 const view = (total: number, clock: number, over: Partial<SeatView> = {}): SeatView => ({
-  cards: [], total, frozen: false, burned: false, canAct: true, timeLeft: clock / 900, clock, lockout: 0,
+  cards: [], total, frozen: false, burned: false, burnsLeft: 1, canAct: true, timeLeft: clock / 900, clock, lockout: 0,
   deckAverage: { face: 4, projection: 1 }, liveWeight: 0.5, ...over,
 });
 

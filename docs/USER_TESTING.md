@@ -44,6 +44,8 @@ All three need the admin key (`SPORTSJACK_ADMIN_TOKEN`, under the Render service
   many players are on each value. The summary's `byVariant` gives continuation for each value.
 - `<your URL>/api/admin/codes?key=<key>`: creator codes and how many friends joined and played through
   each. Make one by sending `{"code": "GIANNI", "creator": "Gianni"}` to the same address as a POST.
+- `<your URL>/api/admin/void?key=<key>` (POST `{"game": "<game id>", "reason": "Lightning delay"}`): voids every
+  live hand on a game that was suspended or cancelled and refunds the antes.
 - `<your URL>/api/admin/audit?key=<key>`: a check of the chip ledger. `ok: true` means every
   chip is accounted for (see `prd/FOUNDATION.md` §1).
 

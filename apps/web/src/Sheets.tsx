@@ -97,6 +97,15 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
     ? (me.rank < dealer.rank ? "You win" : me.rank === dealer.rank ? "Push" : "You lose")
     : (iWin ? (winners.length > 1 ? "Split pot" : "You win") : "You lose");
   const { game } = view;
+  if (result.void) {
+    return (
+      <Sheet label="Hand void" onClose={onNext}>
+        <div className="sheet-head"><div><div className="label">{qName(result.qtr)} · no result</div><h2>Hand void</h2></div></div>
+        <p className="help">{result.void}, so this hand doesn't count. {view.table.ante ? `Your ${view.table.ante.toLocaleString()}-chip ante is back in your balance.` : "Nothing was at stake."}</p>
+        <button className="primary" type="button" onClick={onLobby}>Back to lobby</button>
+      </Sheet>
+    );
+  }
   if (view.table.practice) {
     return (
       <Sheet label="Practice hand result" onClose={onLobby}>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ActionRefused, faceValue, Hand } from "../src/index.ts";
+import { ActionRefused, faceValue, Hand, shortName } from "../src/index.ts";
 import { dealerHand, isPlay, playUntil, realGame } from "./game.ts";
 
 const HOLLINS = "00-0033555";
@@ -69,6 +69,69 @@ describe("the shared deal", () => {
     expect(again.cards("you")).toEqual(hand.cards("you"));
     expect(again.cards("dealer")).toEqual(hand.cards("dealer"));
     expect(hand.cards("dealer")).not.toEqual(hand.cards("you"));
+  });
+});
+
+describe("injuries and void hands (MVP edge-case rules)", () => {
+  // Chicago at New England, 2026: Cole Kmet "was injured during the play" with 5:46 left in Q4.
+  const KMET_PLAY = "CHI-85-C.Kmet was injured";
+  const kmetHand = (seats: Record<string, string[]>) => {
+    const { events, deck } = realGame("2026_07_NE_CHI");
+    const kmet = deck.find((c) => c.team === "CHI" && shortName(c.name) === "C.Kmet")!;
+    const hand = new Hand({ gameId: "2026_07_NE_CHI", qtr: 4, periodStart: 900, lockout: 0, ante: 25, mode: "players",
+      deck, seats: Object.keys(seats), seed: 3 });
+    return { hand, events, kmet };
+  };
+
+  it("names players the way play-by-play does", () => {
+    expect(shortName("Kenneth Walker III")).toBe("K.Walker");
+    expect(shortName("Cole Kmet")).toBe("C.Kmet");
+    expect(shortName("Amon-Ra St. Brown")).toBe("A.St. Brown");
+  });
+
+  it("keeps an injured player's value, gives his holder a Burn, and never deals him again", () => {
+    const { hand, events, kmet } = kmetHand({ a: [], b: [] });
+    const holder = ["a", "b"].find((s) => hand.cards(s).includes(kmet.playerId));
+    const injuryPlay = playUntil(hand, events, isPlay(KMET_PLAY));
+    const before = hand.points(kmet.playerId);
+    hand.apply(injuryPlay);
+    expect(hand.injured(kmet.playerId)).toBe(true);
+    expect(hand.injuries).toHaveLength(1);
+    expect(hand.injuries[0]!.clock).toBe(346);
+    const fixed = hand.points(kmet.playerId);
+    expect(fixed).toBeGreaterThanOrEqual(before); // his 8-yard catch on that play counts
+    for (const e of events) hand.apply(e);
+    expect(hand.points(kmet.playerId)).toBe(fixed);
+    if (holder) expect(hand.burnsLeft(holder)).toBe(2);
+    for (const s of ["a", "b"].filter((x) => x !== holder)) expect(hand.burnsLeft(s)).toBe(1);
+  });
+
+  it("gives the free Burn to whoever holds him when he goes down", () => {
+    // Find a seed that deals Kmet to the first seat, then play to his injury.
+    const { events, deck } = realGame("2026_07_NE_CHI");
+    const kmet = deck.find((c) => c.team === "CHI" && shortName(c.name) === "C.Kmet")!;
+    let hand: Hand | null = null;
+    for (let seed = 1; seed < 5000 && !hand; seed++) {
+      const h = new Hand({ gameId: "2026_07_NE_CHI", qtr: 4, periodStart: 900, lockout: 0, ante: 25, mode: "players", deck, seats: ["a", "b"], seed });
+      if (h.cards("a").includes(kmet.playerId) && !h.cards("b").includes(kmet.playerId)) hand = h;
+    }
+    expect(hand).not.toBeNull();
+    hand!.apply(playUntil(hand!, events, isPlay(KMET_PLAY)));
+    expect([hand!.burnsLeft("a"), hand!.burnsLeft("b")]).toEqual([2, 1]);
+    hand!.burn("a", kmet.playerId);
+    hand!.burn("a", hand!.cards("a")[1]!);
+    expect(() => hand!.burn("a", hand!.cards("a")[0]!)).toThrow(ActionRefused);
+    for (let i = 0; i < 40; i++) hand!.hit("b");
+    expect(hand!.cards("b")).not.toContain(kmet.playerId);
+  });
+
+  it("voids a hand: it ends without a result and never settles", () => {
+    const { hand } = kmetHand({ a: [], b: [] });
+    hand.void("game suspended");
+    expect(hand.over).toBe(true);
+    expect(hand.voided).toBe("game suspended");
+    expect(() => hand.settle()).toThrow(/void/);
+    expect(() => hand.hit("a")).toThrow(ActionRefused);
   });
 });
 

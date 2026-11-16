@@ -185,11 +185,14 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       case "sit": {
         const listed = table(msg.tableId);
         // Player tables deal at once on the player's own replay (MISSION.md, 2026-11-08).
-        const t = listed.spec.mode === "players" && !listed.spec.personal ? lobby.personal(c.accountId, listed) : listed;
+        // Pooled contests have no bots and everyone shares one replay, so they are sat at directly.
+        const botTable = listed.spec.mode === "players" && listed.spec.contest.fillWithBots > 0;
+        const t = botTable && !listed.spec.personal ? lobby.personal(c.accountId, listed) : listed;
+        if (t.spec.contest.seats !== null && !t.seated.has(c.accountId) && t.seated.size + t.pending.size >= t.spec.contest.seats) throw new Error("table_full");
         if (c.tableId && c.tableId !== t.spec.id) lobby.tables.get(c.tableId)?.leave(c.accountId);
         const status = t.sit(c.accountId);
         c.tableId = t.spec.id;
-        log(c, "sit", { tableId: t.spec.id, gameId: t.spec.gameId, mode: t.spec.mode, ante: t.spec.ante, lockout: t.spec.lockout, status, opened: msg.type === "open" });
+        log(c, "sit", { tableId: t.spec.id, gameId: t.spec.gameId, mode: t.spec.mode, contest: t.spec.contest.name, ante: t.spec.ante, lockout: t.spec.lockout, status, opened: msg.type === "open" });
         send(c.socket, { type: "sat", tableId: t.spec.id, status });
         sendTable(c);
         lobbyDirty = true;

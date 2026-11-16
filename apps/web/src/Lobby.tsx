@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { LobbySummary, OpenTableRequest } from "./api.ts";
-import { clockText, qName } from "./format.ts";
+import { clockText, entryText, qName, tableName } from "./format.ts";
 
 type Game = LobbySummary["games"][number];
 
@@ -61,8 +61,8 @@ export function Lobby({ lobby, balance, sport, onSport, onSit, onOpen, onWallet,
               {tables.map((t) => (
                 <div key={t.id} className="trow">
                   <div>
-                    <div className="what">{t.mode === "dealer" ? `House dealer · ${t.level === "sharp" ? "Sharp" : "Easy"}` : "Player table"}</div>
-                    <div className="meta">{t.ante}-chip ante · {lockoutText(t.lockout)} · {t.seated} seated</div>
+                    <div className="what">{tableName(t)}</div>
+                    <div className="meta">{entryText(t)} · {lockoutText(t.lockout)} · {t.seated} seated</div>
                   </div>
                   <button type="button" onClick={() => onSit(t.id)}>Sit</button>
                 </div>

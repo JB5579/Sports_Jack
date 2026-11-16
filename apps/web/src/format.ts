@@ -78,3 +78,23 @@ export function versus(you: number, dealer: number): string {
   if (Math.abs(you - dealer) < 0.05) return "Even with the dealer";
   return you > dealer ? `You lead the dealer by ${fmt1(you - dealer)}` : `Dealer leads by ${fmt1(dealer - you)}`;
 }
+
+/** The parts of a table's spec the lobby and table screens name it by. */
+interface ContestSpec {
+  mode: "dealer" | "players";
+  level: string;
+  ante: number;
+  contest: { name: string; prize: { kind: string; amounts?: number[] } };
+}
+
+/** "House dealer · Easy", "Player table", or the contest's own name. */
+export function tableName(t: ContestSpec): string {
+  if (t.contest.prize.kind === "pool") return t.contest.name;
+  return t.mode === "dealer" ? `House dealer · ${t.level === "sharp" ? "Sharp" : "Easy"}` : "Player table";
+}
+
+/** "25-chip ante", or for a free contest its prizes: "Free · prizes 500 / 250 / 100". */
+export function entryText(t: ContestSpec): string {
+  if (t.contest.prize.kind === "pool") return `Free · prizes ${(t.contest.prize.amounts ?? []).map((a) => a.toLocaleString("en-US")).join(" / ")}`;
+  return `${t.ante.toLocaleString("en-US")}-chip ante`;
+}

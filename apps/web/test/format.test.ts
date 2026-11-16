@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { clockText, playText, qName, shortName, statLine, versus } from "../src/format.ts";
+import { clockText, entryText, playText, qName, shortName, statLine, tableName, versus } from "../src/format.ts";
 
 describe("phone formatting", () => {
   it("shows the game clock and quarter the way the broadcast does", () => {
@@ -33,5 +33,16 @@ describe("you versus the dealer", () => {
     expect(versus(22.5, 18)).toBe("You're over 21 · dealer has 18.0");
     expect(versus(22, 24)).toBe("Both over 21 · you're closer, by 2.0");
     expect(versus(20, 20)).toBe("Even with the dealer");
+  });
+});
+
+describe("contest names", () => {
+  const contest = (kind: string, amounts?: number[]) => ({ name: "Free quarter contest", prize: { kind, ...(amounts ? { amounts } : {}) } });
+  it("names tables by their contest and shows what entry costs", () => {
+    expect(tableName({ mode: "dealer", level: "sharp", ante: 100, contest: contest("table") })).toBe("House dealer · Sharp");
+    expect(entryText({ mode: "dealer", level: "sharp", ante: 1000, contest: contest("table") })).toBe("1,000-chip ante");
+    const pool = { mode: "players" as const, level: "easy", ante: 0, contest: contest("pool", [500, 250, 100]) };
+    expect(tableName(pool)).toBe("Free quarter contest");
+    expect(entryText(pool)).toBe("Free · prizes 500 / 250 / 100");
   });
 });

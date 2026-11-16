@@ -11,3 +11,5 @@ export { ActionRefused, Hand } from "./hand.ts";
 export type { HandOptions, RefusalReason, SeatView, TableMode, ValueChange } from "./hand.ts";
 export { DEALER_CHECK_SECONDS, DEALER_RULES, dealerRuleText, decide, freezeWindow } from "./dealer.ts";
 export type { DealerLevel, Decision } from "./dealer.ts";
+export { contestProblem, entryAmount, poolPayouts } from "./contest.ts";
+export type { ContestRules, EntryRule, PrizeRule } from "./contest.ts";

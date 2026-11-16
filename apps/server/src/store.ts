@@ -22,6 +22,13 @@ export interface HandRecord {
   ruleset: string;
   settlement: unknown;
   log: unknown;
+  /** The contest the hand was played for (entry, prizes, deal). */
+  contest?: unknown;
+  /**
+   * Who pays what the pot does not cover, and receives what is left in it. The house table
+   * by default; a sponsor account for a sponsored pool.
+   */
+  fundedBy?: { account: string; kind: string };
   seats: { accountId: string; cards: string[]; total: number; payout: number; ante: number }[];
 }
 
@@ -63,6 +70,9 @@ export class Store {
       CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, account_id TEXT NOT NULL, name TEXT NOT NULL,
         props TEXT NOT NULL, at TEXT NOT NULL);
     `);
+    // Hands from before the contest layer have no contest recorded.
+    const handColumns = (this.#db.prepare("PRAGMA table_info(hands)").all() as { name: string }[]).map((c) => c.name);
+    if (!handColumns.includes("contest")) this.#db.exec("ALTER TABLE hands ADD COLUMN contest TEXT NOT NULL DEFAULT '{}'");
     this.ledger = new Ledger(this.#db);
     this.#migrate();
   }
@@ -127,23 +137,26 @@ export class Store {
 
   recordHand(hand: HandRecord): void {
     this.#tx(() => {
-      this.#db.prepare("INSERT INTO hands (id, table_id, game_id, qtr, seed, commitment, ruleset, settlement, log, at) VALUES (?,?,?,?,?,?,?,?,?,?)")
+      this.#db.prepare("INSERT INTO hands (id, table_id, game_id, qtr, seed, commitment, ruleset, settlement, log, contest, at) VALUES (?,?,?,?,?,?,?,?,?,?,?)")
         .run(hand.id, hand.tableId, hand.gameId, hand.qtr, hand.seed, hand.commitment, hand.ruleset,
-          JSON.stringify(hand.settlement), JSON.stringify(hand.log), now());
+          JSON.stringify(hand.settlement), JSON.stringify(hand.log), JSON.stringify(hand.contest ?? {}), now());
       for (const s of hand.seats) {
         this.#db.prepare("INSERT INTO hand_seats (hand_id, account_id, cards, total, ante, payout) VALUES (?,?,?,?,?,?)")
           .run(hand.id, s.accountId, JSON.stringify(s.cards), s.total, s.ante, s.payout);
       }
       // Pay the pot out. Bots and the dealer hold no accounts, so their side of the hand,
-      // and the rake, is the difference between the pot and the payouts: `house:table`.
+      // and the rake, is the difference between the pot and the payouts, which goes to or
+      // comes from `house:table`. A sponsored pool has no pot: the sponsor pays the prizes.
+      const funder = hand.fundedBy ?? { account: SYSTEM.table, kind: "settle" };
+      this.ledger.open(funder.account, "system");
       const inPot = this.ledger.balance(pot(hand.id));
       const entries = hand.seats.filter((s) => s.payout > 0).map((s) => ({ account: s.accountId, amount: s.payout }));
       const paid = entries.reduce((sum, e) => sum + e.amount, 0);
       if (inPot !== 0) entries.push({ account: pot(hand.id), amount: -inPot });
-      if (inPot !== paid) entries.push({ account: SYSTEM.table, amount: inPot - paid });
+      if (inPot !== paid) entries.push({ account: funder.account, amount: inPot - paid });
       if (entries.length > 0) {
         this.ledger.open(pot(hand.id), "system");
-        this.ledger.post({ key: `settle:${hand.id}`, kind: "settle", ref: hand.id, entries });
+        this.ledger.post({ key: `settle:${hand.id}`, kind: funder.kind, ref: hand.id, entries });
       }
     });
   }

@@ -23,6 +23,13 @@ export interface HandOptions {
   dealerSeat?: string;
   seed: number;
   rules?: GameRules;
+  /**
+   * `own` (the default): one draw sequence for the table, so each seat gets different cards.
+   * `shared`: every seat draws from its own copy of the same sequence, so everyone is dealt
+   * the same two cards, and two seats that make the same moves get the same cards. Only
+   * decisions separate the hands (prd/FOUNDATION.md §3).
+   */
+  deal?: "own" | "shared";
 }
 
 export type RefusalReason = "settled" | "frozen" | "locked" | "burn_used" | "not_in_hand" | "unknown_seat";
@@ -39,6 +46,7 @@ interface SeatState {
   cards: string[];
   frozenAt: number | null;
   burned: boolean;
+  draw: () => number;
 }
 
 /** One card-value change, with the feed event behind it (MISSION.md invariant 2). */
@@ -93,7 +101,8 @@ export class Hand {
       throw new Error("a dealer table needs its dealer seat among the seats");
     }
     for (const id of options.seats) {
-      const seat: SeatState = { cards: [], frozenAt: null, burned: false };
+      const draw = options.deal === "shared" ? seededRandom(options.seed) : this.#draw;
+      const seat: SeatState = { cards: [], frozenAt: null, burned: false, draw };
       this.#seats.set(id, seat);
       // One at a time: each draw has to see the cards already in the hand.
       seat.cards.push(this.#drawFor(seat));
@@ -236,7 +245,7 @@ export class Hand {
   #drawFor(seat: SeatState, excluding?: string): string {
     const deck = this.options.deck;
     for (;;) {
-      const card = deck[Math.floor(this.#draw() * deck.length)]!.playerId;
+      const card = deck[Math.floor(seat.draw() * deck.length)]!.playerId;
       if (!seat.cards.includes(card) && card !== excluding) return card;
     }
   }

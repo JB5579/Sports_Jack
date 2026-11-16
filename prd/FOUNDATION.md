@@ -1,6 +1,6 @@
 # SportsJack foundation: what we need whatever the game becomes
 
-**Status:** proposed 2026-11-16, awaiting the owner's approval. §1 (the ledger) is built.
+**Status:** approved by the owner 2026-11-16. §1 (the ledger) and §3 (contests) are built.
 **Parents:** `MISSION.md` governs. `prd/PHASE1-ALPHA.md` scopes the play-money alpha. This
 document adds the parts of the product that every game design and every business model
 under discussion will need, so they can be built while the MVP shape is still being decided.
@@ -22,7 +22,7 @@ decision to the owner.
 |---|---|---|---|
 | 1 | Ledger | **Built** (`packages/ledger`) | No |
 | 2 | Accounts | Device-scoped accounts only | Yes: the sign-up method |
-| 3 | Contest layer | Not built; tables hold this logic today | No |
+| 3 | Contest layer | **Built** (`packages/engine/src/contest.ts`) | No |
 | 4 | Variant switches | Not built | No |
 | 5 | Live feed | Replay only; ESPN adapter is Phase 1 feature 16 | No |
 | 6 | Retention dashboard | A summary endpoint exists | No |
@@ -100,17 +100,42 @@ A player keeps their chips and history across devices.
 - **Owner decision:** which proofs to offer, and when one is required. Until then, build the
   layer and one upgrade path behind a switch, off by default.
 
-## 3. Contest layer
+## 3. Contest layer (built)
 
-Today a table decides who is in, what they pay, how cards are dealt and who is paid. Split
-that into a **contest** that owns entry and prizes, and the **rules** that play a hand.
+Every table plays for a **contest**, which owns entry, prizes, the deal and seats. The
+**rules** that play a hand (`GameRules`) do not change with the contest.
 
-- A contest has: a game and period, entrants, an entry (free, chips, or a ticket), a prize
-  rule (winner takes the pot, top share, fixed prize), a deal mode (each player their own
-  cards, or everyone the same cards) and a seat limit (6, or unlimited for pooled contests).
-- Dealer tables, player tables, pooled quarter contests, friends' tables, a daily hand on a
-  classic game and same-cards-for-everyone are all contests with different settings.
-- Entry and prizes post through the ledger. The rules engine stays pure and unchanged.
+| Setting | Values |
+|---|---|
+| Entry | `free`, or a number of chips |
+| Prize | `none` (practice, not recorded), `table` (the hand's own settlement: even money against the dealer, or winners split the antes after rake), `pool` (fixed prizes by place, paid by a sponsor account) |
+| Deal | `own` (each seat its own cards), `shared` (everyone dealt the same cards; the same moves draw the same cards) |
+| Seats | a limit, or none |
+| Bots | fill a player table to this many seats with labeled bots, or 0 |
+
+`contestProblem()` refuses settings that mix models: a pool must be free to enter and paid by
+a `sponsor:` account, and a table prize needs a paid entry.
+
+**The contests the app runs**
+
+| Contest | Entry | Prize | Deal | Seats | Bots |
+|---|---|---|---|---|---|
+| House dealer | 25, 100 or 1,000 chips | table | own | no limit | 0 |
+| Player table | 25, 100 or 1,000 chips | table | own | 4 | fill to 4 |
+| Practice | free | none | own | 1 | 0 |
+| **Free quarter contest** (new, one per game) | free | pool: 500 / 250 / 100 chips from `sponsor:sportsjack` | shared | no limit | 0 |
+
+**Pool prizes.** Only totals at or under 21 can win. Players tied for a place share the
+prizes of the places they cover, rounded down; the remainder stays with the sponsor. The
+sponsor's ledger account goes negative by exactly what it has paid.
+
+**Where it lives:** `packages/engine/src/contest.ts` (settings, validation, pool prizes),
+`HandOptions.deal` (the shared deal), `apps/server/src/lobby.ts` (`CONTESTS`, every table made
+through one place), `apps/server/src/table.ts` (entry, seat limits, payouts). Each hand
+records its contest in the `hands` table.
+
+**Next:** friends' tables and the daily hand on a classic game are new contest settings, not
+new code paths.
 
 ## 4. Variant switches
 

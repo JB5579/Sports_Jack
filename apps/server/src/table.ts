@@ -1,8 +1,8 @@
 import { createHash, randomInt } from "node:crypto";
 import type { FeedEvent, StatDelta, StatKey } from "@sportsjack/feed";
 import {
-  ActionRefused, DEALER_CHECK_SECONDS, dealerRuleText, decide, Hand, seededRandom,
-  type Card, type DealerLevel, type GameRules, type Settlement, type TableMode,
+  ActionRefused, DEALER_CHECK_SECONDS, dealerRuleText, decide, entryAmount, Hand, poolPayouts, seededRandom,
+  type Card, type ContestRules, type DealerLevel, type GameRules, type Settlement, type TableMode,
 } from "@sportsjack/engine";
 import type { GameRunner } from "./runner.ts";
 import type { Store } from "./store.ts";
@@ -11,6 +11,9 @@ export interface TableSpec {
   id: string;
   gameId: string;
   mode: TableMode;
+  /** What the hand is played for: entry, prizes, the deal and seats (prd/FOUNDATION.md §3). */
+  contest: ContestRules;
+  /** The entry in chips, 0 when free. Always `entryAmount(contest)`; kept for screens and logs. */
   ante: number;
   /** Seconds left in the quarter when Hit, Burn and Freeze close; 0 for none. */
   lockout: number;
@@ -25,7 +28,6 @@ export interface TableSpec {
 
 export const LOCKOUTS = [0, 30, 60, 120];
 export const ANTES = [25, 100, 1000];
-const PLAYER_TABLE_SEATS = 4;
 const BOT_NAMES = ["Gridiron Gus", "Two-Minute Tia", "Red Zone Ray", "Blitz Becky", "Hail Mary Hal"];
 const AI_THINK_SECONDS = 15;
 
@@ -83,9 +85,12 @@ export class Table {
   get humans(): readonly string[] { return this.#humans; }
 
   /** Sit down. During a quarter the seat takes effect at the next break (MISSION.md Q8). */
-  sit(accountId: string): "seated" | "next_break" {
+  sit(accountId: string): "seated" | "next_break" | "full" {
     this.#leaving.delete(accountId);
     if (this.seated.has(accountId)) return "seated";
+    if (this.pending.has(accountId)) return "next_break";
+    const { seats } = this.spec.contest;
+    if (seats !== null && this.seated.size + this.pending.size >= seats) return "full";
     if (this.#runner.phase === "quarter") { this.pending.add(accountId); return "next_break"; }
     this.seated.add(accountId);
     return "seated";
@@ -120,7 +125,8 @@ export class Table {
     this.#plays = [];
     this.#stats = new Map();
     const handId = `${this.spec.id}-q${qtr}-${Date.now().toString(36)}`;
-    const humans = [...this.seated].filter((id) => this.spec.practice || this.#store.debit(id, this.spec.ante, "ante", handId));
+    const entry = entryAmount(this.spec.contest);
+    const humans = [...this.seated].filter((id) => entry === 0 || this.#store.debit(id, entry, "ante", handId));
     if (humans.length === 0) { this.#onChange(); return; }
     this.#seed = randomInt(0, 2 ** 31);
     this.commitment = createHash("sha256").update(String(this.#seed)).digest("hex");
@@ -128,7 +134,8 @@ export class Table {
     const period = this.#runner.periods.find((p) => p.q === qtr)!;
     this.#ai = this.spec.mode === "dealer"
       ? [{ id: "dealer", name: `House dealer · ${this.spec.level === "sharp" ? "Sharp" : "Easy"}`, level: this.spec.level, dealer: true, nextThink: 0, lastAct: "Dealt" }]
-      : BOT_NAMES.slice(0, Math.max(1, PLAYER_TABLE_SEATS - humans.length)).map((name, i) => ({
+      : this.spec.contest.fillWithBots === 0 ? []
+      : BOT_NAMES.slice(0, Math.max(1, this.spec.contest.fillWithBots - humans.length)).map((name, i) => ({
         id: `bot-${i + 1}`, name, level: (i % 2 === 1 ? "sharp" : this.spec.level) as DealerLevel, dealer: false, nextThink: 0, lastAct: "Dealt",
       }));
     // The dealer looks on a fixed cadence players can see coming; bots keep a little jitter.
@@ -136,7 +143,7 @@ export class Table {
     this.#humans = humans;
     this.handId = handId;
     this.hand = new Hand({
-      gameId: this.spec.gameId, qtr, periodStart: period.start, lockout: this.spec.lockout, ante: this.spec.ante,
+      gameId: this.spec.gameId, qtr, periodStart: period.start, lockout: this.spec.lockout, ante: entry, deal: this.spec.contest.deal,
       mode: this.spec.mode, deck: this.#deck, seats: [...humans, ...this.#ai.map((s) => s.id)],
       ...(this.spec.mode === "dealer" ? { dealerSeat: "dealer" } : {}), seed: this.#seed, rules: this.#rules,
     });
@@ -194,16 +201,23 @@ export class Table {
 
   #settle(): void {
     const hand = this.hand!;
-    const settlement = hand.settle();
+    const { contest } = this.spec;
+    let settlement = hand.settle();
+    if (contest.prize.kind === "pool") {
+      // Fixed prizes by place, paid by the sponsor; the hand's own settlement pays nothing.
+      const prizes = poolPayouts(this.#humans.map((id) => ({ seatId: id, total: hand.total(id) })), contest.prize.amounts);
+      settlement = { ...settlement, pot: 0, house: 0, standings: settlement.standings.map((s) => ({ ...s, payout: prizes.get(s.seatId) ?? 0 })) };
+    }
     const payout = new Map(settlement.standings.map((s) => [s.seatId, s.payout]));
-    if (!this.spec.practice) this.#store.recordHand({
+    if (contest.prize.kind !== "none") this.#store.recordHand({
       id: this.handId!, tableId: this.spec.id, gameId: this.spec.gameId, qtr: hand.options.qtr,
-      seed: this.#seed, commitment: this.commitment!, ruleset: hand.rules.id, settlement, log: hand.log,
+      seed: this.#seed, commitment: this.commitment!, ruleset: hand.rules.id, settlement, log: hand.log, contest,
+      fundedBy: contest.prize.kind === "pool" ? { account: contest.prize.sponsor, kind: "prize" } : undefined,
       seats: this.#humans.map((id) => ({ accountId: id, cards: [...hand.cards(id)], total: hand.total(id), ante: this.spec.ante, payout: payout.get(id) ?? 0 })),
     });
     for (const id of this.#humans) {
       this.#store.addEvents(id, [{ name: "hand_settled", props: { handId: this.handId, gameId: this.spec.gameId, qtr: hand.options.qtr,
-        practice: !!this.spec.practice, mode: this.spec.mode, total: hand.total(id), cards: hand.cards(id).length, ante: this.spec.ante, payout: payout.get(id) ?? 0 } }]);
+        practice: !!this.spec.practice, mode: this.spec.mode, contest: contest.name, total: hand.total(id), cards: hand.cards(id).length, ante: this.spec.ante, payout: payout.get(id) ?? 0 } }]);
     }
     const names: Record<string, string> = {};
     for (const s of this.#ai) names[s.id] = s.name;

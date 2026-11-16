@@ -37,6 +37,41 @@ describe("the deck and the deal", () => {
   });
 });
 
+describe("the shared deal", () => {
+  const pool = (seed: number) => {
+    const { deck } = realGame("2025_22_SEA_NE");
+    return new Hand({ gameId: "2025_22_SEA_NE", qtr: 1, periodStart: 900, lockout: 0, ante: 0, mode: "players",
+      deck, seats: ["ann", "bob", "cat"], seed, deal: "shared" });
+  };
+
+  it("deals every seat the same two cards", () => {
+    for (let seed = 1; seed <= 50; seed++) {
+      const hand = pool(seed);
+      expect(hand.cards("bob")).toEqual(hand.cards("ann"));
+      expect(hand.cards("cat")).toEqual(hand.cards("ann"));
+      expect(new Set(hand.cards("ann")).size).toBe(2);
+    }
+  });
+
+  it("gives the same card to the same move, whenever each seat makes it", () => {
+    const hand = pool(11);
+    const first = hand.hit("ann");
+    hand.hit("ann");
+    expect(hand.hit("bob")).toBe(first);
+    const burnedFor = hand.burn("cat", hand.cards("cat")[0]!);
+    const twin = pool(11);
+    expect(twin.burn("ann", twin.cards("ann")[0]!)).toBe(burnedFor);
+  });
+
+  it("leaves the ordinary deal as it was", () => {
+    const { hand } = dealerHand("2025_22_SEA_NE", 1, { seed: 7 });
+    const { hand: again } = dealerHand("2025_22_SEA_NE", 1, { seed: 7, deal: "own" });
+    expect(again.cards("you")).toEqual(hand.cards("you"));
+    expect(again.cards("dealer")).toEqual(hand.cards("dealer"));
+    expect(hand.cards("dealer")).not.toEqual(hand.cards("you"));
+  });
+});
+
 describe("live values on real plays", () => {
   it("moves the scorer's card by half his points on Maye's 35-yard TD to Hollins", () => {
     const { hand, events } = dealerHand("2025_22_SEA_NE", 4);

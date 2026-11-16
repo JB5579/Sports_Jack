@@ -4,7 +4,7 @@ import { Dial, PlayingCard, type Flash } from "./Cards.tsx";
 import { advance, coachText, following, type CoachStep } from "./coach.ts";
 import { track } from "./api.ts";
 import { DEALER_RULES, freezeWindow } from "@sportsjack/engine";
-import { clockText, fmt1, playText, qName, shortName, versus, weightWords } from "./format.ts";
+import { clockText, entryText, fmt1, playText, qName, shortName, tableName, versus, weightWords } from "./format.ts";
 
 export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, onFeedback }: {
   view: TableView; onLeave: () => void; onHit: () => void; onFreeze: () => void; onBurn: (playerId: string) => void; onGrid: () => void; onFeedback: () => void;
@@ -64,7 +64,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
       <button className="icon-btn" type="button" aria-label="Leave table" onClick={onLeave}>←</button>
       <div className="score num"><span>{away}</span><b>{game.score.away}</b><span>–</span><b>{game.score.home}</b><span>{home}</span></div>
       <div style={{ textAlign: "right" }}>
-        <div className="label">{game.phase === "quarter" ? qName(game.qtr) : "Break"} · {table.practice ? "practice" : table.mode === "dealer" ? "vs dealer" : "players"}</div>
+        <div className="label">{game.phase === "quarter" ? qName(game.qtr) : "Break"} · {table.practice ? "practice" : table.contest.prize.kind === "pool" ? "free contest" : table.mode === "dealer" ? "vs dealer" : "players"}</div>
         <div className={`clock num${hand?.locked && !hand.over ? " locked" : ""}`}>{game.phase === "quarter" ? clockText(game.clock) : clockText(game.breakLeft)}</div>
       </div>
     </div>
@@ -77,10 +77,10 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
         {header}
         {game.paused && <div className="banner">Live data paused. Hands hold until the feed is back.</div>}
         <div className="waiting">
-          <span className="label">{table.mode === "dealer" ? `House dealer · ${table.level}` : "Player table"} · {table.ante}-chip ante · {table.lockout ? `locks at ${clockText(table.lockout)}` : "no lockout"}</span>
+          <span className="label">{tableName(table)} · {entryText(table)} · {table.lockout ? `locks at ${clockText(table.lockout)}` : "no lockout"}</span>
           <div className="big">{view.you.joiningNextBreak || game.phase === "quarter" ? `You're in from ${next ? qName(next) : "the next quarter"}` : next ? `${qName(next)} deals soon` : "This game is over"}</div>
           {game.phase === "break" && next && <div className="count num">{clockText(game.breakLeft)}</div>}
-          <p className="help">{game.phase === "quarter" ? "Players join between quarters, never during one. Watch this quarter play out; you'll be dealt in at the next break." : "Your ante comes out when the cards are dealt."}</p>
+          <p className="help">{game.phase === "quarter" ? "Players join between quarters, never during one. Watch this quarter play out; you'll be dealt in at the next break." : table.ante ? "Your ante comes out when the cards are dealt." : "Free to enter. Everyone is dealt the same cards; your moves decide where you finish."}</p>
         </div>
       </section>
     );

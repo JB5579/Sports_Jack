@@ -27,7 +27,7 @@ decision to the owner.
 | 5 | Live feed | Replay only; ESPN adapter is Phase 1 feature 16 | No |
 | 6 | Retention dashboard | A summary endpoint exists | No |
 | 7 | Simulation harness | One-off scripts in `tools/analysis` | No |
-| 8 | Friends and invites | Not built | No |
+| 8 | Friends and invites | Referral links and creator codes built; private tables not | No |
 | 9 | Partner seam | Not built | No |
 | 10 | Compliance hooks | Not built | Yes: vendors and rules |
 | 11 | Production database and monitoring | SQLite on one Render disk | No |
@@ -187,8 +187,24 @@ attorney or partner would ask for.
 
 ## 8. Friends and invites
 
-Share links that open a private table, a friends list, and referral attribution: who
-invited whom, posted to the ledger as a `referral` bonus once the friend plays a hand.
+**Built (variation A):**
+
+- **Referral links.** Every player has a six-character code (no 0/O or 1/I) and a link,
+  `/?ref=CODE`, shared from the lobby. A new account that arrives with a code is recorded as
+  referred; an existing account, an unknown code or the player's own code is ignored.
+- **The bonus.** When the friend settles a first real hand, both get 500 chips (half a
+  starting stack, after Gianni's "50% to both"), paid from `house:promotions`.
+- **Creator codes** for influencers, made by the owner (`POST /api/admin/codes`). Friends who
+  use one get the bonus; `GET /api/admin/codes` counts who joined and played through each.
+- **The rewards track.** Chips for hands played (1: 100, 4: 250, 10: 500, 25: 1,000,
+  50: 2,500) and 250 for playing all four quarters of a game at one table. The `rewards`
+  switch (on or off per player) tests whether the track changes retention; referral bonuses
+  apply either way.
+
+Every bonus is a ledger transaction with its own key, so it is paid once, and the summary
+reports referrals and `promotionsPaid`.
+
+**Not built:** share links that open a private table, and a friends list.
 
 ## 9. Partner seam
 

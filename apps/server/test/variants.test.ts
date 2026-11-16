@@ -33,16 +33,16 @@ describe("variant switches", () => {
   it("keeps a player's assignment when the weights change, and lets the owner move one player", () => {
     const store = new Store(":memory:", parseVariants("variation=B"));
     const { id } = store.account("device-token-cccccccccccc");
-    expect(store.variants(id)).toEqual({ variation: "B" });
+    expect(store.variants(id)).toEqual({ variation: "B", rewards: "on" });
     store.close();
     const later = new Store(":memory:", parseVariants("variation=C"));
     const { id: same } = later.account("device-token-cccccccccccc");
-    expect(later.variants(same)).toEqual({ variation: "C" }); // a fresh database is a fresh assignment
+    expect(later.variants(same)).toEqual({ variation: "C", rewards: "on" }); // a fresh database is a fresh assignment
     later.setVariant(same, "variation", "A");
-    expect(later.variants(same)).toEqual({ variation: "A" });
+    expect(later.variants(same)).toEqual({ variation: "A", rewards: "on" });
     expect(() => later.setVariant(same, "variation", "Z")).toThrow(/no value/);
     expect(() => later.setVariant(same, "free_contest_deal", "own")).toThrow(/unknown player switch/);
-    expect(later.variantCounts()).toEqual({ variation: { A: 1, B: 0, C: 0 } });
+    expect(later.variantCounts()).toEqual({ variation: { A: 1, B: 0, C: 0 }, rewards: { on: 1, off: 0 } });
   });
 
   it("records a player's switches on every usage event", () => {
@@ -50,6 +50,6 @@ describe("variant switches", () => {
     const { id } = store.account("device-token-dddddddddddd");
     store.addEvents(id, [{ name: "open_app", props: { screen: "lobby" } }]);
     const [row] = store.eventRows();
-    expect(JSON.parse(String(row!.props))).toEqual({ screen: "lobby", variants: { variation: "C" } });
+    expect(JSON.parse(String(row!.props))).toEqual({ screen: "lobby", variants: { variation: "C", rewards: "on" } });
   });
 });

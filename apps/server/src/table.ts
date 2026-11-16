@@ -5,6 +5,7 @@ import {
   type Card, type ContestRules, type DealerLevel, type GameRules, type Settlement, type TableMode,
 } from "@sportsjack/engine";
 import type { GameRunner } from "./runner.ts";
+import type { Reward } from "./perks.ts";
 import type { Store } from "./store.ts";
 
 export interface TableSpec {
@@ -68,7 +69,7 @@ export class Table {
   #descriptions = new Map<string, string>();
   /** Each player's stats this quarter, for the card grid's stat lines. */
   #stats = new Map<string, StatDelta>();
-  result: { handId: string; qtr: number; seed: number; settlement: Settlement; names: Record<string, string> } | null = null;
+  result: { handId: string; qtr: number; seed: number; settlement: Settlement; names: Record<string, string>; rewards: Record<string, Reward[]> } | null = null;
 
   constructor(spec: TableSpec, runner: GameRunner, store: Store, deck: Card[], rules: GameRules, onChange: () => void) {
     this.spec = spec;
@@ -209,7 +210,7 @@ export class Table {
       settlement = { ...settlement, pot: 0, house: 0, standings: settlement.standings.map((s) => ({ ...s, payout: prizes.get(s.seatId) ?? 0 })) };
     }
     const payout = new Map(settlement.standings.map((s) => [s.seatId, s.payout]));
-    if (contest.prize.kind !== "none") this.#store.recordHand({
+    const rewards = contest.prize.kind === "none" ? {} : this.#store.recordHand({
       id: this.handId!, tableId: this.spec.id, gameId: this.spec.gameId, qtr: hand.options.qtr,
       seed: this.#seed, commitment: this.commitment!, ruleset: hand.rules.id, settlement, log: hand.log, contest,
       fundedBy: contest.prize.kind === "pool" ? { account: contest.prize.sponsor, kind: "prize" } : undefined,
@@ -221,7 +222,7 @@ export class Table {
     }
     const names: Record<string, string> = {};
     for (const s of this.#ai) names[s.id] = s.name;
-    this.result = { handId: this.handId!, qtr: hand.options.qtr, seed: this.#seed, settlement, names };
+    this.result = { handId: this.handId!, qtr: hand.options.qtr, seed: this.#seed, settlement, names, rewards };
     for (const id of this.#leaving) this.seated.delete(id);
     this.#leaving.clear();
   }
@@ -292,6 +293,7 @@ export class Table {
       } : null,
       result: this.result ? {
         handId: this.result.handId, qtr: this.result.qtr, seed: this.result.seed, pot: this.result.settlement.pot, house: this.result.settlement.house,
+        rewards: (accountId && this.result.rewards[accountId]) || [],
         standings: this.result.settlement.standings.map((s) => ({
           name: s.seatId === accountId ? "You" : this.result!.names[s.seatId] ?? "Player",
           you: s.seatId === accountId, bot: s.seatId.startsWith("bot-"), dealer: s.seatId === "dealer", total: s.total, bust: s.bust, rank: s.rank, payout: s.payout,

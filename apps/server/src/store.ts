@@ -5,6 +5,7 @@ import { DatabaseSync } from "node:sqlite";
 import { Ledger, LedgerError, SYSTEM, pot } from "@sportsjack/ledger";
 import type { AuditReport, LedgerRow } from "@sportsjack/ledger";
 import { bucket, SWITCHES, switchDef, type Weights } from "./variants.ts";
+import { FULL_GAME_BONUS, MILESTONES, normalizeCode, PROMOTIONS, REFERRAL_BONUS, referralCode, validCreatorCode, type Reward } from "./perks.ts";
 
 export const START_BALANCE = 1000;
 
@@ -73,6 +74,9 @@ export class Store {
       CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, account_id TEXT NOT NULL, name TEXT NOT NULL,
         props TEXT NOT NULL, at TEXT NOT NULL);
     `);
+    // Referral codes: every player's own (account_id set) and creator codes the owner makes (creator set).
+    this.#db.exec(`CREATE TABLE IF NOT EXISTS referral_codes (code TEXT PRIMARY KEY, account_id TEXT UNIQUE, creator TEXT, created_at TEXT NOT NULL);
+      CREATE TABLE IF NOT EXISTS referrals (friend_id TEXT PRIMARY KEY, code TEXT NOT NULL, referrer_id TEXT, at TEXT NOT NULL, rewarded_at TEXT)`);
     this.#db.exec(`CREATE TABLE IF NOT EXISTS variant_assignments (account_id TEXT NOT NULL, switch TEXT NOT NULL, value TEXT NOT NULL,
       source TEXT NOT NULL, at TEXT NOT NULL, PRIMARY KEY (account_id, switch))`);
     // Columns added after the first release; older databases get them on start.
@@ -81,6 +85,10 @@ export class Store {
     if (!columns("hand_seats").includes("variants")) this.#db.exec("ALTER TABLE hand_seats ADD COLUMN variants TEXT NOT NULL DEFAULT '{}'");
     this.ledger = new Ledger(this.#db);
     this.#migrate();
+    // Every player has a referral code from the start, so a friend's link always resolves.
+    for (const r of this.#db.prepare("SELECT id FROM ledger_accounts WHERE kind = 'player' AND id NOT IN (SELECT account_id FROM referral_codes WHERE account_id IS NOT NULL)").all() as { id: string }[]) {
+      this.referralCode(r.id);
+    }
   }
 
   /**
@@ -106,12 +114,18 @@ export class Store {
    * The play-money account behind a device token, created on first use. Sign-up and login
    * are a human decision (MISSION.md); until then a device-scoped token is the identity.
    */
-  account(token: string): Account {
+  account(token: string, ref?: string | null): Account {
     const id = createHash("sha256").update(`sportsjack:${token}`).digest("hex").slice(0, 16);
     if (!this.ledger.has(id)) {
       this.#tx(() => {
+        // Only a new account can be referred, and never by its own code.
+        const code = ref ? this.#findCode(normalizeCode(ref)) : null;
+        if (code && code.account_id !== id) {
+          this.#db.prepare("INSERT OR IGNORE INTO referrals (friend_id, code, referrer_id, at) VALUES (?,?,?,?)").run(id, code.code, code.account_id, now());
+        }
         this.#db.prepare("INSERT INTO accounts (id, balance, created_at) VALUES (?, 0, ?)").run(id, now());
         this.ledger.open(id, "player");
+        this.referralCode(id);
         this.ledger.transfer({ key: `start:${id}`, kind: "issue", from: SYSTEM.issuance, to: id, amount: START_BALANCE,
           meta: { note: "starting play-money chips" } });
       });
@@ -133,6 +147,86 @@ export class Store {
       out[def.name] = value;
       this.#db.prepare("INSERT OR IGNORE INTO variant_assignments (account_id, switch, value, source, at) VALUES (?,?,?,?,?)")
         .run(accountId, def.name, value, "weights", now());
+    }
+    return out;
+  }
+
+  /** A player's own referral code, made the first time it is asked for. */
+  referralCode(accountId: string): string {
+    const row = this.#db.prepare("SELECT code FROM referral_codes WHERE account_id = ?").get(accountId) as { code: string } | undefined;
+    if (row) return row.code;
+    const code = referralCode(accountId);
+    this.#db.prepare("INSERT OR IGNORE INTO referral_codes (code, account_id, creator, created_at) VALUES (?,?,NULL,?)").run(code, accountId, now());
+    return code;
+  }
+
+  /** A creator code, such as an influencer's, for the owner to hand out. Friends who use it get the bonus. */
+  createCreatorCode(code: string, creator: string): string {
+    const clean = normalizeCode(code);
+    if (!validCreatorCode(clean)) throw new Error("a code is 3 to 20 letters, digits or dashes");
+    if (!creator.trim()) throw new Error("name the creator");
+    if (this.#findCode(clean)) throw new Error(`code ${clean} is taken`);
+    this.#db.prepare("INSERT INTO referral_codes (code, account_id, creator, created_at) VALUES (?,NULL,?,?)").run(clean, creator.trim().slice(0, 80), now());
+    return clean;
+  }
+
+  /** Every creator code with how many friends joined through it and how many played a hand. */
+  creatorCodes(): { code: string; creator: string; joined: number; played: number }[] {
+    return (this.#db.prepare(`SELECT c.code, c.creator, COUNT(r.friend_id) AS joined, COUNT(r.rewarded_at) AS played
+      FROM referral_codes c LEFT JOIN referrals r ON r.code = c.code WHERE c.creator IS NOT NULL GROUP BY c.code ORDER BY c.created_at`).all() as { code: string; creator: string; joined: number; played: number }[])
+      .map((r) => ({ ...r, joined: Number(r.joined), played: Number(r.played) }));
+  }
+
+  #findCode(code: string): { code: string; account_id: string | null } | null {
+    const row = this.#db.prepare("SELECT code, account_id FROM referral_codes WHERE code = ?").get(code) as { code: string; account_id: string | null } | undefined;
+    return row ?? null;
+  }
+
+  /** What a player's phone shows of referrals and the rewards track. */
+  perks(accountId: string) {
+    const code = this.referralCode(accountId);
+    const friends = this.#db.prepare("SELECT COUNT(*) AS joined, COUNT(rewarded_at) AS played FROM referrals WHERE referrer_id = ?").get(accountId) as { joined: number; played: number };
+    const handsPlayed = this.#handsPlayed(accountId);
+    const on = this.variants(accountId).rewards !== "off";
+    return {
+      referral: { code, bonus: REFERRAL_BONUS, joined: Number(friends.joined), played: Number(friends.played) },
+      rewards: on ? {
+        handsPlayed,
+        milestones: MILESTONES.map((m) => ({ ...m, earned: handsPlayed >= m.hands })),
+        next: MILESTONES.find((m) => handsPlayed < m.hands) ?? null,
+        fullGameBonus: FULL_GAME_BONUS,
+      } : null,
+    };
+  }
+
+  #handsPlayed(accountId: string): number {
+    return Number((this.#db.prepare("SELECT COUNT(*) AS n FROM hand_seats WHERE account_id = ?").get(accountId) as { n: number }).n);
+  }
+
+  /**
+   * Rewards a settled hand earns one player: the referral bonus on a first real hand, a
+   * milestone reached, and the full-game bonus on a fourth quarter after the first three at
+   * the same table. Each is a ledger transaction with its own key, so it is paid once.
+   */
+  #rewards(accountId: string, hand: HandRecord): Reward[] {
+    const out: Reward[] = [];
+    const pay = (key: string, to: string, chips: number, kind: Reward["kind"], label: string, mine = true) => {
+      if (this.ledger.transfer({ key, kind, ref: hand.id, from: PROMOTIONS, to, amount: chips, meta: { label } }) && mine) out.push({ kind, label, chips });
+    };
+    const referral = this.#db.prepare("SELECT code, referrer_id FROM referrals WHERE friend_id = ? AND rewarded_at IS NULL").get(accountId) as { code: string; referrer_id: string | null } | undefined;
+    if (referral) {
+      pay(`referral:friend:${accountId}`, accountId, REFERRAL_BONUS, "referral", "Welcome bonus for joining with a friend's code");
+      if (referral.referrer_id) pay(`referral:inviter:${accountId}`, referral.referrer_id, REFERRAL_BONUS, "referral", "A friend you invited played their first hand", false);
+      this.#db.prepare("UPDATE referrals SET rewarded_at = ? WHERE friend_id = ?").run(now(), accountId);
+    }
+    if (this.variants(accountId).rewards === "off") return out;
+    const played = this.#handsPlayed(accountId);
+    const milestone = MILESTONES.find((m) => m.hands === played);
+    if (milestone) pay(`reward:hands:${milestone.hands}:${accountId}`, accountId, milestone.chips, "milestone", `${milestone.hands} ${milestone.hands === 1 ? "hand" : "hands"} played`);
+    if (hand.qtr === 4) {
+      const earlier = this.#db.prepare(`SELECT COUNT(DISTINCT h.qtr) AS n FROM hand_seats s JOIN hands h ON h.id = s.hand_id
+        WHERE s.account_id = ? AND h.table_id = ? AND h.game_id = ? AND h.qtr IN (1,2,3)`).get(accountId, hand.tableId, hand.gameId) as { n: number };
+      if (Number(earlier.n) === 3) pay(`reward:full:${hand.tableId}:${accountId}`, accountId, FULL_GAME_BONUS, "full_game", "Played all four quarters of a game");
     }
     return out;
   }
@@ -179,7 +273,9 @@ export class Store {
     }
   }
 
-  recordHand(hand: HandRecord): void {
+  /** Record a settled hand and pay it out. Returns the rewards each player earned with it. */
+  recordHand(hand: HandRecord): Record<string, Reward[]> {
+    const rewards: Record<string, Reward[]> = {};
     this.#tx(() => {
       this.#db.prepare("INSERT INTO hands (id, table_id, game_id, qtr, seed, commitment, ruleset, settlement, log, contest, at) VALUES (?,?,?,?,?,?,?,?,?,?,?)")
         .run(hand.id, hand.tableId, hand.gameId, hand.qtr, hand.seed, hand.commitment, hand.ruleset,
@@ -202,7 +298,10 @@ export class Store {
         this.ledger.open(pot(hand.id), "system");
         this.ledger.post({ key: `settle:${hand.id}`, kind: funder.kind, ref: hand.id, entries });
       }
+      this.ledger.open(PROMOTIONS, "system");
+      for (const s of hand.seats) rewards[s.accountId] = this.#rewards(s.accountId, hand);
     });
+    return rewards;
   }
 
   history(accountId: string, limit = 30): HistoryRow[] {
@@ -287,6 +386,8 @@ export class Store {
       quarterToQuarterContinuation: continuation(hands),
       byVariant,
       actions: Object.fromEntries((this.#db.prepare("SELECT name, COUNT(*) AS n FROM events WHERE name IN ('hit','burn','freeze') GROUP BY name").all() as { name: string; n: number }[]).map((r) => [r.name, Number(r.n)])),
+      referrals: { joined: one("SELECT COUNT(*) AS n FROM referrals"), played: one("SELECT COUNT(*) AS n FROM referrals WHERE rewarded_at IS NOT NULL") },
+      promotionsPaid: -this.ledger.balance(PROMOTIONS),
       feedback: one("SELECT COUNT(*) AS n FROM feedback"),
       averageRating: (() => { const r = this.#db.prepare("SELECT AVG(rating) AS n FROM feedback WHERE rating IS NOT NULL").get() as { n: number | null }; return r.n === null ? null : Math.round(r.n * 100) / 100; })(),
     };

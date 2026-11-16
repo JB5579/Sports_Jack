@@ -42,7 +42,7 @@ export function App() {
         <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn}
           onGrid={() => setSheet("grid")} onFeedback={() => setSheet("feedback")} />
       ) : state.lobby && (
-        <Lobby lobby={state.lobby} balance={state.balance} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={() => startPractice(sport)} onFeedback={() => setSheet("feedback")} />
+        <Lobby lobby={state.lobby} balance={state.balance} perks={state.perks} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={() => startPractice(sport)} onFeedback={() => setSheet("feedback")} />
       )}
       {gridOpen && <GridSheet view={view!} onClose={() => setSheet(null)} />}
       {result && view && !gridOpen && (

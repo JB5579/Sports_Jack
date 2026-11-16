@@ -23,6 +23,8 @@ export interface ServerConfig {
   /** Holds nflverse/ (NFL games, ids like 2025_22_SEA_NE) and nba/ (NBA games, numeric ESPN ids). */
   fixtures: string;
   webRoot: string;
+  /** Variant switch weights, as in `SPORTSJACK_VARIANTS` (see variants.ts). Empty means everyone gets the defaults. */
+  variants: string;
 }
 
 const ROOT = fileURLToPath(new URL("../../../", import.meta.url));
@@ -42,5 +44,6 @@ export function configFromEnv(env: NodeJS.ProcessEnv = process.env): ServerConfi
     adminToken: env.SPORTSJACK_ADMIN_TOKEN || undefined,
     fixtures: `${ROOT}fixtures/`,
     webRoot: `${ROOT}apps/web/dist/`,
+    variants: env.SPORTSJACK_VARIANTS ?? "",
   };
 }

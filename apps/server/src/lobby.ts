@@ -3,6 +3,7 @@ import { loadNbaGame, loadNbaRoster, loadNflverseGame, loadNflversePlayers, load
 import type { ServerConfig } from "./config.ts";
 import { GameRunner } from "./runner.ts";
 import { Store } from "./store.ts";
+import { parseVariants, tableValue, type Weights } from "./variants.ts";
 import { ANTES, LOCKOUTS, Table, type TableSpec } from "./table.ts";
 
 const LABELS: Record<string, string> = {
@@ -37,8 +38,8 @@ export const CONTESTS = {
     name: "Practice", entry: { kind: "free" }, prize: { kind: "none" }, deal: "own", seats: 1, fillWithBots: 0,
   }),
   /** Free to enter, everyone dealt the same cards, fixed prizes from a sponsor. */
-  pool: (amounts: number[] = POOL_PRIZES): ContestRules => ({
-    name: "Free quarter contest", entry: { kind: "free" }, prize: { kind: "pool", amounts, ...HOUSE_SPONSOR }, deal: "shared", seats: null, fillWithBots: 0,
+  pool: (deal: "own" | "shared" = "shared", amounts: number[] = POOL_PRIZES): ContestRules => ({
+    name: "Free quarter contest", entry: { kind: "free" }, prize: { kind: "pool", amounts, ...HOUSE_SPONSOR }, deal, seats: null, fillWithBots: 0,
   }),
 };
 
@@ -54,10 +55,13 @@ export class Lobby {
   readonly #rules = new Map<string, GameRules>();
   readonly #practices = new Map<string, GameRunner>();
   readonly #config: ServerConfig;
+  /** Variant switch weights (prd/FOUNDATION.md §4). */
+  readonly variants: Weights;
   #nextId = 1;
 
   constructor(config: ServerConfig, onChange: (table: Table | null) => void) {
-    this.store = new Store(config.db);
+    this.variants = parseVariants(config.variants);
+    this.store = new Store(config.db, this.variants);
     this.#onChange = onChange;
     this.#config = config;
     for (const gameId of config.games) {
@@ -77,7 +81,7 @@ export class Lobby {
       this.open({ gameId, mode: "dealer", ante: 25, lockout: 120, level: "easy" }, null);
       this.open({ gameId, mode: "dealer", ante: 100, lockout: 60, level: "sharp" }, null);
       this.open({ gameId, mode: "players", ante: 25, lockout: 120, level: "easy" }, null);
-      this.#create({ id: `t${this.#nextId++}`, gameId, mode: "players", contest: CONTESTS.pool(), ante: 0, lockout: 120, level: "easy", openedBy: null });
+      this.#create({ id: `t${this.#nextId++}`, gameId, mode: "players", contest: CONTESTS.pool(tableValue("free_contest_deal", this.variants) as "own" | "shared"), ante: 0, lockout: 120, level: "easy", openedBy: null });
     }
   }
 

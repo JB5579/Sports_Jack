@@ -8,6 +8,7 @@ import { WebSocketServer, type WebSocket } from "ws";
 import type { ServerConfig } from "./config.ts";
 import { Lobby } from "./lobby.ts";
 import { ActionError, type Table } from "./table.ts";
+import { SWITCHES, tableValue } from "./variants.ts";
 
 const TYPES: Record<string, string> = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css",
   ".svg": "image/svg+xml", ".json": "application/json", ".webmanifest": "application/manifest+json", ".png": "image/png" };
@@ -99,6 +100,18 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       if (!isAdmin(req, url)) return json(res, 404, { error: "not found" });
       if (url.pathname === "/api/admin/summary") return json(res, 200, lobby.store.testSummary());
       if (url.pathname === "/api/admin/audit") return json(res, 200, lobby.store.audit());
+      if (url.pathname === "/api/admin/variants") {
+        if (req.method === "POST") {
+          // Put one player on a value by hand: {"accountId": "...", "switch": "variation", "value": "B"}.
+          const b = await body(req).catch(() => null);
+          try { lobby.store.setVariant(String(b?.accountId ?? ""), String(b?.switch ?? ""), String(b?.value ?? "")); } catch (error) {
+            return json(res, 400, { error: error instanceof Error ? error.message : "bad request" });
+          }
+          return json(res, 200, { ok: true, variants: lobby.store.variants(String(b!.accountId)) });
+        }
+        return json(res, 200, { switches: SWITCHES, weights: lobby.variants, players: lobby.store.variantCounts(),
+          tables: Object.fromEntries(SWITCHES.filter((d) => d.scope === "table").map((d) => [d.name, tableValue(d.name, lobby.variants)])) });
+      }
       const rows = url.pathname === "/api/admin/feedback.csv" ? lobby.store.feedbackRows() : url.pathname === "/api/admin/events.csv" ? lobby.store.eventRows() : null;
       if (!rows) return json(res, 404, { error: "not found" });
       return void res.writeHead(200, { "content-type": "text/csv; charset=utf-8", "cache-control": "no-store" }).end(csv(rows));
@@ -165,7 +178,7 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       // Reconnect: return to the table where this account is seated or in a hand.
       const table = [...lobby.tables.values()].find((t) => !t.spec.practice && (t.seated.has(account.id) || t.pending.has(account.id) || t.humans.includes(account.id)));
       c.tableId = table?.spec.id ?? null;
-      send(c.socket, { type: "welcome", account: { id: account.id, balance: lobby.store.balance(account.id) }, rules: ALPHA_RULES, ...lobby.summary() });
+      send(c.socket, { type: "welcome", account: { id: account.id, balance: lobby.store.balance(account.id) }, variants: lobby.store.variants(account.id), rules: ALPHA_RULES, ...lobby.summary() });
       if (table) sendTable(c);
       return;
     }

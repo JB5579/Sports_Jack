@@ -6,12 +6,15 @@ import { track } from "./api.ts";
 import { DEALER_RULES, freezeWindow } from "@sportsjack/engine";
 import { clockText, entryText, fmt1, playText, qName, shortName, tableName, versus, weightWords } from "./format.ts";
 
-export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, onFeedback }: {
-  view: TableView; onLeave: () => void; onHit: () => void; onFreeze: () => void; onBurn: (playerId: string) => void; onGrid: () => void; onFeedback: () => void;
+export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onSafer, onGrid, onFeedback }: {
+  view: TableView & { saferOffered?: boolean }; onLeave: () => void; onHit: () => void; onFreeze: () => void; onBurn: (playerId: string) => void;
+  onSafer: (playerId: string) => void; onGrid: () => void; onFeedback: () => void;
 }) {
   const { hand, game, table } = view;
   const mine = hand?.mine ?? null;
   const [burnPick, setBurnPick] = useState(false);
+  // Variation B: pick a card to make safer (it moves less; a win pays less).
+  const [saferPick, setSaferPick] = useState(false);
   const [flashes, setFlashes] = useState<Map<string, Flash>>(new Map());
   const previous = useRef(new Map<string, number>());
   const seen = useRef(new Set<string>());
@@ -141,8 +144,12 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
         <span className="status-line"><button className="text-btn" type="button" onClick={onFeedback}>Feedback</button><button className="text-btn" type="button" onClick={onGrid}>Expand ▴</button></span></div>
         <div className="hand">
           {mine.cards.map((c) => (
-            <PlayingCard key={c.playerId} card={c} flash={flashes.get(`me:${c.playerId}`)} fresh={fresh(`me:${c.playerId}`)} burnable={burnPick}
-              onClick={() => { if (burnPick && canAct) { setBurnPick(false); vibrate(); onBurn(c.playerId); } else onGrid(); }} />
+            <PlayingCard key={c.playerId} card={c} flash={flashes.get(`me:${c.playerId}`)} fresh={fresh(`me:${c.playerId}`)} burnable={burnPick || (saferPick && c.canSafer)}
+              onClick={() => {
+                if (burnPick && canAct) { setBurnPick(false); vibrate(); onBurn(c.playerId); }
+                else if (saferPick && c.canSafer) { setSaferPick(false); vibrate(); onSafer(c.playerId); }
+                else onGrid();
+              }} />
           ))}
         </div>
       </div>
@@ -175,9 +182,15 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onGrid, on
         );
       })()}
       </div>
-      <div className="notice">{burnPick ? "Tap the card you want to burn" : hand.locked && !mine.frozen && !hand.over ? `Moves locked with ${clockText(hand.lockout)} left` : ""}</div>
+      {view.saferOffered && mine.saferRule && !hand.over && (mine.cards.some((c) => c.canSafer) || saferPick) && (
+        <button type="button" className={`safer-toggle${saferPick ? " on" : ""}`} onClick={() => { setBurnPick(false); setSaferPick(!saferPick); }}>
+          {saferPick ? "Cancel" : "Make a card safer"}
+          <small>moves {Math.round(mine.saferRule.liveFactor * 100)}% as much · each one cuts a win by {Math.round(mine.saferRule.cutPerCard * 100)}%</small>
+        </button>
+      )}
+      <div className="notice">{saferPick ? "Tap a card that hasn't scored yet" : burnPick ? "Tap the card you want to burn" : hand.locked && !mine.frozen && !hand.over ? `Moves locked with ${clockText(hand.lockout)} left` : ""}</div>
       <div className="rail">
-        <button className={`burn${table.practice && coach === "burn" ? " coached" : ""}`} type="button" disabled={!canAct || mine.burned} onClick={() => setBurnPick(!burnPick)}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : `${mine.burnsLeft} left`}</small></button>
+        <button className={`burn${table.practice && coach === "burn" ? " coached" : ""}`} type="button" disabled={!canAct || mine.burned} onClick={() => { setSaferPick(false); setBurnPick(!burnPick); }}>{burnPick ? "Cancel" : "Burn"}<small>{mine.burned ? "used" : `${mine.burnsLeft} left`}</small></button>
         <button className={`freeze${table.practice && coach === "freeze" ? " coached" : ""}`} type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onFreeze(); }}>Freeze<small>{mine.frozen ? "used" : "lock total"}</small></button>
         <button className={`hit${table.practice && coach === "hit" ? " coached" : ""}`} type="button" disabled={!canAct} onClick={() => { setBurnPick(false); vibrate(); onHit(); }}>Hit<small>draw a player</small></button>
       </div>

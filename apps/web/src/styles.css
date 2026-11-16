@@ -271,3 +271,11 @@ details.open-table summary::-webkit-details-marker { display: none; }
 /* An injured player's card: value fixed, free Burn for the holder. */
 .pcard .injured { position: absolute; right: 6px; top: 22px; font-family: var(--mono); font-size: 9px; font-weight: 700; color: #fff; background: var(--down); padding: 1px 4px; border-radius: 4px; }
 .pcard.mini .injured { top: 6px; }
+
+/* Variation B: safer cards. */
+.pcard .safer-badge { position: absolute; right: 6px; bottom: 26px; font-family: var(--mono); font-size: 9px; font-weight: 700; color: #08202b; background: var(--ice); padding: 1px 4px; border-radius: 4px; }
+.pcard.mini .safer-badge { bottom: 6px; left: 5px; right: auto; }
+.pcard:has(.safer-badge) { box-shadow: 0 0 0 2px var(--ice); }
+.safer-toggle { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(143,211,238,0.4); background: rgba(143,211,238,0.08); color: var(--ice); font-weight: 600; font-size: 13px; }
+.safer-toggle small { font-family: var(--mono); font-size: 9px; letter-spacing: 0.04em; color: var(--on-felt-faint); text-transform: uppercase; }
+.safer-toggle.on { background: rgba(143,211,238,0.2); }

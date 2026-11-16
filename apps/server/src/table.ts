@@ -1,7 +1,7 @@
 import { createHash, randomInt } from "node:crypto";
 import type { FeedEvent, StatDelta, StatKey } from "@sportsjack/feed";
 import {
-  ActionRefused, DEALER_CHECK_SECONDS, dealerRuleText, decide, entryAmount, Hand, poolPayouts, seededRandom,
+  ActionRefused, afterSaferCut, DEALER_CHECK_SECONDS, dealerRuleText, decide, entryAmount, Hand, poolPayouts, seededRandom,
   type Card, type ContestRules, type DealerLevel, type GameRules, type Settlement, type TableMode,
 } from "@sportsjack/engine";
 import type { GameRunner } from "./runner.ts";
@@ -36,7 +36,7 @@ interface AiSeat { id: string; name: string; level: DealerLevel; dealer: boolean
 
 export interface PlayNote { seq: number; qtr: number; clock: number; description: string; changes: [string, number][] }
 
-export type Action = { type: "hit" } | { type: "freeze" } | { type: "burn"; playerId: string };
+export type Action = { type: "hit" } | { type: "freeze" } | { type: "burn"; playerId: string } | { type: "safer"; playerId: string };
 
 export class ActionError extends Error {
   readonly reason: string;
@@ -114,6 +114,7 @@ export class Table {
     try {
       if (action.type === "hit") hand.hit(accountId);
       else if (action.type === "freeze") hand.freeze(accountId);
+      else if (action.type === "safer") hand.makeSafer(accountId, action.playerId);
       else hand.burn(accountId, action.playerId);
     } catch (error) {
       if (error instanceof ActionRefused) throw new ActionError(error.reason);
@@ -230,7 +231,10 @@ export class Table {
     let settlement = hand.settle();
     if (contest.prize.kind === "pool") {
       // Fixed prizes by place, paid by the sponsor; the hand's own settlement pays nothing.
-      const prizes = poolPayouts(this.#humans.map((id) => ({ seatId: id, total: hand.total(id) })), contest.prize.amounts);
+      // Safer cards cut a prize like any winnings; what is cut stays with the sponsor.
+      const cut = hand.rules.safer?.cutPerCard ?? 0;
+      const won = poolPayouts(this.#humans.map((id) => ({ seatId: id, total: hand.total(id) })), contest.prize.amounts);
+      const prizes = new Map([...won].map(([id, prize]) => [id, afterSaferCut(0, prize, hand.saferCount(id), cut)]));
       settlement = { ...settlement, pot: 0, house: 0, standings: settlement.standings.map((s) => ({ ...s, payout: prizes.get(s.seatId) ?? 0 })) };
     }
     const payout = new Map(settlement.standings.map((s) => [s.seatId, s.payout]));
@@ -255,12 +259,14 @@ export class Table {
   view(accountId: string | null) {
     const hand = this.hand;
     const status = this.#runner.status();
-    const card = (playerId: string) => {
+    // A card as one seat holds it: a safer card in that seat's hand moves less.
+    const card = (playerId: string, seat: string | null = null) => {
       const c = hand!.card(playerId);
       const last = hand!.log.findLast((l) => l.playerId === playerId);
+      const safer = !!seat && hand!.safer(seat, playerId);
       return {
-        playerId, name: c.name, position: c.position, team: c.team, face: c.face, projection: c.projection, injured: hand!.injured(playerId),
-        points: hand!.points(playerId), value: hand!.value(playerId), stats: this.#stats.get(playerId) ?? {},
+        playerId, name: c.name, position: c.position, team: c.team, face: c.face, projection: c.projection, injured: hand!.injured(playerId), safer,
+        points: hand!.points(playerId), value: seat ? hand!.seatValue(seat, playerId) : hand!.value(playerId), stats: this.#stats.get(playerId) ?? {},
         why: last ? { clock: last.clock, points: last.points, description: this.#descriptions.get(last.playId) ?? "" } : null,
       };
     };
@@ -288,18 +294,20 @@ export class Table {
         over: hand.over, commitment: this.commitment, paused: status.paused,
         mine: mine ? {
           cards: hand.cards(mine).map((id) => ({
-            ...card(id),
+            ...card(id, mine),
+            canSafer: hand.saferRefusal(mine, id) === null,
             // How many other hands show this player face up: the same player can be in several hands.
             sharedWith: others.filter((o) => o.shown.includes(id)).length,
           })),
           total: hand.total(mine), frozen: hand.frozen(mine), burned: hand.burned(mine), burnsLeft: hand.burnsLeft(mine), canAct: hand.canAct(mine),
+          saferCards: hand.saferCount(mine), saferRule: hand.rules.safer ?? null,
         } : null,
         others: others.map((o) => ({
           name: o.name, bot: o.bot, dealer: o.dealer, frozen: hand.frozen(o.seat), lastAct: o.lastAct,
           cards: hand.cards(o.seat).length,
-          shown: o.shown.map(card),
+          shown: o.shown.map((id) => card(id, o.seat)),
           hidden: hand.cards(o.seat).length - o.shown.length,
-          shownTotal: o.shown.reduce((sum, id) => sum + hand.value(id), 0),
+          shownTotal: o.shown.reduce((sum, id) => sum + hand.seatValue(o.seat, id), 0),
           // The full total only once the whole hand is showing.
           total: o.shown.length === hand.cards(o.seat).length ? hand.total(o.seat) : null,
         })),
@@ -308,7 +316,7 @@ export class Table {
           const d = this.#ai.find((s) => s.dealer);
           if (!d) return null;
           return {
-            name: d.name, level: d.level, cards: hand.cards(d.id).map(card), total: hand.total(d.id), frozen: hand.frozen(d.id),
+            name: d.name, level: d.level, cards: hand.cards(d.id).map((id) => card(id, d.id)), total: hand.total(d.id), frozen: hand.frozen(d.id),
             lastAct: d.lastAct, rule: dealerRuleText(d.level, hand.options.lockout),
             nextLook: hand.over || hand.frozen(d.id) || hand.locked ? null : Math.max(0, d.nextThink),
           };

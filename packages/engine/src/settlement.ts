@@ -2,6 +2,17 @@
 export interface Finish {
   seatId: string;
   total: number;
+  /** Safer cards in the hand at the whistle; each cuts the winnings (docs/analysis/safer-cards.md). */
+  safer?: number;
+}
+
+/**
+ * What a winner is paid back after the safer-card cut: the stake, plus the profit less
+ * `cutPerCard` for each safer card, rounded down to whole chips. Never less than the stake.
+ */
+export function afterSaferCut(stake: number, payout: number, safer: number, cutPerCard: number): number {
+  if (!safer || !cutPerCard || payout <= stake) return payout;
+  return stake + Math.floor((payout - stake) * Math.max(0, 1 - cutPerCard * safer));
 }
 
 export interface Standing extends Finish {
@@ -39,23 +50,23 @@ function ranked(finishes: Finish[]): Standing[] {
 }
 
 /** Player table: winners split the pot after rake; the remainder of an uneven split goes to the house. */
-export function settlePlayers(finishes: Finish[], ante: number, rakeShare: number): Settlement {
+export function settlePlayers(finishes: Finish[], ante: number, rakeShare: number, cutPerCard = 0): Settlement {
   const standings = ranked(finishes);
   const pot = ante * finishes.length;
   const rake = Math.round(pot * rakeShare);
   const winners = standings.filter((s) => s.rank === 1);
   const share = Math.floor((pot - rake) / winners.length);
-  for (const w of winners) w.payout = share;
-  return { standings, pot, house: pot - share * winners.length };
+  for (const w of winners) w.payout = afterSaferCut(ante, share, w.safer ?? 0, cutPerCard);
+  return { standings, pot, house: pot - winners.reduce((sum, w) => sum + w.payout, 0) };
 }
 
 /** Against the dealer: each player wins even money, pushes on a tie, or loses the ante. */
-export function settleDealer(players: Finish[], dealer: Finish, ante: number): Settlement {
+export function settleDealer(players: Finish[], dealer: Finish, ante: number, cutPerCard = 0): Settlement {
   const standings = ranked([...players, dealer]);
   for (const s of standings) {
     if (s.seatId === dealer.seatId) continue;
     const vs = compareFinish(s.total, dealer.total);
-    s.payout = vs < 0 ? ante * 2 : vs === 0 ? ante : 0;
+    s.payout = vs < 0 ? afterSaferCut(ante, ante * 2, s.safer ?? 0, cutPerCard) : vs === 0 ? ante : 0;
   }
   const paid = standings.reduce((sum, s) => sum + s.payout, 0);
   return { standings, pot: ante * players.length, house: ante * players.length - paid };

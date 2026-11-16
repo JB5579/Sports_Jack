@@ -32,7 +32,7 @@ export interface HandOptions {
   deal?: "own" | "shared";
 }
 
-export type RefusalReason = "settled" | "frozen" | "locked" | "burn_used" | "not_in_hand" | "unknown_seat";
+export type RefusalReason = "settled" | "frozen" | "locked" | "burn_used" | "not_in_hand" | "unknown_seat" | "no_safer" | "already_safer" | "already_scored";
 
 export class ActionRefused extends Error {
   readonly reason: RefusalReason;
@@ -47,6 +47,8 @@ interface SeatState {
   frozenAt: number | null;
   /** Burns left: one per hand, plus one for each injured player the seat holds. */
   burns: number;
+  /** Cards this seat made safer (variation B): live points count less, winnings are cut. */
+  safer: Set<string>;
   draw: () => number;
 }
 
@@ -125,7 +127,7 @@ export class Hand {
     }
     for (const id of options.seats) {
       const draw = options.deal === "shared" ? seededRandom(options.seed) : this.#draw;
-      const seat: SeatState = { cards: [], frozenAt: null, burns: 1, draw };
+      const seat: SeatState = { cards: [], frozenAt: null, burns: 1, safer: new Set(), draw };
       this.#seats.set(id, seat);
       // One at a time: each draw has to see the cards already in the hand.
       seat.cards.push(this.#drawFor(seat));
@@ -216,9 +218,46 @@ export class Hand {
   burned(seatId: string): boolean { return this.#seat(seatId).burns === 0; }
   burnsLeft(seatId: string): number { return this.#seat(seatId).burns; }
 
+  /** A card's value in one seat's hand: its value, or less movement when that seat made it safer. */
+  seatValue(seatId: string, playerId: string): number {
+    const seat = this.#seat(seatId);
+    if (!seat.safer.has(playerId) || !this.rules.safer) return this.value(playerId);
+    return roundValue(this.card(playerId).face + this.rules.liveWeight * this.rules.safer.liveFactor * this.points(playerId));
+  }
+
+  safer(seatId: string, playerId: string): boolean {
+    return this.#seat(seatId).safer.has(playerId);
+  }
+
+  saferCount(seatId: string): number {
+    return this.#seat(seatId).safer.size;
+  }
+
+  /**
+   * Why a card can't be made safer now, or null when it can. Only cards whose player has not
+   * scored yet this hand: the choice is made before the outcome, as with an alternate line.
+   */
+  saferRefusal(seatId: string, playerId: string): RefusalReason | null {
+    const seat = this.#seat(seatId);
+    if (!this.rules.safer) return "no_safer";
+    const refusal = this.#refusal(seat);
+    if (refusal) return refusal;
+    if (!seat.cards.includes(playerId)) return "not_in_hand";
+    if (seat.safer.has(playerId)) return "already_safer";
+    if (this.log.some((l) => l.playerId === playerId) || this.points(playerId) !== 0) return "already_scored";
+    return null;
+  }
+
+  /** Make a card safer. Its live points count at the ruleset's safer factor from now on, and it stays safer. */
+  makeSafer(seatId: string, playerId: string): void {
+    const refusal = this.saferRefusal(seatId, playerId);
+    if (refusal) throw new ActionRefused(refusal);
+    this.#seat(seatId).safer.add(playerId);
+  }
+
   total(seatId: string): number {
     const seat = this.#seat(seatId);
-    return seat.frozenAt ?? roundValue(seat.cards.reduce((sum, c) => sum + this.value(c), 0));
+    return seat.frozenAt ?? roundValue(seat.cards.reduce((sum, c) => sum + this.seatValue(seatId, c), 0));
   }
 
   canAct(seatId: string): boolean {
@@ -241,6 +280,7 @@ export class Hand {
     if (at < 0) throw new ActionRefused("not_in_hand");
     const card = this.#drawFor(seat, playerId);
     seat.cards[at] = card;
+    seat.safer.delete(playerId); // the burned card leaves, and its safer choice with it
     seat.burns--;
     return card;
   }
@@ -258,7 +298,7 @@ export class Hand {
     const closes = Math.max(lockout, 0);
     const deck = [...this.#cards.values()];
     return {
-      cards: seat.cards.map((c) => ({ playerId: c, value: this.value(c), projection: this.card(c).projection })),
+      cards: seat.cards.map((c) => ({ playerId: c, value: this.seatValue(seatId, c), projection: this.card(c).projection })),
       total: this.total(seatId),
       frozen: seat.frozenAt !== null,
       burned: seat.burns === 0,
@@ -279,10 +319,11 @@ export class Hand {
     if (!this.#over) throw new Error("the hand is still live");
     if (this.#voided) throw new Error("a void hand does not settle");
     const { mode, dealerSeat, ante } = this.options;
-    const finishes = [...this.#seats.keys()].map((seatId) => ({ seatId, total: this.total(seatId) }));
-    if (mode === "players") return settlePlayers(finishes, ante, this.rules.rake);
+    const finishes = [...this.#seats.keys()].map((seatId) => ({ seatId, total: this.total(seatId), safer: this.saferCount(seatId) }));
+    const cut = this.rules.safer?.cutPerCard ?? 0;
+    if (mode === "players") return settlePlayers(finishes, ante, this.rules.rake, cut);
     const dealer = finishes.find((f) => f.seatId === dealerSeat)!;
-    return settleDealer(finishes.filter((f) => f !== dealer), dealer, ante);
+    return settleDealer(finishes.filter((f) => f !== dealer), dealer, ante, cut);
   }
 
   #seat(seatId: string): SeatState {

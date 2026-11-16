@@ -88,6 +88,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
 }) {
   const result = view.result!;
   const me = result.standings.find((s) => s.you);
+  const mine = view.hand?.mine ?? null;
   const net = me ? me.payout - view.table.ante : 0;
   const winners = result.standings.filter((s) => s.rank === 1);
   const iWin = winners.some((s) => s.you);
@@ -132,6 +133,7 @@ export function ResultSheet({ view, balance, onNext, onLobby, onPracticeAgain }:
       <div className="payout">
         <div className={`big num ${net > 0 ? "win" : net < 0 ? "loss" : ""}`}>{net > 0 ? "+" : net < 0 ? "−" : ""}{Math.abs(net)} chips</div>
         <div className="label">
+          {mine && mine.saferCards > 0 && net > 0 && mine.saferRule && `${mine.saferCards} safer ${mine.saferCards === 1 ? "card" : "cards"}: −${Math.round(mine.saferRule.cutPerCard * 100 * mine.saferCards)}% of the winnings · `}
           {view.table.contest.prize.kind === "pool" ? `Prizes from ${view.table.contest.prize.sponsorName}` : view.table.mode === "dealer" ? "Even money against the dealer" : `Pot ${result.pot} · house ${result.house}`}
           {balance !== null && ` · balance ${balance.toLocaleString()}`}
         </div>

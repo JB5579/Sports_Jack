@@ -158,7 +158,7 @@ change a MISSION.md invariant.
 
 | Switch | Scope | Values | Default | What it changes |
 |---|---|---|---|---|
-| `variation` | player | A, B, C | A | Which MVP prototype variation a player sees. B and C play as A until they are built. |
+| `variation` | player | A, B, C | A | Which MVP prototype variation a player sees. B adds safer cards (`docs/analysis/safer-cards.md`); C plays as A until it is built. |
 | `free_contest_deal` | table | shared, own | shared | Whether the free quarter contest deals everyone the same cards. |
 
 **Setting them.** The owner sets weights in `SPORTSJACK_VARIANTS`, for example
@@ -175,8 +175,9 @@ starting, so a typo can't silently put everyone on the default.
 value (`byVariant`). `GET /api/admin/variants` lists the switches, the weights and how many
 players are on each value. Both need the owner key.
 
-**Not yet:** the phone receives its switches on connect but shows nothing different, because
-variations B and C are not built.
+**Variation B is built:** players on it can make a card safer before its player scores. It
+moves half as much, and each safer card cuts a win by 10%. Rulesets `alpha-2` and `alpha-nba-3`
+carry the setting; everyone else plays exactly as before. Variation C is not built.
 
 ## 5. Live feed
 

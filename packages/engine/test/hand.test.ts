@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ActionRefused, faceValue, Hand, shortName } from "../src/index.ts";
+import { ActionRefused, ALPHA_RULES_1, faceValue, Hand, shortName } from "../src/index.ts";
 import { dealerHand, isPlay, playUntil, realGame } from "./game.ts";
 
 const HOLLINS = "00-0033555";
@@ -132,6 +132,55 @@ describe("injuries and void hands (MVP edge-case rules)", () => {
     expect(hand.voided).toBe("game suspended");
     expect(() => hand.settle()).toThrow(/void/);
     expect(() => hand.hit("a")).toThrow(ActionRefused);
+  });
+});
+
+describe("safer cards (variation B)", () => {
+  it("makes a card move half as much, only before its player scores", () => {
+    const { hand, events } = dealerHand("2025_22_SEA_NE", 1, { seed: 7 });
+    const [first, second] = hand.cards("you");
+    hand.makeSafer("you", first!);
+    expect(hand.safer("you", first!)).toBe(true);
+    expect(() => hand.makeSafer("you", first!)).toThrow(ActionRefused);
+    for (const e of events) hand.apply(e);
+    const card = hand.card(first!);
+    expect(hand.seatValue("you", first!)).toBeCloseTo(card.face + 0.25 * hand.points(first!), 6);
+    expect(hand.value(first!)).toBeCloseTo(card.face + 0.5 * hand.points(first!), 6);
+    expect(hand.total("you")).toBeCloseTo(hand.seatValue("you", first!) + hand.value(second!), 6);
+  });
+
+  it("refuses a card whose player already scored, and rulesets without safer cards", () => {
+    // Find a deal where one of my cards scores in Q1, and stop right after he does.
+    let checked = false;
+    for (let seed = 1; seed < 300 && !checked; seed++) {
+      const { hand, events } = dealerHand("2025_22_SEA_NE", 1, { seed });
+      for (const e of events) {
+        hand.apply(e);
+        if (hand.over) break;
+        const scored = hand.cards("you").find((c) => hand.log.some((l) => l.playerId === c));
+        if (!scored) continue;
+        expect(hand.saferRefusal("you", scored)).toBe("already_scored");
+        expect(() => hand.makeSafer("you", scored)).toThrow(ActionRefused);
+        checked = true;
+        break;
+      }
+    }
+    expect(checked).toBe(true);
+    const old = dealerHand("2025_22_SEA_NE", 1, { seed: 7, rules: ALPHA_RULES_1 }).hand;
+    expect(old.saferRefusal("you", old.cards("you")[0]!)).toBe("no_safer");
+  });
+
+  it("drops the safer choice when the card is burned, and cuts the winnings at the whistle", () => {
+    const { hand, events } = dealerHand("2025_22_SEA_NE", 1, { seed: 7 });
+    const [first] = hand.cards("you");
+    hand.makeSafer("you", first!);
+    hand.burn("you", first!);
+    expect(hand.saferCount("you")).toBe(0);
+    hand.makeSafer("you", hand.cards("you")[0]!);
+    for (const e of events) hand.apply(e);
+    const me = hand.settle().standings.find((x) => x.seatId === "you")!;
+    expect(me.safer).toBe(1);
+    if (me.payout > 25) expect(me.payout).toBe(47);
   });
 });
 

@@ -22,7 +22,7 @@ export interface SwitchDef {
 export const SWITCHES: readonly SwitchDef[] = [
   {
     name: "variation", scope: "player", values: ["A", "B", "C"], default: "A",
-    description: "The MVP prototype variation a player sees: A core + rewards, B safer cards, C collect. B and C play as A until they are built.",
+    description: "The MVP prototype variation a player sees: A core + rewards, B safer cards, C collect. B adds safer cards (docs/analysis/safer-cards.md). C plays as A until it is built.",
   },
   {
     name: "rewards", scope: "player", values: ["on", "off"], default: "on",

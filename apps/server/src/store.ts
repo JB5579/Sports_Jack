@@ -5,6 +5,7 @@ import { DatabaseSync } from "node:sqlite";
 import { Ledger, LedgerError, SYSTEM, pot } from "@sportsjack/ledger";
 import type { AuditReport, LedgerRow } from "@sportsjack/ledger";
 import { bucket, SWITCHES, switchDef, type Weights } from "./variants.ts";
+import { Packs } from "./packs.ts";
 import { FULL_GAME_BONUS, MILESTONES, normalizeCode, PROMOTIONS, REFERRAL_BONUS, referralCode, validCreatorCode, type Reward } from "./perks.ts";
 
 export const START_BALANCE = 1000;
@@ -56,6 +57,8 @@ export interface HistoryRow {
 export class Store {
   readonly #db: DatabaseSync;
   readonly ledger: Ledger;
+  /** Variation C: hit-for-a-pack runs and collectible cards. */
+  readonly packs: Packs;
   readonly #weights: Weights;
 
   constructor(path: string, weights: Weights = {}) {
@@ -84,6 +87,7 @@ export class Store {
     if (!columns("hands").includes("contest")) this.#db.exec("ALTER TABLE hands ADD COLUMN contest TEXT NOT NULL DEFAULT '{}'");
     if (!columns("hand_seats").includes("variants")) this.#db.exec("ALTER TABLE hand_seats ADD COLUMN variants TEXT NOT NULL DEFAULT '{}'");
     this.ledger = new Ledger(this.#db);
+    this.packs = new Packs(this.#db, this.ledger);
     this.#migrate();
     // Nothing is live when the server starts, so a pot still holding antes belongs to a hand
     // that was dealt and never settled (the server stopped mid-quarter). Give them back.
@@ -326,7 +330,11 @@ export class Store {
         this.ledger.post({ key: `settle:${hand.id}`, kind: funder.kind, ref: hand.id, entries });
       }
       this.ledger.open(PROMOTIONS, "system");
-      for (const s of hand.seats) rewards[s.accountId] = this.#rewards(s.accountId, hand);
+      for (const s of hand.seats) {
+        rewards[s.accountId] = this.#rewards(s.accountId, hand);
+        // Variation C: every real hand earns a hit-for-a-pack run.
+        if (this.variants(s.accountId).variation === "C") this.packs.earn(s.accountId);
+      }
     });
     return rewards;
   }

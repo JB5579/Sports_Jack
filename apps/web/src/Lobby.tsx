@@ -17,8 +17,8 @@ const lockoutText = (s: number) => (s === 0 ? "no lockout" : `locks at ${clockTe
 
 export type Sport = "nfl" | "nba";
 
-export function Lobby({ lobby, balance, perks, sport, onSport, onSit, onOpen, onWallet, onRules, onPractice, onFeedback }: {
-  lobby: LobbySummary; balance: number | null; perks: Perks | null; sport: Sport; onSport: (s: Sport) => void; onSit: (tableId: string) => void; onOpen: (r: OpenTableRequest) => void;
+export function Lobby({ lobby, balance, perks, onPacks, sport, onSport, onSit, onOpen, onWallet, onRules, onPractice, onFeedback }: {
+  lobby: LobbySummary; balance: number | null; perks: Perks | null; onPacks: (() => void) | null; sport: Sport; onSport: (s: Sport) => void; onSit: (tableId: string) => void; onOpen: (r: OpenTableRequest) => void;
   onWallet: () => void; onRules: () => void; onPractice: () => void; onFeedback: () => void;
 }) {
   const games = lobby.games.filter((g) => g.sport === sport);
@@ -45,6 +45,12 @@ export function Lobby({ lobby, balance, perks, sport, onSport, onSit, onOpen, on
       </div>
       <p className="intro">Blackjack where every card is a real {sport.toUpperCase()} player. A card is worth its face value plus a share of his live fantasy points this quarter. Get closest to 21 by the whistle. Real games, replayed play by play.</p>
       {perks && <PerksCard perks={perks} />}
+      {onPacks && (
+        <div className="trow packs-row">
+          <div><div className="what">Hit for a pack</div><div className="meta">Win player cards from the quarter that just finished</div></div>
+          <button type="button" onClick={onPacks}>Play</button>
+        </div>
+      )}
       {games.length === 0 && <p className="help">No {sport.toUpperCase()} games are replaying right now.</p>}
       {games.map((g) => {
         const status = gameStatus(g);

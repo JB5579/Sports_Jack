@@ -3,6 +3,10 @@ import type { GameRules } from "@sportsjack/engine";
 import type { LobbySummary } from "../../server/src/lobby.ts";
 import type { TableView } from "../../server/src/table.ts";
 import type { Store } from "../../server/src/store.ts";
+import type { Packs } from "../../server/src/packs.ts";
+
+/** Hit for a pack and the collection (variation C), as the server sends them. */
+export type PackState = ReturnType<Packs["state"]>;
 
 /** Referral code and rewards track, as the server sends them. */
 export type Perks = ReturnType<Store["perks"]>;
@@ -52,6 +56,8 @@ export interface Connection {
   accountId: string | null;
   balance: number | null;
   perks: Perks | null;
+  variants: Record<string, string>;
+  packs: PackState | null;
   rules: GameRules | null;
   lobby: LobbySummary | null;
   table: (TableView & { balance: number | null; saferOffered?: boolean }) | null;
@@ -60,7 +66,7 @@ export interface Connection {
 
 /** One WebSocket to the game server, reconnecting with backoff. The server holds all state. */
 export function useSportsJack() {
-  const [state, setState] = useState<Connection>({ status: "connecting", accountId: null, balance: null, perks: null, rules: null, lobby: null, table: null, error: null });
+  const [state, setState] = useState<Connection>({ status: "connecting", accountId: null, balance: null, perks: null, variants: {}, packs: null, rules: null, lobby: null, table: null, error: null });
   const socket = useRef<WebSocket | null>(null);
   const token = useRef(deviceToken());
 
@@ -76,9 +82,10 @@ export function useSportsJack() {
         const m = JSON.parse(String(event.data));
         setState((s) => {
           switch (m.type) {
-            case "welcome": return { ...s, status: "live", accountId: m.account.id, balance: m.account.balance, perks: m.perks ?? null, rules: m.rules, lobby: { games: m.games, tables: m.tables }, table: null };
+            case "welcome": return { ...s, status: "live", accountId: m.account.id, balance: m.account.balance, perks: m.perks ?? null, variants: m.variants ?? {}, rules: m.rules, lobby: { games: m.games, tables: m.tables }, table: null };
             case "lobby": return { ...s, lobby: { games: m.games, tables: m.tables }, table: null, balance: m.balance ?? s.balance, perks: m.perks ?? s.perks };
             case "table": return { ...s, table: m, balance: m.balance ?? s.balance };
+            case "packs": return { ...s, packs: m, balance: m.balance ?? s.balance };
             case "error": return { ...s, error: { reason: m.reason, at: Date.now() } };
             default: return s;
           }
@@ -110,6 +117,11 @@ export function useSportsJack() {
     freeze: () => send({ type: "freeze" }),
     burn: (playerId: string) => send({ type: "burn", playerId }),
     safer: (playerId: string) => send({ type: "safer", playerId }),
+    packs: () => send({ type: "packs" }),
+    packStart: () => send({ type: "pack_start" }),
+    packHit: () => send({ type: "pack_hit" }),
+    packStop: () => send({ type: "pack_stop" }),
+    packSell: (cardId: string) => send({ type: "pack_sell", cardId }),
     clearError: () => setState((s) => ({ ...s, error: null })),
   };
 }

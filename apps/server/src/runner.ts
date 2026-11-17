@@ -17,6 +17,8 @@ export interface RunnerStatus {
   /** The quarter players can join next: the one about to start, or the next after this one. */
   nextQtr: number | null;
   breakLeft: number;
+  /** Real seconds until the next quarter is dealt, or null when the game has no next quarter. */
+  nextDealIn: number | null;
 }
 
 /** Each period's real clock: where it starts (by sport and overtime rules) and where it ended. */
@@ -64,7 +66,16 @@ export class GameRunner extends EventEmitter {
       gameId: this.game.gameId, sport: this.game.sport, home: this.game.home, away: this.game.away, phase: this.phase, qtr: this.qtr, clock: this.clock, score: this.#score,
       paused: this.paused, breakLeft: Math.max(0, this.#breakLeft),
       nextQtr: this.periods.some((p) => p.q === upcoming) ? upcoming : null,
+      nextDealIn: this.#nextDealIn(),
     };
+  }
+
+  #nextDealIn(): number | null {
+    if (this.phase === "break") return this.periods.some((p) => p.q === this.qtr + 1) ? Math.max(0, Math.ceil(this.#breakLeft)) : null;
+    if (this.phase === "final" || !this.periods.some((p) => p.q === this.qtr + 1)) return null;
+    // The rest of this quarter on the replay's clock, then the break.
+    const period = this.periods.find((p) => p.q === this.qtr)!;
+    return Math.ceil(Math.max(0, this.clock - period.end) / this.#options.speed + this.#options.breakSeconds);
   }
 
   /** Advance by `dt` real seconds. */

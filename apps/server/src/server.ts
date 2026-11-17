@@ -153,7 +153,8 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
     if (config.testControls && req.method === "POST" && url.pathname.startsWith("/test/replay/")) {
       const runner = lobby.runners.get(url.searchParams.get("game") ?? "");
       if (!runner) return json(res, 404, { error: "unknown game" });
-      runner.paused = url.pathname.endsWith("/pause");
+      // The feed is the game's: pausing it pauses every replay of that game, private copies too.
+      for (const r of lobby.replaysOf(runner.game.gameId)) r.paused = url.pathname.endsWith("/pause");
       for (const t of lobby.tables.values()) if (t.spec.gameId === runner.game.gameId) dirty.add(t.spec.id);
       lobbyDirty = true;
       return json(res, 200, runner.status());
@@ -223,9 +224,12 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
       case "sit": {
         const listed = table(msg.tableId);
         // Player tables deal at once on the player's own replay (MISSION.md, 2026-11-08).
-        // Pooled contests have no bots and everyone shares one replay, so they are sat at directly.
-        const botTable = listed.spec.mode === "players" && listed.spec.contest.fillWithBots > 0;
-        const t = botTable && !listed.spec.personal ? lobby.personal(c.accountId, listed) : listed;
+        // Dealer and player tables deal at once on the player's own copy of the replay, so
+        // nobody waits out a quarter (MISSION.md, 2026-11-08; dealer tables from 2026-11-17).
+        // The free quarter contest stays on the shared replay: everyone is dealt the same cards
+        // at the same time, so it deals at the next break.
+        const own = listed.spec.contest.prize.kind === "table" && !listed.spec.personal;
+        const t = own ? lobby.personal(c.accountId, listed) : listed;
         if (t.spec.contest.seats !== null && !t.seated.has(c.accountId) && t.seated.size + t.pending.size >= t.spec.contest.seats) throw new Error("table_full");
         if (c.tableId && c.tableId !== t.spec.id) lobby.tables.get(c.tableId)?.leave(c.accountId);
         const status = t.sit(c.accountId);

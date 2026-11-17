@@ -158,7 +158,7 @@ change a MISSION.md invariant.
 
 | Switch | Scope | Values | Default | What it changes |
 |---|---|---|---|---|
-| `variation` | player | A, B, C | A | Which MVP prototype variation a player sees. B adds safer cards (`docs/analysis/safer-cards.md`); C plays as A until it is built. |
+| `variation` | player | A, B, C | A | Which MVP prototype variation a player sees. B adds safer cards (`docs/analysis/safer-cards.md`); C adds hit for a pack and collectibles. |
 | `free_contest_deal` | table | shared, own | shared | Whether the free quarter contest deals everyone the same cards. |
 
 **Setting them.** The owner sets weights in `SPORTSJACK_VARIANTS`, for example
@@ -177,7 +177,37 @@ players are on each value. Both need the owner key.
 
 **Variation B is built:** players on it can make a card safer before its player scores. It
 moves half as much, and each safer card cuts a win by 10%. Rulesets `alpha-2` and `alpha-nba-3`
-carry the setting; everyone else plays exactly as before. Variation C is not built.
+carry the setting; everyone else plays exactly as before.
+
+**Variation C is built:** hit for a pack and collectible cards (below).
+
+## Collectibles: hit for a pack (variation C, built 2026-11-17)
+
+Free and play money: runs are earned, never bought, and pack cards never play in hands.
+
+- **Runs.** One free run a day and one for every real hand played, banked up to five.
+- **A run** deals real players from the quarter that most recently finished in a listed game,
+  each worth what he scored in it (face + live points × the live weight). Two cards are dealt;
+  the player hits or stops. Over 21 ends the run with nothing.
+- **The pack** depends on where the run stops: 16–17.99 bronze, 18–19.99 silver, 20–21 gold.
+  Below 16, nothing. A pack holds three different players from that game.
+- **Tiers** are Gianni's set values, as chips: Common 1, Uncommon 5, Rare 20, Epic 50,
+  Legendary 100, Grail 1,000. Odds per card:
+
+| Pack | Common | Uncommon | Rare | Epic | Legendary | Grail | Average value |
+|---|---|---|---|---|---|---|---|
+| Bronze | 80% | 17% | 2.5% | 0.4% | 0.09% | 0.01% | 7.6 chips |
+| Silver | 62% | 30% | 6% | 1.5% | 0.4% | 0.1% | 16.4 chips |
+| Gold | 40% | 40% | 14% | 4.5% | 1.2% | 0.3% | 35 chips |
+
+- **Selling back** pays a card's tier value in chips from `house:collectibles` through the
+  ledger, once per card.
+- **Edge cases.** A run uses a quarter that has already finished, so blowouts, injuries and
+  stat corrections can't change it mid-run. A run left live by a server restart is refunded
+  as a run.
+- **Where it lives:** `packages/engine/src/packs.ts` (tiers, odds, landing),
+  `apps/server/src/packs.ts` (runs, credits, collection, sell-back), the "Hit for a pack"
+  row in the lobby for variation C players.
 
 ## 5. Live feed
 

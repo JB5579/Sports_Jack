@@ -580,4 +580,31 @@ describe("SportsJack server", () => {
     expect(await p.next((m) => m.type === "error")).toMatchObject({ reason: "not_offered" });
     expect(table.hand!.saferCount(id)).toBe(0);
   });
+
+  it("runs hit for a pack for variation C from the quarter that just finished", async () => {
+    const { port, lobby } = await start({ variants: "variation=C;rewards=off" });
+    const p = await phone(port, tokenA);
+    p.send({ type: "pack_start" });
+    expect(await p.next((m) => m.type === "error")).toMatchObject({ reason: "no_quarter_yet" });
+    // Let Super Bowl LX's first quarter play out.
+    for (let i = 0; i < 400 && !lobby.packSource(); i++) lobby.advance(1);
+    const source = lobby.packSource()!;
+    expect(source).toMatchObject({ qtr: 1, edition: "SEA at NE · Q1" });
+    expect(source.deck.length).toBeGreaterThan(80);
+    p.send({ type: "pack_start" });
+    const started = await p.next((m) => m.type === "packs");
+    expect(started).toMatchObject({ credits: 0, run: { edition: "SEA at NE · Q1" } });
+    const run = started.run as { status: string };
+    if (run.status === "live") {
+      p.send({ type: "pack_stop" });
+      expect(await p.next((m) => m.type === "packs" && (m.run as { status: string }).status !== "live")).toBeTruthy();
+    }
+  });
+
+  it("refuses hit for a pack to players not on variation C", async () => {
+    const { port } = await start();
+    const p = await phone(port, tokenA);
+    p.send({ type: "packs" });
+    expect(await p.next((m) => m.type === "error")).toMatchObject({ reason: "not_offered" });
+  });
 });

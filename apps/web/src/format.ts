@@ -60,6 +60,11 @@ export function statLine(st: StatDelta): string {
 }
 
 const REFUSALS: Record<string, string> = {
+  no_quarter_yet: "Packs open once a quarter has finished. Check back after the next whistle.",
+  no_runs_left: "No runs left. You get one a day and one for every hand you play.",
+  run_in_progress: "Finish the run you started first.",
+  already_scored: "That player already scored this quarter, so his card can't be made safer.",
+  not_offered: "That isn't part of your version of the game.",
   locked: "Moves are locked for the rest of this quarter.",
   frozen: "Your hand is frozen. It settles at the whistle.",
   burn_used: "You've already used your Burn this hand.",

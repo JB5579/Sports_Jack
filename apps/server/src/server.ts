@@ -256,6 +256,21 @@ export function createSportsJackServer(config: ServerConfig): SportsJackServer {
         send(c.socket, { type: "lobby", ...lobby.summary(), balance: lobby.store.balance(c.accountId), perks: lobby.store.perks(c.accountId) });
         return;
       }
+      case "packs": case "pack_start": case "pack_hit": case "pack_stop": case "pack_sell": {
+        // Variation C only: hit for a pack and the collection.
+        if (lobby.store.variants(c.accountId).variation !== "C") throw new Error("not_offered");
+        const packs = lobby.store.packs;
+        if (msg.type === "pack_start") {
+          const source = lobby.packSource();
+          if (!source) throw new Error("no_quarter_yet");
+          packs.start(c.accountId, source);
+        } else if (msg.type === "pack_hit") packs.hit(c.accountId);
+        else if (msg.type === "pack_stop") packs.stop(c.accountId);
+        else if (msg.type === "pack_sell") packs.sell(c.accountId, String(msg.cardId));
+        if (msg.type !== "packs") log(c, msg.type, msg.type === "pack_sell" ? { cardId: String(msg.cardId) } : {});
+        send(c.socket, { type: "packs", ...packs.state(c.accountId), balance: lobby.store.balance(c.accountId) });
+        return;
+      }
       case "hit": case "freeze": case "burn": case "safer": {
         const t = table(c.tableId);
         if (msg.type === "safer" && lobby.store.variants(c.accountId).variation !== "B") throw new ActionError("not_offered");

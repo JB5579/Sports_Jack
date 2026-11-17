@@ -1,9 +1,10 @@
-import { buildDeck, contestProblem, entryAmount, rulesFor, type ContestRules, type DealerLevel, type GameRules, type TableMode } from "@sportsjack/engine";
+import { buildDeck, contestProblem, entryAmount, QuarterScorer, roundValue, rulesFor, type ContestRules, type DealerLevel, type GameRules, type TableMode } from "@sportsjack/engine";
 import { loadNbaGame, loadNbaRoster, loadNflverseGame, loadNflversePlayers, loadProjections, type GameInfo, type RecordedGame, type Sport } from "@sportsjack/feed";
 import type { ServerConfig } from "./config.ts";
 import { GameRunner } from "./runner.ts";
 import { Store } from "./store.ts";
 import { parseVariants, tableValue, type Weights } from "./variants.ts";
+import type { PackSource } from "./packs.ts";
 import { ANTES, LOCKOUTS, Table, type TableSpec } from "./table.ts";
 
 const LABELS: Record<string, string> = {
@@ -57,6 +58,8 @@ export class Lobby {
   readonly #config: ServerConfig;
   /** Variant switch weights (prd/FOUNDATION.md §4). */
   readonly variants: Weights;
+  /** The quarter that most recently finished in a listed game: hit-for-a-pack deals from it. */
+  #lastQuarter: { gameId: string; qtr: number } | null = null;
   #nextId = 1;
 
   constructor(config: ServerConfig, onChange: (table: Table | null) => void) {
@@ -73,7 +76,7 @@ export class Lobby {
       this.#rules.set(gameId, rules);
       const runner = new GameRunner(recorded, { speed: config.speed, fromQuarter: config.fromQuarter, breakSeconds: config.breakSeconds, loop: config.loop });
       runner.on("quarter_start", () => onChange(null));
-      runner.on("quarter_end", () => onChange(null));
+      runner.on("quarter_end", (q: number) => { this.#lastQuarter = { gameId, qtr: q }; onChange(null); });
       this.runners.set(gameId, runner);
       this.games.set(gameId, { ...recorded.game, label: LABELS[gameId] ?? `${recorded.game.away} at ${recorded.game.home}` });
       this.#decks.set(gameId, deck);
@@ -145,6 +148,26 @@ export class Lobby {
     runner.on("quarter_end", () => { if (table.seated.size === 0 || runner.phase === "final") this.dispose(spec.id); });
     table.sit(accountId);
     return table;
+  }
+
+  /**
+   * The cards a hit-for-a-pack run deals: every player in the game that most recently
+   * finished a quarter, valued as that quarter scored him. Null until a quarter has finished.
+   */
+  packSource(): PackSource | null {
+    if (!this.#lastQuarter) return null;
+    const { gameId, qtr } = this.#lastQuarter;
+    const recorded = this.#recorded.get(gameId)!;
+    const rules = this.#rules.get(gameId)!;
+    const scorer = new QuarterScorer(rules.scoring);
+    for (const e of recorded.events) if (e.clock.qtr === qtr) scorer.apply(e);
+    const game = this.games.get(gameId)!;
+    const label = qtr === 5 ? "OT" : qtr > 5 ? `${qtr - 4}OT` : `Q${qtr}`;
+    return {
+      gameId, qtr, edition: `${game.away} at ${game.home} · ${label}`,
+      deck: this.#decks.get(gameId)!.map((c) => ({ playerId: c.playerId, name: c.name, team: c.team, position: c.position,
+        value: roundValue(c.face + rules.liveWeight * scorer.points(qtr, c.playerId)) })),
+    };
   }
 
   /** Remove a private table (practice or personal) and its replay. */

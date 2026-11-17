@@ -13,3 +13,5 @@ export { DEALER_CHECK_SECONDS, DEALER_RULES, dealerRuleText, decide, freezeWindo
 export type { DealerLevel, Decision } from "./dealer.ts";
 export { contestProblem, entryAmount, poolPayouts } from "./contest.ts";
 export type { ContestRules, EntryRule, PrizeRule } from "./contest.ts";
+export { CARDS_PER_PACK, PACKS, RUN_TARGET, TIERS, packFor, packValue, tierFor } from "./packs.ts";
+export type { PackId, TierId } from "./packs.ts";

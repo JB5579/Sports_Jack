@@ -279,3 +279,21 @@ details.open-table summary::-webkit-details-marker { display: none; }
 .safer-toggle { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(143,211,238,0.4); background: rgba(143,211,238,0.08); color: var(--ice); font-weight: 600; font-size: 13px; }
 .safer-toggle small { font-family: var(--mono); font-size: 9px; letter-spacing: 0.04em; color: var(--on-felt-faint); text-transform: uppercase; }
 .safer-toggle.on { background: rgba(143,211,238,0.2); }
+
+/* Variation C: hit for a pack and the collection. */
+.packs-scroll { max-height: 52vh; }
+.run { display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 14px; background: rgba(0,0,0,0.22); }
+.run-head { display: flex; justify-content: space-between; align-items: baseline; }
+.run-head strong { font-family: var(--serif); font-size: 30px; color: var(--gold-shine); }
+.run-cards { display: flex; flex-direction: column; gap: 4px; }
+.run-card { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: baseline; font-size: 13px; }
+.run-card .nm { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.run-outcome { text-align: center; font-weight: 700; color: var(--on-felt-dim); }
+.run-outcome.won { color: var(--gold-shine); font-size: 16px; }
+.opened { display: flex; flex-direction: column; gap: 6px; }
+.collectible { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 12px; border: 1px solid; background: rgba(255,255,255,0.03); }
+.collectible .who { font-weight: 600; font-size: 14px; }
+.collectible .note { font-size: 11px; color: var(--on-felt-faint); }
+.collectible .tier { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+.collectible .sell { min-height: 34px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--gold); background: rgba(226,182,90,0.14); color: var(--gold-shine); font-weight: 700; font-size: 12px; }
+.pack-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }

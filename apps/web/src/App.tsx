@@ -3,9 +3,10 @@ import { onboarding, track, useSportsJack } from "./api.ts";
 import { Lobby, type Sport } from "./Lobby.tsx";
 import { FeedbackSheet, GridSheet, ResultSheet, RulesSheet, Sheet, WalletSheet } from "./Sheets.tsx";
 import { TableScreen } from "./TableScreen.tsx";
+import { PacksSheet } from "./Packs.tsx";
 import { refusalText } from "./format.ts";
 
-type SheetName = "grid" | "wallet" | "rules" | "feedback" | null;
+type SheetName = "grid" | "wallet" | "rules" | "feedback" | "packs" | null;
 
 const standalone = () => matchMedia("(display-mode: standalone)").matches || (navigator as { standalone?: boolean }).standalone === true;
 
@@ -42,7 +43,8 @@ export function App() {
         <TableScreen view={view} onLeave={() => { setSheet(null); sj.leave(); }} onHit={sj.hit} onFreeze={sj.freeze} onBurn={sj.burn} onSafer={sj.safer}
           onGrid={() => setSheet("grid")} onFeedback={() => setSheet("feedback")} />
       ) : state.lobby && (
-        <Lobby lobby={state.lobby} balance={state.balance} perks={state.perks} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={() => startPractice(sport)} onFeedback={() => setSheet("feedback")} />
+        <Lobby lobby={state.lobby} balance={state.balance} perks={state.perks}
+          onPacks={state.variants.variation === "C" ? () => { track("packs_open"); sj.packs(); setSheet("packs"); } : null} sport={sport} onSport={chooseSport} onSit={sj.sit} onOpen={sj.open} onWallet={() => setSheet("wallet")} onRules={() => setSheet("rules")} onPractice={() => startPractice(sport)} onFeedback={() => setSheet("feedback")} />
       )}
       {gridOpen && <GridSheet view={view!} onClose={() => setSheet(null)} />}
       {result && view && !gridOpen && (
@@ -58,6 +60,7 @@ export function App() {
           <button className="secondary" type="button" onClick={() => { onboarding.finish(); setWelcome(false); }}>Skip to the tables</button>
         </Sheet>
       )}
+      {sheet === "packs" && <PacksSheet packs={state.packs} onStart={sj.packStart} onHit={sj.packHit} onStop={sj.packStop} onSell={sj.packSell} onClose={() => setSheet(null)} />}
       {sheet === "wallet" && <WalletSheet token={sj.token} balance={state.balance} onClose={() => setSheet(null)} />}
       {sheet === "feedback" && <FeedbackSheet screen={view ? (view.table.practice ? "practice" : "table") : "lobby"} gameId={view?.table.gameId ?? null} onClose={() => setSheet(null)} />}
       {sheet === "rules" && <RulesSheet rules={rules} sport={rulesSport} onClose={() => setSheet(null)} />}

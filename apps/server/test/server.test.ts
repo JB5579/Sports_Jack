@@ -59,6 +59,16 @@ const untilSettled = (lobby: SportsJackServer["lobby"], table: { result: unknown
   if (!table.result) throw new Error("the hand never settled");
 };
 
+/**
+ * Sit, and return the table the server actually seats you at: dealer and player tables deal
+ * at once on your own copy of the replay, so it is not the listed table.
+ */
+async function sitAt(lobby: SportsJackServer["lobby"], p: { send: (m: Record<string, unknown>) => void; next: (f: (m: Record<string, unknown>) => boolean) => Promise<Record<string, unknown>> }, tableId: string) {
+  p.send({ type: "sit", tableId });
+  const sat = await p.next((m) => m.type === "sat");
+  return { table: lobby.tables.get(String(sat.tableId))!, sat };
+}
+
 describe("SportsJack server", () => {
   it("answers health and build identity", async () => {
     const { port } = await start();
@@ -71,9 +81,8 @@ describe("SportsJack server", () => {
     const p = await phone(port, tokenA);
     const account = p.welcome.account as { id: string; balance: number };
     expect(account.balance).toBe(1000);
-    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    expect(await p.next((m) => m.type === "sat")).toMatchObject({ status: "seated" });
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
 
     quarter(lobby, 6); // the break ends; Q1 is dealt
     expect(lobby.store.balance(account.id)).toBe(975);
@@ -101,13 +110,13 @@ describe("SportsJack server", () => {
     expect(moved || first !== values()).toBe(true);
   });
 
-  it("seats a player who sits mid-quarter at the next break, not in the live hand", async () => {
+  it("seats a player who sits mid-quarter at the free contest at the next break, not in the live hand", async () => {
     const { port, lobby } = await start();
-    const table = [...lobby.tables.values()][0]!;
+    const table = [...lobby.tables.values()].find((t) => t.spec.contest.prize.kind === "pool")!;
     const a = await phone(port, tokenA);
-    a.send({ type: "sit", tableId: table.spec.id });
-    await a.next((m) => m.type === "sat");
+    expect((await sitAt(lobby, a, table.spec.id)).table).toBe(table); // the contest is shared: no private copy
     quarter(lobby, 8);
+    expect(lobby.runners.get(table.spec.gameId)!.status().nextDealIn).toBeGreaterThan(5); // the rest of Q1, then the break
     const b = await phone(port, tokenB);
     b.send({ type: "sit", tableId: table.spec.id });
     expect(await b.next((m) => m.type === "sat")).toMatchObject({ status: "next_break" });
@@ -119,10 +128,9 @@ describe("SportsJack server", () => {
 
   it("gives a reconnecting phone the same hand", async () => {
     const { port, lobby } = await start();
-    const table = [...lobby.tables.values()][0]!;
+    const listed = [...lobby.tables.values()][0]!;
     const first = await phone(port, tokenA);
-    first.send({ type: "sit", tableId: table.spec.id });
-    await first.next((m) => m.type === "sat");
+    const { table } = await sitAt(lobby, first, listed.spec.id);
     quarter(lobby, 7);
     const handId = table.handId;
     first.socket.terminate();
@@ -134,10 +142,9 @@ describe("SportsJack server", () => {
 
   it("holds the hand while the feed is paused and settles after it resumes", async () => {
     const { port, lobby } = await start();
-    const table = [...lobby.tables.values()][0]!;
+    const listed = [...lobby.tables.values()][0]!;
     const p = await phone(port, tokenA);
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 8);
     await fetch(`http://localhost:${port}/test/replay/pause?game=2025_22_SEA_NE`, { method: "POST" });
     const clock = table.hand!.clock;
@@ -156,9 +163,8 @@ describe("SportsJack server", () => {
     const first = await start({}, dir);
     const p = await phone(first.port, tokenA);
     const id = (p.welcome.account as { id: string }).id;
-    const table = [...first.lobby.tables.values()][0]!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...first.lobby.tables.values()][0]!;
+    const { table } = await sitAt(first.lobby, p, listed.spec.id);
     quarter(first.lobby, 30); // Q1 settles and Q2 is dealt, so Q2's ante is in its pot when the server stops
     const balance = first.lobby.store.balance(id);
     const liveHand = table.handId!;
@@ -258,9 +264,8 @@ describe("SportsJack server", () => {
     expect((await post("/api/events", { token: tokenA, events: [{ name: "app_open", props: { standalone: true } }, { nope: 1 }] })).status).toBe(200);
 
     const p = await phone(port, tokenA);
-    const table = [...lobby.tables.values()][0]!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...lobby.tables.values()][0]!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 7);
     p.send({ type: "hit" });
     await p.next((m) => m.type === "table" && (m.hand as { mine?: { cards: unknown[] } } | null)?.mine?.cards.length === 3);
@@ -290,9 +295,8 @@ describe("SportsJack server", () => {
     expect(summary.games[0]).toMatchObject({ sport: "nba", home: "OKC", away: "SA", rules: { id: "alpha-nba-3", liveWeight: 0.2 } });
     const p = await phone(port, tokenA);
     const id = (p.welcome.account as { id: string }).id;
-    const table = [...lobby.tables.values()][0]!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...lobby.tables.values()][0]!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 6);
     const view = table.view(id);
     expect(view.hand).toMatchObject({ rules: "alpha-nba-3", liveWeight: 0.2 });
@@ -332,9 +336,8 @@ describe("SportsJack server", () => {
     const { port, lobby } = await start();
     const p = await phone(port, tokenA);
     const id = (p.welcome.account as { id: string }).id;
-    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.level === "easy")!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.level === "easy")!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 7);
     const dealer = table.view(id).hand!.dealer!;
     expect(dealer.cards.length).toBeGreaterThanOrEqual(2);
@@ -455,9 +458,8 @@ describe("SportsJack server", () => {
     const p = await phone(port, tokenA);
     expect(p.welcome.variants).toEqual({ variation: "B", rewards: "off" });
     const id = (p.welcome.account as { id: string }).id;
-    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 6);
     untilSettled(lobby, table);
     const summary = lobby.store.testSummary();
@@ -493,9 +495,11 @@ describe("SportsJack server", () => {
     const welcome = new Promise<Record<string, unknown>>((r) => socket.on("message", (raw) => { const m = JSON.parse(String(raw)); if (m.type === "welcome") r(m); }));
     socket.send(JSON.stringify({ type: "hello", token: tokenB, ref: code }));
     const friendId = ((await welcome).account as { id: string }).id;
-    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
-    socket.send(JSON.stringify({ type: "sit", tableId: table.spec.id }));
-    for (let i = 0; i < 20 && !table.seated.has(friendId); i++) await new Promise((r) => setTimeout(r, 10));
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    socket.send(JSON.stringify({ type: "sit", tableId: listed.spec.id }));
+    const seatedAt = () => [...lobby.tables.values()].find((t) => t.spec.personal && t.seated.has(friendId));
+    for (let i = 0; i < 20 && !seatedAt(); i++) await new Promise((r) => setTimeout(r, 10));
+    const table = seatedAt()!;
     quarter(lobby, 6);
     untilSettled(lobby, table);
     const result = table.view(friendId).result!;
@@ -514,9 +518,8 @@ describe("SportsJack server", () => {
     const { port, lobby } = await start({ adminToken: "s3cret" });
     const p = await phone(port, tokenA);
     const id = (p.welcome.account as { id: string }).id;
-    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 100)!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 100)!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 8);
     expect(lobby.store.balance(id)).toBe(900);
     const res = await fetch(`http://localhost:${port}/api/admin/void?key=s3cret`, { method: "POST", body: JSON.stringify({ game: table.spec.gameId, reason: "Lightning delay" }) });
@@ -552,9 +555,8 @@ describe("SportsJack server", () => {
     const { port, lobby } = await start({ variants: "variation=B;rewards=off" });
     const p = await phone(port, tokenA);
     const id = (p.welcome.account as { id: string }).id;
-    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 6);
     const first = table.view(id).hand!.mine!.cards[0]!;
     expect(first.canSafer).toBe(true);
@@ -571,9 +573,8 @@ describe("SportsJack server", () => {
   it("refuses safer cards to players not on variation B", async () => {
     const { port, lobby } = await start();
     const p = await phone(port, tokenA);
-    const table = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
-    p.send({ type: "sit", tableId: table.spec.id });
-    await p.next((m) => m.type === "sat");
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    const { table } = await sitAt(lobby, p, listed.spec.id);
     quarter(lobby, 6);
     const id = (p.welcome.account as { id: string }).id;
     p.send({ type: "safer", playerId: table.view(id).hand!.mine!.cards[0]!.playerId });
@@ -606,5 +607,21 @@ describe("SportsJack server", () => {
     const p = await phone(port, tokenA);
     p.send({ type: "packs" });
     expect(await p.next((m) => m.type === "error")).toMatchObject({ reason: "not_offered" });
+  });
+
+  it("deals a dealer table at once, mid-quarter, on the player's own replay", async () => {
+    const { port, lobby } = await start();
+    quarter(lobby, 10); // the shared game is now in Q1
+    expect(lobby.runners.get("2025_22_SEA_NE")!.phase).toBe("quarter");
+    const p = await phone(port, tokenA);
+    const listed = [...lobby.tables.values()].find((t) => t.spec.mode === "dealer" && t.spec.ante === 25)!;
+    const { table, sat } = await sitAt(lobby, p, listed.spec.id);
+    expect(sat).toMatchObject({ status: "seated" });
+    expect(table).not.toBe(listed);
+    expect(table.spec).toMatchObject({ personal: true, mode: "dealer", ante: 25 });
+    quarter(lobby, 2);
+    const id = (p.welcome.account as { id: string }).id;
+    expect(table.hand?.options.qtr).toBe(2); // the next quarter, dealt at once
+    expect(table.humans).toContain(id);
   });
 });

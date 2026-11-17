@@ -1,6 +1,13 @@
 import { useState } from "react";
 import type { LobbySummary, OpenTableRequest, Perks } from "./api.ts";
 import { PerksCard } from "./Perks.tsx";
+import { useCountdown } from "./countdown.ts";
+
+/** "next deal in 1:40", counting down between the server's lobby updates. */
+function NextDeal({ seconds }: { seconds: number | null }) {
+  const left = useCountdown(seconds);
+  return <>{left === null ? "game over" : `next deal in ${clockText(left)}`}</>;
+}
 import { clockText, entryText, qName, tableName } from "./format.ts";
 
 type Game = LobbySummary["games"][number];
@@ -70,7 +77,7 @@ export function Lobby({ lobby, balance, perks, onPacks, sport, onSport, onSit, o
                 <div key={t.id} className="trow">
                   <div>
                     <div className="what">{tableName(t)}</div>
-                    <div className="meta">{entryText(t)} · {lockoutText(t.lockout)} · {t.seated} seated</div>
+                    <div className="meta">{entryText(t)} · {t.contest.prize.kind === "pool" ? <NextDeal seconds={g.status.nextDealIn} /> : "deals at once"} · {lockoutText(t.lockout)} · {t.seated} seated</div>
                   </div>
                   <button type="button" onClick={() => onSit(t.id)}>Sit</button>
                 </div>

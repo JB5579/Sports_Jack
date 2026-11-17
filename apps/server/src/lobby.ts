@@ -170,6 +170,11 @@ export class Lobby {
     };
   }
 
+  /** Every replay of a game: the shared one and each player's private copy. */
+  replaysOf(gameId: string): GameRunner[] {
+    return [this.runners.get(gameId), ...this.#practices.values()].filter((r): r is GameRunner => !!r && r.game.gameId === gameId);
+  }
+
   /** Remove a private table (practice or personal) and its replay. */
   dispose(tableId: string): void {
     const runner = this.#practices.get(tableId);

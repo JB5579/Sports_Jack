@@ -3,6 +3,7 @@ import type { TableView } from "./api.ts";
 import { Dial, PlayingCard, type Flash } from "./Cards.tsx";
 import { advance, coachText, following, type CoachStep } from "./coach.ts";
 import { track } from "./api.ts";
+import { useCountdown } from "./countdown.ts";
 import { DEALER_RULES, freezeWindow } from "@sportsjack/engine";
 import { clockText, entryText, fmt1, playText, qName, shortName, tableName, versus, weightWords } from "./format.ts";
 
@@ -13,6 +14,7 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onSafer, o
   const { hand, game, table } = view;
   const mine = hand?.mine ?? null;
   const [burnPick, setBurnPick] = useState(false);
+  const dealIn = useCountdown(game.nextDealIn);
   // Variation B: pick a card to make safer (it moves less; a win pays less).
   const [saferPick, setSaferPick] = useState(false);
   const [flashes, setFlashes] = useState<Map<string, Flash>>(new Map());
@@ -82,8 +84,8 @@ export function TableScreen({ view, onLeave, onHit, onFreeze, onBurn, onSafer, o
         <div className="waiting">
           <span className="label">{tableName(table)} · {entryText(table)} · {table.lockout ? `locks at ${clockText(table.lockout)}` : "no lockout"}</span>
           <div className="big">{view.you.joiningNextBreak || game.phase === "quarter" ? `You're in from ${next ? qName(next) : "the next quarter"}` : next ? `${qName(next)} deals soon` : "This game is over"}</div>
-          {game.phase === "break" && next && <div className="count num">{clockText(game.breakLeft)}</div>}
-          <p className="help">{game.phase === "quarter" ? "Players join between quarters, never during one. Watch this quarter play out; you'll be dealt in at the next break." : table.ante ? "Your ante comes out when the cards are dealt." : "Free to enter. Everyone is dealt the same cards; your moves decide where you finish."}</p>
+          {next && dealIn !== null && <div className="count num">{clockText(dealIn)}</div>}
+          <p className="help">{game.phase === "quarter" ? "Everyone in this contest is dealt in together at the start of a quarter. You're seated: watch this one play out and your cards arrive when the countdown ends." : table.ante ? "Your ante comes out when the cards are dealt." : "Free to enter. Everyone is dealt the same cards; your moves decide where you finish."}</p>
         </div>
       </section>
     );
